@@ -14,6 +14,17 @@
 		1137F0821A2EC851009A7BDA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1137F0811A2EC851009A7BDA /* Images.xcassets */; };
 		1137F0851A2EC851009A7BDA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1137F0831A2EC851009A7BDA /* LaunchScreen.xib */; };
 		1137F0911A2EC851009A7BDA /* VocabCrack_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F0901A2EC851009A7BDA /* VocabCrack_iOSTests.swift */; };
+		1137F09C1A2EC8D2009A7BDA /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 1137F09A1A2EC8D2009A7BDA /* user.png */; };
+		1137F09D1A2EC8D2009A7BDA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1137F09B1A2EC8D2009A7BDA /* logo.png */; };
+		1137F09F1A2ECE8C009A7BDA /* NetHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F09E1A2ECE8B009A7BDA /* NetHandler.swift */; };
+		11396ABD1A2ED4500050120D /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ABC1A2ED4500050120D /* RegisterController.swift */; };
+		11396ABF1A2F3D470050120D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ABE1A2F3D470050120D /* LoginController.swift */; };
+		11396AC31A2F40190050120D /* CoreHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC01A2F40190050120D /* CoreHandler.swift */; };
+		11396AC41A2F40190050120D /* GameHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC11A2F40190050120D /* GameHandler.swift */; };
+		11396AC51A2F40190050120D /* FriendHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC21A2F40190050120D /* FriendHandler.swift */; };
+		11396AC71A2F40200050120D /* VocabCrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC61A2F40200050120D /* VocabCrack.swift */; };
+		11396AC91A2F456C0050120D /* OperationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC81A2F456C0050120D /* OperationsManager.swift */; };
+		11396ACB1A2F4BEF0050120D /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ACA1A2F4BEF0050120D /* MenuController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +49,17 @@
 		1137F08A1A2EC851009A7BDA /* VocabCrack-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VocabCrack-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1137F08F1A2EC851009A7BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1137F0901A2EC851009A7BDA /* VocabCrack_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabCrack_iOSTests.swift; sourceTree = "<group>"; };
+		1137F09A1A2EC8D2009A7BDA /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		1137F09B1A2EC8D2009A7BDA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		1137F09E1A2ECE8B009A7BDA /* NetHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetHandler.swift; sourceTree = "<group>"; };
+		11396ABC1A2ED4500050120D /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		11396ABE1A2F3D470050120D /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		11396AC01A2F40190050120D /* CoreHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreHandler.swift; sourceTree = "<group>"; };
+		11396AC11A2F40190050120D /* GameHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHandler.swift; sourceTree = "<group>"; };
+		11396AC21A2F40190050120D /* FriendHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendHandler.swift; sourceTree = "<group>"; };
+		11396AC61A2F40200050120D /* VocabCrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocabCrack.swift; sourceTree = "<group>"; };
+		11396AC81A2F456C0050120D /* OperationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsManager.swift; sourceTree = "<group>"; };
+		11396ACA1A2F4BEF0050120D /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +101,11 @@
 		1137F0751A2EC851009A7BDA /* VocabCrack-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				11396AC61A2F40200050120D /* VocabCrack.swift */,
+				11396AC01A2F40190050120D /* CoreHandler.swift */,
+				11396AC11A2F40190050120D /* GameHandler.swift */,
+				11396AC21A2F40190050120D /* FriendHandler.swift */,
+				1137F09E1A2ECE8B009A7BDA /* NetHandler.swift */,
 				1137F0781A2EC851009A7BDA /* AppDelegate.swift */,
 				1137F07A1A2EC851009A7BDA /* FirstViewController.swift */,
 				1137F07C1A2EC851009A7BDA /* SecondViewController.swift */,
@@ -86,6 +113,10 @@
 				1137F0811A2EC851009A7BDA /* Images.xcassets */,
 				1137F0831A2EC851009A7BDA /* LaunchScreen.xib */,
 				1137F0761A2EC851009A7BDA /* Supporting Files */,
+				11396ABC1A2ED4500050120D /* RegisterController.swift */,
+				11396ABE1A2F3D470050120D /* LoginController.swift */,
+				11396AC81A2F456C0050120D /* OperationsManager.swift */,
+				11396ACA1A2F4BEF0050120D /* MenuController.swift */,
 			);
 			path = "VocabCrack-iOS";
 			sourceTree = "<group>";
@@ -93,6 +124,8 @@
 		1137F0761A2EC851009A7BDA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1137F09A1A2EC8D2009A7BDA /* user.png */,
+				1137F09B1A2EC8D2009A7BDA /* logo.png */,
 				1137F0771A2EC851009A7BDA /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -196,7 +229,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				1137F0801A2EC851009A7BDA /* Main.storyboard in Resources */,
+				1137F09D1A2EC8D2009A7BDA /* logo.png in Resources */,
 				1137F0851A2EC851009A7BDA /* LaunchScreen.xib in Resources */,
+				1137F09C1A2EC8D2009A7BDA /* user.png in Resources */,
 				1137F0821A2EC851009A7BDA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -215,6 +250,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11396AC31A2F40190050120D /* CoreHandler.swift in Sources */,
+				11396ABD1A2ED4500050120D /* RegisterController.swift in Sources */,
+				11396AC71A2F40200050120D /* VocabCrack.swift in Sources */,
+				11396ABF1A2F3D470050120D /* LoginController.swift in Sources */,
+				11396ACB1A2F4BEF0050120D /* MenuController.swift in Sources */,
+				11396AC51A2F40190050120D /* FriendHandler.swift in Sources */,
+				1137F09F1A2ECE8C009A7BDA /* NetHandler.swift in Sources */,
+				11396AC41A2F40190050120D /* GameHandler.swift in Sources */,
+				11396AC91A2F456C0050120D /* OperationsManager.swift in Sources */,
 				1137F07D1A2EC851009A7BDA /* SecondViewController.swift in Sources */,
 				1137F0791A2EC851009A7BDA /* AppDelegate.swift in Sources */,
 				1137F07B1A2EC851009A7BDA /* FirstViewController.swift in Sources */,
@@ -411,6 +455,7 @@
 				1137F0961A2EC851009A7BDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1137F0971A2EC851009A7BDA /* Build configuration list for PBXNativeTarget "VocabCrack-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +464,7 @@
 				1137F0991A2EC851009A7BDA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
