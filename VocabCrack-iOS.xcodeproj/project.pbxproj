@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		11121AF01A3020AF00153E01 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AEF1A3020AF00153E01 /* Utilities.swift */; };
+		11121AF21A30995E00153E01 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AF11A30995E00153E01 /* Game.swift */; };
 		1137F0791A2EC851009A7BDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F0781A2EC851009A7BDA /* AppDelegate.swift */; };
 		1137F07B1A2EC851009A7BDA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F07A1A2EC851009A7BDA /* FirstViewController.swift */; };
 		1137F07D1A2EC851009A7BDA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F07C1A2EC851009A7BDA /* SecondViewController.swift */; };
@@ -41,6 +42,7 @@
 
 /* Begin PBXFileReference section */
 		11121AEF1A3020AF00153E01 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		11121AF11A30995E00153E01 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		1137F0731A2EC851009A7BDA /* VocabCrack-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VocabCrack-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1137F0771A2EC851009A7BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1137F0781A2EC851009A7BDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				11396ACA1A2F4BEF0050120D /* MenuController.swift */,
 				11396ACC1A2F7EAD0050120D /* Account.swift */,
 				11121AEF1A3020AF00153E01 /* Utilities.swift */,
+				11121AF11A30995E00153E01 /* Game.swift */,
 			);
 			path = "VocabCrack-iOS";
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				11396AC31A2F40190050120D /* CoreHandler.swift in Sources */,
+				11121AF21A30995E00153E01 /* Game.swift in Sources */,
 				11396ACD1A2F7EAD0050120D /* Account.swift in Sources */,
 				11121AF01A3020AF00153E01 /* Utilities.swift in Sources */,
 				11396ABD1A2ED4500050120D /* RegisterController.swift in Sources */,

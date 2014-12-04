@@ -25,6 +25,10 @@ class Account
     var requests:[Account] = [Account]()
     var requested:[Account] = [Account]()
     
+    var activeGames:[Game] = [Game]()
+    var requestGames:[Game] = [Game]()
+    var pastGames:[Game] = [Game]()
+    
     init(username:String, isRequest:Bool)
     {
         self.username = username

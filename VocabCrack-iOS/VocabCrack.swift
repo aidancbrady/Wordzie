@@ -19,3 +19,8 @@ struct Handlers
     static var friendHandler:FriendHandler = FriendHandler()
     static var gameHandler:GameHandler = GameHandler()
 }
+
+struct Defaults
+{
+    static var ACCOUNT:Account = Account(username: "Guest", email: "guest@test.com", password: "password")
+}
