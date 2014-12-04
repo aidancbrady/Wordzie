@@ -17,4 +17,9 @@ class Utilities
         alertController.addAction(okAction)
         controller.presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    class func loadData()
+    {
+        
+    }
 }

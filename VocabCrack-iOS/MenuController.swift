@@ -10,5 +10,8 @@ import UIKit
 
 class MenuController: UIViewController
 {
-   
+    @IBAction func logoutButton(sender: AnyObject)
+    {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

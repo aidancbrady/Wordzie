@@ -9,15 +9,12 @@ import Foundation
 
 class NetHandler
 {
-    var ip = "104.236.13.142"
-    var port = 26830
-    
     func sendData(str:String) -> String?
     {
         var input:NSInputStream?
         var output:NSOutputStream?
         
-        NSStream.getStreamsToHostWithName(ip, port: port, inputStream: &input, outputStream: &output)
+        NSStream.getStreamsToHostWithName(Constants.IP, port: Constants.PORT, inputStream: &input, outputStream: &output)
         
         let inputStream = input!
         let outputStream = output!

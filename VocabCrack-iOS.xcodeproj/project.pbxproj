@@ -10,8 +10,6 @@
 		11121AF01A3020AF00153E01 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AEF1A3020AF00153E01 /* Utilities.swift */; };
 		11121AF21A30995E00153E01 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AF11A30995E00153E01 /* Game.swift */; };
 		1137F0791A2EC851009A7BDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F0781A2EC851009A7BDA /* AppDelegate.swift */; };
-		1137F07B1A2EC851009A7BDA /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F07A1A2EC851009A7BDA /* FirstViewController.swift */; };
-		1137F07D1A2EC851009A7BDA /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F07C1A2EC851009A7BDA /* SecondViewController.swift */; };
 		1137F0801A2EC851009A7BDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1137F07E1A2EC851009A7BDA /* Main.storyboard */; };
 		1137F0821A2EC851009A7BDA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1137F0811A2EC851009A7BDA /* Images.xcassets */; };
 		1137F0851A2EC851009A7BDA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1137F0831A2EC851009A7BDA /* LaunchScreen.xib */; };
@@ -46,8 +44,6 @@
 		1137F0731A2EC851009A7BDA /* VocabCrack-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VocabCrack-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1137F0771A2EC851009A7BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1137F0781A2EC851009A7BDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1137F07A1A2EC851009A7BDA /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		1137F07C1A2EC851009A7BDA /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		1137F07F1A2EC851009A7BDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1137F0811A2EC851009A7BDA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1137F0841A2EC851009A7BDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -113,8 +109,6 @@
 				11396AC21A2F40190050120D /* FriendHandler.swift */,
 				1137F09E1A2ECE8B009A7BDA /* NetHandler.swift */,
 				1137F0781A2EC851009A7BDA /* AppDelegate.swift */,
-				1137F07A1A2EC851009A7BDA /* FirstViewController.swift */,
-				1137F07C1A2EC851009A7BDA /* SecondViewController.swift */,
 				1137F07E1A2EC851009A7BDA /* Main.storyboard */,
 				1137F0811A2EC851009A7BDA /* Images.xcassets */,
 				1137F0831A2EC851009A7BDA /* LaunchScreen.xib */,
@@ -271,9 +265,7 @@
 				1137F09F1A2ECE8C009A7BDA /* NetHandler.swift in Sources */,
 				11396AC41A2F40190050120D /* GameHandler.swift in Sources */,
 				11396AC91A2F456C0050120D /* OperationsManager.swift in Sources */,
-				1137F07D1A2EC851009A7BDA /* SecondViewController.swift in Sources */,
 				1137F0791A2EC851009A7BDA /* AppDelegate.swift in Sources */,
-				1137F07B1A2EC851009A7BDA /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
