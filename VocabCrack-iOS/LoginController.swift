@@ -17,30 +17,22 @@ class LoginController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         
         loginButton.addTarget(self, action: "onLogin", forControlEvents: .TouchUpInside)
         
         loginSpinner.hidden = false
         loginSpinner.hidesWhenStopped = true
     }
+    
+    override func supportedInterfaceOrientations() -> Int
+    {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
 
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     func onLogin()
     {
@@ -60,7 +52,7 @@ class LoginController: UIViewController
             Operations.loggingIn = true
             
             var (success, response) = Handlers.coreHandler.login()
-            println(response)
+            
             dispatch_async(dispatch_get_main_queue(), {
                 Operations.loggingIn = false
                 self.loginSpinner.stopAnimating()

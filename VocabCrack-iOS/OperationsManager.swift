@@ -11,4 +11,5 @@ import UIKit
 struct Operations
 {
     static var loggingIn = false
+    static var registering = false
 }
