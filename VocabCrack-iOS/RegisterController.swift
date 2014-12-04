@@ -71,15 +71,6 @@ class RegisterController: UIViewController, UITextFieldDelegate
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBAction func showAlert() {
-        let alertController = UIAlertController(title: "Hey AppCoda", message: "What do you want to do?", preferredStyle: .Alert)
-        
-        let defaultAction = UIAlertAction(title: "OK", style: .Default, handler: nil)
-        alertController.addAction(defaultAction)
-        
-        presentViewController(alertController, animated: true, completion: nil)
-    }
-    
     func onRegister()
     {
         doRegister()

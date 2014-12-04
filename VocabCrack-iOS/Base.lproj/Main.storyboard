@@ -221,6 +221,8 @@
                     <connections>
                         <outlet property="loginButton" destination="Myq-9A-KhI" id="I3O-db-QqZ"/>
                         <outlet property="loginSpinner" destination="vEP-IL-Y4j" id="m4Q-5L-Zjq"/>
+                        <outlet property="passwordField" destination="6cQ-SK-9Gc" id="hwR-GM-IOX"/>
+                        <outlet property="usernameField" destination="Uoo-Tg-lmG" id="7hl-Gh-Ka4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eSh-o9-GCw" userLabel="First Responder" sceneMemberID="firstResponder"/>

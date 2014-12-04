@@ -8,11 +8,14 @@
 
 import UIKit
 
-class LoginController: UIViewController
+class LoginController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var loginButton: UIButton!
     
     @IBOutlet weak var loginSpinner: UIActivityIndicatorView!
+    
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
     
     override func viewDidLoad()
     {
@@ -22,11 +25,30 @@ class LoginController: UIViewController
         
         loginSpinner.hidden = false
         loginSpinner.hidesWhenStopped = true
+        
+        usernameField.delegate = self
+        passwordField.delegate = self
     }
     
     override func supportedInterfaceOrientations() -> Int
     {
         return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool
+    {
+        if textField == usernameField
+        {
+            passwordField.becomeFirstResponder()
+        }
+        else if textField == passwordField
+        {
+            passwordField.resignFirstResponder()
+            
+            doLogin()
+        }
+        
+        return true
     }
 
     override func didReceiveMemoryWarning()
