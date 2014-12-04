@@ -55,6 +55,127 @@ class Game: Equatable
         self.opponent = opponent
     }
     
+    func getWinner() -> String?
+    {
+        let max:Int = GameType.getType(gameType).getWinningScore()
+        
+        if getUserScore() == max && getOpponentScore() == max
+        {
+            return nil
+        }
+        
+        return getUserScore() == max ? user : (getOpponentScore() == max ? opponent : nil)
+    }
+    
+    func hasWinner() -> Bool
+    {
+        let max = GameType.getType(gameType).getWinningScore();
+        
+        return getUserScore() == max || getOpponentScore() == max;
+    }
+    
+    func getListName() -> String?
+    {
+        return listName
+    }
+    
+    func getListURL() -> String?
+    {
+        return listURL
+    }
+    
+    func setList(listName:String, listUrl:String)
+    {
+        self.listName = listName;
+        self.listURL = listUrl
+    }
+    
+    func getRequester() -> String
+    {
+        return user
+    }
+    
+    func getRequestReceiver() -> String
+    {
+        return opponent
+    }
+    
+    func getOtherUser(s:String) -> String
+    {
+        return user == s ? opponent : user
+    }
+    
+    func setGameType(type:GameType)
+    {
+        gameType = type.getIndex()
+    }
+    
+    func getGameType() -> GameType
+    {
+        return GameType.getType(gameType)
+    }
+    
+    func hasUser(name:String) -> Bool
+    {
+        return user == name || opponent == name
+    }
+    
+    func getScore(name:String) -> Int
+    {
+        return user == name ? getUserScore() : getOpponentScore()
+    }
+    
+    func isWinning(name:String) -> Bool
+    {
+        return user == name ? getUserScore() > getOpponentScore() : getOpponentScore() > getUserScore()
+    }
+    
+    func getWinning() -> String?
+    {
+        return isTied() ? nil : (isWinning(user) ? user : opponent);
+    }
+    
+    func isTied() -> Bool
+    {
+        return getUserScore() == getOpponentScore();
+    }
+    
+    func getUserScore() -> Int
+    {
+        var won = 0;
+        
+        for var i = 0; i < userPoints.count; i++
+        {
+            if i <= opponentPoints.count-1
+            {
+                if userPoints[i] >= opponentPoints[i]
+                {
+                    won++;
+                }
+            }
+        }
+        
+        return won;
+    }
+    
+    func getOpponentScore() -> Int
+    {
+        var won = 0;
+        
+        for var i = 0; i < opponentPoints.count; i++
+        {
+            if i <= userPoints.count-1
+            {
+                if opponentPoints[i] >= userPoints[i]
+                {
+                    won++;
+                }
+            }
+        }
+        
+        return won;
+    }
+    
     struct GameType
     {
         var maxGames:Int
@@ -64,6 +185,26 @@ class Game: Equatable
         {
             self.maxGames = maxGames
             self.description = description
+        }
+        
+        func getWinningScore() -> Int
+        {
+            return maxGames
+        }
+        
+        func getDescription() -> String
+        {
+            return description
+        }
+        
+        func getIndex() -> Int
+        {
+            return maxGames-1
+        }
+        
+        static func getType(index:Int) -> GameType
+        {
+            return index == 0 ? SINGLE : (index == 1 ? BEST_OF_3 : BEST_OF_5)
         }
         
         static var SINGLE = GameType(maxGames: 1, description: "Single Game")
