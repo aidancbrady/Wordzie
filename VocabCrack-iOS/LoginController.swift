@@ -65,7 +65,7 @@ class LoginController: UIViewController, UITextFieldDelegate
                 doLogin(usernameField.text, password:passwordField.text)
             }
             else {
-                Utilities.displayAlert(self, title: "Couldn't login", msg: "Invalid characters.", action: nil)
+                Utilities.displayAlert(self, title: "Warning", msg: "Invalid characters.", action: nil)
             }
         }
     }

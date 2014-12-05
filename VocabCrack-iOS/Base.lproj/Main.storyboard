@@ -9,7 +9,7 @@
         <!--Register Controller-->
         <scene sceneID="Hmh-3Y-nyV">
             <objects>
-                <viewController title="Register Controller" id="kTm-4b-PJc" customClass="RegisterController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterController" title="Register Controller" id="kTm-4b-PJc" customClass="RegisterController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8sM-mF-yPF"/>
                         <viewControllerLayoutGuide type="bottom" id="IPR-CX-Kff"/>
@@ -113,7 +113,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="kTm-4b-PJc" kind="show" id="2f2-BB-30T"/>
+                                    <segue destination="kTm-4b-PJc" kind="show" identifier="RegisterSegue" id="2f2-BB-30T"/>
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vEP-IL-Y4j">

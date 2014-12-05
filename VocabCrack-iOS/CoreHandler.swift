@@ -10,22 +10,21 @@ import Foundation
 
 class CoreHandler : NSObject, NSStreamDelegate
 {
+    let netHandler:NetHandler = NetHandler()
+    
     func login(username:String, password:String) -> (Bool, String?)
     {
         let str = "LOGIN:" + username + ":" + password
-        
-        var net = NetHandler()
-        var ret = net.sendData(str)
+        var ret = netHandler.sendData(str)
         
         if let response = ret
         {
             let array:[String] = Utilities.trim(response).componentsSeparatedByString(":")
             
-            if(array[0] == "ACCEPT")
+            if array[0] == "ACCEPT"
             {
                 let acct:Account = Account(username:username, email:array[1], password:password)
                 acct.setGamesWon(array[2].toInt()!)
-                println(array[3].endIndex)
                 acct.setGamesLost(array[3].toInt()!)
                 
                 Constants.CORE.account = acct
@@ -39,8 +38,23 @@ class CoreHandler : NSObject, NSStreamDelegate
         return (false, nil)
     }
     
-    func register() -> (Bool, String?)
+    func register(username:String, email:String, password:String) -> (Bool, String?)
     {
+        let str = "REGISTER:" + username + ":" + email + ":" + password
+        var ret = netHandler.sendData(str)
+        
+        if let response = ret
+        {
+            let array:[String] = Utilities.trim(response).componentsSeparatedByString(":")
+            
+            if array[0] == "ACCEPT"
+            {
+                return (true, nil)
+            }
+            
+            return (false, array[1])
+        }
+     
         return (false, nil)
     }
     

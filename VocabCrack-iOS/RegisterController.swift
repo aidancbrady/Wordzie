@@ -15,11 +15,8 @@ class RegisterController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var registerSpinner: UIActivityIndicatorView!
     
     @IBOutlet weak var usernameField: UITextField!
-    
     @IBOutlet weak var emailField: UITextField!
-    
     @IBOutlet weak var passwordField: UITextField!
-    
     @IBOutlet weak var confirmField: UITextField!
     
     override func viewDidLoad()
@@ -60,7 +57,7 @@ class RegisterController: UIViewController, UITextFieldDelegate
         {
             confirmField.resignFirstResponder()
             
-            doRegister()
+            onRegister()
         }
         
         return true
@@ -73,10 +70,25 @@ class RegisterController: UIViewController, UITextFieldDelegate
     
     func onRegister()
     {
-        doRegister()
+        if !usernameField.text.isEmpty && !emailField.text.isEmpty && !passwordField.text.isEmpty
+        {
+            if passwordField.text == confirmField.text
+            {
+                if Utilities.isValidCredential(usernameField.text, emailField.text, passwordField.text)
+                {
+                    doRegister(usernameField.text, email:emailField.text, password:passwordField.text)
+                }
+                else {
+                    Utilities.displayAlert(self, title: "Warning", msg: "Invalid characters.", action: nil)
+                }
+            }
+            else {
+                Utilities.displayAlert(self, title: "Warning", msg: "Passwords don't match.", action: nil)
+            }
+        }
     }
     
-    func doRegister()
+    func doRegister(username:String, email:String, password:String)
     {
         if Operations.registering
         {
@@ -88,19 +100,20 @@ class RegisterController: UIViewController, UITextFieldDelegate
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             Operations.registering = true
             
-            var (success, response) = Handlers.coreHandler.register()
-            
-            if success
-            {
-                Utilities.displayAlert(self, title: "Success", msg: "Successfully registered account!", action:{(act) -> Void in self.dismissViewControllerAnimated(true, completion: nil)})
-            }
-            else {
-                Utilities.displayAlert(self, title: "Error", msg:   "Couldn't register account.", action:{(act) -> Void in})
-            }
+            var (success, response) = Handlers.coreHandler.register(username, email:email, password:password)
             
             dispatch_async(dispatch_get_main_queue(), {
                 Operations.registering = false
                 self.registerSpinner.stopAnimating()
+                
+                if success
+                {
+                    Utilities.displayAlert(self, title: "Success", msg: "Successfully registered account!", action:{(act) -> Void in self.dismissViewControllerAnimated(true, completion: nil)})
+                }
+                else {
+                    let alertMsg = response != nil ? response! : "Unable to connect."
+                    Utilities.displayAlert(self, title: "Couldn't register", msg: alertMsg, action:{(act) -> Void in})
+                }
             });
         });
     }

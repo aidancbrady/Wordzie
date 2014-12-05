@@ -30,12 +30,12 @@ class NetHandler
         var buffer = [UInt8]()
         var bytes = inputStream.read(&buffer, maxLength: 1024)
         
+        inputStream.close()
+        
         if let str = NSString(bytes: &buffer, length: bytes, encoding: NSUTF8StringEncoding)
         {
             return str
         }
-        
-        inputStream.close()
         
         return nil
     }
