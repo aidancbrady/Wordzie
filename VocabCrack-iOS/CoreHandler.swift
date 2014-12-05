@@ -10,18 +10,30 @@ import Foundation
 
 class CoreHandler : NSObject, NSStreamDelegate
 {
-    func login() -> (Bool, [String]?)
+    func login(username:String, password:String) -> (Bool, String?)
     {
-        let str = "LOGIN:aidancbrady:aidan1"
+        let str = "LOGIN:" + username + ":" + password
         
         var net = NetHandler()
         var ret = net.sendData(str)
         
         if let response = ret
         {
-            let array:[String] = response.componentsSeparatedByString(":")
+            let array:[String] = Utilities.trim(response).componentsSeparatedByString(":")
             
-            return (array[0] == "ACCEPT", array)
+            if(array[0] == "ACCEPT")
+            {
+                let acct:Account = Account(username:username, email:array[1], password:password)
+                acct.setGamesWon(array[2].toInt()!)
+                println(array[3].endIndex)
+                acct.setGamesLost(array[3].toInt()!)
+                
+                Constants.CORE.account = acct
+                
+                return (true, nil)
+            }
+            
+            return (false, array[1])
         }
         
         return (false, nil)

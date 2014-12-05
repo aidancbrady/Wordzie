@@ -25,16 +25,12 @@ class NetHandler
         var data = [UInt8]((str + "\n").utf8)
         
         outputStream.write(&data, maxLength: data.count)
-        
         outputStream.close()
         
-        var buffer = [UInt8](count: 1024, repeatedValue: 0)
+        var buffer = [UInt8]()
+        var bytes = inputStream.read(&buffer, maxLength: 1024)
         
-        do {
-            var bytes = inputStream.read(&buffer, maxLength: 1024)
-        } while inputStream.hasBytesAvailable
-        
-        if let str = String(bytes:buffer, encoding:NSUTF8StringEncoding)
+        if let str = NSString(bytes: &buffer, length: bytes, encoding: NSUTF8StringEncoding)
         {
             return str
         }

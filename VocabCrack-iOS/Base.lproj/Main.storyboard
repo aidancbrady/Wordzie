@@ -223,6 +223,10 @@
                             <constraint firstItem="vcN-KM-zJy" firstAttribute="top" secondItem="C0p-qd-RnK" secondAttribute="bottom" constant="20" id="v2t-8e-k3F"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="userAvatar" destination="C0p-qd-RnK" id="Nkg-Hu-PAn"/>
+                        <outlet property="userLabel" destination="opl-yD-0TH" id="tnl-TI-id8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8J-7d-MBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

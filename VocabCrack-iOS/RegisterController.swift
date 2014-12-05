@@ -92,10 +92,10 @@ class RegisterController: UIViewController, UITextFieldDelegate
             
             if success
             {
-                Utilities.displayAlert(self, title: "Success", msg: "Successfully registered account!", action:{() -> Void in self.dismissViewControllerAnimated(true, completion: nil)})
+                Utilities.displayAlert(self, title: "Success", msg: "Successfully registered account!", action:{(act) -> Void in self.dismissViewControllerAnimated(true, completion: nil)})
             }
             else {
-                Utilities.displayAlert(self, title: "Error", msg:   "Couldn't register account.", action:{() -> Void in})
+                Utilities.displayAlert(self, title: "Error", msg:   "Couldn't register account.", action:{(act) -> Void in})
             }
             
             dispatch_async(dispatch_get_main_queue(), {

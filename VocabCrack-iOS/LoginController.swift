@@ -45,7 +45,7 @@ class LoginController: UIViewController, UITextFieldDelegate
         {
             passwordField.resignFirstResponder()
             
-            doLogin()
+            onLogin()
         }
         
         return true
@@ -58,10 +58,19 @@ class LoginController: UIViewController, UITextFieldDelegate
 
     func onLogin()
     {
-        doLogin()
+        if !usernameField.text.isEmpty && !passwordField.text.isEmpty
+        {
+            if Utilities.isValidCredential(usernameField.text, passwordField.text)
+            {
+                doLogin(usernameField.text, password:passwordField.text)
+            }
+            else {
+                Utilities.displayAlert(self, title: "Couldn't login", msg: "Invalid characters.", action: nil)
+            }
+        }
     }
     
-    func doLogin()
+    func doLogin(username:String, password:String)
     {
         if Operations.loggingIn
         {
@@ -73,15 +82,23 @@ class LoginController: UIViewController, UITextFieldDelegate
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             Operations.loggingIn = true
             
-            var (success, response) = Handlers.coreHandler.login()
+            var (success, response) = Handlers.coreHandler.login(username, password:password)
             
             dispatch_async(dispatch_get_main_queue(), {
                 Operations.loggingIn = false
                 self.loginSpinner.stopAnimating()
                 
-                let menu:MenuController = self.storyboard?.instantiateViewControllerWithIdentifier("MenuController") as MenuController
-                
-                self.presentViewController(menu, animated: true, completion: nil)
+                if success
+                {
+                    let menu:MenuController = self.storyboard?.instantiateViewControllerWithIdentifier("MenuController") as MenuController
+                    
+                    self.presentViewController(menu, animated: true, completion: nil)
+                }
+                else {
+                    var alertMsg:String = response != nil ? response! : "Unable to connect."
+                    
+                    Utilities.displayAlert(self, title: "Couldn't login", msg: alertMsg, action: nil)
+                }
             });
         });
     }
