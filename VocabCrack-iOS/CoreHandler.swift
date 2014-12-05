@@ -10,12 +10,10 @@ import Foundation
 
 class CoreHandler : NSObject, NSStreamDelegate
 {
-    let netHandler:NetHandler = NetHandler()
-    
     func login(username:String, password:String) -> (Bool, String?)
     {
         let str = "LOGIN:" + username + ":" + password
-        var ret = netHandler.sendData(str)
+        var ret = NetHandler.sendData(str)
         
         if let response = ret
         {
@@ -41,7 +39,7 @@ class CoreHandler : NSObject, NSStreamDelegate
     func register(username:String, email:String, password:String) -> (Bool, String?)
     {
         let str = "REGISTER:" + username + ":" + email + ":" + password
-        var ret = netHandler.sendData(str)
+        var ret = NetHandler.sendData(str)
         
         if let response = ret
         {

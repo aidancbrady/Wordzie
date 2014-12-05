@@ -9,7 +9,7 @@ import Foundation
 
 class NetHandler
 {
-    func sendData(str:String) -> String?
+    class func sendData(str:String) -> String?
     {
         var input:NSInputStream?
         var output:NSOutputStream?

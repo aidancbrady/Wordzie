@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 aidancbrady. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class VocabCrack
 {
