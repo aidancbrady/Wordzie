@@ -25,6 +25,7 @@
 		11396AC91A2F456C0050120D /* OperationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC81A2F456C0050120D /* OperationsManager.swift */; };
 		11396ACB1A2F4BEF0050120D /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ACA1A2F4BEF0050120D /* MenuController.swift */; };
 		11396ACD1A2F7EAD0050120D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ACC1A2F7EAD0050120D /* Account.swift */; };
+		11B0C81F1A339AE100F0A557 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0C81E1A339AE100F0A557 /* FriendsController.swift */; };
 		11B666E31A326FAD006A17F3 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E21A326FAD006A17F3 /* OptionsController.swift */; };
 		11B666E71A3275EF006A17F3 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B666E61A3275EF006A17F3 /* user.png */; };
 		11B666E91A3364CD006A17F3 /* GamesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E81A3364CD006A17F3 /* GamesController.swift */; };
@@ -64,6 +65,7 @@
 		11396AC81A2F456C0050120D /* OperationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsManager.swift; sourceTree = "<group>"; };
 		11396ACA1A2F4BEF0050120D /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		11396ACC1A2F7EAD0050120D /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		11B0C81E1A339AE100F0A557 /* FriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
 		11B666E11A326196006A17F3 /* VocabCrack-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VocabCrack-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		11B666E21A326FAD006A17F3 /* OptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		11B666E61A3275EF006A17F3 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 				11B666E21A326FAD006A17F3 /* OptionsController.swift */,
 				11B666E81A3364CD006A17F3 /* GamesController.swift */,
 				11B666EA1A338080006A17F3 /* NewGameController.swift */,
+				11B0C81E1A339AE100F0A557 /* FriendsController.swift */,
 			);
 			path = "VocabCrack-iOS";
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11B0C81F1A339AE100F0A557 /* FriendsController.swift in Sources */,
 				11396AC31A2F40190050120D /* CoreHandler.swift in Sources */,
 				11121AF21A30995E00153E01 /* Game.swift in Sources */,
 				11396ACD1A2F7EAD0050120D /* Account.swift in Sources */,
