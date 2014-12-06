@@ -255,6 +255,9 @@
                                 <state key="normal" title="Games">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="7eh-Jw-PqZ" kind="show" id="aYS-UG-bag"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nN2-Dz-fwO">
                                 <rect key="frame" x="275" y="188" width="51" height="30"/>
@@ -303,6 +306,121 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g8J-7d-MBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="10" y="0.0"/>
+        </scene>
+        <!--New Game Controller-->
+        <scene sceneID="iJu-84-u9c">
+            <objects>
+                <viewController storyboardIdentifier="NewGameController" title="New Game Controller" id="nwJ-Wg-ymK" customClass="NewGameController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XhU-YO-Smj"/>
+                        <viewControllerLayoutGuide type="bottom" id="4Jr-AT-esz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r87-Me-oTx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Game" id="D41-IS-fyF">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="SZJ-Ff-Lsi"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="gwR-ji-975">
+                            <connections>
+                                <action selector="backButton:" destination="nwJ-Wg-ymK" id="anU-Vh-Mg8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5VW-pb-tqA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1528" y="-758"/>
+        </scene>
+        <!--Games Controller-->
+        <scene sceneID="4YY-uB-xyD">
+            <objects>
+                <tableViewController storyboardIdentifier="GamesController" title="Games Controller" id="LjH-eo-lmo" customClass="GamesController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xjh-CU-SZk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="84" id="YrM-ke-JHo">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YrM-ke-JHo" id="TrK-ic-cOf">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ndo-an-zbN">
+                                            <rect key="frame" x="19" y="10" width="64" height="64"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game with Guest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5D-Ws-567">
+                                            <rect key="frame" x="91" y="10" width="140" height="23"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Single Game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGD-hV-c72">
+                                            <rect key="frame" x="91" y="41" width="99" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tied 0-0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsc-Cd-nF8">
+                                            <rect key="frame" x="268" y="41" width="64" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Turn!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqA-Re-BiE">
+                                            <rect key="frame" x="430" y="41" width="77" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="LjH-eo-lmo" id="79U-bd-fZB"/>
+                            <outlet property="delegate" destination="LjH-eo-lmo" id="W25-Er-pOc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Games List" id="kWD-U4-q1M">
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="8Ma-vM-GNt">
+                            <connections>
+                                <action selector="backButton:" destination="LjH-eo-lmo" id="Rq6-tk-YeN"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="New" id="7Jw-zt-hNo">
+                            <connections>
+                                <segue destination="nwJ-Wg-ymK" kind="show" id="Q0D-n0-t5V"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="761-46-jYo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1528" y="0.0"/>
+        </scene>
+        <!--Games List-->
+        <scene sceneID="vhD-fb-lvF">
+            <objects>
+                <navigationController title="Games List" automaticallyAdjustsScrollViewInsets="NO" id="7eh-Jw-PqZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="GCp-HB-cOB">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="1ek-uB-k8x">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
+                    <connections>
+                        <segue destination="LjH-eo-lmo" kind="relationship" relationship="rootViewController" id="DuO-4T-aXa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a3W-pf-S1N" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="716" y="0.0"/>
         </scene>
     </scenes>
     <resources>

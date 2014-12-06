@@ -27,6 +27,8 @@
 		11396ACD1A2F7EAD0050120D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ACC1A2F7EAD0050120D /* Account.swift */; };
 		11B666E31A326FAD006A17F3 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E21A326FAD006A17F3 /* OptionsController.swift */; };
 		11B666E71A3275EF006A17F3 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B666E61A3275EF006A17F3 /* user.png */; };
+		11B666E91A3364CD006A17F3 /* GamesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E81A3364CD006A17F3 /* GamesController.swift */; };
+		11B666EB1A338080006A17F3 /* NewGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666EA1A338080006A17F3 /* NewGameController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,8 @@
 		11B666E11A326196006A17F3 /* VocabCrack-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VocabCrack-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		11B666E21A326FAD006A17F3 /* OptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		11B666E61A3275EF006A17F3 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		11B666E81A3364CD006A17F3 /* GamesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesController.swift; sourceTree = "<group>"; };
+		11B666EA1A338080006A17F3 /* NewGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +129,8 @@
 				11121AEF1A3020AF00153E01 /* Utilities.swift */,
 				11121AF11A30995E00153E01 /* Game.swift */,
 				11B666E21A326FAD006A17F3 /* OptionsController.swift */,
+				11B666E81A3364CD006A17F3 /* GamesController.swift */,
+				11B666EA1A338080006A17F3 /* NewGameController.swift */,
 			);
 			path = "VocabCrack-iOS";
 			sourceTree = "<group>";
@@ -261,12 +267,14 @@
 				11396AC31A2F40190050120D /* CoreHandler.swift in Sources */,
 				11121AF21A30995E00153E01 /* Game.swift in Sources */,
 				11396ACD1A2F7EAD0050120D /* Account.swift in Sources */,
+				11B666E91A3364CD006A17F3 /* GamesController.swift in Sources */,
 				11121AF01A3020AF00153E01 /* Utilities.swift in Sources */,
 				11B666E31A326FAD006A17F3 /* OptionsController.swift in Sources */,
 				11396ABD1A2ED4500050120D /* RegisterController.swift in Sources */,
 				11396AC71A2F40200050120D /* VocabCrack.swift in Sources */,
 				11396ABF1A2F3D470050120D /* LoginController.swift in Sources */,
 				11396ACB1A2F4BEF0050120D /* MenuController.swift in Sources */,
+				11B666EB1A338080006A17F3 /* NewGameController.swift in Sources */,
 				11396AC51A2F40190050120D /* FriendHandler.swift in Sources */,
 				1137F09F1A2ECE8C009A7BDA /* NetHandler.swift in Sources */,
 				11396AC41A2F40190050120D /* GameHandler.swift in Sources */,
