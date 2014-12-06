@@ -10,16 +10,31 @@ import UIKit
 
 class GamesController: UITableViewController
 {
+    var activeGames:[Game] = [Game]()
+    var pastGames:[Game] = [Game]()
+    
+    var refresher:UIRefreshControl!
+    
     @IBOutlet weak var modeButton: UISegmentedControl!
     
     @IBAction func modeChanged(sender: AnyObject)
     {
-        
+        tableView.reloadData()
     }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl = refresher
+    }
+    
+    func onRefresh()
+    {
+        refresher.endRefreshing()
     }
     
     override func viewWillAppear(animated: Bool)
@@ -33,16 +48,12 @@ class GamesController: UITableViewController
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
+        return modeButton.selectedSegmentIndex == 0 ? activeGames.count : pastGames.count
     }
 
     /*
@@ -55,7 +66,6 @@ class GamesController: UITableViewController
     }
     */
 
-    
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
     {
         return true

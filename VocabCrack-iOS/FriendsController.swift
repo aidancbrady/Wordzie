@@ -10,11 +10,16 @@ import UIKit
 
 class FriendsController: UITableViewController
 {
+    var friends:[Account] = [Account]()
+    var requests:[Account] = [Account]()
+    
+    var refresher:UIRefreshControl!
+    
     @IBOutlet weak var modeButton: UISegmentedControl!
     
     @IBAction func modeChanged(sender: AnyObject)
     {
-        
+        tableView.reloadData()
     }
     
     override func viewWillAppear(animated: Bool)
@@ -28,29 +33,28 @@ class FriendsController: UITableViewController
     {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        refresher = UIRefreshControl()
+        refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refresher.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl = refresher
+    }
+    
+    func onRefresh()
+    {
+        refresher.endRefreshing()
     }
 
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int
     {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 5
+        return modeButton.selectedSegmentIndex == 0 ? friends.count : requests.count
     }
-
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {

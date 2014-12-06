@@ -55,6 +55,237 @@ class Game: Equatable
         self.opponent = opponent
     }
     
+    init(user:String, opponent:String, activeRequested:Bool)
+    {
+        self.user = user
+        self.opponent = opponent
+        self.activeRequested = activeRequested
+        
+        isRequest = true
+    }
+    
+    func getNewRequestPair() -> Game
+    {
+        var g:Game = Game(user:user, opponent:opponent, activeRequested:!activeRequested)
+        
+        g.gameType = gameType
+        g.listName = listName
+        g.listURL = listURL
+        g.activeWords = activeWords
+        g.userTurn = !userTurn
+        g.userPoints = [Int]()
+        
+        return g
+    }
+    
+    func getNewPair() -> Game
+    {
+        var g:Game = Game(user:opponent, opponent:user)
+        
+        var temp:String = opponent
+        g.opponent = user
+        g.user = temp
+        
+        g.opponentPoints = [Int]()
+        g.userPoints = [Int]()
+        
+        g.userTurn = !userTurn
+        g.activeWords = activeWords
+        g.listName = listName
+        g.listURL = listURL
+        
+        return g
+    }
+    
+    func convertToActive(userPerspective:String) -> Game
+    {
+        if(user != userPerspective) //If requesting user equals perspective user
+        {
+            var temp:String = opponent
+            opponent = user
+            user = temp
+            
+            opponentPoints = userPoints
+            userPoints = [Int]()
+        }
+        
+        isRequest = false
+        
+        return self
+    }
+    
+    func convertToPast() -> Game
+    {
+        activeWords.removeAll(keepCapacity:false)
+        
+        return self
+    }
+    
+    class func readDefault(s:String, splitter:Character) -> Game?
+    {
+        var split:[String] = s.componentsSeparatedByString(String(splitter))
+        
+        if(split.count < 4)
+        {
+            return nil
+        }
+        
+        var g:Game = Game(user:split[0], opponent:split[1])
+        
+        g.gameType = split[2].toInt()!
+        g.userTurn = split[3].toInt()! == 1
+        g.listName = split[4]
+        g.listURL = split[5]
+        
+        var index:Int = g.readScoreList(split, start:6, user:true)
+        index = g.readScoreList(split, start:index, user:false)
+        
+        g.readWordList(split[index])
+        
+        return g
+    }
+    
+    class func readRequest(s:String, splitter:Character) -> Game?
+    {
+        var split:[String] = s.componentsSeparatedByString(String(splitter))
+        
+        if(split.count < 4)
+        {
+            return nil
+        }
+        
+        var g:Game = Game(user:split[1], opponent:split[2], activeRequested:split[3].toInt()! == 1)
+        
+        g.gameType = split[3].toInt()!
+        g.userTurn = split[4].toInt()! == 1
+        g.listName = split[5]
+        g.listURL = split[6]
+        
+        var index:Int = g.readScoreList(split, start:7, user:true)
+        
+        g.readWordList(split[index])
+        
+        return g
+    }
+    
+    func writeDefault(str:NSMutableString, splitter:Character)
+    {
+        let split = String(splitter)
+        
+        str.appendString(user)
+        str.appendString(split)
+        str.appendString(opponent)
+        str.appendString(split)
+        str.appendString(String(gameType))
+        str.appendString(split)
+        str.appendString(String(userTurn ? 1 : 0))
+        str.appendString(split)
+        str.appendString(listName!)
+        str.appendString(split)
+        str.appendString(listURL!)
+        str.appendString(split)
+        
+        writeScoreList(userPoints, str:NSMutableString(string: str), split:splitter)
+        writeScoreList(opponentPoints, str:NSMutableString(string: str), split:splitter)
+        
+        writeWordList(str)
+        str.appendString(split)
+    }
+    
+    func writeRequest(str:NSMutableString, splitter:Character)
+    {
+        let split = String(splitter)
+        
+        str.appendString(String(activeRequested ? 1 : 0))
+        str.appendString(split)
+        str.appendString(user)
+        str.appendString(split)
+        str.appendString(opponent)
+        str.appendString(split)
+        str.appendString(String(gameType))
+        str.appendString(split)
+        str.appendString(String(userTurn ? 1 : 0))
+        str.appendString(split)
+        str.appendString(listName!)
+        str.appendString(split)
+        str.appendString(listURL!)
+        str.appendString(split)
+        
+        writeScoreList(userPoints, str:NSMutableString(string: str), split:splitter)
+        
+        writeWordList(str)
+        str.appendString(split)
+    }
+    
+    func writeScoreList(score:[Int], str:NSMutableString, split:Character)
+    {
+        let splitter = String(split)
+        
+        str.appendString(String(score.count))
+        str.appendString(splitter)
+        
+        for i in score
+        {
+            str.appendString(String(i))
+            str.appendString(splitter)
+        }
+    }
+    
+    func readScoreList(array:[String], start:Int, user:Bool) -> Int
+    {
+        var list:[Int] = [Int]()
+        
+        var size:Int = array[start].toInt()!
+        var maxIndex:Int = size+start
+        
+        for var i = 0; i < size; i++
+        {
+            list.append(array[start+1+i].toInt()!)
+            maxIndex = start+1+i
+        }
+        
+        if(user)
+        {
+            userPoints = list
+        }
+        else {
+            opponentPoints = list
+        }
+        
+        return maxIndex+1
+    }
+    
+    func writeWordList(str:NSMutableString)
+    {
+        for s in activeWords
+        {
+            str.appendString(s)
+            str.appendString("&")
+        }
+        
+        if activeWords.isEmpty
+        {
+            str.appendString("null")
+        }
+    }
+    
+    func readWordList(s:String)
+    {
+        var split:[String] = s.componentsSeparatedByString("&");
+        
+        if split.count == 1 && split[0] == "null"
+        {
+            return
+        }
+        
+        activeWords.removeAll(keepCapacity: false)
+        
+        for word in split
+        {
+            activeWords.append(word)
+        }
+    }
+    
     func getWinner() -> String?
     {
         let max:Int = GameType.getType(gameType).getWinningScore()
