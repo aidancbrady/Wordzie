@@ -108,7 +108,8 @@ class RegisterController: UIViewController, UITextFieldDelegate
                 
                 if success
                 {
-                    Utilities.displayAlert(self, title: "Success", msg: "Successfully registered account!", action:{(act) -> Void in self.dismissViewControllerAnimated(true, completion: nil)})
+                    Utilities.displayAlert(self, title: "Success", msg: "Successfully registered account!", action:{(act) -> Void in self.dismissViewControllerAnimated(true, completion: nil)
+                    })
                 }
                 else {
                     let alertMsg = response != nil ? response! : "Unable to connect."

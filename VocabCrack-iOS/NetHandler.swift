@@ -11,26 +11,23 @@ class NetHandler
 {
     class func sendData(str:String) -> String?
     {
-        var input:NSInputStream?
-        var output:NSOutputStream?
+        var inputStream:NSInputStream?
+        var outputStream:NSOutputStream?
         
-        NSStream.getStreamsToHostWithName(Constants.IP, port: Constants.PORT, inputStream: &input, outputStream: &output)
-        
-        let inputStream = input!
-        let outputStream = output!
-        
-        inputStream.open()
-        outputStream.open()
+        NSStream.getStreamsToHostWithName(Constants.IP, port: Constants.PORT, inputStream: &inputStream, outputStream: &outputStream)
         
         var data = [UInt8]((str + "\n").utf8)
         
-        outputStream.write(&data, maxLength: data.count)
-        outputStream.close()
+        outputStream!.open()
+        outputStream!.write(&data, maxLength: data.count)
+        outputStream!.close()
+        
+        inputStream!.open()
         
         var buffer = [UInt8]()
-        var bytes = inputStream.read(&buffer, maxLength: 1024)
+        var bytes = inputStream!.read(&buffer, maxLength: 1024)
         
-        inputStream.close()
+        inputStream!.close()
         
         if let str = NSString(bytes: &buffer, length: bytes, encoding: NSUTF8StringEncoding)
         {

@@ -12,5 +12,6 @@ struct Operations
 {
     static var loggingIn = false
     static var registering = false
+    static var passwordChanging = false
     static weak var needsAvatar:MenuController? = nil
 }

@@ -100,9 +100,49 @@
                                     <action selector="backButton:" destination="A9e-bS-FdB" eventType="touchUpInside" id="uBq-zz-mny"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Change Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYv-lD-PVi">
+                                <rect key="frame" x="230" y="91" width="141" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Old Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uwE-lc-nHk">
+                                <rect key="frame" x="204" y="120" width="192" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="chz-1R-E9f">
+                                <rect key="frame" x="204" y="158" width="192" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mNn-Mj-xYq">
+                                <rect key="frame" x="204" y="196" width="192" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tz-4M-OPh">
+                                <rect key="frame" x="273" y="234" width="55" height="30"/>
+                                <state key="normal" title="Confirm">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="zYv-lD-PVi" secondAttribute="centerX" id="Mhv-Q0-GnV"/>
+                            <constraint firstAttribute="centerX" secondItem="mNn-Mj-xYq" secondAttribute="centerX" id="Ppr-Ge-Swc"/>
+                            <constraint firstAttribute="centerX" secondItem="uwE-lc-nHk" secondAttribute="centerX" id="dP4-Zx-d7b"/>
+                            <constraint firstAttribute="centerX" secondItem="2Tz-4M-OPh" secondAttribute="centerX" id="i4c-L7-Fml"/>
+                            <constraint firstAttribute="centerX" secondItem="chz-1R-E9f" secondAttribute="centerX" id="swc-6e-GVA"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="confirmButton" destination="2Tz-4M-OPh" id="y2Q-DF-YnM"/>
+                        <outlet property="confirmField" destination="mNn-Mj-xYq" id="lSq-vY-6Fn"/>
+                        <outlet property="newField" destination="chz-1R-E9f" id="tLy-Al-qas"/>
+                        <outlet property="oldField" destination="uwE-lc-nHk" id="ecx-yB-IJM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aYb-B3-2z0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

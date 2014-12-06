@@ -56,8 +56,25 @@ class CoreHandler : NSObject, NSStreamDelegate
         return (false, nil)
     }
     
-    func changePassword() -> (Bool, String?)
+    func changePassword(password:String) -> (Bool, String?)
     {
+        var str:String = "CHANGEPASS:" + Constants.CORE.account.username + ":" + Constants.CORE.account.password!
+        str += ":" + password
+        
+        var ret = NetHandler.sendData(str)
+        
+        if let response = ret
+        {
+            let array:[String] = Utilities.trim(response).componentsSeparatedByString(":")
+            
+            if array[0] == "ACCEPT"
+            {
+                return (true, nil)
+            }
+            
+            return (false, array[1])
+        }
+        
         return (false, nil)
     }
 }
