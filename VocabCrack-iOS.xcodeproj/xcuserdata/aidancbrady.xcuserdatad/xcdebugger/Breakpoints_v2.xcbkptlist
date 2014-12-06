@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VocabCrack-iOS/VocabCrack.swift"
-            timestampString = "439512798.86253"
+            timestampString = "439540335.505157"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
             landmarkName = "Constants"
             landmarkType = "3">
          </BreakpointContent>

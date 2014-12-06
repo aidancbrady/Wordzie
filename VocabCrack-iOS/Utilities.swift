@@ -69,8 +69,71 @@ class Utilities
         return s.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
     
+    class func readRemote(url:NSURL) -> String?
+    {
+        let task = NSURLSession.sharedSession().dataTaskWithURL(Constants.DATA_URL);
+        
+        return nil
+    }
+    
     class func loadData()
     {
+        let reader:HTTPReader = HTTPReader()
+        let request:NSMutableURLRequest = NSMutableURLRequest(URL: Constants.DATA_URL)
         
+        reader.getHTTP(request)
+        {
+            (response:String?) -> Void in
+            if let str = response
+            {
+                let array:[String] = str.componentsSeparatedByString("\n")
+                
+                Constants.IP = array[0]
+                Constants.PORT = array[1].toInt()!
+            
+                println("Loaded data")
+            }
+            else {
+                println("Failed to load data")
+            }
+            
+            return
+        }
+    }
+    
+    class HTTPReader: NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate
+    {
+        func getHTTP(request: NSMutableURLRequest!, action:(String?) -> Void)
+        {
+            var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            var session = NSURLSession(configuration: configuration, delegate: self, delegateQueue:NSOperationQueue.mainQueue())
+            
+            var task = session.dataTaskWithRequest(request)
+            {
+                (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+                if error == nil
+                {
+                    action(NSString(data: data, encoding:NSUTF8StringEncoding))
+                }
+                else {
+                    action(nil)
+                }
+                
+                return
+            }
+            
+            task.resume()
+        }
+        
+        func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void)
+        {
+            completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, NSURLCredential(forTrust: challenge.protectionSpace.serverTrust))
+        }
+        
+        func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest!) -> Void)
+        {
+            var newRequest: NSURLRequest? = request
+            completionHandler(newRequest)
+        }
     }
 }

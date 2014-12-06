@@ -25,6 +25,7 @@ struct Constants
     static var IP:String = "104.236.13.142"
     static var PORT:Int = 26830
     static var VERSION:String = "1.0.0"
+    static var DATA_URL:NSURL = NSURL(string: "https://dl.dropboxusercontent.com/u/90411166/Versions/VocabCrack.txt")!
     static var BAD_CHARS:[Character] = [",", ":", "&", " ", "|", ">"]
     static var CORE:VocabCrack = VocabCrack()
 }
