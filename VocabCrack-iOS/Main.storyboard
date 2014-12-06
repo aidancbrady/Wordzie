@@ -329,6 +329,9 @@
                                 <segment title="Friends"/>
                                 <segment title="Requests"/>
                             </segments>
+                            <connections>
+                                <action selector="modeChanged:" destination="ZFa-JQ-ygN" eventType="valueChanged" id="z8o-qJ-vS7"/>
+                            </connections>
                         </segmentedControl>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="84" id="cKb-cm-Sna" customClass="FriendCell" customModule="VocabCrack_iOS" customModuleProvider="target">
@@ -373,6 +376,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="modeButton" destination="wQV-qY-5nt" id="8S1-Pf-lEo"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLt-MQ-gJI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -408,12 +414,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="M0U-Rb-chF">
-                            <rect key="frame" x="-61" y="-14" width="600" height="29"/>
+                            <rect key="frame" x="0.0" y="64" width="600" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Active"/>
                                 <segment title="Past"/>
                             </segments>
+                            <connections>
+                                <action selector="modeChanged:" destination="LjH-eo-lmo" eventType="valueChanged" id="Brg-SD-4gi"/>
+                            </connections>
                         </segmentedControl>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameCell" rowHeight="84" id="YrM-ke-JHo" customClass="GameCell" customModule="VocabCrack_iOS" customModuleProvider="target">
@@ -473,6 +482,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="modeButton" destination="M0U-Rb-chF" id="OpG-7t-Rx2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="761-46-jYo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
