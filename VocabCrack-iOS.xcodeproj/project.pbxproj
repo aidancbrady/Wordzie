@@ -10,7 +10,6 @@
 		11121AF01A3020AF00153E01 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AEF1A3020AF00153E01 /* Utilities.swift */; };
 		11121AF21A30995E00153E01 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AF11A30995E00153E01 /* Game.swift */; };
 		1137F0791A2EC851009A7BDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F0781A2EC851009A7BDA /* AppDelegate.swift */; };
-		1137F0801A2EC851009A7BDA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1137F07E1A2EC851009A7BDA /* Main.storyboard */; };
 		1137F0821A2EC851009A7BDA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1137F0811A2EC851009A7BDA /* Images.xcassets */; };
 		1137F0851A2EC851009A7BDA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1137F0831A2EC851009A7BDA /* LaunchScreen.xib */; };
 		1137F0911A2EC851009A7BDA /* VocabCrack_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F0901A2EC851009A7BDA /* VocabCrack_iOSTests.swift */; };
@@ -26,6 +25,9 @@
 		11396ACB1A2F4BEF0050120D /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ACA1A2F4BEF0050120D /* MenuController.swift */; };
 		11396ACD1A2F7EAD0050120D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ACC1A2F7EAD0050120D /* Account.swift */; };
 		11B0C81F1A339AE100F0A557 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0C81E1A339AE100F0A557 /* FriendsController.swift */; };
+		11B0C8211A33A41700F0A557 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B0C8201A33A41700F0A557 /* Main.storyboard */; };
+		11B4C7721A33AA7900413EDD /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4C7711A33AA7900413EDD /* FriendCell.swift */; };
+		11B4C7741A33AE5D00413EDD /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4C7731A33AE5D00413EDD /* GameCell.swift */; };
 		11B666E31A326FAD006A17F3 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E21A326FAD006A17F3 /* OptionsController.swift */; };
 		11B666E71A3275EF006A17F3 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B666E61A3275EF006A17F3 /* user.png */; };
 		11B666E91A3364CD006A17F3 /* GamesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E81A3364CD006A17F3 /* GamesController.swift */; };
@@ -48,7 +50,6 @@
 		1137F0731A2EC851009A7BDA /* VocabCrack-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VocabCrack-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1137F0771A2EC851009A7BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1137F0781A2EC851009A7BDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1137F07F1A2EC851009A7BDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1137F0811A2EC851009A7BDA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1137F0841A2EC851009A7BDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		1137F08A1A2EC851009A7BDA /* VocabCrack-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VocabCrack-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +67,9 @@
 		11396ACA1A2F4BEF0050120D /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		11396ACC1A2F7EAD0050120D /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		11B0C81E1A339AE100F0A557 /* FriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
+		11B0C8201A33A41700F0A557 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		11B4C7711A33AA7900413EDD /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendCell.swift; path = Cells/FriendCell.swift; sourceTree = "<group>"; };
+		11B4C7731A33AE5D00413EDD /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameCell.swift; path = Cells/GameCell.swift; sourceTree = "<group>"; };
 		11B666E11A326196006A17F3 /* VocabCrack-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VocabCrack-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		11B666E21A326FAD006A17F3 /* OptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		11B666E61A3275EF006A17F3 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 		1137F0751A2EC851009A7BDA /* VocabCrack-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				11B0C8201A33A41700F0A557 /* Main.storyboard */,
 				11B666E11A326196006A17F3 /* VocabCrack-iOS-Bridging-Header.h */,
 				11396AC61A2F40200050120D /* VocabCrack.swift */,
 				11396AC01A2F40190050120D /* CoreHandler.swift */,
@@ -119,7 +124,6 @@
 				11396AC21A2F40190050120D /* FriendHandler.swift */,
 				1137F09E1A2ECE8B009A7BDA /* NetHandler.swift */,
 				1137F0781A2EC851009A7BDA /* AppDelegate.swift */,
-				1137F07E1A2EC851009A7BDA /* Main.storyboard */,
 				1137F0811A2EC851009A7BDA /* Images.xcassets */,
 				1137F0831A2EC851009A7BDA /* LaunchScreen.xib */,
 				1137F0761A2EC851009A7BDA /* Supporting Files */,
@@ -134,6 +138,8 @@
 				11B666E81A3364CD006A17F3 /* GamesController.swift */,
 				11B666EA1A338080006A17F3 /* NewGameController.swift */,
 				11B0C81E1A339AE100F0A557 /* FriendsController.swift */,
+				11B4C7711A33AA7900413EDD /* FriendCell.swift */,
+				11B4C7731A33AE5D00413EDD /* GameCell.swift */,
 			);
 			path = "VocabCrack-iOS";
 			sourceTree = "<group>";
@@ -245,8 +251,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1137F0801A2EC851009A7BDA /* Main.storyboard in Resources */,
 				11B666E71A3275EF006A17F3 /* user.png in Resources */,
+				11B0C8211A33A41700F0A557 /* Main.storyboard in Resources */,
 				1137F09D1A2EC8D2009A7BDA /* logo.png in Resources */,
 				1137F0851A2EC851009A7BDA /* LaunchScreen.xib in Resources */,
 				1137F0821A2EC851009A7BDA /* Images.xcassets in Resources */,
@@ -280,8 +286,10 @@
 				11396ACB1A2F4BEF0050120D /* MenuController.swift in Sources */,
 				11B666EB1A338080006A17F3 /* NewGameController.swift in Sources */,
 				11396AC51A2F40190050120D /* FriendHandler.swift in Sources */,
+				11B4C7721A33AA7900413EDD /* FriendCell.swift in Sources */,
 				1137F09F1A2ECE8C009A7BDA /* NetHandler.swift in Sources */,
 				11396AC41A2F40190050120D /* GameHandler.swift in Sources */,
+				11B4C7741A33AE5D00413EDD /* GameCell.swift in Sources */,
 				11396AC91A2F456C0050120D /* OperationsManager.swift in Sources */,
 				1137F0791A2EC851009A7BDA /* AppDelegate.swift in Sources */,
 			);
@@ -306,14 +314,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		1137F07E1A2EC851009A7BDA /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1137F07F1A2EC851009A7BDA /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1137F0831A2EC851009A7BDA /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (

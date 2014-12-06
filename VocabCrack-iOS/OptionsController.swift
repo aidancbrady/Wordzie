@@ -27,6 +27,13 @@ class OptionsController: UIViewController, UITextFieldDelegate
         confirmField.delegate = self
     }
     
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
     override func supportedInterfaceOrientations() -> Int
     {
         return Int(UIInterfaceOrientationMask.Portrait.rawValue)
@@ -50,11 +57,6 @@ class OptionsController: UIViewController, UITextFieldDelegate
         }
         
         return true
-    }
-    
-    @IBAction func backButton(sender: AnyObject)
-    {
-        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func onPasswordChange()

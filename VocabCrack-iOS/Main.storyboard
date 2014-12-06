@@ -101,28 +101,28 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Change Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYv-lD-PVi">
-                                <rect key="frame" x="230" y="91" width="141" height="21"/>
+                                <rect key="frame" x="230" y="130" width="141" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Old Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uwE-lc-nHk">
-                                <rect key="frame" x="204" y="120" width="192" height="30"/>
+                                <rect key="frame" x="204" y="159" width="192" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="chz-1R-E9f">
-                                <rect key="frame" x="204" y="158" width="192" height="30"/>
+                                <rect key="frame" x="204" y="197" width="192" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mNn-Mj-xYq">
-                                <rect key="frame" x="204" y="196" width="192" height="30"/>
+                                <rect key="frame" x="204" y="235" width="192" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Tz-4M-OPh">
-                                <rect key="frame" x="273" y="234" width="55" height="30"/>
+                                <rect key="frame" x="273" y="273" width="55" height="30"/>
                                 <state key="normal" title="Confirm">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -137,6 +137,9 @@
                             <constraint firstAttribute="centerX" secondItem="chz-1R-E9f" secondAttribute="centerX" id="swc-6e-GVA"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Options" id="Sqv-9y-Ve3">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="DOu-VL-CFb"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="confirmButton" destination="2Tz-4M-OPh" id="y2Q-DF-YnM"/>
                         <outlet property="confirmField" destination="mNn-Mj-xYq" id="lSq-vY-6Fn"/>
@@ -315,16 +318,46 @@
         <scene sceneID="g9z-f6-iiZ">
             <objects>
                 <tableViewController storyboardIdentifier="FriendsController" title="Friends Controller" id="ZFa-JQ-ygN" customClass="FriendsController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zgp-A7-wdy">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="22" sectionFooterHeight="22" id="Zgp-A7-wdy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="wQV-qY-5nt">
+                            <rect key="frame" x="-61" y="-14" width="600" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Friends"/>
+                                <segment title="Requests"/>
+                            </segments>
+                        </segmentedControl>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YPx-a6-Gog">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="84" id="cKb-cm-Sna" customClass="FriendCell" customModule="VocabCrack_iOS" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YPx-a6-Gog" id="eWh-g8-ixK">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cKb-cm-Sna" id="ZVh-CZ-MNK">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="ymI-IX-bm3">
+                                            <rect key="frame" x="20" y="10" width="64" height="64"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Guest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W74-gN-s8g">
+                                            <rect key="frame" x="92" y="10" width="48" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Seen: 45 years ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WEi-cC-D5d">
+                                            <rect key="frame" x="92" y="39" width="185" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lastSeenLabel" destination="WEi-cC-D5d" id="Hju-Mr-M2D"/>
+                                    <outlet property="userAvatar" destination="ymI-IX-bm3" id="ZTU-jY-F32"/>
+                                    <outlet property="usernameLabel" destination="W74-gN-s8g" id="6Ou-0H-1jk"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -370,28 +403,30 @@
         <scene sceneID="4YY-uB-xyD">
             <objects>
                 <tableViewController storyboardIdentifier="GamesController" title="Games Controller" id="LjH-eo-lmo" customClass="GamesController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xjh-CU-SZk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" sectionHeaderHeight="22" sectionFooterHeight="22" id="xjh-CU-SZk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <segmentedControl key="tableHeaderView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="M0U-Rb-chF">
+                            <rect key="frame" x="-61" y="-14" width="600" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Active"/>
+                                <segment title="Past"/>
+                            </segments>
+                        </segmentedControl>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="84" id="YrM-ke-JHo">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameCell" rowHeight="84" id="YrM-ke-JHo" customClass="GameCell" customModule="VocabCrack_iOS" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YrM-ke-JHo" id="TrK-ic-cOf">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ndo-an-zbN">
-                                            <rect key="frame" x="19" y="10" width="64" height="64"/>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ndo-an-zbN">
+                                            <rect key="frame" x="20" y="10" width="64" height="64"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game with Guest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5D-Ws-567">
-                                            <rect key="frame" x="91" y="10" width="140" height="23"/>
+                                            <rect key="frame" x="92" y="10" width="140" height="23"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Single Game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGD-hV-c72">
-                                            <rect key="frame" x="91" y="41" width="99" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -407,8 +442,21 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Single Game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGD-hV-c72">
+                                            <rect key="frame" x="92" y="41" width="99" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="gameTypeLabel" destination="fGD-hV-c72" id="jwg-WW-Ay5"/>
+                                    <outlet property="scoreLabel" destination="lsc-Cd-nF8" id="NxF-Ej-WvU"/>
+                                    <outlet property="turnLabel" destination="LqA-Re-BiE" id="6k7-n2-tMk"/>
+                                    <outlet property="userAvatar" destination="Ndo-an-zbN" id="k9h-8Z-qKl"/>
+                                    <outlet property="usernameLabel" destination="W5D-Ws-567" id="QhF-KB-Lss"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -421,7 +469,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="NGC-Jp-Xua"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7Jw-zt-hNo">
                             <connections>
-                                <segue destination="nwJ-Wg-ymK" kind="show" id="Q0D-n0-t5V"/>
+                                <segue destination="nwJ-Wg-ymK" kind="show" id="xZi-sO-rov"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -438,10 +486,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Type a username" id="pBh-Bc-Xlj">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="search"/>
+                        </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="CKy-ny-nCp">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="QCS-SS-NL9">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CKy-ny-nCp" id="XSq-CH-As2">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QCS-SS-NL9" id="WPn-uM-k6d">
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -454,10 +507,21 @@
                     <navigationItem key="navigationItem" title="Add Friend" id="yAH-PV-8xT">
                         <barButtonItem key="backBarButtonItem" title="Back" id="w8b-oL-SQK"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="fsT-Nc-q41" id="1Ja-2P-daI"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qs1-XJ-aLb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="fsT-Nc-q41">
+                    <connections>
+                        <outlet property="delegate" destination="I1S-7H-A9q" id="T3Y-4U-HGo"/>
+                        <outlet property="searchContentsController" destination="I1S-7H-A9q" id="Dpq-5o-ReN"/>
+                        <outlet property="searchResultsDataSource" destination="I1S-7H-A9q" id="Sib-PZ-4Uv"/>
+                        <outlet property="searchResultsDelegate" destination="I1S-7H-A9q" id="PEh-JZ-yDr"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1528" y="740"/>
+            <point key="canvasLocation" x="1528" y="738"/>
         </scene>
         <!--Menu Navigation-->
         <scene sceneID="vhD-fb-lvF">

@@ -10,11 +10,6 @@ import UIKit
 
 class NewGameController: UIViewController
 {
-    @IBAction func backButton(sender: AnyObject)
-    {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
