@@ -13,5 +13,7 @@ struct Operations
     static var loggingIn = false
     static var registering = false
     static var passwordChanging = false
-    static weak var needsAvatar:MenuController? = nil
+    static var loadingGames = false
+    static var loadingFriends = false
+    static var loadingAvatars:NSMutableArray = NSMutableArray()
 }

@@ -90,7 +90,7 @@ class LoginController: UIViewController, UITextFieldDelegate
                 
                 if success
                 {
-                    let menu:MenuController = self.storyboard?.instantiateViewControllerWithIdentifier("MenuController") as MenuController
+                    let menu:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("MenuNavigation") as UINavigationController
                     
                     self.presentViewController(menu, animated: true, completion: nil)
                 }

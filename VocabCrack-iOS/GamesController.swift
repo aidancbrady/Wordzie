@@ -8,25 +8,18 @@
 
 import UIKit
 
-class GamesController: UITableViewController {
-
-    @IBAction func backButton(sender: AnyObject)
-    {
-        self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
+class GamesController: UITableViewController
+{
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
-
-    override func didReceiveMemoryWarning()
+    
+    override func viewWillAppear(animated: Bool)
     {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     // MARK: - Table view data source

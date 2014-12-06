@@ -11,6 +11,7 @@ import UIKit
 class VocabCrack
 {
     var account:Account = Defaults.ACCOUNT
+    var avatars:[String: UIImage] = [String: UIImage]()
 }
 
 struct Handlers

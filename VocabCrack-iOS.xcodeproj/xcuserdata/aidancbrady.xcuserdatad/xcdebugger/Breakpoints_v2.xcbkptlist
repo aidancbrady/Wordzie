@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VocabCrack-iOS/VocabCrack.swift"
-            timestampString = "439540335.505157"
+            timestampString = "439588843.047777"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "Constants"
             landmarkType = "3">
          </BreakpointContent>
@@ -112,22 +112,6 @@
             startingLineNumber = "99"
             endingLineNumber = "99"
             landmarkName = "doLogin(_:password:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VocabCrack-iOS/MenuController.swift"
-            timestampString = "439514319.682104"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "loadAvatar(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

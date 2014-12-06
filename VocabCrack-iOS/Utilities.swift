@@ -101,6 +101,39 @@ class Utilities
         }
     }
     
+    class func loadAvatar(view:UIImageView, email:String)
+    {
+        if Constants.CORE.avatars[email] != nil
+        {
+            view.image = Constants.CORE.avatars[email]
+            return
+        }
+        
+        weak var weakView = view
+        
+        Operations.loadingAvatars.addObject(email)
+        
+        let url:NSURL = Utilities.buildGravatarURL(email, size: 512)
+        var request: NSURLRequest = NSURLRequest(URL: url)
+        
+        var image:UIImage? = nil
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
+            image = UIImage(data: data)
+            
+            if weakView != nil
+            {
+                if image != nil
+                {
+                    weakView!.image = image
+                    Constants.CORE.avatars[email] = image
+                }
+            }
+            
+            Operations.loadingAvatars.removeObject(email)
+        })
+    }
+    
     class HTTPReader: NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate
     {
         func getHTTP(request: NSMutableURLRequest!, action:(String?) -> Void)
