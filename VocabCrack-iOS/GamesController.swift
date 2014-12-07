@@ -34,7 +34,7 @@ class GamesController: UITableViewController
     
     func onRefresh()
     {
-        refresher.endRefreshing()
+        //Handlers.gameHandler.updateData(WeakWrapper(value: self))
     }
     
     override func viewWillAppear(animated: Bool)
@@ -42,6 +42,7 @@ class GamesController: UITableViewController
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: false)
+        //Handlers.gameHandler.updateData(WeakWrapper(value: self))
     }
 
     // MARK: - Table view data source
@@ -56,15 +57,17 @@ class GamesController: UITableViewController
         return modeButton.selectedSegmentIndex == 0 ? activeGames.count : pastGames.count
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell:GameCell = tableView.dequeueReusableCellWithIdentifier("GameCell", forIndexPath: indexPath) as GameCell
+        
+        cell.usernameLabel.text = "ASDF"
+        
+        println(activeGames[indexPath.row].opponent)
         // Configure the cell...
-
+        
         return cell
     }
-    */
 
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
     {
@@ -75,7 +78,6 @@ class GamesController: UITableViewController
     {
         if editingStyle == .Delete
         {
-            // Delete the row from the data source
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }

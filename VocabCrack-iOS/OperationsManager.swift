@@ -14,6 +14,8 @@ struct Operations
     static var registering = false
     static var passwordChanging = false
     static var loadingGames = false
+    static var loadingPast = false
     static var loadingFriends = false
+    static var loadingRequests = false
     static var loadingAvatars:NSMutableArray = NSMutableArray()
 }

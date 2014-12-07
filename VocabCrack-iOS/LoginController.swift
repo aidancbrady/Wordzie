@@ -99,7 +99,7 @@ class LoginController: UIViewController, UITextFieldDelegate
                     
                     Utilities.displayAlert(self, title: "Couldn't login", msg: alertMsg, action: nil)
                 }
-            });
-        });
+            })
+        })
     }
 }

@@ -19,7 +19,7 @@ class MenuController: UIViewController
         super.viewDidLoad()
 
         userLabel.text = "Welcome, " + Constants.CORE.account.username + "!"
-        Utilities.loadAvatar(userAvatar, email: Constants.CORE.account.email!)
+        Utilities.loadAvatar(WeakWrapper(value: userAvatar), email: Constants.CORE.account.email!)
     }
     
     override func viewWillAppear(animated: Bool)

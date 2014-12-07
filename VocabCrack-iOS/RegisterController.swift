@@ -115,7 +115,7 @@ class RegisterController: UIViewController, UITextFieldDelegate
                     let alertMsg = response != nil ? response! : "Unable to connect."
                     Utilities.displayAlert(self, title: "Couldn't register", msg: alertMsg, action:{(act) -> Void in})
                 }
-            });
-        });
+            })
+        })
     }
 }

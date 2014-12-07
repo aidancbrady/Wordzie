@@ -69,6 +69,22 @@ class Utilities
         return s.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
     
+    /// Trims and splits a String with a specified separator
+    class func split(s:String, separator:String) -> [String]
+    {
+        var split = trim(s).componentsSeparatedByString(separator)
+        
+        for var i = 0; i < split.count; i++
+        {
+            if split[i] == ""
+            {
+                split.removeAtIndex(i)
+            }
+        }
+        
+        return split
+    }
+    
     class func readRemote(url:NSURL) -> String?
     {
         let task = NSURLSession.sharedSession().dataTaskWithURL(Constants.DATA_URL);
@@ -101,15 +117,13 @@ class Utilities
         }
     }
     
-    class func loadAvatar(view:UIImageView, email:String)
+    class func loadAvatar(view:WeakWrapper<UIImageView>, email:String)
     {
         if Constants.CORE.avatars[email] != nil
         {
-            view.image = Constants.CORE.avatars[email]
+            view.value!.image = Constants.CORE.avatars[email]
             return
         }
-        
-        weak var weakView = view
         
         Operations.loadingAvatars.addObject(email)
         
@@ -121,11 +135,11 @@ class Utilities
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             image = UIImage(data: data)
             
-            if weakView != nil
+            if view.value != nil
             {
                 if image != nil
                 {
-                    weakView!.image = image
+                    view.value!.image = image
                     Constants.CORE.avatars[email] = image
                 }
             }
@@ -168,5 +182,15 @@ class Utilities
             var newRequest: NSURLRequest? = request
             completionHandler(newRequest)
         }
+    }
+}
+
+struct WeakWrapper<T: AnyObject>
+{
+    weak var value: T?
+    
+    init(value:T)
+    {
+        self.value = value
     }
 }
