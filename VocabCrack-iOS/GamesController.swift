@@ -32,17 +32,17 @@ class GamesController: UITableViewController
         refreshControl = refresher
     }
     
-    func onRefresh()
-    {
-        //Handlers.gameHandler.updateData(WeakWrapper(value: self))
-    }
-    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: false)
-        //Handlers.gameHandler.updateData(WeakWrapper(value: self))
+        Handlers.gameHandler.updateData(WeakWrapper(value: self))
+    }
+    
+    func onRefresh()
+    {
+        Handlers.gameHandler.updateData(WeakWrapper(value: self))
     }
 
     // MARK: - Table view data source
@@ -61,10 +61,35 @@ class GamesController: UITableViewController
     {
         let cell:GameCell = tableView.dequeueReusableCellWithIdentifier("GameCell", forIndexPath: indexPath) as GameCell
         
-        cell.usernameLabel.text = "ASDF"
+        var game:Game = modeButton.selectedSegmentIndex == 0 ? activeGames[indexPath.row] : pastGames[indexPath.row]
         
-        println(activeGames[indexPath.row].opponent)
-        // Configure the cell...
+        if modeButton.selectedSegmentIndex == 0
+        {
+            if game.isRequest
+            {
+                if game.user == Constants.CORE.account.username
+                {
+                    cell.usernameLabel.text = "Request to \(Utilities.getRemoteUser(game))"
+                }
+                else {
+                    cell.usernameLabel.text = "Request from \(Utilities.getRemoteUser(game))"
+                }
+                
+                cell.turnLabel.text = "Awaiting approval"
+            }
+            else {
+                cell.usernameLabel.text = "Game with \(Utilities.getRemoteUser(game))"
+                var scoreMsg = game.isTied() ? "tied " : (game.getWinning() == game.user ? "winning " : "losing ")
+                scoreMsg += "\(game.getUserScore()) to \(game.getOpponentScore())"
+                cell.scoreLabel.text = scoreMsg
+                cell.turnLabel.text = game.userTurn ? "Your turn!" : "Opponent's turn"
+            }
+        }
+        else {
+            cell.usernameLabel.text = "Game with \(Utilities.getRemoteUser(game))"
+        }
+        
+        Utilities.loadAvatar(WeakWrapper(value: cell.userAvatar), email: game.opponentEmail!)
         
         return cell
     }

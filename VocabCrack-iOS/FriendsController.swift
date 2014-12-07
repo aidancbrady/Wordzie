@@ -22,26 +22,27 @@ class FriendsController: UITableViewController
         tableView.reloadData()
     }
     
-    override func viewWillAppear(animated: Bool)
-    {
-        super.viewWillAppear(animated)
-        
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
+        
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refresher.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
         refreshControl = refresher
     }
     
+    override func viewWillAppear(animated: Bool)
+    {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        Handlers.friendHandler.updateFriends(WeakWrapper(value: self))
+    }
+    
     func onRefresh()
     {
-        refresher.endRefreshing()
+        Handlers.friendHandler.updateFriends(WeakWrapper(value: self))
     }
 
     // MARK: - Table view data source
@@ -60,9 +61,23 @@ class FriendsController: UITableViewController
     {
         let cell:FriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as FriendCell
         
-        cell.usernameLabel.text = "ASDF"
-
-        // Configure the cell...
+        var account:Account = modeButton.selectedSegmentIndex == 0 ? friends[indexPath.row] : requests[indexPath.row]
+        
+        if modeButton.selectedSegmentIndex == 0
+        {
+            if account.isRequest
+            {
+                cell.usernameLabel.text = account.username + " (Requested)"
+            }
+            else {
+                cell.usernameLabel.text = account.username
+            }
+        }
+        else {
+            cell.usernameLabel.text = account.username
+        }
+        
+        Utilities.loadAvatar(WeakWrapper(value: cell.userAvatar), email: account.email!)
 
         return cell
     }

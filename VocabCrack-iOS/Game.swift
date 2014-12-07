@@ -133,7 +133,7 @@ class Game: Equatable
         var g:Game = Game(user:split[0], opponent:split[1])
         
         g.gameType = split[2].toInt()!
-        g.userTurn = split[3].toInt()! == 1
+        g.userTurn = Utilities.readBool(split[3])
         g.listName = split[4]
         g.listURL = split[5]
         
@@ -154,10 +154,10 @@ class Game: Equatable
             return nil
         }
         
-        var g:Game = Game(user:split[1], opponent:split[2], activeRequested:split[3].toInt()! == 1)
+        var g:Game = Game(user:split[1], opponent:split[2], activeRequested:Utilities.readBool(split[3]))
         
         g.gameType = split[3].toInt()!
-        g.userTurn = split[4].toInt()! == 1
+        g.userTurn = Utilities.readBool(split[4])
         g.listName = split[5]
         g.listURL = split[6]
         
@@ -178,7 +178,7 @@ class Game: Equatable
         str.appendString(split)
         str.appendString(String(gameType))
         str.appendString(split)
-        str.appendString(String(userTurn ? 1 : 0))
+        str.appendString(userTurn ? "true" : "false")
         str.appendString(split)
         str.appendString(listName!)
         str.appendString(split)
@@ -196,7 +196,7 @@ class Game: Equatable
     {
         let split = String(splitter)
         
-        str.appendString(String(activeRequested ? 1 : 0))
+        str.appendString(activeRequested ? "true" : "false")
         str.appendString(split)
         str.appendString(user)
         str.appendString(split)
@@ -204,7 +204,7 @@ class Game: Equatable
         str.appendString(split)
         str.appendString(String(gameType))
         str.appendString(split)
-        str.appendString(String(userTurn ? 1 : 0))
+        str.appendString(userTurn ? "true" : "false")
         str.appendString(split)
         str.appendString(listName!)
         str.appendString(split)
@@ -406,42 +406,42 @@ class Game: Equatable
         
         return won;
     }
+}
+
+struct GameType
+{
+    var maxGames:Int
+    var description:String
     
-    struct GameType
+    init(maxGames:Int, description:String)
     {
-        var maxGames:Int
-        var description:String
-        
-        init(maxGames:Int, description:String)
-        {
-            self.maxGames = maxGames
-            self.description = description
-        }
-        
-        func getWinningScore() -> Int
-        {
-            return maxGames
-        }
-        
-        func getDescription() -> String
-        {
-            return description
-        }
-        
-        func getIndex() -> Int
-        {
-            return maxGames-1
-        }
-        
-        static func getType(index:Int) -> GameType
-        {
-            return index == 0 ? SINGLE : (index == 1 ? BEST_OF_3 : BEST_OF_5)
-        }
-        
-        static var SINGLE = GameType(maxGames: 1, description: "Single Game")
-        static var BEST_OF_3 = GameType(maxGames: 2, description: "Best of 3")
-        static var BEST_OF_5 = GameType(maxGames: 3, description: "Best of 5")
+        self.maxGames = maxGames
+        self.description = description
     }
+    
+    func getWinningScore() -> Int
+    {
+        return maxGames
+    }
+    
+    func getDescription() -> String
+    {
+        return description
+    }
+    
+    func getIndex() -> Int
+    {
+        return maxGames-1
+    }
+    
+    static func getType(index:Int) -> GameType
+    {
+        return index == 0 ? SINGLE : (index == 1 ? BEST_OF_3 : BEST_OF_5)
+    }
+    
+    static var SINGLE = GameType(maxGames: 1, description: "Single Game")
+    static var BEST_OF_3 = GameType(maxGames: 2, description: "Best of 3")
+    static var BEST_OF_5 = GameType(maxGames: 3, description: "Best of 5")
 }
 
 func ==(lhs:Game, rhs:Game) -> Bool

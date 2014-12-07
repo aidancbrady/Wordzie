@@ -36,8 +36,8 @@ class GameHandler
                 {
                     if let response = ret
                     {
-                        let array:[String] = Utilities.split(ret![0], separator: ":")
-                        let array1:[String] = Utilities.split(ret![1], separator: "\n")
+                        let array:[String] = Utilities.split(response[0], separator: ":")
+                        let array1:[String] = Utilities.split(response[1], separator: ":")
                         
                         if array[0] == "ACCEPT"
                         {
@@ -73,6 +73,48 @@ class GameHandler
     
     func updatePast(controller:WeakWrapper<GamesController>)
     {
+        if Operations.loadingPast
+        {
+            return
+        }
         
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            Operations.loadingPast = true
+            
+            let str = "LPAST:" + Constants.CORE.account.username
+            let ret = NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                Operations.loadingPast = false
+                
+                if let table = controller.value
+                {
+                    if let response = ret
+                    {
+                        let array:[String] = Utilities.split(response, separator: ":")
+                        
+                        if array[0] == "ACCEPT"
+                        {
+                            var games:[Game] = [Game]()
+                            
+                            for var i = 1; i < array.count; i+=2
+                            {
+                                var g:Game = Game.readDefault(array[i], splitter: ",")!
+                                g.opponentEmail = array[i+1]
+                                games.append(g)
+                            }
+                            
+                            table.pastGames = games
+                            table.tableView.reloadData()
+                        }
+                    }
+                    
+                    if !Operations.loadingGames && table.refresher.refreshing
+                    {
+                        table.refresher.endRefreshing()
+                    }
+                }
+            })
+        })
     }
 }

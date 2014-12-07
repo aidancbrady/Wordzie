@@ -92,6 +92,16 @@ class Utilities
         return nil
     }
     
+    class func getRemoteUser(g:Game) -> String
+    {
+        return g.getOtherUser(Constants.CORE.account.username);
+    }
+    
+    class func readBool(s:String) -> Bool
+    {
+        return s == "true"
+    }
+    
     class func loadData()
     {
         let reader:HTTPReader = HTTPReader()

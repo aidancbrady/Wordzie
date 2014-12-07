@@ -12,7 +12,6 @@ class GameCell: UITableViewCell
 {
     @IBOutlet weak var userAvatar: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var gameTypeLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var turnLabel: UILabel!
     

@@ -343,7 +343,7 @@
                                             <rect key="frame" x="20" y="10" width="64" height="64"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Guest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W74-gN-s8g">
-                                            <rect key="frame" x="92" y="10" width="48" height="21"/>
+                                            <rect key="frame" x="92" y="12" width="500" height="21"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -382,7 +382,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLt-MQ-gJI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="772" y="740"/>
+            <point key="canvasLocation" x="772" y="738"/>
         </scene>
         <!--New Game Controller-->
         <scene sceneID="iJu-84-u9c">
@@ -434,25 +434,19 @@
                                             <rect key="frame" x="20" y="10" width="64" height="64"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Game with Guest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W5D-Ws-567">
-                                            <rect key="frame" x="92" y="10" width="140" height="23"/>
+                                            <rect key="frame" x="92" y="11" width="500" height="23"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="103" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Tied 0-0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lsc-Cd-nF8">
-                                            <rect key="frame" x="268" y="41" width="64" height="21"/>
+                                            <rect key="frame" x="92" y="42" width="64" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your Turn!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqA-Re-BiE">
-                                            <rect key="frame" x="430" y="41" width="77" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Single Game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGD-hV-c72">
-                                            <rect key="frame" x="92" y="41" width="99" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your turn!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LqA-Re-BiE">
+                                            <rect key="frame" x="401" y="42" width="75" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -460,7 +454,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="gameTypeLabel" destination="fGD-hV-c72" id="jwg-WW-Ay5"/>
                                     <outlet property="scoreLabel" destination="lsc-Cd-nF8" id="NxF-Ej-WvU"/>
                                     <outlet property="turnLabel" destination="LqA-Re-BiE" id="6k7-n2-tMk"/>
                                     <outlet property="userAvatar" destination="Ndo-an-zbN" id="k9h-8Z-qKl"/>
@@ -488,12 +481,12 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="761-46-jYo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1528" y="0.0"/>
+            <point key="canvasLocation" x="1528" y="-1"/>
         </scene>
         <!--Add Friend Controller-->
         <scene sceneID="e5O-hy-jmW">
             <objects>
-                <tableViewController storyboardIdentifier="AddFriendController" title="Add Friend Controller" id="I1S-7H-A9q" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddFriendController" title="Add Friend Controller" id="I1S-7H-A9q" customClass="AddFriendController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4pm-jx-pZy">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -508,6 +501,14 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QCS-SS-NL9" id="WPn-uM-k6d">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Guest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GVl-s8-Nsc">
+                                            <rect key="frame" x="8" y="13" width="584" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -520,6 +521,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="w8b-oL-SQK"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="pBh-Bc-Xlj" id="nfM-f7-gRf"/>
                         <outlet property="searchDisplayController" destination="fsT-Nc-q41" id="1Ja-2P-daI"/>
                     </connections>
                 </tableViewController>
@@ -533,7 +535,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1528" y="738"/>
+            <point key="canvasLocation" x="1528" y="736"/>
         </scene>
         <!--Menu Navigation-->
         <scene sceneID="vhD-fb-lvF">
