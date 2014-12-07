@@ -121,4 +121,43 @@ class FriendHandler
             })
         })
     }
+    
+    func updateSearch(controller:WeakWrapper<AddFriendController>, query:String)
+    {
+        if !Utilities.isValidCredential(query)
+        {
+            return
+        }
+        
+        controller.value!.activity.startAnimating()
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = "LUSERS:" + Constants.CORE.account.username + ":" + Utilities.trim(query)
+            let ret = NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if let table = controller.value
+                {
+                    table.activity.stopAnimating()
+                    
+                    if let response = ret
+                    {
+                        let array:[String] = Utilities.split(response, separator: ":")
+                        
+                        if array[0] == "ACCEPT"
+                        {
+                            table.users.removeAll(keepCapacity: false)
+                            
+                            if array.count > 1
+                            {
+                                table.users = Utilities.split(array[1], separator: ",")
+                            }
+                            
+                            table.tableView.reloadData()
+                        }
+                    }
+                }
+            })
+        })
+    }
 }

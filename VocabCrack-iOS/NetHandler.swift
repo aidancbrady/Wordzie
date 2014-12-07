@@ -24,8 +24,8 @@ class NetHandler
         
         inputStream!.open()
         
-        var buffer = [UInt8](count:1024, repeatedValue:0)
-        var bytes = inputStream!.read(&buffer, maxLength: 1024)
+        var buffer = [UInt8](count:16384, repeatedValue:0)
+        var bytes = inputStream!.read(&buffer, maxLength: 16384)
         inputStream?.close()
         
         if let str = NSString(bytes: &buffer, length: bytes, encoding: NSUTF8StringEncoding)
@@ -58,8 +58,8 @@ class NetHandler
         
         for var i = 0; i < retLines; i++
         {
-            var buffer = [UInt8](count:1024, repeatedValue:0)
-            var bytes = inputStream.read(&buffer, maxLength: 1024)
+            var buffer = [UInt8](count:16384, repeatedValue:0)
+            var bytes = inputStream.read(&buffer, maxLength: 16384)
             
             if let str = NSString(bytes: &buffer, length: bytes, encoding: NSUTF8StringEncoding)
             {

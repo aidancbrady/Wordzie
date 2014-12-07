@@ -21,9 +21,9 @@ class Utilities
     
     class func isValidCredential(creds: String...) -> Bool
     {
-        for s:String in creds
+        for s in creds
         {
-            for c:Character in Constants.BAD_CHARS
+            for c in Constants.BAD_CHARS
             {
                 if contains(s, c)
                 {
@@ -39,6 +39,7 @@ class Utilities
     {
         var str:NSMutableString = NSMutableString(format:"http://gravatar.com/avatar/%@?", buildMD5(email))
         str.appendString("&size=\(size)")
+        str.appendString("&default=404")
         
         return NSURL(string: str)!
     }
@@ -72,6 +73,11 @@ class Utilities
     /// Trims and splits a String with a specified separator
     class func split(s:String, separator:String) -> [String]
     {
+        if s.rangeOfString(separator) == nil
+        {
+            return [s]
+        }
+        
         var split = trim(s).componentsSeparatedByString(separator)
         
         for var i = 0; i < split.count; i++

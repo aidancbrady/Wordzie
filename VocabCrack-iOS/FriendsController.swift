@@ -37,12 +37,12 @@ class FriendsController: UITableViewController
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: false)
-        Handlers.friendHandler.updateFriends(WeakWrapper(value: self))
+        Handlers.friendHandler.updateData(WeakWrapper(value: self))
     }
     
     func onRefresh()
     {
-        Handlers.friendHandler.updateFriends(WeakWrapper(value: self))
+        Handlers.friendHandler.updateData(WeakWrapper(value: self))
     }
 
     // MARK: - Table view data source

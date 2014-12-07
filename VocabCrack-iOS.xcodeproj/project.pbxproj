@@ -27,8 +27,7 @@
 		11396ACD1A2F7EAD0050120D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ACC1A2F7EAD0050120D /* Account.swift */; };
 		11B0C81F1A339AE100F0A557 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0C81E1A339AE100F0A557 /* FriendsController.swift */; };
 		11B0C8211A33A41700F0A557 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B0C8201A33A41700F0A557 /* Main.storyboard */; };
-		11B4C7721A33AA7900413EDD /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4C7711A33AA7900413EDD /* FriendCell.swift */; };
-		11B4C7741A33AE5D00413EDD /* GameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4C7731A33AE5D00413EDD /* GameCell.swift */; };
+		11B4C7721A33AA7900413EDD /* TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4C7711A33AA7900413EDD /* TableCells.swift */; };
 		11B666E31A326FAD006A17F3 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E21A326FAD006A17F3 /* OptionsController.swift */; };
 		11B666E71A3275EF006A17F3 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B666E61A3275EF006A17F3 /* user.png */; };
 		11B666E91A3364CD006A17F3 /* GamesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E81A3364CD006A17F3 /* GamesController.swift */; };
@@ -70,8 +69,7 @@
 		11396ACC1A2F7EAD0050120D /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		11B0C81E1A339AE100F0A557 /* FriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
 		11B0C8201A33A41700F0A557 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		11B4C7711A33AA7900413EDD /* FriendCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FriendCell.swift; path = Cells/FriendCell.swift; sourceTree = "<group>"; };
-		11B4C7731A33AE5D00413EDD /* GameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameCell.swift; path = Cells/GameCell.swift; sourceTree = "<group>"; };
+		11B4C7711A33AA7900413EDD /* TableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableCells.swift; path = Cells/TableCells.swift; sourceTree = "<group>"; };
 		11B666E11A326196006A17F3 /* VocabCrack-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VocabCrack-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		11B666E21A326FAD006A17F3 /* OptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		11B666E61A3275EF006A17F3 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
@@ -140,8 +138,7 @@
 				11B666E81A3364CD006A17F3 /* GamesController.swift */,
 				11B666EA1A338080006A17F3 /* NewGameController.swift */,
 				11B0C81E1A339AE100F0A557 /* FriendsController.swift */,
-				11B4C7711A33AA7900413EDD /* FriendCell.swift */,
-				11B4C7731A33AE5D00413EDD /* GameCell.swift */,
+				11B4C7711A33AA7900413EDD /* TableCells.swift */,
 				110DA1191A34C429009B95BA /* AddFriendController.swift */,
 			);
 			path = "VocabCrack-iOS";
@@ -290,10 +287,9 @@
 				11396ACB1A2F4BEF0050120D /* MenuController.swift in Sources */,
 				11B666EB1A338080006A17F3 /* NewGameController.swift in Sources */,
 				11396AC51A2F40190050120D /* FriendHandler.swift in Sources */,
-				11B4C7721A33AA7900413EDD /* FriendCell.swift in Sources */,
+				11B4C7721A33AA7900413EDD /* TableCells.swift in Sources */,
 				1137F09F1A2ECE8C009A7BDA /* NetHandler.swift in Sources */,
 				11396AC41A2F40190050120D /* GameHandler.swift in Sources */,
-				11B4C7741A33AE5D00413EDD /* GameCell.swift in Sources */,
 				11396AC91A2F456C0050120D /* OperationsManager.swift in Sources */,
 				1137F0791A2EC851009A7BDA /* AppDelegate.swift in Sources */,
 			);
