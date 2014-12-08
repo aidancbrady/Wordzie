@@ -70,6 +70,7 @@ class FriendsController: UITableViewController
                 cell.usernameLabel.text = account.username + " (Requested)"
             }
             else {
+                Utilities.loadAvatar(WeakWrapper(value: cell.userAvatar), email: account.email!)
                 cell.usernameLabel.text = account.username
             }
         }
@@ -77,7 +78,8 @@ class FriendsController: UITableViewController
             cell.usernameLabel.text = account.username
         }
         
-        Utilities.loadAvatar(WeakWrapper(value: cell.userAvatar), email: account.email!)
+        cell.user = account
+        cell.controller = self
 
         return cell
     }
@@ -91,8 +93,24 @@ class FriendsController: UITableViewController
     {
         if editingStyle == .Delete
         {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            if !Operations.loadingFriends && !Operations.loadingRequests
+            {
+                var type = 0
+                let username = modeButton.selectedSegmentIndex == 0 ? friends[indexPath.row].username : requests[indexPath.row].username
+                
+                if modeButton.selectedSegmentIndex == 0
+                {
+                    type = friends[indexPath.row].isRequest ? 2 : 0
+                    friends.removeAtIndex(indexPath.row)
+                }
+                else {
+                    type = 1
+                    requests.removeAtIndex(indexPath.row)
+                }
+                
+                Handlers.friendHandler.deleteFriend(username, type: type)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            }
         }
     }
 

@@ -59,6 +59,8 @@ class AddFriendController: UITableViewController, UISearchBarDelegate
         let cell = tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as UserCell
 
         cell.usernameLabel.text = users[indexPath.row]
+        
+        cell.controller = self
 
         return cell
     }

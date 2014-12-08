@@ -105,7 +105,7 @@ class FriendHandler
                             
                             if accounts.count > 0
                             {
-                                table.modeButton.setTitle("Requests (\(accounts.count)", forSegmentAtIndex: 1)
+                                table.modeButton.setTitle("Requests (\(accounts.count))", forSegmentAtIndex: 1)
                             }
                             else {
                                 table.modeButton.setTitle("Requests", forSegmentAtIndex: 1)
@@ -119,6 +119,14 @@ class FriendHandler
                     }
                 }
             })
+        })
+    }
+    
+    func deleteFriend(friend:String, type:Int)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = "DELFRIEND:" + Constants.CORE.account.username + ":" + friend + ":\(type)"
+            NetHandler.sendData(str)
         })
     }
     
@@ -158,6 +166,22 @@ class FriendHandler
                     }
                 }
             })
+        })
+    }
+    
+    func sendRequest(controller:WeakWrapper<AddFriendController>, friend:String)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = "FRIENDREQ:" + Constants.CORE.account.username + ":" + friend
+            NetHandler.sendData(str)
+        })
+    }
+    
+    func acceptRequest(controler:WeakWrapper<FriendsController>, friend:String)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = "REQCONF:" + Constants.CORE.account.username + ":" + friend
+            NetHandler.sendData(str)
         })
     }
 }

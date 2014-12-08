@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VocabCrack-iOS/Utilities.swift"
-            timestampString = "439430715.494635"
+            timestampString = "439687067.004748"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "displayAlert(_:title:msg:action:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -186,11 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VocabCrack-iOS/Utilities.swift"
-            timestampString = "439670766.085419"
+            timestampString = "439687067.004748"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "135"
-            endingLineNumber = "135"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "Utilities"
             landmarkType = "3">
          </BreakpointContent>
@@ -282,13 +282,75 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VocabCrack-iOS/FriendHandler.swift"
-            timestampString = "439672063.436339"
+            timestampString = "439683510.553404"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "updateSearch(_:query:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VocabCrack-iOS/Cells/TableCells.swift"
+            timestampString = "439700601.836508"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "setSelected(_:animated:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VocabCrack_iOS.FriendCell.setSelected (VocabCrack_iOS.FriendCell)(Swift.Bool, animated : Swift.Bool) -&gt; ()"
+                  moduleName = "VocabCrack-iOS"
+                  urlString = "file:///Users/aidancbrady/Documents/VocabCrack-iOS/VocabCrack-iOS/Cells/TableCells.swift"
+                  timestampString = "439699770.569955"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "1550">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "VocabCrack_iOS.FriendCell.(setSelected (VocabCrack_iOS.FriendCell) -&gt; (Swift.Bool, animated : Swift.Bool) -&gt; ()).(closure #1)"
+                  moduleName = "VocabCrack-iOS"
+                  urlString = "file:///Users/aidancbrady/Documents/VocabCrack-iOS/VocabCrack-iOS/Cells/TableCells.swift"
+                  timestampString = "439699770.580312"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "34"
+                  endingLineNumber = "34"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "VocabCrack-iOS/Cells/TableCells.swift"
+            timestampString = "439700793.423024"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "GameCell"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

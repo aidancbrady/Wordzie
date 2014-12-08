@@ -16,6 +16,19 @@ class Utilities
         let okAction = UIAlertAction(title: "OK", style: .Default, handler: action)
         
         alertController.addAction(okAction)
+        
+        controller.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    class func displayYesNo(controller:UIViewController, title:String, msg:String, action:((UIAlertAction!) -> Void)?, cancel:((UIAlertAction!) -> Void)?)
+    {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .Default, handler: action)
+        let noAction = UIAlertAction(title: "No", style: .Cancel, handler: cancel)
+        
+        alertController.addAction(noAction)
+        alertController.addAction(yesAction)
+        
         controller.presentViewController(alertController, animated: true, completion: nil)
     }
     
