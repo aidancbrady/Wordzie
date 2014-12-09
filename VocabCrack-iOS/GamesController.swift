@@ -79,7 +79,7 @@ class GamesController: UITableViewController
             }
             else {
                 cell.usernameLabel.text = "Game with \(Utilities.getRemoteUser(game))"
-                var scoreMsg = game.isTied() ? "tied " : (game.getWinning() == game.user ? "winning " : "losing ")
+                var scoreMsg = game.isTied() ? "Tied " : (game.getWinning() == game.user ? "Winning " : "Losing ")
                 scoreMsg += "\(game.getUserScore()) to \(game.getOpponentScore())"
                 cell.scoreLabel.text = scoreMsg
                 cell.turnLabel.text = game.userTurn ? "Your turn!" : "Opponent's turn"

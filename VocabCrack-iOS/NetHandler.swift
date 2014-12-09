@@ -56,14 +56,19 @@ class NetHandler
         
         inputStream.open()
         
-        for var i = 0; i < retLines; i++
+        while ret.count < retLines
         {
             var buffer = [UInt8](count:16384, repeatedValue:0)
             var bytes = inputStream.read(&buffer, maxLength: 16384)
             
             if let str = NSString(bytes: &buffer, length: bytes, encoding: NSUTF8StringEncoding)
             {
-                ret.append(str)
+                var split:[String] = Utilities.split(str, separator: "\n")
+                
+                for s in split
+                {
+                    ret.append(s)
+                }
             }
         }
         
