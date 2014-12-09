@@ -52,17 +52,41 @@ class GameCell: UITableViewCell
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var turnLabel: UILabel!
     
+    var controller:GamesController?
+    var game:Game?
+    
     override func awakeFromNib()
     {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func setSelected(selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
         
-        // Configure the view for the selected state
+        if controller != nil && game != nil && selected
+        {
+            let opponent:String = game!.getOtherUser(Constants.CORE.account.username)
+            
+            if controller!.modeButton.selectedSegmentIndex == 1
+            {
+                if game!.isRequest
+                {
+                    if !game!.activeRequested
+                    {
+                        Utilities.displayYesNo(controller!, title: "Confirm", msg: "Accept request from " + opponent + "?", action: {(action) -> Void in
+                            Handlers.gameHandler.acceptRequest(WeakWrapper(value: self.controller!), friend: opponent)
+                            var path = self.controller!.tableView.indexPathForCell(self)
+                            self.controller!.tableView(self.controller!.tableView, commitEditingStyle: .Delete, forRowAtIndexPath: path!)
+                            Handlers.gameHandler.updateData(WeakWrapper(value: self.controller!))
+                            return
+                        }, cancel: {(action) -> Void in
+                            self.setSelected(false, animated: true)
+                        })
+                    }
+                }
+            }
+        }
     }
 }
 

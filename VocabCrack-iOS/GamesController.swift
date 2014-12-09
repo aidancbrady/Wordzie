@@ -91,6 +91,9 @@ class GamesController: UITableViewController
         
         Utilities.loadAvatar(WeakWrapper(value: cell.userAvatar), email: game.opponentEmail!)
         
+        cell.game = game
+        cell.controller = self
+        
         return cell
     }
 
@@ -101,8 +104,36 @@ class GamesController: UITableViewController
     
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
     {
-        if editingStyle == .Delete
+        if !Operations.loadingGames && !Operations.loadingPast
         {
+            var type = 0
+            let username = Utilities.getRemoteUser(modeButton.selectedSegmentIndex == 0 ? activeGames[indexPath.row] : pastGames[indexPath.row])
+            
+            if modeButton.selectedSegmentIndex == 0
+            {
+                if activeGames[indexPath.row].isRequest
+                {
+                    type = activeGames[indexPath.row].activeRequested ? 2 : 3
+                }
+                else {
+                    type = 0
+                }
+                
+                activeGames.removeAtIndex(indexPath.row)
+            }
+            else {
+                type = 1
+                pastGames.removeAtIndex(indexPath.row)
+            }
+            
+            if type == 1
+            {
+                Handlers.gameHandler.deleteGame(WeakWrapper(value: self), friend: username, type: type, index: indexPath.row)
+            }
+            else {
+                Handlers.gameHandler.deleteGame(WeakWrapper(value: self), friend: username, type: type)
+            }
+            
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
     }

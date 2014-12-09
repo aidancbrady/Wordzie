@@ -117,4 +117,27 @@ class GameHandler
             })
         })
     }
+    
+    func acceptRequest(controller:WeakWrapper<GamesController>, friend:String)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = "GAMEREQCONF:" + Constants.CORE.account.username + ":" + friend
+            NetHandler.sendData(str)
+        })
+    }
+    
+    func deleteGame(controller:WeakWrapper<GamesController>, friend:String, type:Int, index:Int...)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            var str = "DELGAME:" + Constants.CORE.account.username
+            str += ":" + friend + ":\(type)"
+            
+            if type == 1
+            {
+                str += String(index[0])
+            }
+            
+            NetHandler.sendData(str)
+        })
+    }
 }

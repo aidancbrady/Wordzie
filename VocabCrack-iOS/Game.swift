@@ -154,7 +154,7 @@ class Game: Equatable
             return nil
         }
         
-        var g:Game = Game(user:split[1], opponent:split[2], activeRequested:Utilities.readBool(split[3]))
+        var g:Game = Game(user:split[1], opponent:split[2], activeRequested:Utilities.readBool(split[0]))
         
         g.gameType = split[3].toInt()!
         g.userTurn = Utilities.readBool(split[4])
