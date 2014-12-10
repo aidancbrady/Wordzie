@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameDetailController: UIViewController
+class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDataSource
 {
     @IBOutlet weak var userAvatar: UIImageView!
     @IBOutlet weak var opponentAvatar: UIImageView!
@@ -25,6 +25,8 @@ class GameDetailController: UIViewController
         
         matchLabel.text = game!.user + " vs " + game!.opponent
         scoreLabel.text = "\(game!.getUserScore()) - \(game!.getOpponentScore())"
+        
+        scoreTable.reloadData()
     }
     
     @IBAction func gameButton(sender: AnyObject)
@@ -35,7 +37,38 @@ class GameDetailController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        scoreTable.delegate = self
+        scoreTable.dataSource = self
 
         setGameData()
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        println(Utilities.max(game!.userPoints.count, num2: game!.opponentPoints.count))
+        return Utilities.max(game!.userPoints.count, num2: game!.opponentPoints.count)
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ScoreCell", forIndexPath: indexPath) as ScoreCell
+        
+        var userStr = indexPath.row <= game!.userPoints.count-1 ? String(game!.userPoints[indexPath.row]) : "N/A"
+        var opponentStr = indexPath.row <= game!.opponentPoints.count-1 ? String(game!.opponentPoints[indexPath.row]) : "N/A"
+        
+        cell.scoreLabel.text = userStr + " - " + opponentStr
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    {
+        return false
     }
 }

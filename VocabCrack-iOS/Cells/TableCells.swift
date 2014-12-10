@@ -102,7 +102,9 @@ class GameCell: UITableViewCell
                     }
                 }
                 else {
-                    let detail:UIViewController = controller!.storyboard?.instantiateViewControllerWithIdentifier("GameDetailController") as UIViewController
+                    let detail:GameDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("GameDetailController") as GameDetailController
+                    
+                    detail.game = game
                     
                     controller!.navigationController!.pushViewController(detail, animated: true)
                 }
@@ -153,10 +155,15 @@ class UserCell:UITableViewCell
 
 class ScoreCell:UITableViewCell
 {
+    @IBOutlet weak var scoreLabel: UILabel!
+    
     override func setSelected(selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
         
-        self.setSelected(false, animated: true)
+        if selected
+        {
+            self.setSelected(false, animated: true)
+        }
     }
 }

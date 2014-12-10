@@ -262,6 +262,16 @@ class Utilities
             completionHandler(newRequest)
         }
     }
+    
+    class func max(num1:Int, num2:Int) -> Int
+    {
+        return num1 > num2 ? num1 : num2
+    }
+    
+    class func min(num1:Int, num2:Int) -> Int
+    {
+        return num1 < num2 ? num1 : num2
+    }
 }
 
 struct WeakWrapper<T: AnyObject>
