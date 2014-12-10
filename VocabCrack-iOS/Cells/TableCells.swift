@@ -44,7 +44,9 @@ class FriendCell: UITableViewCell
             else {
                 if !user!.isRequest
                 {
-                    let detail:UIViewController = controller!.storyboard?.instantiateViewControllerWithIdentifier("UserDetailController") as UIViewController
+                    let detail:UserDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("UserDetailController") as UserDetailController
+                    
+                    detail.acct = user
                     
                     controller!.navigationController!.pushViewController(detail, animated: true)
                 }

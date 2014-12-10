@@ -13,7 +13,19 @@ class GameDetailController: UIViewController
     @IBOutlet weak var userAvatar: UIImageView!
     @IBOutlet weak var opponentAvatar: UIImageView!
     @IBOutlet weak var matchLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var scoreTable: UITableView!
+    
+    var game:Game?
+    
+    func setGameData()
+    {
+        Utilities.loadAvatar(WeakWrapper(value: userAvatar), email: Constants.CORE.account.email!)
+        Utilities.loadAvatar(WeakWrapper(value: opponentAvatar), email: game!.opponentEmail!)
+        
+        matchLabel.text = game!.user + " vs " + game!.opponent
+        scoreLabel.text = "\(game!.getUserScore()) - \(game!.getOpponentScore())"
+    }
     
     @IBAction func gameButton(sender: AnyObject)
     {
@@ -24,17 +36,6 @@ class GameDetailController: UIViewController
     {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        setGameData()
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

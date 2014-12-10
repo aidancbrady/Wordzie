@@ -14,13 +14,18 @@ class UserDetailController: UIViewController
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var gamesWon: UILabel!
     @IBOutlet weak var gamesLost: UILabel!
+    @IBOutlet weak var lastLogin: UILabel!
     
     var acct:Account?
     
     func setAccountData()
     {
-        gamesWon.text = String(acct!.gamesWon)
-        gamesLost.text = String(acct!.gamesLost)
+        Utilities.loadAvatar(WeakWrapper(value: userAvatar), email: acct!.email!)
+        
+        usernameLabel.text = acct!.username
+        gamesWon.text = String("Games Won: \(acct!.gamesWon)")
+        gamesLost.text = String("Games Lost: \(acct!.gamesLost)")
+        lastLogin.text = "Last Login: " + Utilities.interpretLogin(acct!.lastLogin)
     }
     
     @IBAction func newGame(sender: AnyObject)
@@ -31,18 +36,7 @@ class UserDetailController: UIViewController
     override func viewDidLoad()
     {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        setAccountData()
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

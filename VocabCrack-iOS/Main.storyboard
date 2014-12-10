@@ -511,17 +511,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="TxZ-Md-bhV">
-                                <rect key="frame" x="16" y="91" width="140" height="140"/>
+                                <rect key="frame" x="16" y="72" width="140" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TxZ-Md-bhV" secondAttribute="height" multiplier="1:1" id="BHZ-C3-PS1"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="yHd-9h-V9Y">
-                                <rect key="frame" x="164" y="91" width="140" height="140"/>
+                                <rect key="frame" x="164" y="72" width="140" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="yHd-9h-V9Y" secondAttribute="height" multiplier="1:1" id="LJx-nR-Wbn"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Guest1 vs Guest2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBZ-fM-qEu">
+                                <rect key="frame" x="32" y="231" width="256" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvg-nE-MNG">
                                 <rect key="frame" x="145" y="530" width="30" height="30"/>
                                 <state key="normal" title="Play">
@@ -551,8 +557,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Guest1 vs Guest2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBZ-fM-qEu">
-                                <rect key="frame" x="32" y="250" width="256" height="36"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 - 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ss-hP-hHV">
+                                <rect key="frame" x="32" y="266" width="256" height="36"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -581,6 +587,7 @@
                     <connections>
                         <outlet property="matchLabel" destination="OBZ-fM-qEu" id="L4X-E1-M1n"/>
                         <outlet property="opponentAvatar" destination="yHd-9h-V9Y" id="Wzq-hM-AyP"/>
+                        <outlet property="scoreLabel" destination="3Ss-hP-hHV" id="dxn-Kc-7aI"/>
                         <outlet property="scoreTable" destination="gUL-Pb-ous" id="kdZ-sQ-dJp"/>
                         <outlet property="userAvatar" destination="TxZ-Md-bhV" id="Vt5-He-X7F"/>
                     </connections>
@@ -679,6 +686,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dnr-KX-Lr1">
+                                <rect key="frame" x="32" y="81" width="256" height="256"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Guest" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yao-vi-M1V">
                                 <rect key="frame" x="32" y="376" width="256" height="21"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
@@ -691,14 +701,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Games Lost: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aae-kO-q7L">
-                                <rect key="frame" x="32" y="450" width="256" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sC-0Q-0fU">
-                                <rect key="frame" x="122" y="500" width="76" height="30"/>
+                                <rect key="frame" x="122" y="518" width="76" height="30"/>
                                 <state key="normal" title="New Game">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -706,9 +710,18 @@
                                     <action selector="newGame:" destination="ACY-nl-LQb" eventType="touchUpInside" id="quS-JW-jpr"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="Dnr-KX-Lr1">
-                                <rect key="frame" x="32" y="81" width="256" height="256"/>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Last Login: 45 years ago" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnP-co-Mr8">
+                                <rect key="frame" x="32" y="479" width="256" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Games Lost: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aae-kO-q7L">
+                                <rect key="frame" x="32" y="450" width="256" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -717,6 +730,7 @@
                             <constraint firstAttribute="centerX" secondItem="a0p-Pb-35D" secondAttribute="centerX" id="drU-7F-Enf"/>
                             <constraint firstAttribute="centerX" secondItem="Dnr-KX-Lr1" secondAttribute="centerX" id="eNT-CJ-j45"/>
                             <constraint firstAttribute="centerX" secondItem="9sC-0Q-0fU" secondAttribute="centerX" id="tKl-mt-GX5"/>
+                            <constraint firstAttribute="centerX" secondItem="nnP-co-Mr8" secondAttribute="centerX" id="zXC-cE-YoT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="User Details" id="Aqf-LN-k4T">
@@ -725,6 +739,7 @@
                     <connections>
                         <outlet property="gamesLost" destination="Aae-kO-q7L" id="Kyc-QN-Dgt"/>
                         <outlet property="gamesWon" destination="a0p-Pb-35D" id="eXb-Se-7NW"/>
+                        <outlet property="lastLogin" destination="nnP-co-Mr8" id="NoC-3L-nhl"/>
                         <outlet property="userAvatar" destination="Dnr-KX-Lr1" id="cmC-KB-62T"/>
                         <outlet property="usernameLabel" destination="yao-vi-M1V" id="NMQ-oh-fmv"/>
                     </connections>
