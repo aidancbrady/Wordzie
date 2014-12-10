@@ -51,7 +51,6 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        println(Utilities.max(game!.userPoints.count, num2: game!.opponentPoints.count))
         return Utilities.max(game!.userPoints.count, num2: game!.opponentPoints.count)
     }
     
@@ -62,6 +61,7 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         var userStr = indexPath.row <= game!.userPoints.count-1 ? String(game!.userPoints[indexPath.row]) : "N/A"
         var opponentStr = indexPath.row <= game!.opponentPoints.count-1 ? String(game!.opponentPoints[indexPath.row]) : "N/A"
         
+        cell.roundLabel.text = "Round \(indexPath.row+1)"
         cell.scoreLabel.text = userStr + " - " + opponentStr
         
         return cell

@@ -522,6 +522,12 @@
                                     <constraint firstAttribute="width" secondItem="yHd-9h-V9Y" secondAttribute="height" multiplier="1:1" id="LJx-nR-Wbn"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Guest1 vs Guest2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBZ-fM-qEu">
+                                <rect key="frame" x="32" y="239" width="256" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvg-nE-MNG">
                                 <rect key="frame" x="145" y="530" width="30" height="30"/>
                                 <state key="normal" title="Play">
@@ -531,7 +537,13 @@
                                     <action selector="gameButton:" destination="wo5-IC-ZTI" eventType="touchUpInside" id="7Om-xy-VLD"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gUL-Pb-ous">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0 - 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ss-hP-hHV">
+                                <rect key="frame" x="32" y="283" width="256" height="27"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="gUL-Pb-ous">
                                 <rect key="frame" x="0.0" y="318" width="320" height="204"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -540,35 +552,35 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wt2-wd-30c" id="HNa-sl-dVS">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="0 - 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCb-Gg-yqY">
-                                                    <rect key="frame" x="142" y="11" width="36" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Round 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rey-aC-9PF">
+                                                    <rect key="frame" x="64" y="13" width="67" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0 - 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCb-Gg-yqY">
+                                                    <rect key="frame" x="204" y="11" width="40" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerX" secondItem="DCb-Gg-yqY" secondAttribute="centerX" id="v5D-4H-1H7"/>
+                                                <constraint firstItem="Rey-aC-9PF" firstAttribute="leading" secondItem="HNa-sl-dVS" secondAttribute="leadingMargin" constant="56" id="CzM-Rm-kxQ"/>
+                                                <constraint firstItem="Rey-aC-9PF" firstAttribute="top" secondItem="HNa-sl-dVS" secondAttribute="topMargin" constant="3" id="SQK-RL-qpJ"/>
+                                                <constraint firstItem="DCb-Gg-yqY" firstAttribute="top" secondItem="HNa-sl-dVS" secondAttribute="topMargin" constant="3" id="SS6-kh-Fab"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="DCb-Gg-yqY" secondAttribute="trailing" constant="56" id="Tsg-Ul-vfq"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="DCb-Gg-yqY" secondAttribute="bottom" constant="4" id="hqh-vM-kgg"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Rey-aC-9PF" secondAttribute="bottom" constant="3" id="ykN-zU-7lP"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="roundLabel" destination="Rey-aC-9PF" id="ye2-YH-1oa"/>
                                             <outlet property="scoreLabel" destination="DCb-Gg-yqY" id="5te-3o-H9P"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0 - 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ss-hP-hHV">
-                                <rect key="frame" x="32" y="283" width="256" height="27"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Guest1 vs Guest2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OBZ-fM-qEu">
-                                <rect key="frame" x="32" y="239" width="256" height="36"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -579,6 +591,7 @@
                             <constraint firstAttribute="centerX" secondItem="OBZ-fM-qEu" secondAttribute="centerX" id="OUh-Ij-akM"/>
                             <constraint firstItem="yHd-9h-V9Y" firstAttribute="leading" secondItem="TxZ-Md-bhV" secondAttribute="trailing" constant="8" id="OcK-PF-KCT"/>
                             <constraint firstItem="TxZ-Md-bhV" firstAttribute="top" secondItem="XHT-V9-voH" secondAttribute="bottom" constant="16" id="Xcd-te-kSo"/>
+                            <constraint firstItem="gUL-Pb-ous" firstAttribute="top" secondItem="3Ss-hP-hHV" secondAttribute="bottom" constant="8" id="aVC-gs-L7N"/>
                             <constraint firstAttribute="centerX" secondItem="gUL-Pb-ous" secondAttribute="centerX" id="bEo-bf-YGL"/>
                             <constraint firstItem="3Ss-hP-hHV" firstAttribute="top" secondItem="OBZ-fM-qEu" secondAttribute="bottom" constant="8" id="dUQ-ce-gFH"/>
                             <constraint firstItem="yHd-9h-V9Y" firstAttribute="top" secondItem="XHT-V9-voH" secondAttribute="bottom" constant="16" id="dnU-gQ-Hth"/>
@@ -606,7 +619,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K69-ZK-FOv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1224" y="0.0"/>
+            <point key="canvasLocation" x="1224" y="-5"/>
         </scene>
         <!--Add Friend Controller-->
         <scene sceneID="e5O-hy-jmW">

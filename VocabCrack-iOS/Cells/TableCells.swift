@@ -155,6 +155,7 @@ class UserCell:UITableViewCell
 
 class ScoreCell:UITableViewCell
 {
+    @IBOutlet weak var roundLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     
     override func setSelected(selected: Bool, animated: Bool)
