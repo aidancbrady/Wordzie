@@ -177,11 +177,38 @@ class FriendHandler
         })
     }
     
-    func acceptRequest(controler:WeakWrapper<FriendsController>, friend:String)
+    func acceptRequest(controller:WeakWrapper<FriendsController>, friend:String)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             let str = "REQCONF:" + Constants.CORE.account.username + ":" + friend
             NetHandler.sendData(str)
+        })
+    }
+    
+    func getInfo(controller:WeakWrapper<UserDetailController>, friend:String)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = "GETINFO:" + Constants.CORE.account.username + ":" + friend
+            let ret = NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if let detail = controller.value
+                {
+                    if let response = ret
+                    {
+                        let array:[String] = Utilities.split(response, separator: ":")
+                        
+                        if array[0] == "ACCEPT"
+                        {
+                            let won = array[2].toInt()!
+                            let lost = array[3].toInt()!
+                            let login = NSString(string: array[4]).longLongValue
+                            
+                            detail.acct = Account(username: friend, email: array[1], password: "password").setGamesWon(won).setGamesLost(lost).setLastLogin(login)
+                        }
+                    }
+                }
+            })
         })
     }
 }

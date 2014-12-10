@@ -41,6 +41,17 @@ class FriendCell: UITableViewCell
                     self.setSelected(false, animated: true)
                 })
             }
+            else {
+                if !user!.isRequest
+                {
+                    let detail:UIViewController = controller!.storyboard?.instantiateViewControllerWithIdentifier("UserDetailController") as UIViewController
+                    
+                    controller!.navigationController!.pushViewController(detail, animated: true)
+                }
+                else {
+                    self.setSelected(false, animated: true)
+                }
+            }
         }
     }
 }
@@ -84,9 +95,14 @@ class GameCell: UITableViewCell
                             self.setSelected(false, animated: true)
                         })
                     }
+                    else {
+                        self.setSelected(false, animated: true)
+                    }
                 }
                 else {
-                    //Open game detail menu
+                    let detail:UIViewController = controller!.storyboard?.instantiateViewControllerWithIdentifier("GameDetailController") as UIViewController
+                    
+                    controller!.navigationController!.pushViewController(detail, animated: true)
                 }
             }
             else {
@@ -99,7 +115,7 @@ class GameCell: UITableViewCell
                     //Open new game controller
                     return
                 }, cancel: {(action) -> Void in
-                        self.setSelected(false, animated: true)
+                    self.setSelected(false, animated: true)
                 })
             }
         }
@@ -130,5 +146,15 @@ class UserCell:UITableViewCell
                 self.setSelected(false, animated: true)
             })
         }
+    }
+}
+
+class ScoreCell:UITableViewCell
+{
+    override func setSelected(selected: Bool, animated: Bool)
+    {
+        super.setSelected(selected, animated: animated)
+        
+        self.setSelected(false, animated: true)
     }
 }

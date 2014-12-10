@@ -19,7 +19,7 @@ class Account
     var gamesWon:Int = 0
     var gamesLost:Int = 0
     
-    var lastLogin:CLong = 0
+    var lastLogin:Int64 = 0
     
     var friends:[Account] = [Account]()
     var requests:[Account] = [Account]()
@@ -86,7 +86,7 @@ class Account
         return self
     }
     
-    func setLastLogin(lastLogin:CLong) -> Account
+    func setLastLogin(lastLogin:Int64) -> Account
     {
         self.lastLogin = lastLogin
         
