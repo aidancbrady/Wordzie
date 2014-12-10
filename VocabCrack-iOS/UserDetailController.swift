@@ -17,6 +17,12 @@ class UserDetailController: UIViewController
     
     var acct:Account?
     
+    func setAccountData()
+    {
+        gamesWon.text = String(acct!.gamesWon)
+        gamesLost.text = String(acct!.gamesLost)
+    }
+    
     @IBAction func newGame(sender: AnyObject)
     {
         

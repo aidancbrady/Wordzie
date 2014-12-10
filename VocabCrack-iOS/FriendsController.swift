@@ -68,14 +68,17 @@ class FriendsController: UITableViewController
             if account.isRequest
             {
                 cell.usernameLabel.text = account.username + " (Requested)"
+                cell.lastSeenLabel.text = "Awaiting approval"
             }
             else {
                 Utilities.loadAvatar(WeakWrapper(value: cell.userAvatar), email: account.email!)
                 cell.usernameLabel.text = account.username
+                cell.lastSeenLabel.text = Utilities.interpretLogin(account.lastLogin)
             }
         }
         else {
             cell.usernameLabel.text = account.username
+            cell.lastSeenLabel.text = "Awaiting approval"
         }
         
         cell.user = account

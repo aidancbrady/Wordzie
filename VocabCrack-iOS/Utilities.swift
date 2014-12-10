@@ -121,6 +121,56 @@ class Utilities
         return s == "true"
     }
     
+    class func interpretLogin(millis:Int64) -> String
+    {
+        let date:NSDate = NSDate(timeIntervalSince1970: Double(millis/1000))
+        let current:NSDate = NSDate()
+        
+        let diffMillis: Int64  = Int64((current.timeIntervalSince1970-date.timeIntervalSince1970)*1000)
+        let diffSeconds: Int64  = diffMillis/1000
+        let diffMinutes: Int64 = diffSeconds/60
+        let diffHours: Int64  = diffMinutes/60
+        let diffDays: Int64  = diffHours/24
+        let diffMonths: Int64 = diffDays/30
+        let diffYears: Int64 = diffMonths/12
+        
+        if diffSeconds < 60
+        {
+            return "seconds ago"
+        }
+        else if diffMinutes == 1
+        {
+            return "a minute ago"
+        }
+        else if diffMinutes < 60
+        {
+            return "\(diffMinutes) minutes ago"
+        }
+        else if diffHours == 1
+        {
+            return "an hour ago"
+        }
+        else if diffHours < 72
+        {
+            return "\(diffHours) hours ago"
+        }
+        else if diffDays < 31
+        {
+            return "\(diffDays) days ago"
+        }
+        else if diffMonths < 12
+        {
+            return "\(diffMonths) months ago"
+        }
+        else if diffYears == 1
+        {
+            return "a year ago"
+        }
+        else {
+            return "\(diffYears) years ago"
+        }
+    }
+    
     class func loadData()
     {
         let reader:HTTPReader = HTTPReader()
