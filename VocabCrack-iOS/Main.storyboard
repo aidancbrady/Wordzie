@@ -388,34 +388,135 @@
             </objects>
             <point key="canvasLocation" x="411.73333333333335" y="698.63999999999999"/>
         </scene>
-        <!--New Game Controller-->
-        <scene sceneID="iJu-84-u9c">
+        <!--New Game-->
+        <scene sceneID="46d-u0-3Lj">
             <objects>
-                <viewController storyboardIdentifier="NewGameController" title="New Game Controller" id="nwJ-Wg-ymK" customClass="NewGameController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="CQy-ch-bKs" customClass="NewGameController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="poB-lj-WQX"/>
-                        <viewControllerLayoutGuide type="bottom" id="a05-ot-pnt"/>
+                        <viewControllerLayoutGuide type="top" id="G4P-b7-pCE"/>
+                        <viewControllerLayoutGuide type="bottom" id="teR-mN-Wju"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="r87-Me-oTx">
+                    <view key="view" contentMode="scaleToFill" id="IVw-2M-Qdf">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eY8-QE-nxr">
-                                <rect key="frame" x="16" y="80" width="288" height="29"/>
+                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="eY8-QE-nxr">
+                                <rect key="frame" x="16" y="101" width="288" height="29"/>
                                 <segments>
                                     <segment title="Single"/>
                                     <segment title="Best of 3"/>
                                     <segment title="Best of 5"/>
                                 </segments>
+                                <connections>
+                                    <action selector="typePressed:" destination="CQy-ch-bKs" eventType="valueChanged" id="HuP-4c-TcZ"/>
+                                </connections>
+                            </segmentedControl>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tJ-Yf-Qa9">
+                                <rect key="frame" x="128" y="518" width="62" height="30"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="continuePressed:" destination="CQy-ch-bKs" eventType="touchUpInside" id="FZJ-z7-Fv1"/>
+                                </connections>
+                            </button>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose a game type..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4mk-yU-k7v">
+                                <rect key="frame" x="16" y="72" width="174" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose a way to play..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R55-1p-nzG">
+                                <rect key="frame" x="16" y="158" width="179" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose a word list..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmi-BG-dJn">
+                                <rect key="frame" x="16" y="243" width="158" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="f2C-4W-8Cm">
+                                <rect key="frame" x="16" y="272" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Default"/>
+                                    <segment title="Other"/>
+                                </segments>
+                                <connections>
+                                    <action selector="listPressed:" destination="CQy-ch-bKs" eventType="valueChanged" id="U2L-IK-JKJ"/>
+                                </connections>
+                            </segmentedControl>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8gt-6S-FzQ">
+                                <rect key="frame" x="149" y="445" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Custom URL" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r8c-NI-eUi">
+                                <rect key="frame" x="16" y="308" width="288" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="done"/>
+                            </textField>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="You're all set!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qGJ-Td-U83">
+                                <rect key="frame" x="102" y="416" width="117" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="k05-Al-OWE">
+                                <rect key="frame" x="16" y="187" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Singleplayer"/>
+                                    <segment title="Random"/>
+                                    <segment title="Friends List"/>
+                                </segments>
+                                <connections>
+                                    <action selector="playPressed:" destination="CQy-ch-bKs" eventType="valueChanged" id="1v9-IC-voC"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="f2C-4W-8Cm" secondAttribute="centerX" id="6AE-Es-tad"/>
+                            <constraint firstItem="nmi-BG-dJn" firstAttribute="leading" secondItem="IVw-2M-Qdf" secondAttribute="leadingMargin" id="AOr-cF-G9e"/>
+                            <constraint firstItem="k05-Al-OWE" firstAttribute="top" secondItem="R55-1p-nzG" secondAttribute="bottom" constant="8" id="I4P-1w-DlM"/>
+                            <constraint firstItem="R55-1p-nzG" firstAttribute="top" secondItem="eY8-QE-nxr" secondAttribute="bottom" constant="29" id="JKi-A6-ECs"/>
+                            <constraint firstAttribute="centerX" secondItem="k05-Al-OWE" secondAttribute="centerX" id="KPD-Oa-Es3"/>
+                            <constraint firstItem="eY8-QE-nxr" firstAttribute="trailing" secondItem="IVw-2M-Qdf" secondAttribute="trailingMargin" id="NsQ-Bg-HBl"/>
+                            <constraint firstItem="f2C-4W-8Cm" firstAttribute="top" secondItem="nmi-BG-dJn" secondAttribute="bottom" constant="8" id="QlW-TJ-Gn6"/>
+                            <constraint firstItem="r8c-NI-eUi" firstAttribute="trailing" secondItem="IVw-2M-Qdf" secondAttribute="trailingMargin" id="SEE-7b-kjz"/>
+                            <constraint firstAttribute="centerX" secondItem="8gt-6S-FzQ" secondAttribute="centerX" id="YH6-xf-Lfv"/>
+                            <constraint firstAttribute="centerX" secondItem="4tJ-Yf-Qa9" secondAttribute="centerX" id="d0v-xb-wfR"/>
+                            <constraint firstItem="R55-1p-nzG" firstAttribute="leading" secondItem="IVw-2M-Qdf" secondAttribute="leadingMargin" id="dMH-n3-cvR"/>
+                            <constraint firstItem="f2C-4W-8Cm" firstAttribute="leading" secondItem="IVw-2M-Qdf" secondAttribute="leadingMargin" id="hVV-up-bHn"/>
+                            <constraint firstItem="f2C-4W-8Cm" firstAttribute="trailing" secondItem="IVw-2M-Qdf" secondAttribute="trailingMargin" id="ilC-4E-w0z"/>
+                            <constraint firstItem="nmi-BG-dJn" firstAttribute="top" secondItem="k05-Al-OWE" secondAttribute="bottom" constant="28" id="kJh-SJ-tu2"/>
+                            <constraint firstItem="k05-Al-OWE" firstAttribute="leading" secondItem="IVw-2M-Qdf" secondAttribute="leadingMargin" id="oLg-jx-Er4"/>
+                            <constraint firstAttribute="centerX" secondItem="qGJ-Td-U83" secondAttribute="centerX" id="pnT-AN-JOd"/>
+                            <constraint firstItem="4mk-yU-k7v" firstAttribute="leading" secondItem="IVw-2M-Qdf" secondAttribute="leadingMargin" id="qBz-3B-cIf"/>
+                            <constraint firstItem="eY8-QE-nxr" firstAttribute="leading" secondItem="IVw-2M-Qdf" secondAttribute="leadingMargin" id="qpu-SQ-FZ2"/>
+                            <constraint firstItem="eY8-QE-nxr" firstAttribute="top" secondItem="4mk-yU-k7v" secondAttribute="bottom" constant="8" id="sHf-BD-pnw"/>
+                            <constraint firstAttribute="centerX" secondItem="r8c-NI-eUi" secondAttribute="centerX" id="uVR-qx-e3a"/>
+                            <constraint firstItem="k05-Al-OWE" firstAttribute="trailing" secondItem="IVw-2M-Qdf" secondAttribute="trailingMargin" id="una-fX-wrh"/>
+                            <constraint firstItem="r8c-NI-eUi" firstAttribute="leading" secondItem="IVw-2M-Qdf" secondAttribute="leadingMargin" id="wbk-Qc-GKH"/>
+                            <constraint firstAttribute="centerX" secondItem="eY8-QE-nxr" secondAttribute="centerX" id="y22-ju-Ct8"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="New Game" id="D41-IS-fyF">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="SZJ-Ff-Lsi"/>
+                    <navigationItem key="navigationItem" title="New Game" id="dJB-kY-khC">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="mWM-Yt-IqZ"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="continueButton" destination="4tJ-Yf-Qa9" id="kjc-vJ-I30"/>
+                        <outlet property="finishedLabel" destination="qGJ-Td-U83" id="Qjo-c6-knY"/>
+                        <outlet property="listButton" destination="f2C-4W-8Cm" id="rZn-fo-GhF"/>
+                        <outlet property="listLabel" destination="nmi-BG-dJn" id="Oxv-Td-AD8"/>
+                        <outlet property="playButton" destination="k05-Al-OWE" id="0j5-pm-7Ii"/>
+                        <outlet property="playLabel" destination="R55-1p-nzG" id="RmU-vO-Lr6"/>
+                        <outlet property="typeButton" destination="eY8-QE-nxr" id="HBN-e0-uBo"/>
+                        <outlet property="typeLabel" destination="4mk-yU-k7v" id="Y6L-DJ-0nK"/>
+                        <outlet property="urlField" destination="r8c-NI-eUi" id="S30-aQ-g70"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="5VW-pb-tqA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UPb-AD-rCZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="814" y="-718"/>
         </scene>
@@ -485,7 +586,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="NGC-Jp-Xua"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="7Jw-zt-hNo">
                             <connections>
-                                <segue destination="nwJ-Wg-ymK" kind="push" id="xZi-sO-rov"/>
+                                <segue destination="CQy-ch-bKs" kind="push" id="oI2-zC-oWM"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

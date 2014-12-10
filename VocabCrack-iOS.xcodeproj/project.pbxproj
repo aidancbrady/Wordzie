@@ -27,13 +27,13 @@
 		11396ACD1A2F7EAD0050120D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ACC1A2F7EAD0050120D /* Account.swift */; };
 		11509EBB1A37AA88002C403E /* GameDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11509EBA1A37AA88002C403E /* GameDetailController.swift */; };
 		11509EBD1A37AAB3002C403E /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11509EBC1A37AAB3002C403E /* UserDetailController.swift */; };
+		11509EBF1A38F153002C403E /* NewGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11509EBE1A38F153002C403E /* NewGameController.swift */; };
 		11B0C81F1A339AE100F0A557 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0C81E1A339AE100F0A557 /* FriendsController.swift */; };
 		11B0C8211A33A41700F0A557 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B0C8201A33A41700F0A557 /* Main.storyboard */; };
 		11B4C7721A33AA7900413EDD /* TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4C7711A33AA7900413EDD /* TableCells.swift */; };
 		11B666E31A326FAD006A17F3 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E21A326FAD006A17F3 /* OptionsController.swift */; };
 		11B666E71A3275EF006A17F3 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B666E61A3275EF006A17F3 /* user.png */; };
 		11B666E91A3364CD006A17F3 /* GamesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E81A3364CD006A17F3 /* GamesController.swift */; };
-		11B666EB1A338080006A17F3 /* NewGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666EA1A338080006A17F3 /* NewGameController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +71,7 @@
 		11396ACC1A2F7EAD0050120D /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		11509EBA1A37AA88002C403E /* GameDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailController.swift; sourceTree = "<group>"; };
 		11509EBC1A37AAB3002C403E /* UserDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
+		11509EBE1A38F153002C403E /* NewGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameController.swift; sourceTree = "<group>"; };
 		11B0C81E1A339AE100F0A557 /* FriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
 		11B0C8201A33A41700F0A557 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		11B4C7711A33AA7900413EDD /* TableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableCells.swift; path = Cells/TableCells.swift; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		11B666E21A326FAD006A17F3 /* OptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		11B666E61A3275EF006A17F3 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		11B666E81A3364CD006A17F3 /* GamesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesController.swift; sourceTree = "<group>"; };
-		11B666EA1A338080006A17F3 /* NewGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,12 +140,12 @@
 				11121AF11A30995E00153E01 /* Game.swift */,
 				11B666E21A326FAD006A17F3 /* OptionsController.swift */,
 				11B666E81A3364CD006A17F3 /* GamesController.swift */,
-				11B666EA1A338080006A17F3 /* NewGameController.swift */,
 				11B0C81E1A339AE100F0A557 /* FriendsController.swift */,
 				11B4C7711A33AA7900413EDD /* TableCells.swift */,
 				110DA1191A34C429009B95BA /* AddFriendController.swift */,
 				11509EBA1A37AA88002C403E /* GameDetailController.swift */,
 				11509EBC1A37AAB3002C403E /* UserDetailController.swift */,
+				11509EBE1A38F153002C403E /* NewGameController.swift */,
 			);
 			path = "VocabCrack-iOS";
 			sourceTree = "<group>";
@@ -287,6 +287,7 @@
 				11B0C81F1A339AE100F0A557 /* FriendsController.swift in Sources */,
 				110DA11A1A34C429009B95BA /* AddFriendController.swift in Sources */,
 				11396AC31A2F40190050120D /* CoreHandler.swift in Sources */,
+				11509EBF1A38F153002C403E /* NewGameController.swift in Sources */,
 				11121AF21A30995E00153E01 /* Game.swift in Sources */,
 				11396ACD1A2F7EAD0050120D /* Account.swift in Sources */,
 				11B666E91A3364CD006A17F3 /* GamesController.swift in Sources */,
@@ -296,7 +297,6 @@
 				11396AC71A2F40200050120D /* VocabCrack.swift in Sources */,
 				11396ABF1A2F3D470050120D /* LoginController.swift in Sources */,
 				11396ACB1A2F4BEF0050120D /* MenuController.swift in Sources */,
-				11B666EB1A338080006A17F3 /* NewGameController.swift in Sources */,
 				11396AC51A2F40190050120D /* FriendHandler.swift in Sources */,
 				11B4C7721A33AA7900413EDD /* TableCells.swift in Sources */,
 				1137F09F1A2ECE8C009A7BDA /* NetHandler.swift in Sources */,
