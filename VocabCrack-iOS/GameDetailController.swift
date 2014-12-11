@@ -66,9 +66,4 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         
         return cell
     }
-    
-    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
-    {
-        return false
-    }
 }

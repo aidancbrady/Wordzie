@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FriendsController: UITableViewController
+class FriendsController: TableDataReceiver
 {
     var friends:[Account] = [Account]()
     var requests:[Account] = [Account]()
@@ -20,6 +20,26 @@ class FriendsController: UITableViewController
     @IBAction func modeChanged(sender: AnyObject)
     {
         tableView.reloadData()
+    }
+    
+    override func receiveData(obj: AnyObject, type: Int)
+    {
+        if type == 0
+        {
+            friends = obj as [Account]
+        }
+        else if type == 1
+        {
+            requests = obj as [Account]
+        }
+    }
+    
+    override func endRefresh()
+    {
+        if refresher.refreshing
+        {
+            refresher.endRefreshing()
+        }
     }
     
     override func viewDidLoad()

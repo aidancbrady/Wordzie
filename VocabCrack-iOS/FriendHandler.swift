@@ -7,16 +7,17 @@
 //
 
 import Foundation
+import UIKit
 
 class FriendHandler
 {
-    func updateData(controller:WeakWrapper<FriendsController>)
+    func updateData(controller:WeakWrapper<TableDataReceiver>)
     {
         updateFriends(controller)
         updateRequests(controller)
     }
     
-    func updateFriends(controller:WeakWrapper<FriendsController>)
+    func updateFriends(controller:WeakWrapper<TableDataReceiver>)
     {
         if Operations.loadingGames
         {
@@ -54,21 +55,21 @@ class FriendHandler
                                 accounts.append(Account(username:array1[i], isRequest:true))
                             }
                             
-                            table.friends = accounts
+                            table.receiveData(accounts, type: 0)
                             table.tableView.reloadData()
                         }
                     }
                     
-                    if !Operations.loadingPast && table.refresher.refreshing
+                    if !Operations.loadingPast
                     {
-                        table.refresher.endRefreshing()
+                        table.endRefresh()
                     }
                 }
             })
         })
     }
     
-    func updateRequests(controller:WeakWrapper<FriendsController>)
+    func updateRequests(controller:WeakWrapper<TableDataReceiver>)
     {
         if Operations.loadingPast
         {
@@ -100,22 +101,25 @@ class FriendHandler
                                 accounts.append(Account(username:split[0], isRequest:false).setEmail(split[1]))
                             }
                             
-                            table.requests = accounts
+                            table.receiveData(accounts, type: 1)
                             table.tableView.reloadData()
                             
-                            if accounts.count > 0
+                            if table is FriendsController
                             {
-                                table.modeButton.setTitle("Requests (\(accounts.count))", forSegmentAtIndex: 1)
-                            }
-                            else {
-                                table.modeButton.setTitle("Requests", forSegmentAtIndex: 1)
+                                if accounts.count > 0
+                                {
+                                    (table as FriendsController).modeButton.setTitle("Requests (\(accounts.count))", forSegmentAtIndex: 1)
+                                }
+                                else {
+                                    (table as FriendsController).modeButton.setTitle("Requests", forSegmentAtIndex: 1)
+                                }
                             }
                         }
                     }
                     
-                    if !Operations.loadingGames && table.refresher.refreshing
+                    if !Operations.loadingGames
                     {
-                        table.refresher.endRefreshing()
+                        table.endRefresh()
                     }
                 }
             })

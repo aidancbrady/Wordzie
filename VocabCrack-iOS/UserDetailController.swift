@@ -30,7 +30,11 @@ class UserDetailController: UIViewController
     
     @IBAction func newGame(sender: AnyObject)
     {
+        let controller:NewGameController = storyboard?.instantiateViewControllerWithIdentifier("NewGameController") as NewGameController
         
+        controller.definedUser = acct!.username
+        
+        navigationController!.pushViewController(controller, animated: true)
     }
     
     override func viewDidLoad()

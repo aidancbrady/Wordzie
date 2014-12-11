@@ -19,9 +19,42 @@ class NewGameController: UIViewController
     @IBOutlet weak var urlField: UITextField!
     @IBOutlet weak var finishedLabel: UILabel!
     @IBOutlet weak var continueButton: UIButton!
+    @IBOutlet weak var changeButton: UIButton!
+    
+    var definedUser:String?
+    
+    @IBAction func changePressed(sender: AnyObject)
+    {
+        if !playButton.enabled
+        {
+            UIView.transitionWithView(view, duration: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+                self.changeButton.alpha = 0
+                self.playButton.enabled = true
+            }, completion: {b in
+                self.changeButton.hidden = true
+                self.definedUser = nil
+            })
+        }
+        else {
+            let friends:SimpleFriendsController = self.storyboard?.instantiateViewControllerWithIdentifier("SimpleFriendsController") as SimpleFriendsController
+            
+            navigationController?.pushViewController(friends, animated: true)
+        }
+    }
     
     @IBAction func typePressed(sender: AnyObject)
     {
+        if definedUser != nil
+        {
+            playLabel.text = "Playing against " + definedUser! + "..."
+            playButton.enabled = false
+            playButton.selectedSegmentIndex = 2
+            changeButton.setTitle("Change", forState: UIControlState.Normal)
+        }
+        else {
+            changeButton.setTitle("Choose", forState: UIControlState.Normal)
+        }
+        
         if playLabel.hidden
         {
             playLabel.hidden = false
@@ -31,13 +64,26 @@ class NewGameController: UIViewController
             UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
                 self.playLabel.alpha = 1
                 self.playButton.alpha = 1
-            }, completion: nil)
+            }, completion: {b in
+                if self.definedUser != nil
+                {
+                    self.changeButton.hidden = false
+                    self.changeButton.alpha = 0.1
+                    UIView.transitionWithView(self.view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+                        self.changeButton.alpha = 1
+                    }, completion: nil)
+                }
+                
+                self.playPressed(sender)
+            })
         }
     }
     
     
     @IBAction func playPressed(sender: AnyObject)
     {
+        changeButton.setTitle("Choose", forState: UIControlState.Normal)
+        
         if listLabel.hidden
         {
             listLabel.hidden = false
@@ -47,6 +93,23 @@ class NewGameController: UIViewController
             UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
                 self.listLabel.alpha = 1
                 self.listButton.alpha = 1
+            }, completion: nil)
+        }
+        
+        if self.playButton.selectedSegmentIndex != 2 && !self.changeButton.hidden
+        {
+            UIView.transitionWithView(self.view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+                self.changeButton.alpha = 0
+            }, completion: {b in
+                self.changeButton.hidden = true
+            })
+        }
+        else if self.playButton.selectedSegmentIndex == 2 && self.changeButton.hidden
+        {
+            self.changeButton.hidden = false
+            self.changeButton.alpha = 0.1
+            UIView.transitionWithView(self.view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+                self.changeButton.alpha = 1
             }, completion: nil)
         }
     }
@@ -118,12 +181,6 @@ class NewGameController: UIViewController
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning()
-    {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     /*

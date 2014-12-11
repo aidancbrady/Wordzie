@@ -274,6 +274,13 @@ class Utilities
     }
 }
 
+class TableDataReceiver: UITableViewController
+{
+    func receiveData(obj:AnyObject, type:Int) {}
+    
+    func endRefresh() {}
+}
+
 struct WeakWrapper<T: AnyObject>
 {
     weak var value: T?

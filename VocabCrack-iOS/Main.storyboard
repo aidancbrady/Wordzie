@@ -388,10 +388,10 @@
             </objects>
             <point key="canvasLocation" x="411.73333333333335" y="698.63999999999999"/>
         </scene>
-        <!--New Game-->
+        <!--New Game Controller-->
         <scene sceneID="46d-u0-3Lj">
             <objects>
-                <viewController id="CQy-ch-bKs" customClass="NewGameController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NewGameController" title="New Game Controller" id="CQy-ch-bKs" customClass="NewGameController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G4P-b7-pCE"/>
                         <viewControllerLayoutGuide type="bottom" id="teR-mN-Wju"/>
@@ -432,6 +432,17 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="k05-Al-OWE">
+                                <rect key="frame" x="16" y="187" width="288" height="29"/>
+                                <segments>
+                                    <segment title="Singleplayer"/>
+                                    <segment title="Random"/>
+                                    <segment title="Friends List"/>
+                                </segments>
+                                <connections>
+                                    <action selector="playPressed:" destination="CQy-ch-bKs" eventType="valueChanged" id="1v9-IC-voC"/>
+                                </connections>
+                            </segmentedControl>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Choose a word list..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmi-BG-dJn">
                                 <rect key="frame" x="16" y="243" width="158" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -462,20 +473,19 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="k05-Al-OWE">
-                                <rect key="frame" x="16" y="187" width="288" height="29"/>
-                                <segments>
-                                    <segment title="Singleplayer"/>
-                                    <segment title="Random"/>
-                                    <segment title="Friends List"/>
-                                </segments>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qQY-S3-GRR">
+                                <rect key="frame" x="250" y="154" width="54" height="30"/>
+                                <state key="normal" title="Change">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="playPressed:" destination="CQy-ch-bKs" eventType="valueChanged" id="1v9-IC-voC"/>
+                                    <action selector="changePressed:" destination="CQy-ch-bKs" eventType="touchUpInside" id="EJE-iw-2k4"/>
                                 </connections>
-                            </segmentedControl>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="qQY-S3-GRR" firstAttribute="trailing" secondItem="IVw-2M-Qdf" secondAttribute="trailingMargin" id="4lW-yY-uoX"/>
                             <constraint firstAttribute="centerX" secondItem="f2C-4W-8Cm" secondAttribute="centerX" id="6AE-Es-tad"/>
                             <constraint firstItem="nmi-BG-dJn" firstAttribute="leading" secondItem="IVw-2M-Qdf" secondAttribute="leadingMargin" id="AOr-cF-G9e"/>
                             <constraint firstItem="k05-Al-OWE" firstAttribute="top" secondItem="R55-1p-nzG" secondAttribute="bottom" constant="8" id="I4P-1w-DlM"/>
@@ -486,6 +496,7 @@
                             <constraint firstItem="r8c-NI-eUi" firstAttribute="trailing" secondItem="IVw-2M-Qdf" secondAttribute="trailingMargin" id="SEE-7b-kjz"/>
                             <constraint firstAttribute="centerX" secondItem="8gt-6S-FzQ" secondAttribute="centerX" id="YH6-xf-Lfv"/>
                             <constraint firstAttribute="centerX" secondItem="4tJ-Yf-Qa9" secondAttribute="centerX" id="d0v-xb-wfR"/>
+                            <constraint firstItem="k05-Al-OWE" firstAttribute="top" secondItem="qQY-S3-GRR" secondAttribute="bottom" constant="3" id="d3O-YK-Wwj"/>
                             <constraint firstItem="R55-1p-nzG" firstAttribute="leading" secondItem="IVw-2M-Qdf" secondAttribute="leadingMargin" id="dMH-n3-cvR"/>
                             <constraint firstItem="f2C-4W-8Cm" firstAttribute="leading" secondItem="IVw-2M-Qdf" secondAttribute="leadingMargin" id="hVV-up-bHn"/>
                             <constraint firstItem="f2C-4W-8Cm" firstAttribute="trailing" secondItem="IVw-2M-Qdf" secondAttribute="trailingMargin" id="ilC-4E-w0z"/>
@@ -505,6 +516,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="mWM-Yt-IqZ"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="changeButton" destination="qQY-S3-GRR" id="q9V-IY-oid"/>
                         <outlet property="continueButton" destination="4tJ-Yf-Qa9" id="kjc-vJ-I30"/>
                         <outlet property="finishedLabel" destination="qGJ-Td-U83" id="Qjo-c6-knY"/>
                         <outlet property="listButton" destination="f2C-4W-8Cm" id="rZn-fo-GhF"/>
@@ -514,6 +526,7 @@
                         <outlet property="typeButton" destination="eY8-QE-nxr" id="HBN-e0-uBo"/>
                         <outlet property="typeLabel" destination="4mk-yU-k7v" id="Y6L-DJ-0nK"/>
                         <outlet property="urlField" destination="r8c-NI-eUi" id="S30-aQ-g70"/>
+                        <segue destination="2An-No-pOi" kind="push" id="ee7-sp-K6r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPb-AD-rCZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -598,6 +611,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="761-46-jYo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="814.93333333333328" y="0.0"/>
+        </scene>
+        <!--Simple Friends Controller-->
+        <scene sceneID="DOj-7E-rWa">
+            <objects>
+                <tableViewController storyboardIdentifier="SimpleFriendsController" title="Simple Friends Controller" id="2An-No-pOi" customClass="SimpleFriendsController" customModule="VocabCrack_iOS" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="zLt-ev-WKa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="84" id="Qki-KY-rQN" customClass="FriendCell" customModule="VocabCrack_iOS" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qki-KY-rQN" id="yob-ev-JT1">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="FNf-w2-SiF">
+                                            <rect key="frame" x="20" y="10" width="64" height="64"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Guest" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Pb-Ys-qjJ">
+                                            <rect key="frame" x="92" y="12" width="500" height="21"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="102" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Last Seen: 45 years ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qFb-D2-0Fy">
+                                            <rect key="frame" x="92" y="39" width="185" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="lastSeenLabel" destination="qFb-D2-0Fy" id="sbs-hP-x12"/>
+                                    <outlet property="userAvatar" destination="FNf-w2-SiF" id="hix-5X-juO"/>
+                                    <outlet property="usernameLabel" destination="9Pb-Ys-qjJ" id="Xon-v7-W5K"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2An-No-pOi" id="eSD-3U-VyZ"/>
+                            <outlet property="delegate" destination="2An-No-pOi" id="mVU-7x-cF3"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Friends" id="ale-9C-Y5f">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="mgA-fA-hFl"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PJ3-fq-n81" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1224" y="-718"/>
         </scene>
         <!--Game Detail Controller-->
         <scene sceneID="yBy-VA-SF3">
