@@ -22,21 +22,33 @@ class NewGameController: UIViewController
     @IBOutlet weak var changeButton: UIButton!
     
     var definedUser:String?
+    var firstDisplay = true
+    
+    func setDefinedUser(user:String)
+    {
+        definedUser = user
+        changeButton.setTitle("Change", forState: UIControlState.Normal)
+        playLabel.text = "Playing against " + definedUser! + "..."
+        playButton.enabled = false
+    }
     
     @IBAction func changePressed(sender: AnyObject)
     {
         if !playButton.enabled
         {
             UIView.transitionWithView(view, duration: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-                self.changeButton.alpha = 0
+                self.changeButton.setTitle("Choose", forState: UIControlState.Normal)
+                self.playLabel.text = "Choose a way to play..."
                 self.playButton.enabled = true
+                self.hidePastPlay()
             }, completion: {b in
-                self.changeButton.hidden = true
                 self.definedUser = nil
             })
         }
         else {
             let friends:SimpleFriendsController = self.storyboard?.instantiateViewControllerWithIdentifier("SimpleFriendsController") as SimpleFriendsController
+            
+            friends.newController = self
             
             navigationController?.pushViewController(friends, animated: true)
         }
@@ -57,25 +69,18 @@ class NewGameController: UIViewController
         
         if playLabel.hidden
         {
-            playLabel.hidden = false
-            playButton.hidden = false
-            playLabel.alpha = 0.1
-            playButton.alpha = 0.1
-            UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-                self.playLabel.alpha = 1
-                self.playButton.alpha = 1
-            }, completion: {b in
+            show({
                 if self.definedUser != nil
                 {
-                    self.changeButton.hidden = false
-                    self.changeButton.alpha = 0.1
-                    UIView.transitionWithView(self.view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-                        self.changeButton.alpha = 1
-                    }, completion: nil)
+                    self.show(nil, views: self.changeButton)
+                    
+                    if self.listLabel.hidden
+                    {
+                        self.show(nil, views: self.listLabel, self.listButton)
+                        
+                    }
                 }
-                
-                self.playPressed(sender)
-            })
+            }, views: playLabel, playButton)
         }
     }
     
@@ -84,36 +89,28 @@ class NewGameController: UIViewController
     {
         changeButton.setTitle("Choose", forState: UIControlState.Normal)
         
-        if listLabel.hidden
+        if (playButton.selectedSegmentIndex == 0 || playButton.selectedSegmentIndex == 1)
         {
-            listLabel.hidden = false
-            listButton.hidden = false
-            listLabel.alpha = 0.1
-            listButton.alpha = 0.1
-            UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-                self.listLabel.alpha = 1
-                self.listButton.alpha = 1
-            }, completion: nil)
+            if listLabel.hidden
+            {
+                listButton.selectedSegmentIndex = UISegmentedControlNoSegment
+                show(nil, views: listLabel, listButton)
+            }
+        }
+        else if playButton.selectedSegmentIndex == 2
+        {
+            hidePastPlay()
         }
         
         if self.playButton.selectedSegmentIndex != 2 && !self.changeButton.hidden
         {
-            UIView.transitionWithView(self.view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-                self.changeButton.alpha = 0
-            }, completion: {b in
-                self.changeButton.hidden = true
-            })
+            hide(nil, views: changeButton)
         }
         else if self.playButton.selectedSegmentIndex == 2 && self.changeButton.hidden
         {
-            self.changeButton.hidden = false
-            self.changeButton.alpha = 0.1
-            UIView.transitionWithView(self.view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-                self.changeButton.alpha = 1
-            }, completion: nil)
+            show(nil, views: changeButton)
         }
     }
-    
     
     @IBAction func listPressed(sender: AnyObject)
     {
@@ -121,40 +118,23 @@ class NewGameController: UIViewController
         {
             if !urlField.hidden
             {
-                UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-                    self.urlField.alpha = 0
-                }, completion: {b in
-                    self.urlField.hidden = true
-                    self.urlField.text = ""
-                })
+                hide({self.urlField.text = ""}, views: urlField)
             }
             
             if finishedLabel.hidden
             {
-                finishedLabel.hidden = false
-                finishedLabel.alpha = 0.1
-                UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-                    self.finishedLabel.alpha = 1
-                }, completion: nil)
+                show(nil, views: finishedLabel)
             }
         }
         else {
             if urlField.hidden
             {
-                urlField.hidden = false
-                urlField.alpha = 0.1
-                UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-                    self.urlField.alpha = 1
-                }, completion: nil)
+                show(nil, views: urlField)
             }
             
             if !finishedLabel.hidden
             {
-                UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-                    self.finishedLabel.alpha = 0
-                }, completion: {b in
-                    self.finishedLabel.hidden = true
-                })
+                hide(nil, views: finishedLabel)
             }
         }
     }
@@ -166,14 +146,21 @@ class NewGameController: UIViewController
     
     override func viewDidAppear(animated: Bool)
     {
-        typeLabel.hidden = false
-        typeButton.hidden = false
-        typeLabel.alpha = 0.1
-        typeButton.alpha = 0.1
-        UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-            self.typeLabel.alpha = 1
-            self.typeButton.alpha = 1
-        }, completion: nil)
+        if firstDisplay
+        {
+            show(nil, views: typeLabel, typeButton)
+            
+            firstDisplay = false
+        }
+        else {
+            if !playButton.hidden && !playButton.enabled
+            {
+                if listLabel.hidden
+                {
+                    show(nil, views: listLabel, listButton)
+                }
+            }
+        }
     }
 
     override func viewDidLoad()
@@ -181,6 +168,60 @@ class NewGameController: UIViewController
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    func hidePastPlay()
+    {
+        if !listLabel.hidden
+        {
+            hide(nil, views: listLabel, listButton)
+        }
+        
+        if !urlField.hidden
+        {
+            hide({self.urlField.text = ""}, views: urlField)
+        }
+        
+        if !finishedLabel.hidden
+        {
+            hide(nil, views: finishedLabel)
+        }
+    }
+    
+    func hide(completion: (() -> Void)?, views: UIView...)
+    {
+        UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+            for view in views
+            {
+                view.alpha = 0
+            }
+        }, completion: {b in
+            for view in views
+            {
+                view.hidden = true
+            }
+            
+            completion?()
+        })
+    }
+    
+    func show(completion: (() -> Void)?, views: UIView...)
+    {
+        for view in views
+        {
+            view.hidden = false
+            view.alpha = 0.1
+        }
+        
+        UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+            for view in views
+            {
+                view.alpha = 1
+            }
+        }, completion: {b in
+            completion?()
+            return
+        })
     }
 
     /*

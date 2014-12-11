@@ -59,6 +59,8 @@ class FriendCell: UITableViewCell
             }
             else if controller is SimpleFriendsController
             {
+                var parent = (controller! as SimpleFriendsController).newController!
+                parent.setDefinedUser(user!.username)
                 controller!.navigationController!.popViewControllerAnimated(true)
             }
         }

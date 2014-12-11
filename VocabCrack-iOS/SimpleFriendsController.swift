@@ -13,12 +13,14 @@ class SimpleFriendsController: TableDataReceiver
     var friends:[Account] = [Account]()
     
     var refresher:UIRefreshControl!
+    var newController:NewGameController?
     
     override func receiveData(obj: AnyObject, type: Int)
     {
         if type == 0
         {
             friends = obj as [Account]
+            friends = friends.filter({element in !element.isRequest})
         }
     }
     
