@@ -83,6 +83,11 @@ class Utilities
         return s.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
     }
     
+    class func replace(s:String, find:String, replace:String) -> String
+    {
+        return s.stringByReplacingOccurrencesOfString(find, withString: replace, options: nil, range: nil)
+    }
+    
     /// Trims and splits a String with a specified separator
     class func split(s:String, separator:String) -> [String]
     {
@@ -173,6 +178,7 @@ class Utilities
     
     class func loadData()
     {
+        println(WordListHandler.getDocumentsDir())
         let reader:HTTPReader = HTTPReader()
         let request:NSMutableURLRequest = NSMutableURLRequest(URL: Constants.DATA_URL)
         
