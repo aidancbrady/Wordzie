@@ -46,6 +46,19 @@ class NewGameController: UIViewController
         WordListHandler.loadList(list, controller: WeakWrapper(value: self))
     }
     
+    func confirmGame(success:Bool, response:String?)
+    {
+        continueButton.enabled = true
+        
+        if success
+        {
+            Utilities.displayAlert(self, title: "Success", msg: "Confirmed", action: nil)
+        }
+        else {
+            Utilities.displayAlert(self, title: "Error", msg: response!, action: nil)
+        }
+    }
+    
     func listLoaded(success:Bool)
     {
         Constants.CORE.listURLs["Default"] = "DefaultURL"
@@ -175,7 +188,11 @@ class NewGameController: UIViewController
     
     @IBAction func continuePressed(sender: AnyObject)
     {
-        
+        if definedUser != nil
+        {
+            continueButton.enabled = false
+            Handlers.gameHandler.confirmGame(WeakWrapper(value: self), friend: definedUser!)
+        }
     }
     
     override func viewDidAppear(animated: Bool)

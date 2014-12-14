@@ -85,7 +85,7 @@ class SimpleFriendsController: TableDataReceiver
         else {
             Utilities.loadAvatar(WeakWrapper(value: cell.userAvatar), email: account.email!)
             cell.usernameLabel.text = account.username
-            cell.lastSeenLabel.text = Utilities.interpretLogin(account.lastLogin)
+            cell.lastSeenLabel.text = "Last Login: " + Utilities.interpretLogin(account.lastLogin)
         }
         
         cell.user = account
