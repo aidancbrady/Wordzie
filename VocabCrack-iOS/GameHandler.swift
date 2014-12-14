@@ -129,7 +129,8 @@ class GameHandler
     func deleteGame(controller:WeakWrapper<GamesController>, friend:String, type:Int, index:Int...)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            var str = "DELGAME:" + Constants.CORE.account.username + ":\(friend):\(type)"
+            var str = "DELGAME:" + Constants.CORE.account.username
+            str += ":" + friend + ":\(type)"
             
             if type == 1
             {
@@ -143,16 +144,13 @@ class GameHandler
     func confirmGame(controller:WeakWrapper<NewGameController>, friend:String)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            let str = "CONFGAME:" + Constants.CORE.account.username + ":" + friend
-            let ret = NetHandler.sendData(str)
+            var str = "CONFGAME:" + Constants.CORE.account.username + ":" + friend
+            NetHandler.sendData(str)
             
             dispatch_async(dispatch_get_main_queue(), {
                 if let newGame = controller.value
                 {
-                    if let response = ret
-                    {
-                        
-                    }
+                    
                 }
             })
         })

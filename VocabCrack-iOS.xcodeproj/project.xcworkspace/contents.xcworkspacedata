@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:VocabCrack.xcodeproj">
+      location = "self:VocabCrack-iOS.xcodeproj">
    </FileRef>
 </Workspace>
