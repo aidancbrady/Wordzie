@@ -403,7 +403,6 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="asdasdf" destination="WEi-cC-D5d" id="QcE-pE-zA8"/>
                                     <outlet property="lastSeenLabel" destination="WEi-cC-D5d" id="Hju-Mr-M2D"/>
                                     <outlet property="userAvatar" destination="ymI-IX-bm3" id="ZTU-jY-F32"/>
                                     <outlet property="usernameLabel" destination="W74-gN-s8g" id="6Ou-0H-1jk"/>

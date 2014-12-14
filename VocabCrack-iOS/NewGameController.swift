@@ -108,10 +108,7 @@ class NewGameController: UIViewController
             listChange.setTitle("Choose", forState: UIControlState.Normal)
             listLabel.text = ("Choose a word list...")
             
-            if !loadingLabel.hidden
-            {
-                hide(nil, views: loadingLabel)
-            }
+            hidePastList()
         }
     }
     
@@ -202,21 +199,11 @@ class NewGameController: UIViewController
         // Do any additional setup after loading the view.
     }
     
-    func hidePastPlay()
+    func hidePastList()
     {
-        if !listLabel.hidden
+        if !loadingLabel.hidden
         {
-            hide(nil, views: listLabel)
-        }
-        
-        if !listChange.hidden
-        {
-            hide(nil, views: listChange)
-        }
-        
-        if !finishedLabel.hidden
-        {
-            hide(nil, views: finishedLabel)
+            hide(nil, views: loadingLabel)
         }
         
         if activityIndicator.isAnimating()
@@ -229,10 +216,30 @@ class NewGameController: UIViewController
             hide(nil, views: loadingLabel)
         }
         
+        if !finishedLabel.hidden
+        {
+            hide(nil, views: finishedLabel)
+        }
+        
         if !continueButton.hidden
         {
             hide(nil, views: continueButton)
         }
+    }
+    
+    func hidePastPlay()
+    {
+        if !listLabel.hidden
+        {
+            hide(nil, views: listLabel)
+        }
+        
+        if !listChange.hidden
+        {
+            hide(nil, views: listChange)
+        }
+        
+        hidePastList()
     }
     
     func hide(completion: (() -> Void)?, views: UIView...)

@@ -140,4 +140,19 @@ class GameHandler
             NetHandler.sendData(str)
         })
     }
+    
+    func confirmGame(controller:WeakWrapper<NewGameController>, friend:String)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            var str = "CONFGAME:" + Constants.CORE.account.username + ":" + friend
+            NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if let newGame = controller.value
+                {
+                    
+                }
+            })
+        })
+    }
 }
