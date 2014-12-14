@@ -15,7 +15,7 @@ class NewGameController: UIViewController
     @IBOutlet weak var playLabel: UILabel!
     @IBOutlet weak var playButton: UISegmentedControl!
     @IBOutlet weak var listLabel: UILabel!
-    @IBOutlet weak var finishedLabel: UILabel!
+    @IBOutlet weak var confirmImage: UIImageView!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var changeButton: UIButton!
     @IBOutlet weak var listChange: UIButton!
@@ -75,8 +75,7 @@ class NewGameController: UIViewController
                     loadingLabel.text = "Loaded list! (\(Constants.CORE.activeList.count) terms)"
                     listLabel.text = "Using '\(Constants.CORE.listID!)' list..."
                     listChange.setTitle("Change", forState: UIControlState.Normal)
-                    finishedLabel.text = "You're all set!"
-                    show(nil, views: finishedLabel, continueButton)
+                    show(nil, views: confirmImage, continueButton)
                 }
                 else {
                     loadingLabel.text = "Failed to load list."
@@ -120,12 +119,6 @@ class NewGameController: UIViewController
             navigationController?.pushViewController(friends, animated: true)
         }
         else {
-            Constants.CORE.listID = nil
-            Constants.CORE.activeList.removeAll(keepCapacity: false)
-            
-            listChange.setTitle("Choose", forState: UIControlState.Normal)
-            listLabel.text = ("Choose a word list...")
-            
             hidePastList()
         }
     }
@@ -223,6 +216,12 @@ class NewGameController: UIViewController
     
     func hidePastList()
     {
+        Constants.CORE.listID = nil
+        Constants.CORE.activeList.removeAll(keepCapacity: false)
+        
+        listChange.setTitle("Choose", forState: UIControlState.Normal)
+        listLabel.text = ("Choose a word list...")
+        
         if !loadingLabel.hidden
         {
             hide(nil, views: loadingLabel)
@@ -238,9 +237,9 @@ class NewGameController: UIViewController
             hide(nil, views: loadingLabel)
         }
         
-        if !finishedLabel.hidden
+        if !confirmImage.hidden
         {
-            hide(nil, views: finishedLabel)
+            hide(nil, views: confirmImage)
         }
         
         if !continueButton.hidden

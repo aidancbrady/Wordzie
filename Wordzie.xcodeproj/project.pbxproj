@@ -12,6 +12,7 @@
 		11058F2A1A3CFE1100D5A291 /* NewListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11058F291A3CFE1100D5A291 /* NewListController.swift */; };
 		110DA11A1A34C429009B95BA /* AddFriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110DA1191A34C429009B95BA /* AddFriendController.swift */; };
 		1110AF351A3E12FF002088C2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1110AF341A3E12FF002088C2 /* logo.png */; };
+		1110AF3B1A3E226E002088C2 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 1110AF3A1A3E226E002088C2 /* check.png */; };
 		11121AF01A3020AF00153E01 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AEF1A3020AF00153E01 /* Utilities.swift */; };
 		11121AF21A30995E00153E01 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AF11A30995E00153E01 /* Game.swift */; };
 		1137F0791A2EC851009A7BDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F0781A2EC851009A7BDA /* AppDelegate.swift */; };
@@ -61,6 +62,7 @@
 		11058F291A3CFE1100D5A291 /* NewListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewListController.swift; sourceTree = "<group>"; };
 		110DA1191A34C429009B95BA /* AddFriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendController.swift; sourceTree = "<group>"; };
 		1110AF341A3E12FF002088C2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		1110AF3A1A3E226E002088C2 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		11121AEF1A3020AF00153E01 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		11121AF11A30995E00153E01 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		1137F0731A2EC851009A7BDA /* Wordzie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordzie.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +178,7 @@
 		1137F0761A2EC851009A7BDA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1110AF3A1A3E226E002088C2 /* check.png */,
 				1110AF341A3E12FF002088C2 /* logo.png */,
 				11FDEE651A3E0BD000EA4159 /* icon_120.png */,
 				11FDEE661A3E0BD000EA4159 /* icon_80.png */,
@@ -297,6 +300,7 @@
 				11B666E71A3275EF006A17F3 /* user.png in Resources */,
 				11B0C8211A33A41700F0A557 /* Main.storyboard in Resources */,
 				1137F0851A2EC851009A7BDA /* LaunchScreen.xib in Resources */,
+				1110AF3B1A3E226E002088C2 /* check.png in Resources */,
 				11ACB3931A3D2F87005C0BBA /* DefaultList.txt in Resources */,
 				11FDEE691A3E0BD000EA4159 /* icon_80.png in Resources */,
 				1137F0821A2EC851009A7BDA /* Images.xcassets in Resources */,
