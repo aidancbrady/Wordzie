@@ -12,7 +12,10 @@ class VocabCrack
 {
     var account:Account = Defaults.ACCOUNT
     var avatars:[String: UIImage] = [String: UIImage]()
-    var activeList:[String]?
+    
+    var listID:String? = nil
+    var activeList:[String] = [String]()
+    
     var listURLs:[String: String] = [String: String]()
 }
 

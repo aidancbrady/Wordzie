@@ -15,11 +15,12 @@ class NewGameController: UIViewController
     @IBOutlet weak var playLabel: UILabel!
     @IBOutlet weak var playButton: UISegmentedControl!
     @IBOutlet weak var listLabel: UILabel!
-    @IBOutlet weak var listButton: UISegmentedControl!
-    @IBOutlet weak var urlField: UITextField!
     @IBOutlet weak var finishedLabel: UILabel!
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var changeButton: UIButton!
+    @IBOutlet weak var listChange: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var loadingLabel: UILabel!
     
     var definedUser:String?
     var firstDisplay = true
@@ -30,6 +31,42 @@ class NewGameController: UIViewController
         changeButton.setTitle("Change", forState: UIControlState.Normal)
         playLabel.text = "Playing against " + definedUser! + "..."
         playButton.enabled = false
+    }
+    
+    func setList(list:String)
+    {
+        listChange.enabled = false
+        loadingLabel.text = "Loading list..."
+        activityIndicator.startAnimating()
+        WordListHandler.loadList(list, controller: WeakWrapper(value: self))
+    }
+    
+    func listLoaded(success:Bool)
+    {
+        Constants.CORE.listURLs["Default"] = "DefaultURL"
+        
+        if activityIndicator.isAnimating()
+        {
+            activityIndicator.stopAnimating()
+            listChange.enabled = true
+            
+            if !listLabel.hidden
+            {
+                if success
+                {
+                    loadingLabel.text = "Loaded list! (\(Constants.CORE.activeList.count) terms)"
+                    listLabel.text = "Using '\(Constants.CORE.listID!)' list..."
+                    listChange.setTitle("Change", forState: UIControlState.Normal)
+                    finishedLabel.text = "You're all set!"
+                    show(nil, views: finishedLabel)
+                }
+                else {
+                    loadingLabel.text = "Failed to load list."
+                }
+                    
+                show(nil, views: loadingLabel)
+            }
+        }
     }
     
     @IBAction func changePressed(sender: AnyObject)
@@ -51,6 +88,30 @@ class NewGameController: UIViewController
             friends.newController = self
             
             navigationController?.pushViewController(friends, animated: true)
+        }
+    }
+    
+    @IBAction func listChangePressed(sender: AnyObject)
+    {
+        if Constants.CORE.listID == nil
+        {
+            let friends:WordListsController = self.storyboard?.instantiateViewControllerWithIdentifier("WordListsController") as WordListsController
+            
+            friends.newController = self
+            
+            navigationController?.pushViewController(friends, animated: true)
+        }
+        else {
+            Constants.CORE.listID = nil
+            Constants.CORE.activeList.removeAll(keepCapacity: false)
+            
+            listChange.setTitle("Choose", forState: UIControlState.Normal)
+            listLabel.text = ("Choose a word list...")
+            
+            if !loadingLabel.hidden
+            {
+                hide(nil, views: loadingLabel)
+            }
         }
     }
     
@@ -76,8 +137,7 @@ class NewGameController: UIViewController
                     
                     if self.listLabel.hidden
                     {
-                        self.show(nil, views: self.listLabel, self.listButton)
-                        
+                        self.show(nil, views: self.listLabel, self.listChange)
                     }
                 }
             }, views: playLabel, playButton)
@@ -93,8 +153,7 @@ class NewGameController: UIViewController
         {
             if listLabel.hidden
             {
-                listButton.selectedSegmentIndex = UISegmentedControlNoSegment
-                show(nil, views: listLabel, listButton)
+                show(nil, views: listLabel, listChange)
             }
         }
         else if playButton.selectedSegmentIndex == 2
@@ -109,33 +168,6 @@ class NewGameController: UIViewController
         else if self.playButton.selectedSegmentIndex == 2 && self.changeButton.hidden
         {
             show(nil, views: changeButton)
-        }
-    }
-    
-    @IBAction func listPressed(sender: AnyObject)
-    {
-        if listButton.selectedSegmentIndex == 0
-        {
-            if !urlField.hidden
-            {
-                hide({self.urlField.text = ""}, views: urlField)
-            }
-            
-            if finishedLabel.hidden
-            {
-                show(nil, views: finishedLabel)
-            }
-        }
-        else {
-            if urlField.hidden
-            {
-                show(nil, views: urlField)
-            }
-            
-            if !finishedLabel.hidden
-            {
-                hide(nil, views: finishedLabel)
-            }
         }
     }
     
@@ -157,7 +189,7 @@ class NewGameController: UIViewController
             {
                 if listLabel.hidden
                 {
-                    show(nil, views: listLabel, listButton)
+                    show(nil, views: listLabel, listChange)
                 }
             }
         }
@@ -174,17 +206,27 @@ class NewGameController: UIViewController
     {
         if !listLabel.hidden
         {
-            hide(nil, views: listLabel, listButton)
+            hide(nil, views: listLabel)
         }
         
-        if !urlField.hidden
+        if !listChange.hidden
         {
-            hide({self.urlField.text = ""}, views: urlField)
+            hide(nil, views: listChange)
         }
         
         if !finishedLabel.hidden
         {
             hide(nil, views: finishedLabel)
+        }
+        
+        if activityIndicator.isAnimating()
+        {
+            activityIndicator.stopAnimating()
+        }
+        
+        if !loadingLabel.hidden
+        {
+            hide(nil, views: loadingLabel)
         }
     }
     

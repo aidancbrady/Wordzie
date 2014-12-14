@@ -178,7 +178,8 @@ class Utilities
     
     class func loadData()
     {
-        println(WordListHandler.getDocumentsDir())
+        Constants.CORE.listURLs["Default"] = "DefaultURL"
+        
         let reader:HTTPReader = HTTPReader()
         let request:NSMutableURLRequest = NSMutableURLRequest(URL: Constants.DATA_URL)
         

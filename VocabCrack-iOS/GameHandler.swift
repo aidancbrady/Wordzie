@@ -58,7 +58,7 @@ class GameHandler
                             }
                             
                             table.activeGames = games
-                            table.tableView.reloadData()
+                            table.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
                         }
                     }
                     
@@ -105,7 +105,7 @@ class GameHandler
                             }
                             
                             table.pastGames = games
-                            table.tableView.reloadData()
+                            table.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
                         }
                     }
                     

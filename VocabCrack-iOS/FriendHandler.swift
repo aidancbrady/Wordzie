@@ -56,7 +56,7 @@ class FriendHandler
                             }
                             
                             table.receiveData(accounts, type: 0)
-                            table.tableView.reloadData()
+                            table.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
                         }
                     }
                     
@@ -102,7 +102,7 @@ class FriendHandler
                             }
                             
                             table.receiveData(accounts, type: 1)
-                            table.tableView.reloadData()
+                            table.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
                             
                             if table is FriendsController
                             {

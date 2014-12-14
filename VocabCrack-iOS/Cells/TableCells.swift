@@ -177,3 +177,22 @@ class ScoreCell:UITableViewCell
         }
     }
 }
+
+class ListCell:UITableViewCell
+{
+    @IBOutlet weak var identifierLabel: UILabel!
+    @IBOutlet weak var urlLabel: UILabel!
+    
+    var controller:WordListsController?
+    
+    override func setSelected(selected: Bool, animated: Bool)
+    {
+        super.setSelected(selected, animated: animated)
+        
+        if controller != nil && selected
+        {
+            controller!.navigationController!.popViewControllerAnimated(true)
+            controller!.newController!.setList(identifierLabel.text!)
+        }
+    }
+}
