@@ -93,7 +93,7 @@ class Utilities
     {
         if s.rangeOfString(separator) == nil
         {
-            return [s]
+            return [trim(s)]
         }
         
         var split = trim(s).componentsSeparatedByString(separator)
