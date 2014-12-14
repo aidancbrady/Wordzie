@@ -8,14 +8,15 @@
 
 import Foundation
 
+struct CoreFiles
+{
+    static let dataFile:NSString = WordListHandler.getDocumentsDir().stringByAppendingPathComponent("ListData.txt")
+    static let wordFile:NSString = WordListHandler.getDocumentsDir().stringByAppendingPathComponent("WordData.txt")
+    static let defaultList:NSString = WordListHandler.getDefaultList()
+}
+
 class WordListHandler
 {
-    struct CoreFiles
-    {
-        static let dataFile:NSString = WordListHandler.getDocumentsDir().stringByAppendingPathComponent("Data").stringByAppendingPathComponent("ListData.txt")
-        static let defaultList:NSString = WordListHandler.getDefaultList()
-    }
-    
     class func loadList(id:String, controller:WeakWrapper<NewGameController>)
     {
         Constants.CORE.listID = nil
@@ -84,7 +85,7 @@ class WordListHandler
                 returned = true
             }
             else {
-                println("Failed to load data")
+                println("Failed to load '" + id + "' word list.")
             }
             
             return
@@ -152,9 +153,12 @@ class WordListHandler
             {
                 let dataSplit = Utilities.split(str, separator: ":")
                 
-                if dataSplit[0] != "Default" && dataSplit[1] != "DefaultURL"
+                if dataSplit.count == 2
                 {
-                    Constants.CORE.listURLs[split[0]] = split[1]
+                    if dataSplit[0] != "Default" && dataSplit[1] != "DefaultURL"
+                    {
+                        Constants.CORE.listURLs[dataSplit[0]] = dataSplit[1]
+                    }
                 }
             }
         }
@@ -166,7 +170,7 @@ class WordListHandler
     {
         let manager:NSFileManager = NSFileManager()
         
-        println("Saving word data...")
+        println("Saving word list data...")
         
         if manager.fileExistsAtPath(CoreFiles.dataFile)
         {

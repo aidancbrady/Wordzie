@@ -13,6 +13,8 @@ class VocabCrack
     var account:Account = Defaults.ACCOUNT
     var avatars:[String: UIImage] = [String: UIImage]()
     
+    var learnedWords:[String] = [String]()
+    
     var listID:String? = nil
     var activeList:[String] = [String]()
     

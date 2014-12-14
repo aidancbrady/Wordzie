@@ -178,6 +178,8 @@ class Utilities
     
     class func loadData()
     {
+        WordDataHandler.load()
+        WordListHandler.loadListData()
         Constants.CORE.listURLs["Default"] = "DefaultURL"
         
         let reader:HTTPReader = HTTPReader()

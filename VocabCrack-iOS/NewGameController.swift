@@ -58,7 +58,7 @@ class NewGameController: UIViewController
                     listLabel.text = "Using '\(Constants.CORE.listID!)' list..."
                     listChange.setTitle("Change", forState: UIControlState.Normal)
                     finishedLabel.text = "You're all set!"
-                    show(nil, views: finishedLabel)
+                    show(nil, views: finishedLabel, continueButton)
                 }
                 else {
                     loadingLabel.text = "Failed to load list."
@@ -227,6 +227,11 @@ class NewGameController: UIViewController
         if !loadingLabel.hidden
         {
             hide(nil, views: loadingLabel)
+        }
+        
+        if !continueButton.hidden
+        {
+            hide(nil, views: continueButton)
         }
     }
     
