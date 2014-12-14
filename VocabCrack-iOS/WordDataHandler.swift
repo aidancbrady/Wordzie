@@ -56,4 +56,27 @@ class WordDataHandler
         let data = str.dataUsingEncoding(NSUTF8StringEncoding)!
         data.writeToFile(CoreFiles.wordFile, atomically: true)
     }
+    
+    class func createWordSet() -> [String]
+    {
+        var list = [String]()
+        
+        if Constants.CORE.activeList.count-Constants.CORE.learnedWords.count < 10
+        {
+            Constants.CORE.learnedWords.removeAll(keepCapacity: false)
+            save()
+        }
+        
+        while list.count < 10
+        {
+            let word = Constants.CORE.activeList[Int(arc4random_uniform(UInt32(Constants.CORE.activeList.count)))]
+            
+            if(!contains(list, word) && !contains(Constants.CORE.learnedWords, Utilities.split(word, separator: String(Constants.LIST_SPLITTER))[0]))
+            {
+                list.append(word)
+            }
+        }
+        
+        return list;
+    }
 }
