@@ -22,6 +22,11 @@ class FriendsController: TableDataReceiver
         tableView.reloadData()
     }
     
+    override func supportedInterfaceOrientations() -> Int
+    {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+    
     override func receiveData(obj: AnyObject, type: Int)
     {
         if type == 0
@@ -93,7 +98,7 @@ class FriendsController: TableDataReceiver
             else {
                 Utilities.loadAvatar(WeakWrapper(value: cell.userAvatar), email: account.email!)
                 cell.usernameLabel.text = account.username
-                cell.lastSeenLabel.text = Utilities.interpretLogin(account.lastLogin)
+                cell.lastSeenLabel.text = "Last Login: " + Utilities.interpretLogin(account.lastLogin)
             }
         }
         else {

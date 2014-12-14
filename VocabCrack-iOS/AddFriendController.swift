@@ -31,6 +31,11 @@ class AddFriendController: UITableViewController, UISearchBarDelegate
         self.navigationItem.rightBarButtonItem = barButton
     }
     
+    override func supportedInterfaceOrientations() -> Int
+    {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)

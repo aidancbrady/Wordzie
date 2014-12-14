@@ -40,6 +40,11 @@ class GamesController: UITableViewController
         Handlers.gameHandler.updateData(WeakWrapper(value: self))
     }
     
+    override func supportedInterfaceOrientations() -> Int
+    {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+    
     func onRefresh()
     {
         Handlers.gameHandler.updateData(WeakWrapper(value: self))

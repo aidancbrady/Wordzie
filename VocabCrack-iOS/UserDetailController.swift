@@ -28,6 +28,11 @@ class UserDetailController: UIViewController
         lastLogin.text = "Last Login: " + Utilities.interpretLogin(acct!.lastLogin)
     }
     
+    override func supportedInterfaceOrientations() -> Int
+    {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+    
     @IBAction func newGame(sender: AnyObject)
     {
         let controller:NewGameController = storyboard?.instantiateViewControllerWithIdentifier("NewGameController") as NewGameController

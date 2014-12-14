@@ -34,6 +34,11 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         
     }
     
+    override func supportedInterfaceOrientations() -> Int
+    {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()

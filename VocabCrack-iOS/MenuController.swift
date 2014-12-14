@@ -22,6 +22,11 @@ class MenuController: UIViewController
         Utilities.loadAvatar(WeakWrapper(value: userAvatar), email: Constants.CORE.account.email!)
     }
     
+    override func supportedInterfaceOrientations() -> Int
+    {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)

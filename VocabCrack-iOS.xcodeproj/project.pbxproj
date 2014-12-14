@@ -244,6 +244,7 @@
 				TargetAttributes = {
 					1137F0721A2EC851009A7BDA = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = VBY56UWVE3;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 0;
@@ -252,6 +253,7 @@
 					};
 					1137F0891A2EC851009A7BDA = {
 						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = VBY56UWVE3;
 						TestTargetID = 1137F0721A2EC851009A7BDA;
 					};
 				};
@@ -470,6 +472,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -481,6 +485,7 @@
 				INFOPLIST_FILE = "VocabCrack-iOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VocabCrack-iOS.app/VocabCrack-iOS";
 			};
 			name = Debug;
@@ -489,6 +494,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -496,6 +503,7 @@
 				INFOPLIST_FILE = "VocabCrack-iOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VocabCrack-iOS.app/VocabCrack-iOS";
 			};
 			name = Release;

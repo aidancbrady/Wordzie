@@ -24,6 +24,11 @@ class WordListsController: UITableViewController
         
         tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
     }
+
+    override func supportedInterfaceOrientations() -> Int
+    {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
     
     @IBAction func newListPressed(sender: AnyObject)
     {

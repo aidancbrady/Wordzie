@@ -24,6 +24,11 @@ class SimpleFriendsController: TableDataReceiver
         }
     }
     
+    override func supportedInterfaceOrientations() -> Int
+    {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+    
     override func endRefresh()
     {
         if refresher.refreshing

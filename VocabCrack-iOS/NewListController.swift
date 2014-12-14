@@ -18,6 +18,11 @@ class NewListController: UIViewController, UITextFieldDelegate
         onCreate()
     }
     
+    override func supportedInterfaceOrientations() -> Int
+    {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool
     {
         if textField == identifierEntry

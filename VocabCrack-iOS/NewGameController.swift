@@ -25,6 +25,11 @@ class NewGameController: UIViewController
     var definedUser:String?
     var firstDisplay = true
     
+    override func supportedInterfaceOrientations() -> Int
+    {
+        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    }
+    
     func setDefinedUser(user:String)
     {
         definedUser = user
