@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>23FE0618-83B0-4FD0-A6F0-4AD97414C213</string>
+	<key>IDESourceControlProjectName</key>
+	<string>VocabCrack</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>3F3830CFDF1DBE2EAFB5309DC901EB1E5C20A88C</key>
+		<string>https://github.com/aidancbrady/VocabCrack-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>VocabCrack.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>3F3830CFDF1DBE2EAFB5309DC901EB1E5C20A88C</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/aidancbrady/VocabCrack-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>3F3830CFDF1DBE2EAFB5309DC901EB1E5C20A88C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3F3830CFDF1DBE2EAFB5309DC901EB1E5C20A88C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>VocabCrack-iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>
