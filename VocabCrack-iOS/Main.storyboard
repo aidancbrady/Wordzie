@@ -271,7 +271,6 @@
         <!--Menu Controller-->
         <scene sceneID="JXD-Ur-p49">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="g8J-7d-MBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="MenuController" title="Menu Controller" id="AZ7-Rf-U7M" customClass="MenuController" customModule="Wordzie" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="moh-Tp-TbM"/>
@@ -331,7 +330,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="ZFa-JQ-ygN" kind="push" id="oak-xo-Qao"/>
+                                            <segue destination="ZFa-JQ-ygN" kind="push" identifier="" id="oak-xo-Qao"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QHm-u6-hd0">
@@ -409,6 +408,7 @@
                         <outlet property="userLabel" destination="opl-yD-0TH" id="tnl-TI-id8"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g8J-7d-MBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="411" y="0.0"/>
         </scene>
@@ -490,7 +490,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="modeButton" destination="wQV-qY-5nt" id="8S1-Pf-lEo"/>
-                        <segue destination="ACY-nl-LQb" kind="push" id="h9p-eN-iCA"/>
+                        <segue destination="ACY-nl-LQb" kind="push" identifier="UserDetailSegue" id="h9p-eN-iCA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLt-MQ-gJI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -763,8 +763,8 @@
                         <outlet property="playLabel" destination="R55-1p-nzG" id="RmU-vO-Lr6"/>
                         <outlet property="typeButton" destination="eY8-QE-nxr" id="HBN-e0-uBo"/>
                         <outlet property="typeLabel" destination="4mk-yU-k7v" id="Y6L-DJ-0nK"/>
-                        <segue destination="2An-No-pOi" kind="push" id="ee7-sp-K6r"/>
-                        <segue destination="6xg-RC-0St" kind="push" id="hh0-mE-afc"/>
+                        <segue destination="2An-No-pOi" kind="push" identifier="SimpleFriendsSegue" id="ee7-sp-K6r"/>
+                        <segue destination="6xg-RC-0St" kind="push" identifier="WordListsSegue" id="hh0-mE-afc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UPb-AD-rCZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
