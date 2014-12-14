@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1137F0721A2EC851009A7BDA"
-               BuildableName = "VocabCrack-iOS.app"
-               BlueprintName = "VocabCrack-iOS"
-               ReferencedContainer = "container:VocabCrack-iOS.xcodeproj">
+               BuildableName = "Wordzie.app"
+               BlueprintName = "Wordzie"
+               ReferencedContainer = "container:Wordzie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1137F0891A2EC851009A7BDA"
-               BuildableName = "VocabCrack-iOSTests.xctest"
-               BlueprintName = "VocabCrack-iOSTests"
-               ReferencedContainer = "container:VocabCrack-iOS.xcodeproj">
+               BuildableName = "WordzieTests.xctest"
+               BlueprintName = "WordzieTests"
+               ReferencedContainer = "container:Wordzie.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1137F0891A2EC851009A7BDA"
-               BuildableName = "VocabCrack-iOSTests.xctest"
-               BlueprintName = "VocabCrack-iOSTests"
-               ReferencedContainer = "container:VocabCrack-iOS.xcodeproj">
+               BuildableName = "WordzieTests.xctest"
+               BlueprintName = "WordzieTests"
+               ReferencedContainer = "container:Wordzie.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1137F0721A2EC851009A7BDA"
-            BuildableName = "VocabCrack-iOS.app"
-            BlueprintName = "VocabCrack-iOS"
-            ReferencedContainer = "container:VocabCrack-iOS.xcodeproj">
+            BuildableName = "Wordzie.app"
+            BlueprintName = "Wordzie"
+            ReferencedContainer = "container:Wordzie.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1137F0721A2EC851009A7BDA"
-            BuildableName = "VocabCrack-iOS.app"
-            BlueprintName = "VocabCrack-iOS"
-            ReferencedContainer = "container:VocabCrack-iOS.xcodeproj">
+            BuildableName = "Wordzie.app"
+            BlueprintName = "Wordzie"
+            ReferencedContainer = "container:Wordzie.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1137F0721A2EC851009A7BDA"
-            BuildableName = "VocabCrack-iOS.app"
-            BlueprintName = "VocabCrack-iOS"
-            ReferencedContainer = "container:VocabCrack-iOS.xcodeproj">
+            BuildableName = "Wordzie.app"
+            BlueprintName = "Wordzie"
+            ReferencedContainer = "container:Wordzie.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

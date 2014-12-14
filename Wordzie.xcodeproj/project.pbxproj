@@ -11,13 +11,13 @@
 		110333D21A3CFB4600A4A29F /* WordListsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110333D11A3CFB4600A4A29F /* WordListsController.swift */; };
 		11058F2A1A3CFE1100D5A291 /* NewListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11058F291A3CFE1100D5A291 /* NewListController.swift */; };
 		110DA11A1A34C429009B95BA /* AddFriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110DA1191A34C429009B95BA /* AddFriendController.swift */; };
+		1110AF351A3E12FF002088C2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1110AF341A3E12FF002088C2 /* logo.png */; };
 		11121AF01A3020AF00153E01 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AEF1A3020AF00153E01 /* Utilities.swift */; };
 		11121AF21A30995E00153E01 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AF11A30995E00153E01 /* Game.swift */; };
 		1137F0791A2EC851009A7BDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F0781A2EC851009A7BDA /* AppDelegate.swift */; };
 		1137F0821A2EC851009A7BDA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1137F0811A2EC851009A7BDA /* Images.xcassets */; };
 		1137F0851A2EC851009A7BDA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1137F0831A2EC851009A7BDA /* LaunchScreen.xib */; };
 		1137F0911A2EC851009A7BDA /* VocabCrack_iOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F0901A2EC851009A7BDA /* VocabCrack_iOSTests.swift */; };
-		1137F09D1A2EC8D2009A7BDA /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1137F09B1A2EC8D2009A7BDA /* logo.png */; };
 		1137F09F1A2ECE8C009A7BDA /* NetHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F09E1A2ECE8B009A7BDA /* NetHandler.swift */; };
 		11396ABD1A2ED4500050120D /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ABC1A2ED4500050120D /* RegisterController.swift */; };
 		11396ABF1A2F3D470050120D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ABE1A2F3D470050120D /* LoginController.swift */; };
@@ -40,6 +40,9 @@
 		11B666E31A326FAD006A17F3 /* OptionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E21A326FAD006A17F3 /* OptionsController.swift */; };
 		11B666E71A3275EF006A17F3 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 11B666E61A3275EF006A17F3 /* user.png */; };
 		11B666E91A3364CD006A17F3 /* GamesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B666E81A3364CD006A17F3 /* GamesController.swift */; };
+		11FDEE681A3E0BD000EA4159 /* icon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = 11FDEE651A3E0BD000EA4159 /* icon_120.png */; };
+		11FDEE691A3E0BD000EA4159 /* icon_80.png in Resources */ = {isa = PBXBuildFile; fileRef = 11FDEE661A3E0BD000EA4159 /* icon_80.png */; };
+		11FDEE6A1A3E0BD000EA4159 /* icon_58.png in Resources */ = {isa = PBXBuildFile; fileRef = 11FDEE671A3E0BD000EA4159 /* icon_58.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,17 +60,17 @@
 		110333D11A3CFB4600A4A29F /* WordListsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListsController.swift; sourceTree = "<group>"; };
 		11058F291A3CFE1100D5A291 /* NewListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewListController.swift; sourceTree = "<group>"; };
 		110DA1191A34C429009B95BA /* AddFriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendController.swift; sourceTree = "<group>"; };
+		1110AF341A3E12FF002088C2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		11121AEF1A3020AF00153E01 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		11121AF11A30995E00153E01 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		1137F0731A2EC851009A7BDA /* VocabCrack-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "VocabCrack-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1137F0731A2EC851009A7BDA /* Wordzie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordzie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1137F0771A2EC851009A7BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1137F0781A2EC851009A7BDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1137F0811A2EC851009A7BDA /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1137F0841A2EC851009A7BDA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		1137F08A1A2EC851009A7BDA /* VocabCrack-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "VocabCrack-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1137F08A1A2EC851009A7BDA /* WordzieTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WordzieTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1137F08F1A2EC851009A7BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1137F0901A2EC851009A7BDA /* VocabCrack_iOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VocabCrack_iOSTests.swift; sourceTree = "<group>"; };
-		1137F09B1A2EC8D2009A7BDA /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		1137F09E1A2ECE8B009A7BDA /* NetHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetHandler.swift; sourceTree = "<group>"; };
 		11396ABC1A2ED4500050120D /* RegisterController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		11396ABE1A2F3D470050120D /* LoginController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -91,6 +94,9 @@
 		11B666E21A326FAD006A17F3 /* OptionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OptionsController.swift; sourceTree = "<group>"; };
 		11B666E61A3275EF006A17F3 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
 		11B666E81A3364CD006A17F3 /* GamesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesController.swift; sourceTree = "<group>"; };
+		11FDEE651A3E0BD000EA4159 /* icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_120.png; path = ../../../Desktop/icon_120.png; sourceTree = "<group>"; };
+		11FDEE661A3E0BD000EA4159 /* icon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_80.png; path = ../../../Desktop/icon_80.png; sourceTree = "<group>"; };
+		11FDEE671A3E0BD000EA4159 /* icon_58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_58.png; path = ../../../Desktop/icon_58.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,8 +129,8 @@
 		1137F0741A2EC851009A7BDA /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1137F0731A2EC851009A7BDA /* VocabCrack-iOS.app */,
-				1137F08A1A2EC851009A7BDA /* VocabCrack-iOSTests.xctest */,
+				1137F0731A2EC851009A7BDA /* Wordzie.app */,
+				1137F08A1A2EC851009A7BDA /* WordzieTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -170,9 +176,12 @@
 		1137F0761A2EC851009A7BDA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1110AF341A3E12FF002088C2 /* logo.png */,
+				11FDEE651A3E0BD000EA4159 /* icon_120.png */,
+				11FDEE661A3E0BD000EA4159 /* icon_80.png */,
+				11FDEE671A3E0BD000EA4159 /* icon_58.png */,
 				11ACB3921A3D2F87005C0BBA /* DefaultList.txt */,
 				11B666E61A3275EF006A17F3 /* user.png */,
-				1137F09B1A2EC8D2009A7BDA /* logo.png */,
 				1137F0771A2EC851009A7BDA /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -198,9 +207,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1137F0721A2EC851009A7BDA /* VocabCrack-iOS */ = {
+		1137F0721A2EC851009A7BDA /* Wordzie */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1137F0941A2EC851009A7BDA /* Build configuration list for PBXNativeTarget "VocabCrack-iOS" */;
+			buildConfigurationList = 1137F0941A2EC851009A7BDA /* Build configuration list for PBXNativeTarget "Wordzie" */;
 			buildPhases = (
 				1137F06F1A2EC851009A7BDA /* Sources */,
 				1137F0701A2EC851009A7BDA /* Frameworks */,
@@ -210,14 +219,14 @@
 			);
 			dependencies = (
 			);
-			name = "VocabCrack-iOS";
+			name = Wordzie;
 			productName = "VocabCrack-iOS";
-			productReference = 1137F0731A2EC851009A7BDA /* VocabCrack-iOS.app */;
+			productReference = 1137F0731A2EC851009A7BDA /* Wordzie.app */;
 			productType = "com.apple.product-type.application";
 		};
-		1137F0891A2EC851009A7BDA /* VocabCrack-iOSTests */ = {
+		1137F0891A2EC851009A7BDA /* WordzieTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1137F0971A2EC851009A7BDA /* Build configuration list for PBXNativeTarget "VocabCrack-iOSTests" */;
+			buildConfigurationList = 1137F0971A2EC851009A7BDA /* Build configuration list for PBXNativeTarget "WordzieTests" */;
 			buildPhases = (
 				1137F0861A2EC851009A7BDA /* Sources */,
 				1137F0871A2EC851009A7BDA /* Frameworks */,
@@ -228,9 +237,9 @@
 			dependencies = (
 				1137F08C1A2EC851009A7BDA /* PBXTargetDependency */,
 			);
-			name = "VocabCrack-iOSTests";
+			name = WordzieTests;
 			productName = "VocabCrack-iOSTests";
-			productReference = 1137F08A1A2EC851009A7BDA /* VocabCrack-iOSTests.xctest */;
+			productReference = 1137F08A1A2EC851009A7BDA /* WordzieTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -258,7 +267,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1137F06E1A2EC851009A7BDA /* Build configuration list for PBXProject "VocabCrack-iOS" */;
+			buildConfigurationList = 1137F06E1A2EC851009A7BDA /* Build configuration list for PBXProject "Wordzie" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -271,8 +280,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1137F0721A2EC851009A7BDA /* VocabCrack-iOS */,
-				1137F0891A2EC851009A7BDA /* VocabCrack-iOSTests */,
+				1137F0721A2EC851009A7BDA /* Wordzie */,
+				1137F0891A2EC851009A7BDA /* WordzieTests */,
 			);
 		};
 /* End PBXProject section */
@@ -282,11 +291,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11FDEE681A3E0BD000EA4159 /* icon_120.png in Resources */,
+				11FDEE6A1A3E0BD000EA4159 /* icon_58.png in Resources */,
+				1110AF351A3E12FF002088C2 /* logo.png in Resources */,
 				11B666E71A3275EF006A17F3 /* user.png in Resources */,
 				11B0C8211A33A41700F0A557 /* Main.storyboard in Resources */,
-				1137F09D1A2EC8D2009A7BDA /* logo.png in Resources */,
 				1137F0851A2EC851009A7BDA /* LaunchScreen.xib in Resources */,
 				11ACB3931A3D2F87005C0BBA /* DefaultList.txt in Resources */,
+				11FDEE691A3E0BD000EA4159 /* icon_80.png in Resources */,
 				1137F0821A2EC851009A7BDA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -347,7 +359,7 @@
 /* Begin PBXTargetDependency section */
 		1137F08C1A2EC851009A7BDA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 1137F0721A2EC851009A7BDA /* VocabCrack-iOS */;
+			target = 1137F0721A2EC851009A7BDA /* Wordzie */;
 			targetProxy = 1137F08B1A2EC851009A7BDA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -449,10 +461,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "VocabCrack-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Wordzie;
 				SWIFT_OBJC_BRIDGING_HEADER = "VocabCrack-iOS/VocabCrack-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -462,9 +476,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = "VocabCrack-iOS/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Wordzie;
 				SWIFT_OBJC_BRIDGING_HEADER = "VocabCrack-iOS/VocabCrack-iOS-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -484,9 +500,8 @@
 				);
 				INFOPLIST_FILE = "VocabCrack-iOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WordzieTests;
 				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VocabCrack-iOS.app/VocabCrack-iOS";
 			};
 			name = Debug;
 		};
@@ -502,16 +517,15 @@
 				);
 				INFOPLIST_FILE = "VocabCrack-iOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WordzieTests;
 				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VocabCrack-iOS.app/VocabCrack-iOS";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1137F06E1A2EC851009A7BDA /* Build configuration list for PBXProject "VocabCrack-iOS" */ = {
+		1137F06E1A2EC851009A7BDA /* Build configuration list for PBXProject "Wordzie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1137F0921A2EC851009A7BDA /* Debug */,
@@ -520,7 +534,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1137F0941A2EC851009A7BDA /* Build configuration list for PBXNativeTarget "VocabCrack-iOS" */ = {
+		1137F0941A2EC851009A7BDA /* Build configuration list for PBXNativeTarget "Wordzie" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1137F0951A2EC851009A7BDA /* Debug */,
@@ -529,7 +543,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1137F0971A2EC851009A7BDA /* Build configuration list for PBXNativeTarget "VocabCrack-iOSTests" */ = {
+		1137F0971A2EC851009A7BDA /* Build configuration list for PBXNativeTarget "WordzieTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1137F0981A2EC851009A7BDA /* Debug */,

@@ -10,8 +10,6 @@ import UIKit
 
 class LoginController: UIViewController, UITextFieldDelegate
 {
-    @IBOutlet weak var loginButton: UIButton!
-    
     @IBOutlet weak var loginSpinner: UIActivityIndicatorView!
     
     @IBOutlet weak var usernameField: UITextField!
@@ -20,8 +18,6 @@ class LoginController: UIViewController, UITextFieldDelegate
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        
-        loginButton.addTarget(self, action: "onLogin", forControlEvents: .TouchUpInside)
         
         loginSpinner.hidden = false
         loginSpinner.hidesWhenStopped = true
@@ -56,6 +52,11 @@ class LoginController: UIViewController, UITextFieldDelegate
         super.didReceiveMemoryWarning()
     }
 
+    @IBAction func onLogin(sender: AnyObject)
+    {
+        onLogin()
+    }
+    
     func onLogin()
     {
         if !usernameField.text.isEmpty && !passwordField.text.isEmpty
