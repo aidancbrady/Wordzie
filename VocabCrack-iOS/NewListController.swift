@@ -18,6 +18,11 @@ class NewListController: UIViewController, UITextFieldDelegate
         onCreate()
     }
     
+    @IBAction func cancelButton(sender: AnyObject)
+    {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func supportedInterfaceOrientations() -> Int
     {
         return Int(UIInterfaceOrientationMask.Portrait.rawValue)

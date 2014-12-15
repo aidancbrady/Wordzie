@@ -24,17 +24,28 @@ class WordListsController: UITableViewController
         
         tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
     }
+    
+    @IBAction func onLongPress(sender: UILongPressGestureRecognizer)
+    {
+        let p:CGPoint = sender.locationInView(tableView)
+        let path:NSIndexPath? = tableView!.indexPathForRowAtPoint(p)
+        
+        if path != nil && sender.state == UIGestureRecognizerState.Began
+        {
+            let cell = tableView.cellForRowAtIndexPath(path!) as ListCell
+            
+            if cell.identifierLabel.text != "Default"
+            {
+                Utilities.displayAction(self, button: "Copy URL", action: {action in
+                    UIPasteboard.generalPasteboard().string = cell.urlLabel.text
+                })
+            }
+        }
+    }
 
     override func supportedInterfaceOrientations() -> Int
     {
         return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-    }
-    
-    @IBAction func newListPressed(sender: AnyObject)
-    {
-        let newList:NewListController = self.storyboard?.instantiateViewControllerWithIdentifier("NewListController") as NewListController
-        
-        navigationController?.pushViewController(newList, animated: true)
     }
     
     override func viewDidAppear(animated: Bool)

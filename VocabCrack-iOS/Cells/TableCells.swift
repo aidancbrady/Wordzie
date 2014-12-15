@@ -196,3 +196,8 @@ class ListCell:UITableViewCell
         }
     }
 }
+
+class TermCell:UITableViewCell
+{
+    
+}

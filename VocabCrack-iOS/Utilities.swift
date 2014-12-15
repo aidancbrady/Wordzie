@@ -32,6 +32,18 @@ class Utilities
         controller.presentViewController(alertController, animated: true, completion: nil)
     }
     
+    class func displayAction(controller:UIViewController, button:String, action:((UIAlertAction!) -> Void)?)
+    {
+        let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .ActionSheet)
+        let action = UIAlertAction(title: button, style: .Default, handler: action)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        
+        alertController.addAction(action)
+        alertController.addAction(cancelAction)
+        
+        controller.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
     class func isValidCredential(creds: String...) -> Bool
     {
         for s in creds
