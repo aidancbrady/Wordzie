@@ -36,6 +36,7 @@ struct Constants
     static let VERSION:String = "1.0.0"
     static let DATA_URL:NSURL = NSURL(string: "https://dl.dropboxusercontent.com/u/90411166/Versions/VocabCrack.txt")!
     static let BAD_CHARS:[Character] = [",", ":", "&", " ", "|", LIST_SPLITTER]
+    static let BANNED_CHARS:[Character] = [",", ":", "&", " ", "|", LIST_SPLITTER]
     static let CORE:VocabCrack = VocabCrack()
     static let LIST_SPLITTER:Character = ">"
 }

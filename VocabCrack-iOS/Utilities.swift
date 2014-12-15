@@ -60,6 +60,28 @@ class Utilities
         return true
     }
     
+    class func isValidMsg(msgs: String...) -> Bool
+    {
+        for s in msgs
+        {
+            for c in Constants.BANNED_CHARS
+            {
+                if contains(s, c)
+                {
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
+    
+    /// Whether or not the two strings in their lowercase formats equal each other (trimmed)
+    class func trimmedEqual(str1:String, str2:String) -> Bool
+    {
+        return Utilities.trim(str1.lowercaseString) == Utilities.trim(str2.lowercaseString)
+    }
+    
     class func buildGravatarURL(email:String, size:Int) -> NSURL
     {
         var str:NSMutableString = NSMutableString(format:"http://gravatar.com/avatar/%@?", buildMD5(email))

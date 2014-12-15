@@ -12,6 +12,7 @@ class NewListController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var identifierEntry: UITextField!
     @IBOutlet weak var urlEntry: UITextField!
+    
 
     @IBAction func createButton(sender: AnyObject)
     {
@@ -62,6 +63,11 @@ class NewListController: UIViewController, UITextFieldDelegate
             WordListHandler.addList(Utilities.trim(identifierEntry.text), url: Utilities.trim(urlEntry.text))
             navigationController!.popViewControllerAnimated(true)
         }
+    }
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        self.navigationController!.setToolbarHidden(true, animated: false)
     }
     
     override func viewDidLoad()

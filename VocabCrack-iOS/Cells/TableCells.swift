@@ -199,5 +199,5 @@ class ListCell:UITableViewCell
 
 class TermCell:UITableViewCell
 {
-    
+    @IBOutlet weak var wordLabel: UILabel!
 }

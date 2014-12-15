@@ -10,44 +10,40 @@ import UIKit
 
 class CreateListController: UITableViewController
 {
+    var terms:[(String, String)] = [(String, String)]()
+    
     @IBAction func doneButton(sender: AnyObject)
     {
         
     }
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.navigationController!.setToolbarHidden(false, animated: false)
     }
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
+        return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return terms.count
     }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        let cell = tableView.dequeueReusableCellWithIdentifier("TermCell", forIndexPath: indexPath) as TermCell
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as UITableViewCell
-
-        // Configure the cell...
+        cell.wordLabel.text = terms[indexPath.row].0
 
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -68,4 +64,16 @@ class CreateListController: UITableViewController
         }    
     }
     */
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if let indexPath = tableView.indexPathForSelectedRow()
+        {
+            if segue.destinationViewController is TermDetailController
+            {
+                (segue.destinationViewController as TermDetailController).term = terms[indexPath.row]
+                (segue.destinationViewController as TermDetailController).index = indexPath.row
+            }
+        }
+    }
 }
