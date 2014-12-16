@@ -530,10 +530,10 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Definition" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="It2-Uk-8MM">
-                                <rect key="frame" x="16" y="196" width="288" height="74"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Definition" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="It2-Uk-8MM">
+                                <rect key="frame" x="16" y="196" width="288" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="74" id="Krr-QM-VoM"/>
+                                    <constraint firstAttribute="height" constant="90" id="Krr-QM-VoM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1369,7 +1369,6 @@
         <!--Navigation Controller-->
         <scene sceneID="hy4-DN-RmU">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mGd-uL-27m" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="dpY-eY-Gzf" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PwU-xO-81J">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1382,6 +1381,7 @@
                         <segue destination="Cq0-rO-cQ3" kind="relationship" relationship="rootViewController" id="umO-c9-cde"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mGd-uL-27m" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="814" y="-1435"/>
         </scene>

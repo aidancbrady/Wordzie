@@ -82,3 +82,23 @@ class NetHandler
         return nil
     }
 }
+
+func compileMsg(msg:String...) -> String
+{
+    var ret = ""
+    
+    if msg.count > 0
+    {
+        for index in 0...msg.count-1
+        {
+            ret += msg[index]
+            
+            if index < msg.count-1
+            {
+                ret += Constants.SPLITTER_1
+            }
+        }
+    }
+    
+    return ret
+}

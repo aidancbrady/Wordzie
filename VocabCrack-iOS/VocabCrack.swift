@@ -35,10 +35,13 @@ struct Constants
     
     static let VERSION:String = "1.0.0"
     static let DATA_URL:NSURL = NSURL(string: "https://dl.dropboxusercontent.com/u/90411166/Versions/VocabCrack.txt")!
-    static let BAD_CHARS:[Character] = [",", ":", "&", " ", "|", LIST_SPLITTER]
-    static let BANNED_CHARS:[Character] = [",", ":", "&", " ", "|", LIST_SPLITTER]
+    static let BAD_CHARS:[String] = [SPLITTER_1, SPLITTER_2, "&", " ", "|", LIST_SPLITTER]
+    static let BANNED_CHARS:[String] = [SPLITTER_1, SPLITTER_2, "&", "|", LIST_SPLITTER]
     static let CORE:VocabCrack = VocabCrack()
-    static let LIST_SPLITTER:Character = ">"
+    
+    static let LIST_SPLITTER:String = ">"
+    static let SPLITTER_1:String = "}"
+    static let SPLITTER_2:String = "]"
 }
 
 struct Defaults

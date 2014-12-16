@@ -27,7 +27,7 @@ class FriendHandler
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             Operations.loadingGames = true
             
-            let str = "LFRIENDS:" + Constants.CORE.account.username
+            let str = compileMsg("LFRIENDS", Constants.CORE.account.username)
             let ret = NetHandler.sendData(str, retLines:2)
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -37,8 +37,8 @@ class FriendHandler
                 {
                     if let response = ret
                     {
-                        let array:[String] = Utilities.split(response[0], separator: ":")
-                        let array1:[String] = Utilities.split(response[1], separator: ":")
+                        let array:[String] = Utilities.split(response[0], separator: Constants.SPLITTER_1)
+                        let array1:[String] = Utilities.split(response[1], separator: Constants.SPLITTER_1)
                         
                         if array[0] == "ACCEPT"
                         {
@@ -46,7 +46,7 @@ class FriendHandler
                             
                             for var i = 1; i < array.count; i++
                             {
-                                var split:[String] = array[i].componentsSeparatedByString(",")
+                                var split:[String] = array[i].componentsSeparatedByString(Constants.SPLITTER_2)
                                 accounts.append(Account(username:split[0], isRequest:false).setEmail(split[1]).setLastLogin(NSString(string: split[2]).longLongValue))
                             }
                             
@@ -79,7 +79,7 @@ class FriendHandler
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             Operations.loadingPast = true
             
-            let str = "LREQUESTS:" + Constants.CORE.account.username
+            let str = compileMsg("LREQUESTS", Constants.CORE.account.username)
             let ret = NetHandler.sendData(str)
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -89,7 +89,7 @@ class FriendHandler
                 {
                     if let response = ret
                     {
-                        let array:[String] = Utilities.split(response, separator: ":")
+                        let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
                         
                         if array[0] == "ACCEPT"
                         {
@@ -97,7 +97,7 @@ class FriendHandler
                             
                             for var i = 1; i < array.count; i++
                             {
-                                var split:[String] = array[i].componentsSeparatedByString(",")
+                                var split:[String] = array[i].componentsSeparatedByString(Constants.SPLITTER_2)
                                 accounts.append(Account(username:split[0], isRequest:false).setEmail(split[1]))
                             }
                             
@@ -129,7 +129,7 @@ class FriendHandler
     func deleteFriend(friend:String, type:Int)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            let str = "DELFRIEND:" + Constants.CORE.account.username + ":" + friend + ":\(type)"
+            let str = compileMsg("DELFRIEND", Constants.CORE.account.username, friend, String(type))
             NetHandler.sendData(str)
         })
     }
@@ -144,7 +144,7 @@ class FriendHandler
         controller.value!.activity.startAnimating()
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            let str = "LUSERS:" + Constants.CORE.account.username + ":" + Utilities.trim(query)
+            let str = compileMsg("LUSERS", Constants.CORE.account.username, Utilities.trim(query))
             let ret = NetHandler.sendData(str)
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -154,7 +154,7 @@ class FriendHandler
                     
                     if let response = ret
                     {
-                        let array:[String] = Utilities.split(response, separator: ":")
+                        let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
                         
                         if array[0] == "ACCEPT"
                         {
@@ -162,7 +162,7 @@ class FriendHandler
                             
                             if array.count > 1
                             {
-                                table.users = Utilities.split(array[1], separator: ",")
+                                table.users = Utilities.split(array[1], separator: Constants.SPLITTER_2)
                             }
                             
                             table.tableView.reloadData()
@@ -176,7 +176,7 @@ class FriendHandler
     func sendRequest(controller:WeakWrapper<AddFriendController>, friend:String)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            let str = "FRIENDREQ:" + Constants.CORE.account.username + ":" + friend
+            let str = compileMsg("FRIENDREQ", Constants.CORE.account.username, friend)
             NetHandler.sendData(str)
         })
     }
@@ -184,7 +184,7 @@ class FriendHandler
     func acceptRequest(controller:WeakWrapper<FriendsController>, friend:String)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            let str = "REQCONF:" + Constants.CORE.account.username + ":" + friend
+            let str = compileMsg("REQCONF", Constants.CORE.account.username, friend)
             NetHandler.sendData(str)
         })
     }
@@ -192,7 +192,7 @@ class FriendHandler
     func getInfo(controller:WeakWrapper<UserDetailController>, friend:String)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            let str = "GETINFO:" + Constants.CORE.account.username + ":" + friend
+            let str = compileMsg("GETINFO", Constants.CORE.account.username, friend)
             let ret = NetHandler.sendData(str)
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -200,7 +200,7 @@ class FriendHandler
                 {
                     if let response = ret
                     {
-                        let array:[String] = Utilities.split(response, separator: ":")
+                        let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
                         
                         if array[0] == "ACCEPT"
                         {

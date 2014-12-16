@@ -50,7 +50,7 @@ class Utilities
         {
             for c in Constants.BAD_CHARS
             {
-                if contains(s, c)
+                if s.rangeOfString(c) != nil
                 {
                     return false
                 }
@@ -66,7 +66,7 @@ class Utilities
         {
             for c in Constants.BANNED_CHARS
             {
-                if contains(s, c)
+                if s.rangeOfString(c) != nil
                 {
                     return false
                 }

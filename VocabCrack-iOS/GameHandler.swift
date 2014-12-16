@@ -26,7 +26,7 @@ class GameHandler
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             Operations.loadingGames = true
             
-            let str = "LGAMES:" + Constants.CORE.account.username
+            let str = compileMsg("LGAMES", Constants.CORE.account.username)
             let ret = NetHandler.sendData(str, retLines:2)
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -36,8 +36,8 @@ class GameHandler
                 {
                     if let response = ret
                     {
-                        let array:[String] = Utilities.split(response[0], separator: ":")
-                        let array1:[String] = Utilities.split(response[1], separator: ":")
+                        let array:[String] = Utilities.split(response[0], separator: Constants.SPLITTER_1)
+                        let array1:[String] = Utilities.split(response[1], separator: Constants.SPLITTER_1)
                         
                         if array[0] == "ACCEPT"
                         {
@@ -81,7 +81,7 @@ class GameHandler
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             Operations.loadingPast = true
             
-            let str = "LPAST:" + Constants.CORE.account.username
+            let str = compileMsg("LPAST", Constants.CORE.account.username)
             let ret = NetHandler.sendData(str)
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -91,7 +91,7 @@ class GameHandler
                 {
                     if let response = ret
                     {
-                        let array:[String] = Utilities.split(response, separator: ":")
+                        let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
                         
                         if array[0] == "ACCEPT"
                         {
@@ -121,7 +121,7 @@ class GameHandler
     func acceptRequest(controller:WeakWrapper<GamesController>, friend:String)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            let str = "GAMEREQCONF:" + Constants.CORE.account.username + ":" + friend
+            let str = compileMsg("GAMEREQCONF", Constants.CORE.account.username, friend)
             NetHandler.sendData(str)
         })
     }
@@ -129,7 +129,7 @@ class GameHandler
     func deleteGame(controller:WeakWrapper<GamesController>, friend:String, type:Int, index:Int...)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            var str = "DELGAME:" + Constants.CORE.account.username + ":\(friend):\(type)"
+            var str = compileMsg("DELGAME", Constants.CORE.account.username, friend, String(type))
             
             if type == 1
             {
@@ -143,7 +143,7 @@ class GameHandler
     func confirmGame(controller:WeakWrapper<NewGameController>, friend:String)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            let str = "CONFGAME:" + Constants.CORE.account.username + ":" + friend
+            let str = compileMsg("CONFGAME", Constants.CORE.account.username, friend)
             let ret = NetHandler.sendData(str)
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -151,7 +151,7 @@ class GameHandler
                 {
                     if let response = ret
                     {
-                        let array:[String] = Utilities.split(response, separator: ":")
+                        let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
                         
                         if array[0] == "ACCEPT"
                         {

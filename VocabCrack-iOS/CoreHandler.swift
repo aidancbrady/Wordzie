@@ -12,12 +12,12 @@ class CoreHandler : NSObject, NSStreamDelegate
 {
     func login(username:String, password:String) -> (Bool, String?)
     {
-        let str = "LOGIN:" + username + ":" + password
+        let str = compileMsg("LOGIN", username, password)
         var ret = NetHandler.sendData(str)
         
         if let response = ret
         {
-            let array:[String] = Utilities.trim(response).componentsSeparatedByString(":")
+            let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
             
             if array[0] == "ACCEPT"
             {
@@ -38,12 +38,12 @@ class CoreHandler : NSObject, NSStreamDelegate
     
     func register(username:String, email:String, password:String) -> (Bool, String?)
     {
-        let str = "REGISTER:" + username + ":" + email + ":" + password
+        let str = compileMsg("REGISTER", username, email, password)
         var ret = NetHandler.sendData(str)
         
         if let response = ret
         {
-            let array:[String] = Utilities.trim(response).componentsSeparatedByString(":")
+            let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
             
             if array[0] == "ACCEPT"
             {
@@ -58,14 +58,13 @@ class CoreHandler : NSObject, NSStreamDelegate
     
     func changePassword(password:String) -> (Bool, String?)
     {
-        var str:String = "CHANGEPASS:" + Constants.CORE.account.username + ":" + Constants.CORE.account.password!
-        str += ":" + password
+        var str:String = compileMsg("CHANGEPASS", Constants.CORE.account.username, Constants.CORE.account.password!, password)
         
         var ret = NetHandler.sendData(str)
         
         if let response = ret
         {
-            let array:[String] = Utilities.trim(response).componentsSeparatedByString(":")
+            let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
             
             if array[0] == "ACCEPT"
             {
