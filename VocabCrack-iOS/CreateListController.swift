@@ -18,8 +18,13 @@ class CreateListController: UITableViewController
     
     @IBAction func saveButton(sender: AnyObject)
     {
-        if terms.count < 1
+        if terms.count < 10
         {
+            if terms.count > 0
+            {
+                Utilities.displayAlert(self, title: "Error", msg: "List must contain at least 10 terms.", action: nil)
+            }
+            
             return
         }
         

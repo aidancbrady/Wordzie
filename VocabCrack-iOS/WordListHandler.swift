@@ -71,7 +71,7 @@ class WordListHandler
                     Constants.CORE.activeList.append(Utilities.trim(s))
                 }
                 
-                if Constants.CORE.activeList.count >= 1
+                if Constants.CORE.activeList.count >= 10
                 {
                     Constants.CORE.listID = list.0
                     controller.value?.listLoaded(true)
