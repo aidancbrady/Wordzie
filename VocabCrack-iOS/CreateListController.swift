@@ -10,10 +10,17 @@ import UIKit
 
 class CreateListController: UITableViewController
 {
+    var activity:UIActivityIndicatorView!
+    
     var terms:[(String, String)] = [(String, String)]()
     
     @IBAction func saveButton(sender: AnyObject)
     {
+        if terms.count < 1
+        {
+            return
+        }
+        
         showEntry()
     }
     
@@ -27,6 +34,26 @@ class CreateListController: UITableViewController
                     return
                 })
             }
+            else if str != nil
+            {
+                if !Utilities.isValidCredential(str!)
+                {
+                    Utilities.displayAlert(self, title: "Error", msg: "Invalid characters.", action: {action in
+                        self.showEntry()
+                        return
+                    })
+                }
+                else if countElements(str!) > 18
+                {
+                    Utilities.displayAlert(self, title: "Error", msg: "Too many characters.", action: {action in
+                        self.showEntry()
+                        return
+                    })
+                }
+                else {
+                    Handlers.listHandler.confirmList(WeakWrapper(value: self), identifier: Utilities.trim(str!))
+                }
+            }
         })
     }
 
@@ -39,7 +66,22 @@ class CreateListController: UITableViewController
     {
         super.viewDidLoad()
         
+        activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        activity.frame = CGRectMake(0, 0, 20, 20)
+        activity.hidesWhenStopped = true
+        activity.stopAnimating()
+        activity.center = CGPoint(x: 120, y: activity.frame.height/2)
+        
+        var barButton:UIBarButtonItem = UIBarButtonItem(customView: activity)
+        toolbarItems!.append(barButton)
+        self.setToolbarItems(toolbarItems, animated: false)
+        
         self.navigationController!.setToolbarHidden(false, animated: false)
+    }
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        navigationController!.setToolbarHidden(false, animated: true)
     }
 
     // MARK: - Table view data source

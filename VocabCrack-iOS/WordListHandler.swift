@@ -77,7 +77,7 @@ class WordListHandler
                     Constants.CORE.activeList.append(Utilities.trim(s))
                 }
                 
-                if !failed && Constants.CORE.activeList.count >= 10
+                if !failed && Constants.CORE.activeList.count >= 1
                 {
                     Constants.CORE.listID = id
                     controller.value?.listLoaded(true)
@@ -129,7 +129,7 @@ class WordListHandler
                 Constants.CORE.activeList.append(Utilities.trim(str));
             }
             
-            if !failed && Constants.CORE.activeList.count >= 10
+            if !failed && Constants.CORE.activeList.count >= 1
             {
                 Constants.CORE.listID = "Default"
                 controller.value?.listLoaded(true)
@@ -222,7 +222,7 @@ class WordListHandler
 
 class ListHandler
 {
-    func confirmList(controller:WeakWrapper<NewListController>, identifier:String?)
+    func confirmList(controller:WeakWrapper<UIViewController>, identifier:String?)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             let str = identifier != nil ? compileMsg("CONFLIST", Constants.CORE.account.username, identifier!) : compileMsg("CONFLIST", Constants.CORE.account.username, Constants.NULL)
@@ -237,9 +237,15 @@ class ListHandler
                         
                         if array[0] == "ACCEPT"
                         {
-                            let createList:UINavigationController = newList.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as UINavigationController
-                            
-                            newList.presentViewController(createList, animated: true, completion: nil)
+                            if newList.isKindOfClass(NewListController)
+                            {
+                                let createList:UINavigationController = newList.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as UINavigationController
+                                
+                                newList.presentViewController(createList, animated: true, completion: nil)
+                            }
+                            else {
+                                //Upload list
+                            }
                         }
                         else {
                             Utilities.displayAlert(newList, title: "Error", msg: array[1], action: nil)
@@ -249,9 +255,11 @@ class ListHandler
                         Utilities.displayAlert(newList, title: "Error", msg: "Unable to connect.", action: nil)
                     }
                     
-                    if newList.activityIndicator.isAnimating()
+                    let activity:UIActivityIndicatorView = newList.isKindOfClass(NewListController) ? (newList as NewListController).activityIndicator : (newList as CreateListController).activity
+                    
+                    if activity.isAnimating()
                     {
-                        newList.activityIndicator.stopAnimating()
+                        activity.stopAnimating()
                     }
                 }
             })

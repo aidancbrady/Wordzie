@@ -572,11 +572,14 @@
         <!--Navigation Controller-->
         <scene sceneID="wcy-Ua-2JP">
             <objects>
-                <navigationController storyboardIdentifier="CreateListNavigation" id="etR-g7-J0g" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CreateListNavigation" toolbarHidden="NO" id="etR-g7-J0g" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LRt-Kj-j1H">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="epl-aJ-t7z">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="wM8-Le-glh" kind="relationship" relationship="rootViewController" id="IcX-P0-wI2"/>
                     </connections>

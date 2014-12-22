@@ -24,6 +24,13 @@ class TermDetailController: UIViewController
         {
             updateTerm()
         }
+        
+        navigationController!.setToolbarHidden(true, animated: true)
+    }
+    
+    override func viewDidAppear(animated: Bool)
+    {
+        navigationController!.setToolbarHidden(true, animated: true)
     }
     
     func updateTerm()

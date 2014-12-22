@@ -113,7 +113,6 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
     
     func textViewDidBeginEditing(textView: UITextView)
     {
-        println("BEGAN")
         activeText = textView
         
         if keyboardIsShowing
