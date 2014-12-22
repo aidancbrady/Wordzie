@@ -19,6 +19,7 @@
 		1110AF471A3F5EBC002088C2 /* CreateListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110AF461A3F5EBC002088C2 /* CreateListController.swift */; };
 		11121AF01A3020AF00153E01 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AEF1A3020AF00153E01 /* Utilities.swift */; };
 		11121AF21A30995E00153E01 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11121AF11A30995E00153E01 /* Game.swift */; };
+		1124B69E1A4792E5007A7127 /* ResponsiveTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1124B69D1A4792E5007A7127 /* ResponsiveTextFieldViewController.swift */; };
 		1137F0791A2EC851009A7BDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1137F0781A2EC851009A7BDA /* AppDelegate.swift */; };
 		1137F0821A2EC851009A7BDA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1137F0811A2EC851009A7BDA /* Images.xcassets */; };
 		1137F0851A2EC851009A7BDA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1137F0831A2EC851009A7BDA /* LaunchScreen.xib */; };
@@ -73,6 +74,7 @@
 		1110AF461A3F5EBC002088C2 /* CreateListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateListController.swift; sourceTree = "<group>"; };
 		11121AEF1A3020AF00153E01 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		11121AF11A30995E00153E01 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		1124B69D1A4792E5007A7127 /* ResponsiveTextFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponsiveTextFieldViewController.swift; sourceTree = "<group>"; };
 		1137F0731A2EC851009A7BDA /* Wordzie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Wordzie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1137F0771A2EC851009A7BDA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1137F0781A2EC851009A7BDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		1137F0751A2EC851009A7BDA /* VocabCrack-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				1124B69D1A4792E5007A7127 /* ResponsiveTextFieldViewController.swift */,
 				11B0C8201A33A41700F0A557 /* Main.storyboard */,
 				11B666E11A326196006A17F3 /* VocabCrack-iOS-Bridging-Header.h */,
 				11396AC61A2F40200050120D /* VocabCrack.swift */,
@@ -333,6 +336,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1124B69E1A4792E5007A7127 /* ResponsiveTextFieldViewController.swift in Sources */,
 				11B0C81F1A339AE100F0A557 /* FriendsController.swift in Sources */,
 				110DA11A1A34C429009B95BA /* AddFriendController.swift in Sources */,
 				11396AC31A2F40190050120D /* CoreHandler.swift in Sources */,

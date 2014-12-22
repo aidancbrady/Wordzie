@@ -18,4 +18,5 @@ struct Operations
     static var loadingFriends = false
     static var loadingRequests = false
     static var loadingAvatars:NSMutableArray = NSMutableArray()
+    static var loadingLists = false
 }

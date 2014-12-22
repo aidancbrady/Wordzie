@@ -26,6 +26,7 @@ struct Handlers
     static var coreHandler:CoreHandler = CoreHandler()
     static var friendHandler:FriendHandler = FriendHandler()
     static var gameHandler:GameHandler = GameHandler()
+    static var listHandler:ListHandler = ListHandler()
 }
 
 struct Constants
@@ -42,6 +43,7 @@ struct Constants
     static let LIST_SPLITTER:String = ">"
     static let SPLITTER_1:String = "}"
     static let SPLITTER_2:String = "]"
+    static let NULL:String = "|NULL|"
 }
 
 struct Defaults

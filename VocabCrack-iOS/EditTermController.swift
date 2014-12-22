@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditTermController: UIViewController, UITextViewDelegate, UITextFieldDelegate
+class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate, UITextFieldDelegate
 {
     @IBOutlet weak var wordField: UITextField!
     @IBOutlet weak var definitionField: UITextView!

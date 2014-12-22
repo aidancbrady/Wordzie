@@ -569,6 +569,22 @@
             </objects>
             <point key="canvasLocation" x="5" y="-2136"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wcy-Ua-2JP">
+            <objects>
+                <navigationController storyboardIdentifier="CreateListNavigation" id="etR-g7-J0g" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LRt-Kj-j1H">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="wM8-Le-glh" kind="relationship" relationship="rootViewController" id="IcX-P0-wI2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aPl-JE-h9s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="411" y="-2136"/>
+        </scene>
         <!--Create List Controller-->
         <scene sceneID="eib-5D-Oyh">
             <objects>
@@ -625,9 +641,14 @@
                         </barButtonItem>
                     </toolbarItems>
                     <navigationItem key="navigationItem" title="Create List" id="MGw-Zi-g2e">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="aRb-o2-6Lg">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="hNS-bJ-ZLj">
                             <connections>
-                                <action selector="doneButton:" destination="wM8-Le-glh" id="uQj-xk-GI7"/>
+                                <action selector="cancelButton:" destination="wM8-Le-glh" id="Vo7-Nt-5hw"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="aRb-o2-6Lg">
+                            <connections>
+                                <action selector="saveButton:" destination="wM8-Le-glh" id="2bw-NW-UH6"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -635,7 +656,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y7Z-L5-fRA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="411" y="-2136"/>
+            <point key="canvasLocation" x="411" y="-2832"/>
         </scene>
         <!--Edit Term Controller-->
         <scene sceneID="xwV-ez-AIY">
@@ -734,12 +755,12 @@
                                 <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="done"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fak-fd-5Cy">
-                                <rect key="frame" x="123" y="193" width="75" height="30"/>
-                                <state key="normal" title="Create List">
+                                <rect key="frame" x="109" y="193" width="102" height="30"/>
+                                <state key="normal" title="Add Reference">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="createButton:" destination="Cq0-rO-cQ3" eventType="touchUpInside" id="DwC-Yr-KC5"/>
+                                    <action selector="referenceButton:" destination="Cq0-rO-cQ3" eventType="touchUpInside" id="663-7x-l4h"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create List Reference" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sJD-dT-eg9">
@@ -749,7 +770,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dAa-Zq-ptd">
-                                <rect key="frame" x="97" y="299" width="127" height="30"/>
+                                <rect key="frame" x="97" y="269" width="127" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fFl-T1-Sk6"/>
                                 </constraints>
@@ -757,16 +778,29 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="wM8-Le-glh" kind="push" id="Z0N-gP-OXi"/>
+                                    <action selector="createButton:" destination="Cq0-rO-cQ3" eventType="touchUpInside" id="Rzu-vT-SWe"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SN3-hT-lco">
-                                <rect key="frame" x="146" y="270" width="29" height="21"/>
+                                <rect key="frame" x="146" y="231" width="29" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="2CC-SH-4IN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="l0a-8G-moc">
+                                <rect key="frame" x="150" y="307" width="20" height="20"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sx3-8D-dmv">
+                                <rect key="frame" x="16" y="335" width="288" height="133"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="133" id="FGD-3i-rHj"/>
+                                </constraints>
+                                <string key="text">Press "Create a Word List" to build your own list of terms to play with. Otherwise, you can create a reference to an already-existing word list with the "Add Reference" tool.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -776,17 +810,23 @@
                             <constraint firstAttribute="centerX" secondItem="fak-fd-5Cy" secondAttribute="centerX" id="5yc-Ec-7R1"/>
                             <constraint firstItem="h1g-Ko-mdf" firstAttribute="leading" secondItem="9JD-PW-6pb" secondAttribute="leadingMargin" constant="48" id="8tE-Cc-oWe"/>
                             <constraint firstItem="op5-b2-e3X" firstAttribute="leading" secondItem="9JD-PW-6pb" secondAttribute="leadingMargin" constant="48" id="Aik-Gh-2RN"/>
+                            <constraint firstAttribute="centerX" secondItem="l0a-8G-moc" secondAttribute="centerX" id="Ax0-3Q-xgh"/>
                             <constraint firstAttribute="centerX" secondItem="SN3-hT-lco" secondAttribute="centerX" id="Az7-et-7h5"/>
+                            <constraint firstItem="sx3-8D-dmv" firstAttribute="leading" secondItem="9JD-PW-6pb" secondAttribute="leadingMargin" id="GRR-dU-jud"/>
                             <constraint firstItem="sJD-dT-eg9" firstAttribute="top" secondItem="IcA-Gn-RGb" secondAttribute="bottom" constant="24" id="Hfj-LB-pte"/>
+                            <constraint firstItem="sx3-8D-dmv" firstAttribute="trailing" secondItem="9JD-PW-6pb" secondAttribute="trailingMargin" id="aVr-xz-xKQ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="op5-b2-e3X" secondAttribute="trailing" constant="48" id="aYL-Ai-O9J"/>
                             <constraint firstItem="fak-fd-5Cy" firstAttribute="top" secondItem="h1g-Ko-mdf" secondAttribute="bottom" constant="8" id="aeD-cy-aq3"/>
                             <constraint firstItem="h1g-Ko-mdf" firstAttribute="top" secondItem="op5-b2-e3X" secondAttribute="bottom" constant="8" id="cXW-S2-MjI"/>
-                            <constraint firstItem="dAa-Zq-ptd" firstAttribute="top" secondItem="SN3-hT-lco" secondAttribute="bottom" constant="8" id="dIX-d1-7FO"/>
+                            <constraint firstItem="SN3-hT-lco" firstAttribute="top" secondItem="fak-fd-5Cy" secondAttribute="bottom" constant="8" id="d7B-vf-Vo1"/>
+                            <constraint firstAttribute="centerX" secondItem="sx3-8D-dmv" secondAttribute="centerX" id="dqa-i2-mCq"/>
                             <constraint firstAttribute="centerX" secondItem="op5-b2-e3X" secondAttribute="centerX" id="hNo-a4-lvI"/>
-                            <constraint firstItem="SN3-hT-lco" firstAttribute="top" secondItem="fak-fd-5Cy" secondAttribute="bottom" constant="47" id="hYx-KM-5f4"/>
                             <constraint firstAttribute="centerX" secondItem="sJD-dT-eg9" secondAttribute="centerX" id="kdx-9t-bXR"/>
+                            <constraint firstItem="l0a-8G-moc" firstAttribute="top" secondItem="dAa-Zq-ptd" secondAttribute="bottom" constant="8" id="kvB-H6-xuU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="h1g-Ko-mdf" secondAttribute="trailing" constant="48" id="l8N-4P-fFo"/>
+                            <constraint firstItem="dAa-Zq-ptd" firstAttribute="top" secondItem="SN3-hT-lco" secondAttribute="bottom" constant="17" id="lhw-Wq-d4d"/>
                             <constraint firstAttribute="centerX" secondItem="h1g-Ko-mdf" secondAttribute="centerX" id="mQA-5L-SE1"/>
+                            <constraint firstItem="sx3-8D-dmv" firstAttribute="top" secondItem="l0a-8G-moc" secondAttribute="bottom" constant="8" id="pZ5-O2-dOF"/>
                             <constraint firstItem="op5-b2-e3X" firstAttribute="top" secondItem="sJD-dT-eg9" secondAttribute="bottom" constant="8" id="u8B-2x-VhS"/>
                         </constraints>
                     </view>
@@ -798,6 +838,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="l0a-8G-moc" id="Abq-Q0-zdh"/>
                         <outlet property="identifierEntry" destination="op5-b2-e3X" id="Sgj-63-kmR"/>
                         <outlet property="urlEntry" destination="h1g-Ko-mdf" id="1or-Cr-kKC"/>
                     </connections>
@@ -1369,7 +1410,7 @@
         <!--Navigation Controller-->
         <scene sceneID="hy4-DN-RmU">
             <objects>
-                <navigationController id="dpY-eY-Gzf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NewListNavigation" id="dpY-eY-Gzf" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PwU-xO-81J">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1745,6 +1786,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="WoK-PP-hQj"/>
+        <segue reference="7ud-yg-7mm"/>
     </inferredMetricsTieBreakers>
 </document>

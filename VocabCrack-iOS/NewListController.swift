@@ -12,11 +12,17 @@ class NewListController: UIViewController, UITextFieldDelegate
 {
     @IBOutlet weak var identifierEntry: UITextField!
     @IBOutlet weak var urlEntry: UITextField!
-    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
-    @IBAction func createButton(sender: AnyObject)
+    @IBAction func referenceButton(sender: AnyObject)
     {
         onCreate()
+    }
+    
+    @IBAction func createButton(sender: AnyObject)
+    {
+        activityIndicator.startAnimating()
+        Handlers.listHandler.confirmList(WeakWrapper(value: self), identifier: nil)
     }
     
     @IBAction func cancelButton(sender: AnyObject)
@@ -38,8 +44,6 @@ class NewListController: UIViewController, UITextFieldDelegate
         else if textField == urlEntry
         {
             urlEntry.resignFirstResponder()
-            
-            onCreate()
         }
         
         return true

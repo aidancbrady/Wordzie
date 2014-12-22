@@ -61,8 +61,6 @@ class NewGameController: UIViewController
     
     func listLoaded(success:Bool)
     {
-        Constants.CORE.listURLs["Default"] = "DefaultURL"
-        
         if activityIndicator.isAnimating()
         {
             activityIndicator.stopAnimating()

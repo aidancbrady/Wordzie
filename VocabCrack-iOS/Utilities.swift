@@ -32,14 +32,34 @@ class Utilities
         controller.presentViewController(alertController, animated: true, completion: nil)
     }
     
-    class func displayAction(controller:UIViewController, button:String, action:((UIAlertAction!) -> Void)?)
+    class func displayAction(controller:UIViewController, actions:ActionButton...)
     {
         let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .ActionSheet)
-        let action = UIAlertAction(title: button, style: .Default, handler: action)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
         
-        alertController.addAction(action)
-        alertController.addAction(cancelAction)
+        for action in actions
+        {
+            alertController.addAction(UIAlertAction(title: action.button, style: .Default, handler: action.action))
+        }
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        
+        controller.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    class func displayInput(controller:UIViewController, title:String, msg:String, placeholder:String?, handler:(String? -> Void)?)
+    {
+        var textField: UITextField?
+        
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+            handler?(textField!.text)
+            return
+        }))
+        alertController.addTextFieldWithConfigurationHandler({(text: UITextField!) in
+            text.placeholder = placeholder
+            textField = text
+        })
         
         controller.presentViewController(alertController, animated: true, completion: nil)
     }
@@ -214,7 +234,6 @@ class Utilities
     {
         WordDataHandler.load()
         WordListHandler.loadListData()
-        Constants.CORE.listURLs["Default"] = "DefaultURL"
         
         let reader:HTTPReader = HTTPReader()
         let request:NSMutableURLRequest = NSMutableURLRequest(URL: Constants.DATA_URL)
@@ -322,6 +341,23 @@ class TableDataReceiver: UITableViewController
     func receiveData(obj:AnyObject, type:Int) {}
     
     func endRefresh() {}
+}
+
+struct ActionButton
+{
+    var button:String!
+    var action:((UIAlertAction!) -> Void)?
+    
+    init(button:String)
+    {
+        self.button = button
+    }
+    
+    init(button:String, action:((UIAlertAction!) -> Void))
+    {
+        self.button = button
+        self.action = action
+    }
 }
 
 struct WeakWrapper<T: AnyObject>

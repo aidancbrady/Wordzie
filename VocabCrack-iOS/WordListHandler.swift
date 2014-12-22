@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 aidancbrady. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct CoreFiles
 {
@@ -17,6 +17,11 @@ struct CoreFiles
 
 class WordListHandler
 {
+    class func populateDefaults(inout array:[(String, String)])
+    {
+        array.append("Default", "DefaultURL")
+    }
+    
     class func loadList(id:String, controller:WeakWrapper<NewGameController>)
     {
         Constants.CORE.listID = nil
@@ -155,15 +160,10 @@ class WordListHandler
                 
                 if dataSplit.count == 2
                 {
-                    if dataSplit[0] != "Default" && dataSplit[1] != "DefaultURL"
-                    {
-                        Constants.CORE.listURLs[dataSplit[0]] = dataSplit[1]
-                    }
+                    Constants.CORE.listURLs[dataSplit[0]] = dataSplit[1]
                 }
             }
         }
-    
-        Constants.CORE.listURLs["Default"] = "DefaultURL"
     }
     
     class func saveListData()
@@ -217,5 +217,94 @@ class WordListHandler
     class func getDefaultList() -> NSString
     {
         return NSBundle.mainBundle().pathForResource("DefaultList", ofType: "txt")!
+    }
+}
+
+class ListHandler
+{
+    func confirmList(controller:WeakWrapper<NewListController>, identifier:String?)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = identifier != nil ? compileMsg("CONFLIST", Constants.CORE.account.username, identifier!) : compileMsg("CONFLIST", Constants.CORE.account.username, Constants.NULL)
+            let ret = NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if let newList = controller.value
+                {
+                    if let response = ret
+                    {
+                        let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
+                        
+                        if array[0] == "ACCEPT"
+                        {
+                            let createList:UINavigationController = newList.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as UINavigationController
+                            
+                            newList.presentViewController(createList, animated: true, completion: nil)
+                        }
+                        else {
+                            Utilities.displayAlert(newList, title: "Error", msg: array[1], action: nil)
+                        }
+                    }
+                    else {
+                        Utilities.displayAlert(newList, title: "Error", msg: "Unable to connect.", action: nil)
+                    }
+                    
+                    if newList.activityIndicator.isAnimating()
+                    {
+                        newList.activityIndicator.stopAnimating()
+                    }
+                }
+            })
+        })
+    }
+    
+    func updateLists(controller:WeakWrapper<WordListsController>)
+    {
+        if Operations.loadingLists
+        {
+            return
+        }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            Operations.loadingLists = true
+            
+            let str = compileMsg("LLISTS", Constants.CORE.account.username)
+            let ret = NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                Operations.loadingLists = false
+                
+                if let table = controller.value
+                {
+                    if let response = ret
+                    {
+                        let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
+                        
+                        if array[0] == "ACCEPT"
+                        {
+                            var urlArray:[(String, String)] = [(String, String)]()
+                            
+                            for var i = 1; i < array.count; i++
+                            {
+                                let split:[String] = Utilities.split(array[i], separator: Constants.SPLITTER_2)
+                                
+                                if split.count == 2
+                                {
+                                    urlArray.append(split[0], split[1])
+                                }
+                            }
+                            
+                            table.serverArray = urlArray
+                            table.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+                        }
+                    }
+                    
+                    if table.refresher.refreshing
+                    {
+                        table.refresher.endRefreshing()
+                    }
+                }
+            })
+        })
     }
 }

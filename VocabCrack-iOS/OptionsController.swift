@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OptionsController: UIViewController, UITextFieldDelegate
+class OptionsController: ResponsiveTextFieldViewController, UITextFieldDelegate
 {
     @IBOutlet weak var confirmButton: UIButton!
     
