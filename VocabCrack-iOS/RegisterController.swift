@@ -65,7 +65,7 @@ class RegisterController: UIViewController, UITextFieldDelegate
     
     @IBAction func backButton(sender: AnyObject)
     {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func onRegister()
@@ -108,12 +108,13 @@ class RegisterController: UIViewController, UITextFieldDelegate
                 
                 if success
                 {
-                    Utilities.displayAlert(self, title: "Success", msg: "Successfully registered account!", action:{(act) -> Void in self.dismissViewControllerAnimated(true, completion: nil)
+                    Utilities.displayAlert(self, title: "Success", msg: "Successfully registered account!", action:{(act) -> Void in
+                        self.dismissViewControllerAnimated(true, completion: nil)
                     })
                 }
                 else {
                     let alertMsg = response != nil ? response! : "Unable to connect."
-                    Utilities.displayAlert(self, title: "Couldn't register", msg: alertMsg, action:{(act) -> Void in})
+                    Utilities.displayAlert(self, title: "Couldn't register", msg: alertMsg, action: nil)
                 }
             })
         })

@@ -38,7 +38,7 @@ class NewGameController: UIViewController
         playButton.enabled = false
     }
     
-    func setList(list:String)
+    func setList(list:(String, String))
     {
         listChange.enabled = false
         loadingLabel.text = "Loading list..."

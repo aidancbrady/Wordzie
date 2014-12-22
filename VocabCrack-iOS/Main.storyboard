@@ -227,8 +227,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="onLogin:" destination="kGS-ce-2gM" eventType="touchUpInside" id="CMY-aR-Uj4"/>
-                                    <segue destination="kTm-4b-PJc" kind="modal" id="eRb-3o-efx"/>
+                                    <segue destination="kTm-4b-PJc" kind="modal" id="c6j-W1-Ugm"/>
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="vEP-IL-Y4j">
@@ -656,6 +655,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="saveButton" destination="aRb-o2-6Lg" id="Gf1-9q-Tf4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y7Z-L5-fRA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

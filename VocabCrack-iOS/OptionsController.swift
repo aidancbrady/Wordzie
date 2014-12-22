@@ -109,9 +109,7 @@ class OptionsController: ResponsiveTextFieldViewController, UITextFieldDelegate
                 if success
                 {
                     Utilities.displayAlert(self, title: "Success", msg: "Password successfully changed!", action: {(action) -> Void in
-                        let login:LoginController = self.storyboard?.instantiateViewControllerWithIdentifier("LoginController") as LoginController
-                        
-                        self.presentViewController(login, animated: true, completion: nil)
+                        println(self.navigationController!.dismissViewControllerAnimated(true, completion: nil))
                     })
                 }
                 else {

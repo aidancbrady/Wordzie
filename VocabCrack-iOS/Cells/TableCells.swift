@@ -183,6 +183,7 @@ class ListCell:UITableViewCell
     @IBOutlet weak var identifierLabel: UILabel!
     @IBOutlet weak var urlLabel: UILabel!
     
+    var list:(String, String)?
     var controller:WordListsController?
     
     override func setSelected(selected: Bool, animated: Bool)
@@ -192,7 +193,7 @@ class ListCell:UITableViewCell
         if controller != nil && selected
         {
             controller!.navigationController!.popViewControllerAnimated(true)
-            controller!.newController!.setList(identifierLabel.text!)
+            controller!.newController!.setList(list!)
         }
     }
 }

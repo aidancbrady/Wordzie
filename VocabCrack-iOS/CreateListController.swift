@@ -10,6 +10,8 @@ import UIKit
 
 class CreateListController: UITableViewController
 {
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
     var activity:UIActivityIndicatorView!
     
     var terms:[(String, String)] = [(String, String)]()
@@ -51,10 +53,24 @@ class CreateListController: UITableViewController
                     })
                 }
                 else {
+                    self.activity.startAnimating()
                     Handlers.listHandler.confirmList(WeakWrapper(value: self), identifier: Utilities.trim(str!))
                 }
             }
         })
+    }
+    
+    func compileList() -> String
+    {
+        var str:NSMutableString = NSMutableString()
+        
+        for term in terms
+        {
+            str.appendString(term.0 + Constants.SPLITTER_2 + term.1)
+            str.appendString(Constants.SPLITTER_1)
+        }
+        
+        return str
     }
 
     @IBAction func cancelButton(sender: AnyObject)

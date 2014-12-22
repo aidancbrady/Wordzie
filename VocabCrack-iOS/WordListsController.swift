@@ -108,12 +108,13 @@ class WordListsController: UITableViewController
         cell.identifierLabel.text = array[indexPath.row].0
         cell.urlLabel.text = array[indexPath.row].1
         cell.controller = self
+        cell.list = array[indexPath.row]
         
-        if cell.urlLabel.text == "DefaultURL"
+        if indexPath.section == 0
         {
             cell.urlLabel.text = "embedded"
         }
-        else if indexPath.section == 0
+        else if indexPath.section == 1
         {
             cell.urlLabel.text = "uploaded"
         }
@@ -150,7 +151,7 @@ class WordListsController: UITableViewController
         {
             if indexPath.section == 1
             {
-                //Foreign delete list
+                Handlers.listHandler.deleteList(WeakWrapper(value: self), identifier: serverArray[indexPath.row].0)
                 serverArray.removeAtIndex(indexPath.row)
             }
             else if indexPath.section == 2

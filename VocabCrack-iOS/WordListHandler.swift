@@ -22,34 +22,32 @@ class WordListHandler
         array.append("Default", "DefaultURL")
     }
     
-    class func loadList(id:String, controller:WeakWrapper<NewGameController>)
+    class func loadList(list:(String, String), controller:WeakWrapper<NewGameController>)
     {
         Constants.CORE.listID = nil
         Constants.CORE.activeList.removeAll(keepCapacity: false)
         
-        if id == "Default"
+        if list.0 == "Default"
         {
             loadDefaultList(controller);
         }
         else {
-            loadCustomList(id, controller: controller);
+            loadCustomList(list, controller: controller);
         }
     }
     
-    class func loadCustomList(id:String, controller:WeakWrapper<NewGameController>)
+    class func loadCustomList(list:(String, String), controller:WeakWrapper<NewGameController>)
     {
-        println("Loading '" + id + "' word list...");
+        println("Loading '" + list.0 + "' word list...");
         
-        let url = Constants.CORE.listURLs[id]!
+        let url = list.1
         
         let reader:Utilities.HTTPReader = Utilities.HTTPReader()
         let request:NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
         
         var returned = false
         
-        reader.getHTTP(request)
-        {
-            (response:String?) -> Void in
+        reader.getHTTP(request, {(response:String?) -> Void in
             if let str = response
             {
                 let array:[String] = str.componentsSeparatedByString("\n")
@@ -61,25 +59,21 @@ class WordListHandler
                     return
                 }
                 
-                var failed:Bool = false
-                
                 for s in array
                 {
-                    let split:[String] = Utilities.split(s, separator: String(Constants.LIST_SPLITTER))
+                    let split:[String] = Utilities.split(s, separator: Constants.LIST_SPLITTER)
                     
                     if split.count != 2
                     {
-                        failed = true
-                        
-                        break
+                        continue
                     }
                     
                     Constants.CORE.activeList.append(Utilities.trim(s))
                 }
                 
-                if !failed && Constants.CORE.activeList.count >= 1
+                if Constants.CORE.activeList.count >= 1
                 {
-                    Constants.CORE.listID = id
+                    Constants.CORE.listID = list.0
                     controller.value?.listLoaded(true)
                 }
                 else {
@@ -90,16 +84,16 @@ class WordListHandler
                 returned = true
             }
             else {
-                println("Failed to load '" + id + "' word list.")
+                println("Failed to load '" + list.0 + "' word list.")
+            }
+            
+            if !returned
+            {
+                controller.value?.listLoaded(false)
             }
             
             return
-        }
-        
-        if !returned
-        {
-            controller.value?.listLoaded(false)
-        }
+        })
     }
     
     class func loadDefaultList(controller:WeakWrapper<NewGameController>)
@@ -117,7 +111,7 @@ class WordListHandler
             
             for str in split
             {
-                let dataSplit = Utilities.split(str, separator: String(Constants.LIST_SPLITTER))
+                let dataSplit = Utilities.split(str, separator: Constants.LIST_SPLITTER)
                 
                 if(dataSplit.count != 2)
                 {
@@ -231,6 +225,8 @@ class ListHandler
             dispatch_async(dispatch_get_main_queue(), {
                 if let newList = controller.value
                 {
+                    var uploaded:Bool = false
+                    
                     if let response = ret
                     {
                         let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
@@ -244,7 +240,9 @@ class ListHandler
                                 newList.presentViewController(createList, animated: true, completion: nil)
                             }
                             else {
-                                //Upload list
+                                (newList as CreateListController).saveButton.enabled = false
+                                self.uploadList(WeakWrapper(value: newList as CreateListController), identifier: identifier!)
+                                uploaded = true
                             }
                         }
                         else {
@@ -257,12 +255,67 @@ class ListHandler
                     
                     let activity:UIActivityIndicatorView = newList.isKindOfClass(NewListController) ? (newList as NewListController).activityIndicator : (newList as CreateListController).activity
                     
-                    if activity.isAnimating()
+                    if !uploaded && activity.isAnimating()
                     {
                         activity.stopAnimating()
                     }
                 }
             })
+        })
+    }
+    
+    func uploadList(controller:WeakWrapper<CreateListController>, identifier:String)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            Operations.loadingLists = true
+            
+            let str = compileMsg("UPLOAD", Constants.CORE.account.username, identifier, controller.value!.compileList())
+            let ret = NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                Operations.loadingLists = false
+                
+                if let table = controller.value
+                {
+                    if let response = ret
+                    {
+                        let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
+                        
+                        if array[0] == "ACCEPT"
+                        {
+                            let amount = array[1].toInt()!
+                            let url = array[2]
+                            
+                            Utilities.displayAlert(table, title: "Success", msg: "Successfully created and uploaded word list. You now have \(amount) out of 5 word lists.", action: {action in
+                                controller.value!.dismissViewControllerAnimated(true, completion: nil)
+                                controller.value!.navigationController!.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+                                return
+                            })
+                        }
+                        else {
+                            Utilities.displayAlert(table, title: "Error", msg: array[1], action: nil)
+                        }
+                    }
+                    else {
+                        Utilities.displayAlert(table, title: "Error", msg: "Unable to connect.", action: nil)
+                    }
+                    
+                    table.saveButton.enabled = true
+                    
+                    if table.activity.isAnimating()
+                    {
+                        table.activity.stopAnimating()
+                    }
+                }
+            })
+        })
+    }
+    
+    func deleteList(controller:WeakWrapper<WordListsController>, identifier:String)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = compileMsg("DELLIST", Constants.CORE.account.username, identifier)
+            NetHandler.sendData(str)
         })
     }
     

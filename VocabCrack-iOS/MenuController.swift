@@ -37,6 +37,6 @@ class MenuController: UIViewController
     @IBAction func logoutButton(sender: AnyObject)
     {
         Constants.CORE.account = Defaults.ACCOUNT
-        self.dismissViewControllerAnimated(true, completion: nil)
+        navigationController!.dismissViewControllerAnimated(true, completion: nil)
     }
 }
