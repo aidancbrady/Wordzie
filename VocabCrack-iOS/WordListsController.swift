@@ -54,8 +54,14 @@ class WordListsController: UITableViewController
                     }))
                 }
                 else {
-                    // edit action
-                    Utilities.displayAction(self, actions: ActionButton(button: "Edit List"), ActionButton(button: "Copy URL", action: {action in
+                    Utilities.displayAction(self, actions: ActionButton(button: "Edit List", action: {action in
+                        let createList:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as UINavigationController
+                        (createList.viewControllers[0] as CreateListController).editingList = cell.list
+                        
+                        self.presentViewController(createList, animated: true, completion: nil)
+                        return
+                    }), ActionButton(button: "Copy URL", action: {action in
+                        UIPasteboard.generalPasteboard().string = cell.urlLabel.text
                     }))
                 }
             }

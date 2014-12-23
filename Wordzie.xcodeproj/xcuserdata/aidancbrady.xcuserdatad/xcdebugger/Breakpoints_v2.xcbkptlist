@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VocabCrack-iOS/WordListHandler.swift"
-            timestampString = "440976629.625365"
+            timestampString = "440985697.413301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "saveListData()"
             landmarkType = "5">
          </BreakpointContent>
@@ -314,45 +314,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VocabCrack-iOS/WordListHandler.swift"
-            timestampString = "440976629.625365"
+            timestampString = "440985697.413301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "saveListData()"
             landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VocabCrack-iOS/WordListHandler.swift"
-            timestampString = "440723132.138541"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
-            landmarkName = "loadCustomList(_:controller:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "VocabCrack-iOS/CreateListController.swift"
-            timestampString = "440974022.286548"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "CreateListController"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -504,11 +472,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "VocabCrack-iOS/WordListHandler.swift"
-            timestampString = "440976629.625365"
+            timestampString = "440985697.413301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "confirmList(_:identifier:)"
             landmarkType = "5">
          </BreakpointContent>

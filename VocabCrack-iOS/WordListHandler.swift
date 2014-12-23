@@ -29,29 +29,22 @@ class WordListHandler
         
         if list.0 == "Default"
         {
-            loadDefaultList(controller);
+            loadDefaultList(controller)
         }
         else {
-            loadCustomList(list, controller: controller);
+            loadCustomList(list, controller: controller)
         }
     }
     
     class func loadCustomList(list:(String, String), controller:WeakWrapper<NewGameController>)
     {
-        println("Loading '" + list.0 + "' word list...");
+        println("Loading '" + list.0 + "' word list...")
         
-        let url = list.1
-        
-        let reader:Utilities.HTTPReader = Utilities.HTTPReader()
-        let request:NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: url)!)
-        
-        var returned = false
-        
-        reader.getHTTP(request, {(response:String?) -> Void in
-            if let str = response
+        loadForeignList(list, {response in
+            var returned = false
+            
+            if let array = response
             {
-                let array:[String] = str.componentsSeparatedByString("\n")
-                
                 if array.count == 1 && array[0] == "null"
                 {
                     controller.value?.listLoaded(false)
@@ -96,11 +89,91 @@ class WordListHandler
         })
     }
     
+    class func loadListForEdit(list:(String, String), controller:WeakWrapper<CreateListController>)
+    {
+        println("Loading '" + list.0 + "' word list for editing...")
+        
+        loadForeignList(list, {response in
+            var terms:[(String, String)] = [(String, String)]()
+            var failed = false
+            
+            if let array = response
+            {
+                if array.count == 1 && array[0] == "null"
+                {
+                    failed = true
+                    return
+                }
+                
+                for s in array
+                {
+                    let split:[String] = Utilities.split(s, separator: Constants.LIST_SPLITTER)
+                    
+                    if split.count != 2
+                    {
+                        continue
+                    }
+                    
+                    terms.append(split[0], split[1])
+                }
+                
+                if terms.count < 10
+                {
+                    failed = true
+                }
+            }
+            else {
+                println("Failed to load '" + list.0 + "' word list.")
+                failed = true
+            }
+            
+            if let table = controller.value
+            {
+                table.saveButton.enabled = true
+                
+                if table.activity.isAnimating()
+                {
+                    table.activity.stopAnimating()
+                }
+                
+                if failed
+                {
+                    Utilities.displayAlert(table, title: "Error", msg: "Couldn't load word list form server.", action: {action in
+                        table.dismissViewControllerAnimated(true, completion: nil)
+                        return
+                    })
+                }
+                else {
+                    table.terms = terms
+                    table.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                }
+            }
+        })
+    }
+    
+    class func loadForeignList(list:(String, String), handler:([String]?) -> Void)
+    {
+        let reader:Utilities.HTTPReader = Utilities.HTTPReader()
+        let request:NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: list.1)!)
+        
+        var array:[String]?
+        
+        reader.getHTTP(request, {(response:String?) -> Void in
+            if let str = response
+            {
+                array = str.componentsSeparatedByString("\n")
+            }
+            
+            handler(array)
+            return
+        })
+    }
+    
     class func loadDefaultList(controller:WeakWrapper<NewGameController>)
     {
         let manager:NSFileManager = NSFileManager()
         
-        println("Loading default word list...");
+        println("Loading default word list...")
         
         if manager.fileExistsAtPath(CoreFiles.defaultList)
         {
@@ -120,7 +193,7 @@ class WordListHandler
                     break
                 }
                 
-                Constants.CORE.activeList.append(Utilities.trim(str));
+                Constants.CORE.activeList.append(Utilities.trim(str))
             }
             
             if !failed && Constants.CORE.activeList.count >= 1
@@ -198,7 +271,7 @@ class WordListHandler
     class func deleteList(name:String)
     {
         Constants.CORE.listURLs.removeValueForKey(name)
-        saveListData();
+        saveListData()
     }
     
     class func getDocumentsDir() -> NSString
@@ -240,7 +313,6 @@ class ListHandler
                                 newList.presentViewController(createList, animated: true, completion: nil)
                             }
                             else {
-                                (newList as CreateListController).saveButton.enabled = false
                                 self.uploadList(WeakWrapper(value: newList as CreateListController), identifier: identifier!)
                                 uploaded = true
                             }
@@ -267,14 +339,10 @@ class ListHandler
     func uploadList(controller:WeakWrapper<CreateListController>, identifier:String)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            Operations.loadingLists = true
-            
             let str = compileMsg("UPLOAD", Constants.CORE.account.username, identifier, controller.value!.compileList())
             let ret = NetHandler.sendData(str)
             
             dispatch_async(dispatch_get_main_queue(), {
-                Operations.loadingLists = false
-                
                 if let table = controller.value
                 {
                     if let response = ret
@@ -299,6 +367,28 @@ class ListHandler
                     else {
                         Utilities.displayAlert(table, title: "Error", msg: "Unable to connect.", action: nil)
                     }
+                    
+                    table.saveButton.enabled = true
+                    
+                    if table.activity.isAnimating()
+                    {
+                        table.activity.stopAnimating()
+                    }
+                }
+            })
+        })
+    }
+    
+    func editList(controller:WeakWrapper<CreateListController>)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = compileMsg("EDITLIST", Constants.CORE.account.username, controller.value!.editingList!.0, controller.value!.compileList())
+            let ret = NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if let table = controller.value
+                {
+                    table.dismissViewControllerAnimated(true, completion: nil)
                     
                     table.saveButton.enabled = true
                     

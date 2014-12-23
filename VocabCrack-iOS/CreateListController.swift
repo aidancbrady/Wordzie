@@ -14,10 +14,35 @@ class CreateListController: UITableViewController
     
     var activity:UIActivityIndicatorView!
     
+    var editingList:(String, String)?
+    
     var terms:[(String, String)] = [(String, String)]()
+    
+    @IBAction func newTermButton(sender: AnyObject)
+    {
+        if editingList != nil && terms.count == 0
+        {
+            return
+        }
+        
+        if terms.count < 50
+        {
+            let editTerm:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("EditTermNavigation") as UINavigationController
+            
+            self.presentViewController(editTerm, animated: true, completion: nil)
+        }
+        else {
+            Utilities.displayAlert(self, title: "Error", msg: "List cannot contain more than 50 terms.", action: nil)
+        }
+    }
     
     @IBAction func saveButton(sender: AnyObject)
     {
+        if editingList != nil && terms.count == 0
+        {
+            return
+        }
+        
         if terms.count < 10
         {
             if terms.count > 0
@@ -33,36 +58,45 @@ class CreateListController: UITableViewController
     
     func showEntry()
     {
-        Utilities.displayInput(self, title: "Upload List", msg: "Enter a unique identifier for your word list.", placeholder: "List Identifier", handler: {str in
-            if str == nil || str == ""
-            {
-                Utilities.displayAlert(self, title: "Error", msg: "Please enter an identifier.", action: {action in
-                    self.showEntry()
-                    return
-                })
-            }
-            else if str != nil
-            {
-                if !Utilities.isValidCredential(str!)
+        if editingList == nil
+        {
+            Utilities.displayInput(self, title: "Upload List", msg: "Enter a unique identifier for your word list.", placeholder: "List Identifier", handler: {str in
+                if str == nil || str == ""
                 {
-                    Utilities.displayAlert(self, title: "Error", msg: "Invalid characters.", action: {action in
+                    Utilities.displayAlert(self, title: "Error", msg: "Please enter an identifier.", action: {action in
                         self.showEntry()
                         return
                     })
                 }
-                else if countElements(str!) > 18
+                else if str != nil
                 {
-                    Utilities.displayAlert(self, title: "Error", msg: "Too many characters.", action: {action in
-                        self.showEntry()
-                        return
-                    })
+                    if !Utilities.isValidCredential(str!)
+                    {
+                        Utilities.displayAlert(self, title: "Error", msg: "Invalid characters.", action: {action in
+                            self.showEntry()
+                            return
+                        })
+                    }
+                    else if countElements(str!) > 18
+                    {
+                        Utilities.displayAlert(self, title: "Error", msg: "Too many characters.", action: {action in
+                            self.showEntry()
+                            return
+                        })
+                    }
+                    else {
+                        self.activity.startAnimating()
+                        self.saveButton.enabled = false
+                        Handlers.listHandler.confirmList(WeakWrapper(value: self), identifier: Utilities.trim(str!))
+                    }
                 }
-                else {
-                    self.activity.startAnimating()
-                    Handlers.listHandler.confirmList(WeakWrapper(value: self), identifier: Utilities.trim(str!))
-                }
-            }
-        })
+            })
+        }
+        else {
+            self.activity.startAnimating()
+            self.saveButton.enabled = false
+            Handlers.listHandler.editList(WeakWrapper(value: self))
+        }
     }
     
     func compileList() -> String
@@ -96,6 +130,12 @@ class CreateListController: UITableViewController
         var barButton:UIBarButtonItem = UIBarButtonItem(customView: activity)
         toolbarItems!.append(barButton)
         self.setToolbarItems(toolbarItems, animated: false)
+        
+        if editingList != nil
+        {
+            activity.startAnimating()
+            WordListHandler.loadListForEdit(editingList!, controller: WeakWrapper(value: self))
+        }
         
         self.navigationController!.setToolbarHidden(false, animated: false)
     }

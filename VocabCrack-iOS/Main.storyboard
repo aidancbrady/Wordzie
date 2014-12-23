@@ -568,10 +568,10 @@
             </objects>
             <point key="canvasLocation" x="5" y="-2136"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Create List Navigation-->
         <scene sceneID="wcy-Ua-2JP">
             <objects>
-                <navigationController storyboardIdentifier="CreateListNavigation" toolbarHidden="NO" id="etR-g7-J0g" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CreateListNavigation" title="Create List Navigation" toolbarHidden="NO" id="etR-g7-J0g" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LRt-Kj-j1H">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -637,8 +637,7 @@
                     <toolbarItems>
                         <barButtonItem systemItem="add" id="t2J-3T-sBc">
                             <connections>
-                                <action selector="newTermButton:" destination="wM8-Le-glh" id="Ne3-qZ-xNC"/>
-                                <segue destination="v93-Bb-Ltj" kind="modal" id="7ud-yg-7mm"/>
+                                <action selector="newTermButton:" destination="wM8-Le-glh" id="5Mn-vB-aDr"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -1412,10 +1411,10 @@
             </objects>
             <point key="canvasLocation" x="1224" y="-1435"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--New List Navigation-->
         <scene sceneID="hy4-DN-RmU">
             <objects>
-                <navigationController storyboardIdentifier="NewListNavigation" id="dpY-eY-Gzf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NewListNavigation" title="New List Navigation" id="dpY-eY-Gzf" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="PwU-xO-81J">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1763,10 +1762,10 @@
             </objects>
             <point key="canvasLocation" x="5" y="696"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Edit Term Navigation-->
         <scene sceneID="fMN-Gi-3gp">
             <objects>
-                <navigationController id="v93-Bb-Ltj" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="EditTermNavigation" title="Edit Term Navigation" id="v93-Bb-Ltj" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="BWS-SQ-Uuz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1790,7 +1789,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="7ud-yg-7mm"/>
-    </inferredMetricsTieBreakers>
 </document>
