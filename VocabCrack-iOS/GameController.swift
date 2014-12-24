@@ -27,9 +27,11 @@ class GameController: UIViewController
     /// -1 if game hasn't started, 0-9 if game has begun, 10 if game is over
     var wordIndex = -1
     var complete = true
-    var timeLeft = 30
+    var timeLeft = 20
     var amountCorrect = 0
     var correctDef = -1
+    
+    var animations = 0
     
     var singleplayer = false
     var game:Game!
@@ -106,6 +108,46 @@ class GameController: UIViewController
         definition4.setTitle(defs[3], forState: UIControlState.Normal)
     }
     
+    func onAnswer(correct:Bool)
+    {
+        if animations > 0
+        {
+            return
+        }
+        
+        if correct
+        {
+            amountCorrect++
+        }
+        
+        complete = true
+        
+        timerLabel.textColor = UIColor.blackColor()
+        timerLabel.layer.removeAnimationForKey("flash")
+        
+        view.backgroundColor = correct ? UIColor.greenColor() : UIColor.redColor()
+        
+        slideOut(wordLabel)
+        slideOut(definitionView)
+        
+        primaryLabel.text = correct ? "Correct" : "Incorrect"
+        secondaryLabel.text = "Tap to continue"
+        
+        let split = Utilities.split(getCurrentTerm(), separator: Constants.LIST_SPLITTER)
+        correctLabel.text = split[0] + ": " + split[1]
+        
+        slideIn(primaryLabel)
+        slideIn(secondaryLabel)
+        slideIn(correctLabel)
+        
+        timeLeft = 20
+        timer.invalidate()
+        
+        fadeOut({() in
+            self.timerLabel.text = "Timer: 20s"
+        }, views: timerLabel)
+    }
+    
     func createDefs() -> [String]
     {
         var list:[String] = [String]()
@@ -133,26 +175,33 @@ class GameController: UIViewController
     
     @IBAction func viewTapped(sender: AnyObject)
     {
+        if animations > 0
+        {
+            return
+        }
+        
         if wordIndex < 9 && complete //Called when the user needs to advance to a new question
         {
             if wordIndex == -1 //If the game hasn't yet started
             {
-                slideOut(primaryLabel)
-                slideOut(secondaryLabel)
-                
-                fadeIn(remainingLabel)
-                
-                wordIndex = 0
+                fadeIn(nil, views: remainingLabel)
             }
             
+            wordIndex++
             complete = false
             
             setTermData()
             
+            view.backgroundColor = UIColor.whiteColor()
+            
             slideIn(wordLabel)
             slideIn(definitionView)
             
-            fadeIn(timerLabel)
+            slideOut(primaryLabel)
+            slideOut(secondaryLabel)
+            slideOut(correctLabel)
+            
+            fadeIn(nil, views: timerLabel)
             
             if !timer.valid
             {
@@ -161,26 +210,93 @@ class GameController: UIViewController
         }
         else if wordIndex == 9 && complete //Called after last response view
         {
-            fadeOut(remainingLabel)
-            fadeOut(timerLabel)
+            fadeOut(nil, views: remainingLabel)
+            fadeOut(nil, views: timerLabel)
         }
     }
     
     func updateTime()
     {
         timeLeft--
+        
+        if timeLeft == -1
+        {
+            timerLabel.textColor = UIColor.blackColor()
+            timerLabel.layer.removeAnimationForKey("flash")
+            
+            onAnswer(false)
+            
+            return
+        }
+        
         timerLabel.text = "Timer: \(timeLeft)s"
+        
+        if timeLeft > 10
+        {
+            timerLabel.textColor = UIColor.blackColor()
+            timerLabel.layer.removeAnimationForKey("flash")
+        }
+        else if timeLeft <= 10
+        {
+            timerLabel.textColor = UIColor.redColor()
+            
+            if timeLeft == 5
+            {
+                var anim:CABasicAnimation = CABasicAnimation(keyPath: "opacity")
+                anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                anim.fromValue = NSNumber(float: 0.5)
+                anim.toValue = NSNumber(float: 1)
+                anim.autoreverses = true
+                anim.duration = 0.5
+                anim.repeatCount = 1e100
+                timerLabel.layer.addAnimation(anim, forKey: "flash")
+            }
+            else if timeLeft > 5
+            {
+                timerLabel.layer.removeAnimationForKey("flash")
+            }
+        }
+    }
+    
+    @IBAction func onDef1(sender: AnyObject)
+    {
+        onAnswer(correctDef == 0)
+    }
+    
+    @IBAction func onDef2(sender: AnyObject)
+    {
+        onAnswer(correctDef == 1)
+    }
+    
+    @IBAction func onDef3(sender: AnyObject)
+    {
+        onAnswer(correctDef == 2)
+    }
+    
+    @IBAction func onDef4(sender: AnyObject)
+    {
+        onAnswer(correctDef == 3)
     }
     
     func slideOut(view:UIView)
     {
         let prevRect = view.frame
+        let transform:CGAffineTransform = CGAffineTransformMake(1, 0, 0, 1, -prevRect.width-prevRect.minX, 0)
         
-        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
-            view.frame = CGRectMake(-self.view.frame.width, prevRect.minY, prevRect.width, prevRect.height)
+        animations++
+        
+        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            view.transform = transform
         }, completion: {finished in
             view.hidden = true
             view.frame = prevRect
+            
+            UIView.animateWithDuration(0, delay: 0, options: nil, animations: {
+                view.transform = CGAffineTransformIdentity
+            }, completion: {finished in
+                self.animations--
+                return
+            })
         })
     }
     
@@ -188,17 +304,24 @@ class GameController: UIViewController
     {
         let prevRect = view.frame
         
-        view.frame = CGRectMake(self.definitionView.frame.width, view.frame.minY, view.frame.width, view.frame.height)
+        view.frame = CGRectMake(definitionView.frame.width, view.frame.minY, view.frame.width, view.frame.height)
         view.hidden = false
+        
+        animations++
         
         UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             view.frame = prevRect
-        }, completion: nil)
+        }, completion: {finished in
+            self.animations--
+            return
+        })
     }
     
-    func fadeOut(views: UIView...)
+    func fadeOut(completion: (() -> Void)?, views: UIView...)
     {
-        UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+        animations++
+        
+        UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
             for view in views
             {
                 view.alpha = 0
@@ -208,10 +331,14 @@ class GameController: UIViewController
             {
                 view.hidden = true
             }
+            
+            self.animations--
+            
+            completion?()
         })
     }
     
-    func fadeIn(views: UIView...)
+    func fadeIn(completion: (() -> Void)?, views: UIView...)
     {
         for view in views
         {
@@ -219,11 +346,17 @@ class GameController: UIViewController
             view.alpha = 0.1
         }
         
-        UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+        animations++
+        
+        UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
             for view in views
             {
                 view.alpha = 1
             }
-        }, completion: nil)
+        }, completion: {finished in
+            self.animations--
+            completion?()
+            return
+        })
     }
 }

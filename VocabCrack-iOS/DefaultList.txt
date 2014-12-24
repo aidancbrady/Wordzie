@@ -122,7 +122,7 @@ Cynical>believing that people act only out of selfish motives
 Debility>weakness; incapacity
 Debunking>exposing false claims or myths
 Decathlon>an athletic competition with ten events
-Decorum>dignified or correct behavior [decorous (a)]
+Decorum>dignified or correct behavior
 Decoy>lure; trap; trick
 Deference>respect
 Defoliate>cause leaves to fall off
@@ -242,7 +242,7 @@ Hypocritical>insincere
 Iconoclast>person who opposes orthodoxy
 Idiosyncrasy>a personal peculiarity; something unique to an individual
 Ignominious>shameful
-Ignominy>shame [ignominious (a) = shameful]
+Ignominy>shame
 Illuminate>to light up or make clear
 Illusory>deceptive; false; misleading
 Immoderate>excessive; extreme
@@ -431,7 +431,7 @@ Diligent>hard-working
 Extraneous>irrelevant
 Extrapolate>extend; predict on the basis of known data
 Extrinsic>irrelevant; on the outside
-Fallacious>FALSE
+Fallacious>false
 Falter>hesitate; waver
 Fanatical>obsessive; fixated
 Fanaticism>passion; excessive devotion
@@ -834,12 +834,12 @@ Germinal>just growing; not developed; immature
 Gibbering>making meaningless noises
 Glacial>hostile; unfriendly; cold; icy
 Goad>prod; urge
-Grate (v)>1. to annoy; aggravate; vex; 2. shred
+Grate>1. to annoy; aggravate; vex; 2. shred
 Gratis>free of charge; without payment
 Gratuitous>unwarranted
 Gravity>seriousness
 Irascible>easily angered
-Ire>anger [irate (a) = very angry]
+Ire>anger
 Irksome>annoying; infuriating
 Ironic>satiric; unexpected
 Irrational>unreasonable; absurd
