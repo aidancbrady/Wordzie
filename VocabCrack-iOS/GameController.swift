@@ -125,6 +125,8 @@ class GameController: UIViewController
         timerLabel.textColor = UIColor.blackColor()
         timerLabel.layer.removeAnimationForKey("flash")
         
+        remainingLabel.text = "Score: \(amountCorrect)/10"
+        
         view.backgroundColor = correct ? UIColor.greenColor() : UIColor.redColor()
         
         slideOut(wordLabel)
@@ -280,23 +282,17 @@ class GameController: UIViewController
     
     func slideOut(view:UIView)
     {
-        let prevRect = view.frame
-        let transform:CGAffineTransform = CGAffineTransformMake(1, 0, 0, 1, -prevRect.width-prevRect.minX, 0)
+        let transform:CGAffineTransform = CGAffineTransformMake(1, 0, 0, 1, -view.frame.width-view.frame.minX, 0)
         
         animations++
         
-        UIView.animateWithDuration(0.3, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             view.transform = transform
         }, completion: {finished in
             view.hidden = true
-            view.frame = prevRect
+            view.transform = CGAffineTransformIdentity
             
-            UIView.animateWithDuration(0, delay: 0, options: nil, animations: {
-                view.transform = CGAffineTransformIdentity
-            }, completion: {finished in
-                self.animations--
-                return
-            })
+            self.animations--
         })
     }
     
@@ -309,9 +305,9 @@ class GameController: UIViewController
         
         animations++
         
-        UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             view.frame = prevRect
-        }, completion: {finished in
+        }, completion: {b in
             self.animations--
             return
         })
@@ -319,9 +315,9 @@ class GameController: UIViewController
     
     func fadeOut(completion: (() -> Void)?, views: UIView...)
     {
-        animations++
+        animations += views.count
         
-        UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+        UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             for view in views
             {
                 view.alpha = 0
@@ -332,7 +328,7 @@ class GameController: UIViewController
                 view.hidden = true
             }
             
-            self.animations--
+            self.animations -= views.count
             
             completion?()
         })
@@ -346,15 +342,15 @@ class GameController: UIViewController
             view.alpha = 0.1
         }
         
-        animations++
+        animations += views.count
         
-        UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+        UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             for view in views
             {
                 view.alpha = 1
             }
         }, completion: {finished in
-            self.animations--
+            self.animations -= views.count
             completion?()
             return
         })
