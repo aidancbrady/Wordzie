@@ -46,8 +46,6 @@ class TermDetailController: UIViewController
     {
         return navigationController!.viewControllers[navigationController!.viewControllers.count-2] as UIViewController
     }
-    
-    // MARK: - Navigation
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {

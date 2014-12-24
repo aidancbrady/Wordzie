@@ -15,7 +15,7 @@ class VocabCrack
     
     var learnedWords:[String] = [String]()
     
-    var listID:String? = nil
+    var listData:(String, String)? = nil
     var activeList:[String] = [String]()
     
     var listURLs:[String: String] = [String: String]()

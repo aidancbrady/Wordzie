@@ -52,7 +52,14 @@ class NewGameController: UIViewController
         
         if success
         {
-            Utilities.displayAlert(self, title: "Success", msg: "Confirmed", action: nil)
+            let game:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("GameNavigation") as UINavigationController
+            
+            let controller = game.viewControllers[0] as UIViewController
+            
+            (controller as GameController).game = createGame()
+            (controller as GameController).singleplayer = definedUser == nil
+            
+            self.presentViewController(game, animated: true, completion: nil)
         }
         else {
             Utilities.displayAlert(self, title: "Error", msg: response!, action: nil)
@@ -71,7 +78,7 @@ class NewGameController: UIViewController
                 if success
                 {
                     loadingLabel.text = "Loaded list! (\(Constants.CORE.activeList.count) terms)"
-                    listLabel.text = "Using '\(Constants.CORE.listID!)' list..."
+                    listLabel.text = "Using '\(Constants.CORE.listData!.0)' list..."
                     listChange.setTitle("Change", forState: UIControlState.Normal)
                     show(nil, views: confirmImage, continueButton)
                 }
@@ -82,6 +89,15 @@ class NewGameController: UIViewController
                 show(nil, views: loadingLabel)
             }
         }
+    }
+    
+    func createGame() -> Game
+    {
+        var game:Game = Game(user: Constants.CORE.account.username, opponent: definedUser != nil ? definedUser! : "Guest", activeRequested: true)
+        game.gameType = typeButton.selectedSegmentIndex
+        game.setList(Constants.CORE.listData!.0, listUrl: Constants.CORE.listData!.1)
+        
+        return game
     }
     
     @IBAction func changePressed(sender: AnyObject)
@@ -108,7 +124,7 @@ class NewGameController: UIViewController
     
     @IBAction func listChangePressed(sender: AnyObject)
     {
-        if Constants.CORE.listID == nil
+        if Constants.CORE.listData == nil
         {
             let friends:WordListsController = self.storyboard?.instantiateViewControllerWithIdentifier("WordListsController") as WordListsController
             
@@ -214,7 +230,7 @@ class NewGameController: UIViewController
     
     func hidePastList()
     {
-        Constants.CORE.listID = nil
+        Constants.CORE.listData = nil
         Constants.CORE.activeList.removeAll(keepCapacity: false)
         
         listChange.setTitle("Choose", forState: UIControlState.Normal)

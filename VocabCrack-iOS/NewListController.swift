@@ -65,7 +65,7 @@ class NewListController: UIViewController, UITextFieldDelegate
             }
             
             WordListHandler.addList(Utilities.trim(identifierEntry.text), url: Utilities.trim(urlEntry.text))
-            navigationController!.popViewControllerAnimated(true)
+            dismissViewControllerAnimated(true, completion: nil)
         }
     }
     

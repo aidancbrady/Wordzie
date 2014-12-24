@@ -50,7 +50,7 @@ class WordListsController: UITableViewController
                 if path!.section != 1
                 {
                     Utilities.displayAction(self, actions: ActionButton(button: "Copy URL", action: {action in
-                        UIPasteboard.generalPasteboard().string = cell.urlLabel.text
+                        UIPasteboard.generalPasteboard().string = cell.list!.1
                     }))
                 }
                 else {
@@ -61,7 +61,7 @@ class WordListsController: UITableViewController
                         self.presentViewController(createList, animated: true, completion: nil)
                         return
                     }), ActionButton(button: "Copy URL", action: {action in
-                        UIPasteboard.generalPasteboard().string = cell.urlLabel.text
+                        UIPasteboard.generalPasteboard().string = cell.list!.1
                     }))
                 }
             }

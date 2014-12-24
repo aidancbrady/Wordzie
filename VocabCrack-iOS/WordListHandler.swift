@@ -24,7 +24,7 @@ class WordListHandler
     
     class func loadList(list:(String, String), controller:WeakWrapper<NewGameController>)
     {
-        Constants.CORE.listID = nil
+        Constants.CORE.listData = nil
         Constants.CORE.activeList.removeAll(keepCapacity: false)
         
         if list.0 == "Default"
@@ -66,7 +66,7 @@ class WordListHandler
                 
                 if Constants.CORE.activeList.count >= 10
                 {
-                    Constants.CORE.listID = list.0
+                    Constants.CORE.listData = list
                     controller.value?.listLoaded(true)
                 }
                 else {
@@ -198,7 +198,7 @@ class WordListHandler
             
             if !failed && Constants.CORE.activeList.count >= 1
             {
-                Constants.CORE.listID = "Default"
+                Constants.CORE.listData = ("Default", "DefaultURL")
                 controller.value?.listLoaded(true)
             }
             else {
