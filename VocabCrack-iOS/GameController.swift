@@ -78,6 +78,7 @@ class GameController: UIViewController
     func initGame()
     {
         leftLabel.text = game.listName
+        primaryLabel.text = "Round \(game.userPoints.count+1)"
         
         if !singleplayer
         {
@@ -212,9 +213,20 @@ class GameController: UIViewController
         }
         else if wordIndex == 9 && complete //Called after last response view
         {
-            fadeOut(nil, views: remainingLabel)
-            fadeOut(nil, views: timerLabel)
+            finalizeGameData()
+            
+            let roundOver:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RoundOverController") as UIViewController
+            
+            (roundOver as RoundOverController).game = game
+            (roundOver as RoundOverController).singleplayer = singleplayer
+            
+            navigationController!.pushViewController(roundOver, animated: true)
         }
+    }
+    
+    func finalizeGameData()
+    {
+        game.userPoints.append(amountCorrect)
     }
     
     func updateTime()
