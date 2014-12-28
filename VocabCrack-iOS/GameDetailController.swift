@@ -8,13 +8,14 @@
 
 import UIKit
 
-class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDataSource
+class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDataSource, ListLoader
 {
     @IBOutlet weak var userAvatar: UIImageView!
     @IBOutlet weak var opponentAvatar: UIImageView!
     @IBOutlet weak var matchLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var scoreTable: UITableView!
+    @IBOutlet weak var playButton: UIButton!
     
     var game:Game?
     
@@ -27,11 +28,40 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         scoreLabel.text = "\(game!.getUserScore()) - \(game!.getOpponentScore())"
         
         scoreTable.reloadData()
+        
+        if !game!.userTurn
+        {
+            playButton.enabled = false
+            playButton.setTitle("Opponent's Turn", forState: UIControlState.Normal)
+        }
+    }
+    
+    func listLoaded(success: Bool)
+    {
+        playButton.enabled = false
+        
+        if success
+        {
+            let game:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("GameNavigation") as UINavigationController
+            
+            let controller = game.viewControllers[0] as UIViewController
+            
+            (controller as GameController).game = self.game!
+            
+            self.presentViewController(game, animated: true, completion: nil)
+        }
+        else {
+            Utilities.displayAlert(self, title: "Error", msg: "Couldn't load word list.", action: nil)
+        }
     }
     
     @IBAction func gameButton(sender: AnyObject)
     {
-        
+        if game != nil && game!.userTurn
+        {
+            playButton.enabled = false
+            WordListHandler.loadList(game!.getList(), controller: WeakWrapper(value: self))
+        }
     }
     
     override func supportedInterfaceOrientations() -> Int

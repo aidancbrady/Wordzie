@@ -22,7 +22,7 @@ class WordListHandler
         array.append("Default", "DefaultURL")
     }
     
-    class func loadList(list:(String, String), controller:WeakWrapper<NewGameController>)
+    class func loadList(list:(String, String), controller:WeakWrapper<ListLoader>)
     {
         Constants.CORE.listData = nil
         Constants.CORE.activeList.removeAll(keepCapacity: false)
@@ -32,11 +32,11 @@ class WordListHandler
             loadDefaultList(controller)
         }
         else {
-            loadCustomList(list, controller: controller)
+            loadCustomList(list, controller: WeakWrapper(value: controller.value!))
         }
     }
     
-    class func loadCustomList(list:(String, String), controller:WeakWrapper<NewGameController>)
+    class func loadCustomList(list:(String, String), controller:WeakWrapper<ListLoader>)
     {
         println("Loading '" + list.0 + "' word list...")
         
@@ -169,7 +169,7 @@ class WordListHandler
         })
     }
     
-    class func loadDefaultList(controller:WeakWrapper<NewGameController>)
+    class func loadDefaultList(controller:WeakWrapper<ListLoader>)
     {
         let manager:NSFileManager = NSFileManager()
         
@@ -458,4 +458,9 @@ class ListHandler
             })
         })
     }
+}
+
+protocol ListLoader : NSObjectProtocol
+{
+    func listLoaded(success:Bool)
 }

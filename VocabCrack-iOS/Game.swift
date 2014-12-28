@@ -121,9 +121,9 @@ class Game: Equatable
         return self
     }
     
-    class func readDefault(s:String, splitter:Character) -> Game?
+    class func readDefault(s:String, splitter:String) -> Game?
     {
-        var split:[String] = s.componentsSeparatedByString(String(splitter))
+        var split:[String] = s.componentsSeparatedByString(splitter)
         
         if(split.count < 4)
         {
@@ -145,9 +145,9 @@ class Game: Equatable
         return g
     }
     
-    class func readRequest(s:String, splitter:Character) -> Game?
+    class func readRequest(s:String, splitter:String) -> Game?
     {
-        var split:[String] = s.componentsSeparatedByString(String(splitter))
+        var split:[String] = s.componentsSeparatedByString(splitter)
         
         if(split.count < 4)
         {
@@ -168,59 +168,53 @@ class Game: Equatable
         return g
     }
     
-    func writeDefault(str:NSMutableString, splitter:Character)
+    func writeDefault(str:NSMutableString, splitter:String)
     {
-        let split = String(splitter)
-        
         str.appendString(user)
-        str.appendString(split)
+        str.appendString(splitter)
         str.appendString(opponent)
-        str.appendString(split)
+        str.appendString(splitter)
         str.appendString(String(gameType))
-        str.appendString(split)
+        str.appendString(splitter)
         str.appendString(userTurn ? "true" : "false")
-        str.appendString(split)
+        str.appendString(splitter)
         str.appendString(listName!)
-        str.appendString(split)
+        str.appendString(splitter)
         str.appendString(listURL!)
-        str.appendString(split)
+        str.appendString(splitter)
         
-        writeScoreList(userPoints, str:NSMutableString(string: str), split:splitter)
-        writeScoreList(opponentPoints, str:NSMutableString(string: str), split:splitter)
+        writeScoreList(userPoints, str:NSMutableString(string: str), splitter:splitter)
+        writeScoreList(opponentPoints, str:NSMutableString(string: str), splitter:splitter)
         
         writeWordList(str)
-        str.appendString(split)
+        str.appendString(splitter)
     }
     
-    func writeRequest(str:NSMutableString, splitter:Character)
+    func writeRequest(str:NSMutableString, splitter:String)
     {
-        let split = String(splitter)
-        
         str.appendString(activeRequested ? "true" : "false")
-        str.appendString(split)
+        str.appendString(splitter)
         str.appendString(user)
-        str.appendString(split)
+        str.appendString(splitter)
         str.appendString(opponent)
-        str.appendString(split)
+        str.appendString(splitter)
         str.appendString(String(gameType))
-        str.appendString(split)
+        str.appendString(splitter)
         str.appendString(userTurn ? "true" : "false")
-        str.appendString(split)
+        str.appendString(splitter)
         str.appendString(listName!)
-        str.appendString(split)
+        str.appendString(splitter)
         str.appendString(listURL!)
-        str.appendString(split)
+        str.appendString(splitter)
         
-        writeScoreList(userPoints, str:NSMutableString(string: str), split:splitter)
+        writeScoreList(userPoints, str:NSMutableString(string: str), splitter:splitter)
         
         writeWordList(str)
-        str.appendString(split)
+        str.appendString(splitter)
     }
     
-    func writeScoreList(score:[Int], str:NSMutableString, split:Character)
+    func writeScoreList(score:[Int], str:NSMutableString, splitter:String)
     {
-        let splitter = String(split)
-        
         str.appendString(String(score.count))
         str.appendString(splitter)
         
@@ -313,6 +307,11 @@ class Game: Equatable
     func getListURL() -> String?
     {
         return listURL
+    }
+    
+    func getList() -> (String, String)
+    {
+        return (listName!, listURL!)
     }
     
     func setList(listName:String, listUrl:String)

@@ -88,7 +88,7 @@ class GameCell: UITableViewCell
         
         if controller != nil && game != nil && selected
         {
-            let opponent:String = game!.getOtherUser(Constants.CORE.account.username)
+            let opponent:String = Utilities.getRemoteUser(game!)
             
             if controller!.modeButton.selectedSegmentIndex == 0
             {
@@ -125,7 +125,12 @@ class GameCell: UITableViewCell
                     self.controller!.tableView(self.controller!.tableView, commitEditingStyle: .Delete, forRowAtIndexPath: path!)
                     Handlers.gameHandler.updateData(WeakWrapper(value: self.controller!))
                     
-                    //Open new game controller
+                    let newGame:NewGameController = self.controller!.storyboard?.instantiateViewControllerWithIdentifier("NewGameController") as NewGameController
+                    
+                    newGame.definedUser = opponent
+                    
+                    self.controller!.navigationController!.pushViewController(newGame, animated: true)
+                    
                     return
                 }, cancel: {(action) -> Void in
                     self.setSelected(false, animated: true)

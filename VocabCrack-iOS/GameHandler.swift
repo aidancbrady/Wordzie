@@ -45,14 +45,14 @@ class GameHandler
                             
                             for var i = 1; i < array.count; i+=2
                             {
-                                var g:Game = Game.readDefault(array[i], splitter: ",")!
+                                var g:Game = Game.readDefault(array[i], splitter: Constants.SPLITTER_2)!
                                 g.opponentEmail = array[i+1]
                                 games.append(g)
                             }
                                 
                             for var i = 1; i < array1.count; i+=2
                             {
-                                var g:Game = Game.readRequest(array1[i], splitter: ",")!
+                                var g:Game = Game.readRequest(array1[i], splitter: Constants.SPLITTER_2)!
                                 g.opponentEmail = array1[i+1]
                                 games.append(g)
                             }
@@ -99,7 +99,7 @@ class GameHandler
                             
                             for var i = 1; i < array.count; i+=2
                             {
-                                var g:Game = Game.readDefault(array[i], splitter: ",")!
+                                var g:Game = Game.readDefault(array[i], splitter: Constants.SPLITTER_2)!
                                 g.opponentEmail = array[i+1]
                                 games.append(g)
                             }
@@ -163,6 +163,40 @@ class GameHandler
                     }
                     else {
                         newGame.confirmGame(false, response: "Unable to connect.")
+                    }
+                }
+            })
+        })
+    }
+    
+    func newGame(controller:WeakWrapper<RoundOverController>)
+    {
+        let game = controller.value!.game
+        
+        let listData = NSMutableString()
+        game.writeWordList(listData)
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = compileMsg("NEWGAME", Constants.CORE.account.username, game.getRequestReceiver(), String(game.gameType), String(game.userPoints[game.userPoints.count-1]), game.getListName()!, game.getListURL()!, listData)
+            let ret = NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if let roundOver = controller.value
+                {
+                    if let response = ret
+                    {
+                        let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
+                        
+                        if array[0] == "ACCEPT"
+                        {
+                            roundOver.confirmResponse(true)
+                        }
+                        else {
+                            roundOver.confirmResponse(false)
+                        }
+                    }
+                    else {
+                        roundOver.confirmResponse(false)
                     }
                 }
             })

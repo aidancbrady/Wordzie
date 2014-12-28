@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewGameController: UIViewController
+class NewGameController: UIViewController, ListLoader
 {
     @IBOutlet weak var typeLabel: UILabel!
     @IBOutlet weak var typeButton: UISegmentedControl!
@@ -42,6 +42,12 @@ class NewGameController: UIViewController
     {
         listChange.enabled = false
         loadingLabel.text = "Loading list..."
+        
+        if loadingLabel.hidden
+        {
+            show(nil, views: loadingLabel)
+        }
+        
         activityIndicator.startAnimating()
         WordListHandler.loadList(list, controller: WeakWrapper(value: self))
     }
@@ -195,7 +201,15 @@ class NewGameController: UIViewController
     
     @IBAction func continuePressed(sender: AnyObject)
     {
-        if definedUser != nil
+        if playButton.selectedSegmentIndex == 0
+        {
+            confirmGame(true, response: nil)
+        }
+        else if playButton.selectedSegmentIndex == 1
+        {
+            //Open random game view
+        }
+        else if playButton.selectedSegmentIndex == 2 && definedUser != nil
         {
             continueButton.enabled = false
             Handlers.gameHandler.confirmGame(WeakWrapper(value: self), friend: definedUser!)

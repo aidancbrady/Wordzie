@@ -1340,7 +1340,7 @@
                                     <action selector="returnPressed:" destination="wID-vR-wR5" eventType="touchUpInside" id="urx-Mm-Ou1"/>
                                 </connections>
                             </button>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Rok-Pk-Lzc">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Rok-Pk-Lzc">
                                 <rect key="frame" x="150" y="274" width="20" height="20"/>
                             </activityIndicatorView>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L19-Wo-fYM">
@@ -1360,6 +1360,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="kBe-9k-dLw" firstAttribute="top" secondItem="SBz-ye-8GF" secondAttribute="bottom" constant="20" id="0Vs-wW-DgA"/>
                             <constraint firstItem="m2S-JB-DX0" firstAttribute="top" secondItem="SLN-ce-rSf" secondAttribute="bottom" constant="8" id="3iN-6t-D1G"/>
                             <constraint firstAttribute="centerX" secondItem="Rok-Pk-Lzc" secondAttribute="centerX" id="6db-SP-dw3"/>
                             <constraint firstItem="7g1-50-TPa" firstAttribute="top" secondItem="gcn-81-FWG" secondAttribute="bottom" constant="20" id="8np-IW-PmM"/>
@@ -1380,7 +1381,6 @@
                             <constraint firstAttribute="centerX" secondItem="gcn-81-FWG" secondAttribute="centerX" id="bfe-Ex-iNV"/>
                             <constraint firstItem="NGF-SV-Hc3" firstAttribute="trailing" secondItem="JIW-Kl-6rN" secondAttribute="trailingMargin" id="dRP-Qn-EWL"/>
                             <constraint firstAttribute="centerX" secondItem="SLN-ce-rSf" secondAttribute="centerX" id="ht7-zh-WcR"/>
-                            <constraint firstItem="kBe-9k-dLw" firstAttribute="top" secondItem="SBz-ye-8GF" secondAttribute="bottom" id="mN0-Jz-Qe7"/>
                             <constraint firstAttribute="centerX" secondItem="m2S-JB-DX0" secondAttribute="centerX" id="paZ-51-Ffk"/>
                             <constraint firstAttribute="centerX" secondItem="L19-Wo-fYM" secondAttribute="centerX" id="q3f-ng-zl2"/>
                             <constraint firstItem="L19-Wo-fYM" firstAttribute="leading" secondItem="JIW-Kl-6rN" secondAttribute="leadingMargin" constant="-16" id="rAr-Lh-SEO"/>
@@ -1388,6 +1388,7 @@
                             <constraint firstItem="NGF-SV-Hc3" firstAttribute="top" secondItem="m2S-JB-DX0" secondAttribute="bottom" constant="50" id="yJO-ms-snt"/>
                         </constraints>
                     </view>
+                    <nil key="simulatedStatusBarMetrics"/>
                     <connections>
                         <outlet property="activityIndicator" destination="Rok-Pk-Lzc" id="8E3-7t-aH1"/>
                         <outlet property="continueButton" destination="L19-Wo-fYM" id="na8-mx-Fwu"/>
@@ -1693,6 +1694,7 @@
                     <connections>
                         <outlet property="matchLabel" destination="OBZ-fM-qEu" id="L4X-E1-M1n"/>
                         <outlet property="opponentAvatar" destination="yHd-9h-V9Y" id="Wzq-hM-AyP"/>
+                        <outlet property="playButton" destination="mvg-nE-MNG" id="X0j-1q-2rl"/>
                         <outlet property="scoreLabel" destination="3Ss-hP-hHV" id="dxn-Kc-7aI"/>
                         <outlet property="scoreTable" destination="gUL-Pb-ous" id="kdZ-sQ-dJp"/>
                         <outlet property="userAvatar" destination="TxZ-Md-bhV" id="Vt5-He-X7F"/>

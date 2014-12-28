@@ -63,11 +63,7 @@ class GameController: UIViewController
         secondaryLabel.hidden = false
         
         leftLabel.hidden = false
-        
-        if(!singleplayer)
-        {
-            rightLabel.hidden = false
-        }
+        rightLabel.hidden = false
     }
     
     override func prefersStatusBarHidden() -> Bool
@@ -83,6 +79,9 @@ class GameController: UIViewController
         if !singleplayer
         {
             rightLabel.text = "\(game.getUserScore()) - \(game.getOpponentScore())"
+        }
+        else {
+            rightLabel.text = "Singleplayer"
         }
         
         game.activeWords = WordDataHandler.createWordSet()

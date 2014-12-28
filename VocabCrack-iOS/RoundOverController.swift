@@ -37,18 +37,27 @@ class RoundOverController: UIViewController
     {
         if singleplayer
         {
-            Utilities.displayYesNo(self, title: "Confirm", msg: "Are you sure you want to exit this game? Your progress will be lost.", action: {action in
-                self.dismissViewControllerAnimated(true, completion: nil)
-            }, cancel: nil)
+            if game.userPoints.count < GameType.getType(game.gameType).getWinningScore()
+            {
+                Utilities.displayYesNo(self, title: "Confirm", msg: "Are you sure you want to exit this game? Your progress will be lost.", action: {action in
+                    self.dismissViewControllerAnimated(true, completion: nil)
+                }, cancel: nil)
+            }
+            else {
+                dismissViewControllerAnimated(true, completion: nil)
+            }
         }
         else {
-            //Send data to server
+            activityIndicator.startAnimating()
+            Handlers.gameHandler.newGame(WeakWrapper(value: self))
         }
     }
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        setNeedsStatusBarAppearanceUpdate()
         
         roundLabel.text = "Round \(game.userPoints.count)"
         
@@ -60,12 +69,15 @@ class RoundOverController: UIViewController
         
         if singleplayer
         {
-            continueButton.hidden = false
+            if game.userPoints.count < GameType.getType(game.gameType).getWinningScore()
+            {
+                continueButton.hidden = false
+            }
             
             let roundsRemaining = GameType.getType(game.gameType).getWinningScore()-game.userPoints.count
             
             primaryLabel.text = "Your score: \(game.userPoints[userIndex-1])/10"
-            secondaryLabel.text = "\(roundsRemaining) round" + (roundsRemaining == 1 ? "s" : "") + " remaining"
+            secondaryLabel.text = "\(roundsRemaining) round" + (roundsRemaining == 1 ? "" : "s") + " remaining"
         }
         else {
             if userIndex == game.opponentPoints.count
@@ -97,5 +109,28 @@ class RoundOverController: UIViewController
         
         primaryLabel.hidden = false
         secondaryLabel.hidden = false
+    }
+    
+    override func prefersStatusBarHidden() -> Bool
+    {
+        return true
+    }
+    
+    func confirmResponse(success:Bool)
+    {
+        activityIndicator.stopAnimating()
+        
+        if success
+        {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+        else {
+            Utilities.displayDialog(self, title: "Error", msg: "Couldn't send game data to server.", actions: ActionButton(button: "Try Again", action: {action in
+                self.activityIndicator.startAnimating()
+                Handlers.gameHandler.newGame(WeakWrapper(value: self))
+            }), ActionButton(button: "Exit", action: {action in
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }))
+        }
     }
 }

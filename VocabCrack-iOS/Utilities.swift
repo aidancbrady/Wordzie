@@ -38,10 +38,22 @@ class Utilities
         
         for action in actions
         {
-            alertController.addAction(UIAlertAction(title: action.button, style: .Default, handler: action.action))
+            alertController.addAction(UIAlertAction(title: action.button, style: action.style, handler: action.action))
         }
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        
+        controller.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    class func displayDialog(controller:UIViewController, title:String, msg:String, actions:ActionButton...)
+    {
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
+        
+        for action in actions
+        {
+            alertController.addAction(UIAlertAction(title: action.button, style: action.style, handler: action.action))
+        }
         
         controller.presentViewController(alertController, animated: true, completion: nil)
     }
@@ -347,6 +359,7 @@ struct ActionButton
 {
     var button:String!
     var action:((UIAlertAction!) -> Void)?
+    var style:UIAlertActionStyle = .Default
     
     init(button:String)
     {
@@ -357,6 +370,13 @@ struct ActionButton
     {
         self.button = button
         self.action = action
+    }
+    
+    init(button:String, action:((UIAlertAction!) -> Void), style:UIAlertActionStyle)
+    {
+        self.button = button
+        self.action = action
+        self.style = style
     }
 }
 
