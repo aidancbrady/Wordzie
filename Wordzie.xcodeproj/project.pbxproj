@@ -30,7 +30,7 @@
 		11396AC31A2F40190050120D /* CoreHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC01A2F40190050120D /* CoreHandler.swift */; };
 		11396AC41A2F40190050120D /* GameHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC11A2F40190050120D /* GameHandler.swift */; };
 		11396AC51A2F40190050120D /* FriendHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC21A2F40190050120D /* FriendHandler.swift */; };
-		11396AC71A2F40200050120D /* VocabCrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC61A2F40200050120D /* VocabCrack.swift */; };
+		11396AC71A2F40200050120D /* Wordzie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC61A2F40200050120D /* Wordzie.swift */; };
 		11396AC91A2F456C0050120D /* OperationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396AC81A2F456C0050120D /* OperationsManager.swift */; };
 		11396ACB1A2F4BEF0050120D /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ACA1A2F4BEF0050120D /* MenuController.swift */; };
 		11396ACD1A2F7EAD0050120D /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11396ACC1A2F7EAD0050120D /* Account.swift */; };
@@ -90,7 +90,7 @@
 		11396AC01A2F40190050120D /* CoreHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreHandler.swift; sourceTree = "<group>"; };
 		11396AC11A2F40190050120D /* GameHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameHandler.swift; sourceTree = "<group>"; };
 		11396AC21A2F40190050120D /* FriendHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendHandler.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.java; };
-		11396AC61A2F40200050120D /* VocabCrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VocabCrack.swift; sourceTree = "<group>"; };
+		11396AC61A2F40200050120D /* Wordzie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wordzie.swift; sourceTree = "<group>"; };
 		11396AC81A2F456C0050120D /* OperationsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationsManager.swift; sourceTree = "<group>"; };
 		11396ACA1A2F4BEF0050120D /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		11396ACC1A2F7EAD0050120D /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 				1124B69D1A4792E5007A7127 /* ResponsiveTextFieldViewController.swift */,
 				11B0C8201A33A41700F0A557 /* Main.storyboard */,
 				11B666E11A326196006A17F3 /* VocabCrack-iOS-Bridging-Header.h */,
-				11396AC61A2F40200050120D /* VocabCrack.swift */,
+				11396AC61A2F40200050120D /* Wordzie.swift */,
 				11396AC01A2F40190050120D /* CoreHandler.swift */,
 				11396AC11A2F40190050120D /* GameHandler.swift */,
 				11396AC21A2F40190050120D /* FriendHandler.swift */,
@@ -353,7 +353,7 @@
 				11121AF01A3020AF00153E01 /* Utilities.swift in Sources */,
 				11B666E31A326FAD006A17F3 /* OptionsController.swift in Sources */,
 				11396ABD1A2ED4500050120D /* RegisterController.swift in Sources */,
-				11396AC71A2F40200050120D /* VocabCrack.swift in Sources */,
+				11396AC71A2F40200050120D /* Wordzie.swift in Sources */,
 				1110AF451A3F5E51002088C2 /* EditTermController.swift in Sources */,
 				11396ABF1A2F3D470050120D /* LoginController.swift in Sources */,
 				11058F2A1A3CFE1100D5A291 /* NewListController.swift in Sources */,
