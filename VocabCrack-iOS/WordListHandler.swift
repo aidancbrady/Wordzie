@@ -22,7 +22,7 @@ class WordListHandler
         array.append("Default", "DefaultURL")
     }
     
-    class func loadList(list:(String, String), controller:WeakWrapper<ListLoader>)
+    class func loadList(list:(String, String), controller:WeakWrapper<UIViewController>)
     {
         Constants.CORE.listData = nil
         Constants.CORE.activeList.removeAll(keepCapacity: false)
@@ -32,11 +32,11 @@ class WordListHandler
             loadDefaultList(controller)
         }
         else {
-            loadCustomList(list, controller: WeakWrapper(value: controller.value!))
+            loadCustomList(list, controller: controller)
         }
     }
     
-    class func loadCustomList(list:(String, String), controller:WeakWrapper<ListLoader>)
+    class func loadCustomList(list:(String, String), controller:WeakWrapper<UIViewController>)
     {
         println("Loading '" + list.0 + "' word list...")
         
@@ -47,7 +47,7 @@ class WordListHandler
             {
                 if array.count == 1 && array[0] == "null"
                 {
-                    controller.value?.listLoaded(false)
+                    WordListHandler.listLoaded(controller.value, success: false)
                     returned = true
                     return
                 }
@@ -67,11 +67,11 @@ class WordListHandler
                 if Constants.CORE.activeList.count >= 10
                 {
                     Constants.CORE.listData = list
-                    controller.value?.listLoaded(true)
+                    WordListHandler.listLoaded(controller.value, success: true)
                 }
                 else {
                     Constants.CORE.activeList.removeAll(keepCapacity: false)
-                    controller.value?.listLoaded(false)
+                    WordListHandler.listLoaded(controller.value, success: false)
                 }
                 
                 returned = true
@@ -82,11 +82,19 @@ class WordListHandler
             
             if !returned
             {
-                controller.value?.listLoaded(false)
+                WordListHandler.listLoaded(controller.value, success: false)
             }
             
             return
         })
+    }
+    
+    class func listLoaded(controller: UIViewController?, success:Bool)
+    {
+        if controller != nil && controller! is ListLoader
+        {
+            (controller as ListLoader).listLoaded(success)
+        }
     }
     
     class func loadListForEdit(list:(String, String), controller:WeakWrapper<CreateListController>)
@@ -169,7 +177,7 @@ class WordListHandler
         })
     }
     
-    class func loadDefaultList(controller:WeakWrapper<ListLoader>)
+    class func loadDefaultList(controller:WeakWrapper<UIViewController>)
     {
         let manager:NSFileManager = NSFileManager()
         
@@ -199,15 +207,15 @@ class WordListHandler
             if !failed && Constants.CORE.activeList.count >= 1
             {
                 Constants.CORE.listData = ("Default", "DefaultURL")
-                controller.value?.listLoaded(true)
+                WordListHandler.listLoaded(controller.value, success: true)
             }
             else {
                 Constants.CORE.activeList.removeAll(keepCapacity: false)
-                controller.value?.listLoaded(false)
+                WordListHandler.listLoaded(controller.value, success: false)
             }
         }
         else {
-            controller.value?.listLoaded(false)
+            WordListHandler.listLoaded(controller.value, success: false)
         }
     }
     
@@ -355,8 +363,8 @@ class ListHandler
                             let url = array[2]
                             
                             Utilities.displayAlert(table, title: "Success", msg: "Successfully created and uploaded word list. You now have \(amount) out of 5 word lists.", action: {action in
-                                controller.value!.dismissViewControllerAnimated(true, completion: nil)
-                                controller.value!.navigationController!.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+                                table.dismissViewControllerAnimated(true, completion: nil)
+                                table.navigationController!.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
                                 return
                             })
                         }
@@ -460,7 +468,7 @@ class ListHandler
     }
 }
 
-protocol ListLoader : NSObjectProtocol
+@objc protocol ListLoader : class
 {
     func listLoaded(success:Bool)
 }

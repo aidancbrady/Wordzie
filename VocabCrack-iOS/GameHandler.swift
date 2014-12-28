@@ -202,4 +202,49 @@ class GameHandler
             })
         })
     }
+    
+    func compGame(controller:WeakWrapper<RoundOverController>)
+    {
+        let game = controller.value!.game
+        
+        var listData: NSMutableString?
+        
+        if game.userPoints.count != game.opponentPoints.count
+        {
+            listData = NSMutableString()
+            game.writeWordList(listData!)
+        }
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            var str = compileMsg("COMPGAME", Constants.CORE.account.username, game.getRequestReceiver(), String(game.userPoints[game.userPoints.count-1]))
+            
+            if listData != nil
+            {
+                str = compileMsg(str, listData!)
+            }
+            
+            let ret = NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if let roundOver = controller.value
+                {
+                    if let response = ret
+                    {
+                        let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
+                        
+                        if array[0] == "ACCEPT"
+                        {
+                            roundOver.confirmResponse(true)
+                        }
+                        else {
+                            roundOver.confirmResponse(false)
+                        }
+                    }
+                    else {
+                        roundOver.confirmResponse(false)
+                    }
+                }
+            })
+        })
+    }
 }

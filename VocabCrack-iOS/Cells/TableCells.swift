@@ -119,22 +119,11 @@ class GameCell: UITableViewCell
                 }
             }
             else {
-                Utilities.displayYesNo(controller!, title: "New Game", msg: "Start new game with " + opponent + "?", action: {(action) -> Void in
-                    Handlers.gameHandler.acceptRequest(WeakWrapper(value: self.controller!), friend: opponent)
-                    var path = self.controller!.tableView.indexPathForCell(self)
-                    self.controller!.tableView(self.controller!.tableView, commitEditingStyle: .Delete, forRowAtIndexPath: path!)
-                    Handlers.gameHandler.updateData(WeakWrapper(value: self.controller!))
-                    
-                    let newGame:NewGameController = self.controller!.storyboard?.instantiateViewControllerWithIdentifier("NewGameController") as NewGameController
-                    
-                    newGame.definedUser = opponent
-                    
-                    self.controller!.navigationController!.pushViewController(newGame, animated: true)
-                    
-                    return
-                }, cancel: {(action) -> Void in
-                    self.setSelected(false, animated: true)
-                })
+                let detail:GameDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("GameDetailController") as GameDetailController
+                
+                detail.game = game
+                
+                controller!.navigationController!.pushViewController(detail, animated: true)
             }
         }
     }

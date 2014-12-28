@@ -16,6 +16,8 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var scoreTable: UITableView!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var gameTypeLabel: UILabel!
+    @IBOutlet weak var wordListLabel: UILabel!
     
     var game:Game?
     
@@ -26,13 +28,21 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         
         matchLabel.text = game!.user + " vs " + game!.opponent
         scoreLabel.text = "\(game!.getUserScore()) - \(game!.getOpponentScore())"
+        gameTypeLabel.text = GameType.getType(game!.gameType).description
+        wordListLabel.text = game!.getListName()
         
         scoreTable.reloadData()
         
-        if !game!.userTurn
+        if !game!.hasWinner()
         {
-            playButton.enabled = false
-            playButton.setTitle("Opponent's Turn", forState: UIControlState.Normal)
+            if !game!.userTurn
+            {
+                playButton.enabled = false
+                playButton.setTitle("Opponent's Turn", forState: UIControlState.Normal)
+            }
+        }
+        else {
+            playButton.setTitle("New Game", forState: UIControlState.Normal)
         }
     }
     
@@ -57,10 +67,21 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func gameButton(sender: AnyObject)
     {
-        if game != nil && game!.userTurn
+        if game != nil
         {
-            playButton.enabled = false
-            WordListHandler.loadList(game!.getList(), controller: WeakWrapper(value: self))
+            if !game!.hasWinner() && game!.userTurn
+            {
+                playButton.enabled = false
+                WordListHandler.loadList(game!.getList(), controller: WeakWrapper(value: self))
+            }
+            else if game!.hasWinner()
+            {
+                let newGame:NewGameController = storyboard?.instantiateViewControllerWithIdentifier("NewGameController") as NewGameController
+                
+                newGame.definedUser = Utilities.getRemoteUser(game!)
+                
+                navigationController!.pushViewController(newGame, animated: true)
+            }
         }
     }
     

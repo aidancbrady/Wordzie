@@ -84,14 +84,16 @@ class GamesController: UITableViewController
             }
             else {
                 cell.usernameLabel.text = "Game with \(Utilities.getRemoteUser(game))"
-                var scoreMsg = game.isTied() ? "Tied " : (game.getWinning() == game.user ? "Winning " : "Losing ")
-                scoreMsg += "\(game.getUserScore()) to \(game.getOpponentScore())"
-                cell.scoreLabel.text = scoreMsg
+                cell.scoreLabel.text = "\(game.getUserScore()) to \(game.getOpponentScore())"
                 cell.turnLabel.text = game.userTurn ? "Your turn!" : "Opponent's turn"
             }
         }
         else {
             cell.usernameLabel.text = "Game with \(Utilities.getRemoteUser(game))"
+            var scoreText = game.isTied() ? "Tied " : (game.getWinning() == game.user ? "Won " : "Lost ")
+            scoreText += "\(game.getUserScore()) to \(game.getOpponentScore())"
+            cell.scoreLabel.text = scoreText
+            cell.turnLabel.hidden = true
         }
         
         Utilities.loadAvatar(WeakWrapper(value: cell.userAvatar), email: game.opponentEmail!)

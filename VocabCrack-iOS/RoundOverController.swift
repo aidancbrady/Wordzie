@@ -49,7 +49,14 @@ class RoundOverController: UIViewController
         }
         else {
             activityIndicator.startAnimating()
-            Handlers.gameHandler.newGame(WeakWrapper(value: self))
+            
+            if game.isRequest
+            {
+                Handlers.gameHandler.newGame(WeakWrapper(value: self))
+            }
+            else {
+                Handlers.gameHandler.compGame(WeakWrapper(value: self))
+            }
         }
     }
     
@@ -127,7 +134,14 @@ class RoundOverController: UIViewController
         else {
             Utilities.displayDialog(self, title: "Error", msg: "Couldn't send game data to server.", actions: ActionButton(button: "Try Again", action: {action in
                 self.activityIndicator.startAnimating()
-                Handlers.gameHandler.newGame(WeakWrapper(value: self))
+                
+                if self.game.isRequest
+                {
+                    Handlers.gameHandler.newGame(WeakWrapper(value: self))
+                }
+                else {
+                    Handlers.gameHandler.compGame(WeakWrapper(value: self))
+                }
             }), ActionButton(button: "Exit", action: {action in
                 self.dismissViewControllerAnimated(true, completion: nil)
             }))

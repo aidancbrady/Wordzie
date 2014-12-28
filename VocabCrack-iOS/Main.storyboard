@@ -1659,16 +1659,37 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Word List" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TfJ-2k-z7f">
+                                <rect key="frame" x="243" y="274" width="61" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="WlK-tq-U9m"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Single Game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bnl-aX-uE1">
+                                <rect key="frame" x="16" y="274" width="83" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="8V3-W4-qtK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Bnl-aX-uE1" firstAttribute="leading" secondItem="h0t-CC-Ydk" secondAttribute="leadingMargin" id="3GT-0c-Vap"/>
                             <constraint firstItem="OBZ-fM-qEu" firstAttribute="trailing" secondItem="h0t-CC-Ydk" secondAttribute="trailingMargin" id="47p-Ls-qBI"/>
                             <constraint firstItem="3Ss-hP-hHV" firstAttribute="trailing" secondItem="h0t-CC-Ydk" secondAttribute="trailingMargin" id="9cF-zo-wk1"/>
+                            <constraint firstItem="gUL-Pb-ous" firstAttribute="top" secondItem="Bnl-aX-uE1" secondAttribute="bottom" constant="8" id="9n0-1G-CEs"/>
                             <constraint firstItem="TxZ-Md-bhV" firstAttribute="leading" secondItem="h0t-CC-Ydk" secondAttribute="leadingMargin" id="JSL-As-rUL"/>
                             <constraint firstAttribute="bottomMargin" secondItem="gUL-Pb-ous" secondAttribute="bottom" constant="46" id="Jsf-7w-pFR"/>
                             <constraint firstItem="yHd-9h-V9Y" firstAttribute="leading" secondItem="TxZ-Md-bhV" secondAttribute="trailing" constant="8" id="LQY-oh-0j8"/>
                             <constraint firstAttribute="centerX" secondItem="OBZ-fM-qEu" secondAttribute="centerX" id="OUh-Ij-akM"/>
                             <constraint firstItem="yHd-9h-V9Y" firstAttribute="leading" secondItem="TxZ-Md-bhV" secondAttribute="trailing" constant="8" id="OcK-PF-KCT"/>
+                            <constraint firstItem="TfJ-2k-z7f" firstAttribute="trailing" secondItem="h0t-CC-Ydk" secondAttribute="trailingMargin" id="Q0S-WH-2py"/>
                             <constraint firstItem="TxZ-Md-bhV" firstAttribute="top" secondItem="XHT-V9-voH" secondAttribute="bottom" constant="16" id="Xcd-te-kSo"/>
                             <constraint firstItem="gUL-Pb-ous" firstAttribute="top" secondItem="3Ss-hP-hHV" secondAttribute="bottom" constant="8" id="aVC-gs-L7N"/>
                             <constraint firstAttribute="centerX" secondItem="gUL-Pb-ous" secondAttribute="centerX" id="bEo-bf-YGL"/>
@@ -1684,6 +1705,7 @@
                             <constraint firstAttribute="centerX" secondItem="3Ss-hP-hHV" secondAttribute="centerX" id="tck-7B-fVT"/>
                             <constraint firstItem="OBZ-fM-qEu" firstAttribute="top" secondItem="yHd-9h-V9Y" secondAttribute="bottom" constant="19" id="tzq-dd-DE3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gUL-Pb-ous" secondAttribute="trailing" constant="-16" id="uKr-yN-FtH"/>
+                            <constraint firstItem="gUL-Pb-ous" firstAttribute="top" secondItem="TfJ-2k-z7f" secondAttribute="bottom" constant="8" id="vmG-Dq-5Rm"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Game Details" id="6hv-E0-hlz">
@@ -1692,12 +1714,14 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
+                        <outlet property="gameTypeLabel" destination="Bnl-aX-uE1" id="db1-Rw-bTT"/>
                         <outlet property="matchLabel" destination="OBZ-fM-qEu" id="L4X-E1-M1n"/>
                         <outlet property="opponentAvatar" destination="yHd-9h-V9Y" id="Wzq-hM-AyP"/>
                         <outlet property="playButton" destination="mvg-nE-MNG" id="X0j-1q-2rl"/>
                         <outlet property="scoreLabel" destination="3Ss-hP-hHV" id="dxn-Kc-7aI"/>
                         <outlet property="scoreTable" destination="gUL-Pb-ous" id="kdZ-sQ-dJp"/>
                         <outlet property="userAvatar" destination="TxZ-Md-bhV" id="Vt5-He-X7F"/>
+                        <outlet property="wordListLabel" destination="TfJ-2k-z7f" id="7gN-hG-RGb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K69-ZK-FOv" userLabel="First Responder" sceneMemberID="firstResponder"/>
