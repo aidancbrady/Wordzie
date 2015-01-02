@@ -11,6 +11,8 @@ class NetHandler
 {
     class func sendData(str:String) -> String?
     {
+        Operations.setNetworkActivity(true)
+        
         var inputStream:NSInputStream?
         var outputStream:NSOutputStream?
         
@@ -27,6 +29,8 @@ class NetHandler
         var buffer = [UInt8](count:16384, repeatedValue:0)
         var bytes = inputStream!.read(&buffer, maxLength: 16384)
         inputStream?.close()
+        
+        Operations.setNetworkActivity(false)
         
         if let str = NSString(bytes: &buffer, length: bytes, encoding: NSUTF8StringEncoding)
         {

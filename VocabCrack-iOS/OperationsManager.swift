@@ -19,4 +19,19 @@ struct Operations
     static var loadingRequests = false
     static var loadingAvatars:NSMutableArray = NSMutableArray()
     static var loadingLists = false
+    
+    static var currentOperations = 0
+    
+    static func setNetworkActivity(activity:Bool)
+    {
+        if activity
+        {
+            currentOperations++
+        }
+        else {
+            currentOperations--
+        }
+        
+        UIApplication.sharedApplication().networkActivityIndicatorVisible = currentOperations > 0
+    }
 }

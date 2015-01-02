@@ -44,7 +44,7 @@ class RoundOverController: UIViewController
                 }, cancel: nil)
             }
             else {
-                dismissViewControllerAnimated(true, completion: nil)
+                dismiss()
             }
         }
         else {
@@ -123,13 +123,52 @@ class RoundOverController: UIViewController
         return true
     }
     
+    func dismiss()
+    {
+        let superNav = navigationController!.presentingViewController as UINavigationController
+        var newControllers = superNav.viewControllers
+        let count = newControllers.count
+        
+        for var i = count-1; i >= 0; i--
+        {
+            let controller = newControllers[i] as UIViewController
+            
+            if controller is GamesController
+            {
+                if game.hasWinner()
+                {
+                    let detail:GameDetailController = storyboard!.instantiateViewControllerWithIdentifier("GameDetailController") as GameDetailController
+                    detail.game = game
+                    
+                    newControllers.append(detail)
+                }
+                
+                break
+            }
+            else if controller is MenuController
+            {
+                let games:GamesController = storyboard!.instantiateViewControllerWithIdentifier("GamesController") as GamesController
+                newControllers.append(games)
+                
+                break
+            }
+            else {
+                newControllers.removeAtIndex(i)
+            }
+        }
+        
+        superNav.setViewControllers(newControllers, animated: false)
+        
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     func confirmResponse(success:Bool)
     {
         activityIndicator.stopAnimating()
         
         if success
         {
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss()
         }
         else {
             Utilities.displayDialog(self, title: "Error", msg: "Couldn't send game data to server.", actions: ActionButton(button: "Try Again", action: {action in
@@ -143,7 +182,7 @@ class RoundOverController: UIViewController
                     Handlers.gameHandler.compGame(WeakWrapper(value: self))
                 }
             }), ActionButton(button: "Exit", action: {action in
-                self.dismissViewControllerAnimated(true, completion: nil)
+                self.dismiss()
             }))
         }
     }
