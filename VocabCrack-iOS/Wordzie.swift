@@ -19,6 +19,7 @@ class Wordzie
     var activeList:[String] = [String]()
     
     var listURLs:[String: String] = [String: String]()
+    
 }
 
 struct Handlers

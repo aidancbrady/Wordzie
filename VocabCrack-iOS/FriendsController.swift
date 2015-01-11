@@ -65,6 +65,17 @@ class FriendsController: TableDataReceiver
         Handlers.friendHandler.updateData(WeakWrapper(value: self))
     }
     
+    func updateModeTitle()
+    {
+        if requests.count > 0
+        {
+            modeButton.setTitle("Requests (\(requests.count))", forSegmentAtIndex: 1)
+        }
+        else {
+            modeButton.setTitle("Requests", forSegmentAtIndex: 1)
+        }
+    }
+    
     func onRefresh()
     {
         Handlers.friendHandler.updateData(WeakWrapper(value: self))
@@ -136,6 +147,7 @@ class FriendsController: TableDataReceiver
                     requests.removeAtIndex(indexPath.row)
                 }
                 
+                updateModeTitle()
                 Handlers.friendHandler.deleteFriend(username, type: type)
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }

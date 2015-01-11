@@ -346,6 +346,21 @@ class Utilities
     {
         return num1 < num2 ? num1 : num2
     }
+    
+    class func registerNotifications()
+    {
+        let application = UIApplication.sharedApplication()
+        
+        if application.respondsToSelector("isRegisteredForRemoteNotifications") // iOS 8
+        {
+            println("Registering for notifications...")
+            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge, categories: nil))
+            application.registerForRemoteNotifications()
+        }
+        else { // iOS 7 or below
+            application.registerForRemoteNotificationTypes(UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound)
+        }
+    }
 }
 
 class TableDataReceiver: UITableViewController

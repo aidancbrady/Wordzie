@@ -14,9 +14,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     var window: UIWindow?
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
-    {
+    {        
         Utilities.loadData()
         return true
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject])
+    {
+        if let action = userInfo["action"] as? String
+        {
+            println("Notification: " + action)
+        }
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData)
+    {
+        println("Successfully registered notification service.")
+        
+        var deviceID = deviceToken.description
+            .stringByReplacingOccurrencesOfString("<", withString: "", options: nil, range: nil)
+            .stringByReplacingOccurrencesOfString(">", withString: "", options: nil, range: nil)
+            .stringByReplacingOccurrencesOfString(" ", withString: "", options: nil, range: nil)
+        
+        println("Sending device ID " + deviceID)
+        
+        Handlers.coreHandler.sendDeviceID(deviceID)
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError)
+    {
+        println("Failed to register notification service.")
     }
 
     func applicationWillResignActive(application: UIApplication)

@@ -106,13 +106,7 @@ class FriendHandler
                             
                             if table is FriendsController
                             {
-                                if accounts.count > 0
-                                {
-                                    (table as FriendsController).modeButton.setTitle("Requests (\(accounts.count))", forSegmentAtIndex: 1)
-                                }
-                                else {
-                                    (table as FriendsController).modeButton.setTitle("Requests", forSegmentAtIndex: 1)
-                                }
+                                (table as FriendsController).updateModeTitle()
                             }
                         }
                     }

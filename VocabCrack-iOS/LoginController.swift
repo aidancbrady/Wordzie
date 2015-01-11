@@ -94,6 +94,8 @@ class LoginController: UIViewController, UITextFieldDelegate
                     let menu:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("MenuNavigation") as UINavigationController
                     
                     self.presentViewController(menu, animated: true, completion: nil)
+                    
+                    Utilities.registerNotifications()
                 }
                 else {
                     var alertMsg:String = response != nil ? response! : "Unable to connect."

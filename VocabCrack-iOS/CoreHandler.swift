@@ -36,6 +36,15 @@ class CoreHandler : NSObject, NSStreamDelegate
         return (false, nil)
     }
     
+    func sendDeviceID(deviceID:String)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = compileMsg("PUSHID", Constants.CORE.account.username, deviceID)
+            NetHandler.sendData(str)
+            println("Sent device ID to server")
+        })
+    }
+    
     func register(username:String, email:String, password:String) -> (Bool, String?)
     {
         let str = compileMsg("REGISTER", username, email, password)

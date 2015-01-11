@@ -1641,8 +1641,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvg-nE-MNG">
-                                <rect key="frame" x="145" y="530" width="30" height="30"/>
+                                <rect key="frame" x="0.0" y="530" width="320" height="30"/>
+                                <color key="backgroundColor" red="0.0089120518840000006" green="0.00055432389550000001" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Play">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1716,6 +1718,7 @@
                         <constraints>
                             <constraint firstItem="Bnl-aX-uE1" firstAttribute="leading" secondItem="h0t-CC-Ydk" secondAttribute="leadingMargin" id="3GT-0c-Vap"/>
                             <constraint firstItem="OBZ-fM-qEu" firstAttribute="trailing" secondItem="h0t-CC-Ydk" secondAttribute="trailingMargin" id="47p-Ls-qBI"/>
+                            <constraint firstItem="mvg-nE-MNG" firstAttribute="leading" secondItem="h0t-CC-Ydk" secondAttribute="leadingMargin" constant="-16" id="4bh-80-ioI"/>
                             <constraint firstItem="3Ss-hP-hHV" firstAttribute="trailing" secondItem="h0t-CC-Ydk" secondAttribute="trailingMargin" id="9cF-zo-wk1"/>
                             <constraint firstItem="gUL-Pb-ous" firstAttribute="top" secondItem="Bnl-aX-uE1" secondAttribute="bottom" constant="8" id="9n0-1G-CEs"/>
                             <constraint firstItem="TxZ-Md-bhV" firstAttribute="leading" secondItem="h0t-CC-Ydk" secondAttribute="leadingMargin" id="JSL-As-rUL"/>
@@ -1726,6 +1729,7 @@
                             <constraint firstItem="TfJ-2k-z7f" firstAttribute="trailing" secondItem="h0t-CC-Ydk" secondAttribute="trailingMargin" id="Q0S-WH-2py"/>
                             <constraint firstItem="TxZ-Md-bhV" firstAttribute="top" secondItem="XHT-V9-voH" secondAttribute="bottom" constant="16" id="Xcd-te-kSo"/>
                             <constraint firstItem="gUL-Pb-ous" firstAttribute="top" secondItem="3Ss-hP-hHV" secondAttribute="bottom" constant="8" id="aVC-gs-L7N"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mvg-nE-MNG" secondAttribute="trailing" constant="-16" id="bEX-rX-O4B"/>
                             <constraint firstAttribute="centerX" secondItem="gUL-Pb-ous" secondAttribute="centerX" id="bEo-bf-YGL"/>
                             <constraint firstItem="3Ss-hP-hHV" firstAttribute="leading" secondItem="h0t-CC-Ydk" secondAttribute="leadingMargin" id="d05-Qf-x5h"/>
                             <constraint firstItem="3Ss-hP-hHV" firstAttribute="top" secondItem="OBZ-fM-qEu" secondAttribute="bottom" constant="8" id="dUQ-ce-gFH"/>
@@ -1888,11 +1892,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sC-0Q-0fU">
-                                <rect key="frame" x="122" y="518" width="76" height="30"/>
+                                <rect key="frame" x="0.0" y="518" width="320" height="30"/>
+                                <color key="backgroundColor" red="0.0089120518840000006" green="0.00055432389550000001" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Vjn-VY-uul"/>
                                 </constraints>
                                 <state key="normal" title="New Game">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -1942,9 +1948,11 @@
                             <constraint firstItem="yao-vi-M1V" firstAttribute="trailing" secondItem="zEJ-uJ-P3Z" secondAttribute="trailingMargin" id="b0Z-L5-Hqe"/>
                             <constraint firstAttribute="centerX" secondItem="a0p-Pb-35D" secondAttribute="centerX" id="drU-7F-Enf"/>
                             <constraint firstAttribute="centerX" secondItem="Dnr-KX-Lr1" secondAttribute="centerX" id="eNT-CJ-j45"/>
+                            <constraint firstItem="9sC-0Q-0fU" firstAttribute="leading" secondItem="zEJ-uJ-P3Z" secondAttribute="leadingMargin" constant="-16" id="ed0-uB-6te"/>
                             <constraint firstItem="nnP-co-Mr8" firstAttribute="leading" secondItem="zEJ-uJ-P3Z" secondAttribute="leadingMargin" id="i9z-ah-e5W"/>
                             <constraint firstItem="yao-vi-M1V" firstAttribute="top" secondItem="Dnr-KX-Lr1" secondAttribute="bottom" constant="39" id="jF8-xm-qdm"/>
                             <constraint firstItem="a0p-Pb-35D" firstAttribute="leading" secondItem="zEJ-uJ-P3Z" secondAttribute="leadingMargin" id="pmI-au-NyA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9sC-0Q-0fU" secondAttribute="trailing" constant="-16" id="qfs-E3-Ynd"/>
                             <constraint firstAttribute="centerX" secondItem="9sC-0Q-0fU" secondAttribute="centerX" id="tKl-mt-GX5"/>
                             <constraint firstItem="Aae-kO-q7L" firstAttribute="leading" secondItem="zEJ-uJ-P3Z" secondAttribute="leadingMargin" id="x1D-W3-lJs"/>
                             <constraint firstItem="Dnr-KX-Lr1" firstAttribute="top" secondItem="Jtg-b3-ATV" secondAttribute="bottom" constant="17" id="yCE-MC-Nar"/>
