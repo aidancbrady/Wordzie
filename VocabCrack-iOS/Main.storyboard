@@ -279,7 +279,7 @@
                                     <action selector="onRefresh:" destination="kGS-ce-2gM" eventType="touchUpInside" id="jHt-Qb-VIP"/>
                                 </connections>
                             </button>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="djW-9l-VfT">
+                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="djW-9l-VfT">
                                 <rect key="frame" x="16" y="168" width="96" height="96"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="96" id="K3J-00-zTS"/>
@@ -1066,7 +1066,6 @@
                                 <rect key="frame" x="16" y="187" width="288" height="29"/>
                                 <segments>
                                     <segment title="Singleplayer"/>
-                                    <segment title="Random"/>
                                     <segment title="Friends List"/>
                                 </segments>
                                 <connections>

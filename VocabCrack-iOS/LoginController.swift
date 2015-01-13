@@ -66,6 +66,9 @@ class LoginController: UIViewController, UITextFieldDelegate
                 
                 if getCachedData()
                 {
+                    loginLabel.text = "Login as " + dataCache!.0
+                    avatarView.image = UIImage(named: "user.png")
+                    
                     show(nil, views: loginLabel, cancelButton, avatarView)
                     show(nil, views: loginButton)
                     
@@ -204,6 +207,7 @@ class LoginController: UIViewController, UITextFieldDelegate
             return
         }
         
+        dataCache = nil
         loginSpinner.startAnimating()
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {

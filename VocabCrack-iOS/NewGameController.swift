@@ -149,7 +149,7 @@ class NewGameController: UIViewController, ListLoader
         {
             playLabel.text = "Playing against " + definedUser! + "..."
             playButton.enabled = false
-            playButton.selectedSegmentIndex = 2
+            playButton.selectedSegmentIndex = 1
             changeButton.setTitle("Change", forState: UIControlState.Normal)
         }
         else {
@@ -177,23 +177,23 @@ class NewGameController: UIViewController, ListLoader
     {
         changeButton.setTitle("Choose", forState: UIControlState.Normal)
         
-        if (playButton.selectedSegmentIndex == 0 || playButton.selectedSegmentIndex == 1)
+        if (playButton.selectedSegmentIndex == 0)
         {
             if listLabel.hidden
             {
                 show(nil, views: listLabel, listChange)
             }
         }
-        else if playButton.selectedSegmentIndex == 2
+        else if playButton.selectedSegmentIndex == 1
         {
             hidePastPlay()
         }
         
-        if self.playButton.selectedSegmentIndex != 2 && !self.changeButton.hidden
+        if self.playButton.selectedSegmentIndex != 1 && !self.changeButton.hidden
         {
             hide(nil, views: changeButton)
         }
-        else if self.playButton.selectedSegmentIndex == 2 && self.changeButton.hidden
+        else if self.playButton.selectedSegmentIndex == 1 && self.changeButton.hidden
         {
             show(nil, views: changeButton)
         }
@@ -205,11 +205,7 @@ class NewGameController: UIViewController, ListLoader
         {
             confirmGame(true, response: nil)
         }
-        else if playButton.selectedSegmentIndex == 1
-        {
-            //Open random game view
-        }
-        else if playButton.selectedSegmentIndex == 2 && definedUser != nil
+        else if playButton.selectedSegmentIndex == 1 && definedUser != nil
         {
             continueButton.enabled = false
             Handlers.gameHandler.confirmGame(WeakWrapper(value: self), friend: definedUser!)
