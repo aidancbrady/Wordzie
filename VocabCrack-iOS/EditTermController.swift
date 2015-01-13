@@ -57,12 +57,12 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
         {
             if Utilities.isValidMsg(wordField.text, definitionField.text)
             {
-                if existsCheck(wordField.text)
+                let newTerm = (Utilities.trim(wordField.text), Utilities.trim(definitionField.text))
+                
+                if existsCheck(newTerm)
                 {
                     if boundsCheck()
                     {
-                        let newTerm = (Utilities.trim(wordField.text), Utilities.trim(definitionField.text))
-                        
                         if term != nil
                         {
                             (getParent() as TermDetailController).term = newTerm
@@ -80,7 +80,7 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
                     }
                 }
                 else {
-                    Utilities.displayAlert(self, title: "Error", msg: "Word already exists!", action: nil)
+                    Utilities.displayAlert(self, title: "Error", msg: "Word or definition already exists!", action: nil)
                 }
             }
             else {
@@ -114,19 +114,26 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
         return detailController.getParent()
     }
     
-    func existsCheck(word:String) -> Bool
+    func existsCheck(newTerm:(String, String)) -> Bool
     {
         let list = term != nil ? (getEditParent() as CreateListController) : (getParent() as CreateListController)
         
         for pair in list.terms
         {
-            if term == nil && Utilities.trimmedEqual(word, str2: pair.0)
+            if term == nil && (Utilities.trimmedEqual(newTerm.0, str2: pair.0) || Utilities.trimmedEqual(newTerm.1, str2: pair.1))
             {
                 return false
             }
-            else if term != nil && !Utilities.trimmedEqual(word, str2: term!.0) && Utilities.trimmedEqual(word, str2: pair.0)
+            else if term != nil
             {
-                return false
+                if !Utilities.trimmedEqual(newTerm.0, str2: term!.0) && Utilities.trimmedEqual(newTerm.0, str2: pair.0)
+                {
+                    return false
+                }
+                else if !Utilities.trimmedEqual(newTerm.1, str2: term!.1) && Utilities.trimmedEqual(newTerm.1, str2: pair.1)
+                {
+                    return false
+                }
             }
         }
         
