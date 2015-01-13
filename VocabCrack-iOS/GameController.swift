@@ -46,6 +46,8 @@ class GameController: UIViewController
         initDefinition(definition3)
         initDefinition(definition4)
         
+        Utilities.roundButtons(definitionView)
+        
         setNeedsStatusBarAppearanceUpdate()
         
         initGame()
