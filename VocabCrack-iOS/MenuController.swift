@@ -14,12 +14,16 @@ class MenuController: UIViewController
     
     @IBOutlet weak var userLabel: UILabel!
     
+    @IBOutlet weak var menuLayer: UIView!
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
 
         userLabel.text = "Welcome, " + Constants.CORE.account.username + "!"
         Utilities.loadAvatar(WeakWrapper(value: userAvatar), email: Constants.CORE.account.email!)
+        
+        Utilities.roundButtons(menuLayer)
     }
     
     override func supportedInterfaceOrientations() -> Int
@@ -38,5 +42,10 @@ class MenuController: UIViewController
     {
         Constants.CORE.account = Defaults.ACCOUNT
         navigationController!.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func helpButton(sender: AnyObject)
+    {
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://aidancbrady.com/wordzie/")!)
     }
 }

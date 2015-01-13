@@ -20,7 +20,7 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="by aidancbrady" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sdE-ny-1EG">
-                    <rect key="frame" x="96" y="227" width="288" height="26"/>
+                    <rect key="frame" x="8" y="227" width="464" height="26"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="26" id="gSP-l4-uFz"/>
                     </constraints>
@@ -38,7 +38,9 @@
                 <constraint firstAttribute="centerY" secondItem="4UE-RD-kjC" secondAttribute="centerY" multiplier="1.5" id="CU9-z8-vJM"/>
                 <constraint firstAttribute="centerX" secondItem="sdE-ny-1EG" secondAttribute="centerX" id="Cw7-zg-sew"/>
                 <constraint firstAttribute="centerX" secondItem="4UE-RD-kjC" secondAttribute="centerX" id="JFk-HH-7oc"/>
+                <constraint firstAttribute="trailing" secondItem="sdE-ny-1EG" secondAttribute="trailing" constant="8" id="eEe-mC-kfN"/>
                 <constraint firstItem="4UE-RD-kjC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="96" id="gjR-Jb-Xkh"/>
+                <constraint firstItem="sdE-ny-1EG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="uzM-Be-Af6"/>
                 <constraint firstItem="sdE-ny-1EG" firstAttribute="top" secondItem="4UE-RD-kjC" secondAttribute="bottom" constant="31" id="wT7-x2-KZf"/>
                 <constraint firstAttribute="trailing" secondItem="4UE-RD-kjC" secondAttribute="trailing" constant="96" id="yyO-3G-7mO"/>
             </constraints>
@@ -48,6 +50,8 @@
                 <mask key="constraints">
                     <exclude reference="2Xo-Ah-McW"/>
                     <exclude reference="C23-so-PD1"/>
+                    <exclude reference="21L-AS-N1e"/>
+                    <exclude reference="2D0-IF-hNF"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="548" y="455"/>

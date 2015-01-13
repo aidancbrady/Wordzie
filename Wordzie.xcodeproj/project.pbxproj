@@ -11,7 +11,6 @@
 		110333D21A3CFB4600A4A29F /* WordListsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110333D11A3CFB4600A4A29F /* WordListsController.swift */; };
 		11058F2A1A3CFE1100D5A291 /* NewListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11058F291A3CFE1100D5A291 /* NewListController.swift */; };
 		110DA11A1A34C429009B95BA /* AddFriendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 110DA1191A34C429009B95BA /* AddFriendController.swift */; };
-		1110AF351A3E12FF002088C2 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 1110AF341A3E12FF002088C2 /* logo.png */; };
 		1110AF3B1A3E226E002088C2 /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 1110AF3A1A3E226E002088C2 /* check.png */; };
 		1110AF411A3E539D002088C2 /* GameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110AF401A3E539D002088C2 /* GameController.swift */; };
 		1110AF431A3F5E37002088C2 /* TermDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1110AF421A3F5E37002088C2 /* TermDetailController.swift */; };
@@ -41,6 +40,9 @@
 		1199A5151A390C7D0053366E /* WordListHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199A5141A390C7D0053366E /* WordListHandler.swift */; };
 		11AA7F251A4C747D000C6017 /* RoundOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA7F241A4C747D000C6017 /* RoundOverController.swift */; };
 		11ACB3931A3D2F87005C0BBA /* DefaultList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 11ACB3921A3D2F87005C0BBA /* DefaultList.txt */; };
+		11AD99A91A6352B800AF74F1 /* help.png in Resources */ = {isa = PBXBuildFile; fileRef = 11AD99A81A6352B800AF74F1 /* help.png */; };
+		11AD99AB1A6353D400AF74F1 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 11AD99AA1A6353D400AF74F1 /* logo.png */; };
+		11AD99AD1A637E7100AF74F1 /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 11AD99AC1A637E7100AF74F1 /* refresh.png */; };
 		11B0C81F1A339AE100F0A557 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B0C81E1A339AE100F0A557 /* FriendsController.swift */; };
 		11B0C8211A33A41700F0A557 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11B0C8201A33A41700F0A557 /* Main.storyboard */; };
 		11B4C7721A33AA7900413EDD /* TableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B4C7711A33AA7900413EDD /* TableCells.swift */; };
@@ -67,7 +69,6 @@
 		110333D11A3CFB4600A4A29F /* WordListsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListsController.swift; sourceTree = "<group>"; };
 		11058F291A3CFE1100D5A291 /* NewListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewListController.swift; sourceTree = "<group>"; };
 		110DA1191A34C429009B95BA /* AddFriendController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddFriendController.swift; sourceTree = "<group>"; };
-		1110AF341A3E12FF002088C2 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		1110AF3A1A3E226E002088C2 /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		1110AF401A3E539D002088C2 /* GameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameController.swift; sourceTree = "<group>"; };
 		1110AF421A3F5E37002088C2 /* TermDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermDetailController.swift; sourceTree = "<group>"; };
@@ -101,6 +102,9 @@
 		1199A5141A390C7D0053366E /* WordListHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListHandler.swift; sourceTree = "<group>"; };
 		11AA7F241A4C747D000C6017 /* RoundOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundOverController.swift; sourceTree = "<group>"; };
 		11ACB3921A3D2F87005C0BBA /* DefaultList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DefaultList.txt; sourceTree = "<group>"; };
+		11AD99A81A6352B800AF74F1 /* help.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = help.png; sourceTree = "<group>"; };
+		11AD99AA1A6353D400AF74F1 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		11AD99AC1A637E7100AF74F1 /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
 		11B0C81E1A339AE100F0A557 /* FriendsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
 		11B0C8201A33A41700F0A557 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		11B4C7711A33AA7900413EDD /* TableCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TableCells.swift; path = Cells/TableCells.swift; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 		1137F0751A2EC851009A7BDA /* VocabCrack-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				11AD99AC1A637E7100AF74F1 /* refresh.png */,
 				1124B69D1A4792E5007A7127 /* ResponsiveTextFieldViewController.swift */,
 				11B0C8201A33A41700F0A557 /* Main.storyboard */,
 				11B666E11A326196006A17F3 /* VocabCrack-iOS-Bridging-Header.h */,
@@ -196,8 +201,9 @@
 		1137F0761A2EC851009A7BDA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				11AD99AA1A6353D400AF74F1 /* logo.png */,
+				11AD99A81A6352B800AF74F1 /* help.png */,
 				1110AF3A1A3E226E002088C2 /* check.png */,
-				1110AF341A3E12FF002088C2 /* logo.png */,
 				11FDEE651A3E0BD000EA4159 /* icon_120.png */,
 				11FDEE661A3E0BD000EA4159 /* icon_80.png */,
 				11FDEE671A3E0BD000EA4159 /* icon_58.png */,
@@ -313,14 +319,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				11FDEE681A3E0BD000EA4159 /* icon_120.png in Resources */,
+				11AD99AD1A637E7100AF74F1 /* refresh.png in Resources */,
 				11FDEE6A1A3E0BD000EA4159 /* icon_58.png in Resources */,
-				1110AF351A3E12FF002088C2 /* logo.png in Resources */,
+				11AD99AB1A6353D400AF74F1 /* logo.png in Resources */,
 				11B666E71A3275EF006A17F3 /* user.png in Resources */,
 				11B0C8211A33A41700F0A557 /* Main.storyboard in Resources */,
 				1137F0851A2EC851009A7BDA /* LaunchScreen.xib in Resources */,
 				1110AF3B1A3E226E002088C2 /* check.png in Resources */,
 				11ACB3931A3D2F87005C0BBA /* DefaultList.txt in Resources */,
 				11FDEE691A3E0BD000EA4159 /* icon_80.png in Resources */,
+				11AD99A91A6352B800AF74F1 /* help.png in Resources */,
 				1137F0821A2EC851009A7BDA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

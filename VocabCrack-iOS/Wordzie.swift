@@ -20,6 +20,7 @@ class Wordzie
     
     var listURLs:[String: String] = [String: String]()
     
+    var dataState:Bool?
 }
 
 struct Handlers

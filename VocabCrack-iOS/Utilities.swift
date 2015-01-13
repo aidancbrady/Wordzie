@@ -242,10 +242,12 @@ class Utilities
         }
     }
     
-    class func loadData()
+    class func loadData(controller:LoginController)
     {
         WordDataHandler.load()
         WordListHandler.loadListData()
+        
+        Constants.CORE.dataState = nil
         
         let reader:HTTPReader = HTTPReader()
         let request:NSMutableURLRequest = NSMutableURLRequest(URL: Constants.DATA_URL)
@@ -261,10 +263,14 @@ class Utilities
                 Constants.PORT = array[1].toInt()!
             
                 println("Loaded data")
+                Constants.CORE.dataState = true
             }
             else {
                 println("Failed to load data")
+                Constants.CORE.dataState = false
             }
+            
+            controller.dataReceived()
             
             return
         }
@@ -359,6 +365,18 @@ class Utilities
         }
         else { // iOS 7 or below
             application.registerForRemoteNotificationTypes(UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound)
+        }
+    }
+    
+    class func roundButtons(view:UIView)
+    {
+        for subview in view.subviews
+        {
+            if subview is UIButton
+            {
+                let button = subview as UIButton
+                button.layer.cornerRadius = 5
+            }
         }
     }
 }

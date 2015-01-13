@@ -27,6 +27,14 @@ class CoreHandler : NSObject, NSStreamDelegate
                 
                 Constants.CORE.account = acct
                 
+                var defaults = NSUserDefaults.standardUserDefaults()
+                
+                defaults.setObject(acct.username, forKey: "username")
+                defaults.setObject(acct.email, forKey: "email")
+                defaults.setObject(acct.password, forKey: "password")
+                
+                defaults.synchronize()
+                
                 return (true, nil)
             }
             
