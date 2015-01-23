@@ -18,21 +18,30 @@ class NetHandler
         
         NSStream.getStreamsToHostWithName(Constants.IP, port: Constants.PORT, inputStream: &inputStream, outputStream: &outputStream)
         
-        var data = [UInt8]((str + "\n").utf8)
+        var writeData = [UInt8]((str + "\n").utf8)
         
         outputStream!.open()
-        outputStream!.write(&data, maxLength: data.count)
+        outputStream!.write(&writeData, maxLength: writeData.count)
         outputStream!.close()
         
         inputStream!.open()
         
-        var buffer = [UInt8](count:16384, repeatedValue:0)
-        var bytes = inputStream!.read(&buffer, maxLength: 16384)
+        var buffer = [UInt8](count:1048576, repeatedValue:0)
+        var bytes = inputStream!.read(&buffer, maxLength: 1024)
+        var data = NSMutableData(bytes: &buffer, length: bytes)
+        
+        while inputStream!.hasBytesAvailable
+        {
+            let read = inputStream!.read(&buffer, maxLength: 1024)
+            bytes += read
+            data.appendBytes(&buffer, length: read)
+        }
+        
         inputStream?.close()
         
         Operations.setNetworkActivity(false)
         
-        if let str = NSString(bytes: &buffer, length: bytes, encoding: NSUTF8StringEncoding)
+        if let str = NSString(bytes: data.bytes, length: bytes, encoding: NSUTF8StringEncoding)
         {
             return str
         }
@@ -62,10 +71,18 @@ class NetHandler
         
         while ret.count < retLines
         {
-            var buffer = [UInt8](count:16384, repeatedValue:0)
-            var bytes = inputStream.read(&buffer, maxLength: 16384)
+            var buffer = [UInt8](count:1048576, repeatedValue:0)
+            var bytes = inputStream.read(&buffer, maxLength: 1024)
+            var data = NSMutableData(bytes: &buffer, length: bytes)
             
-            if let str = NSString(bytes: &buffer, length: bytes, encoding: NSUTF8StringEncoding)
+            while inputStream.hasBytesAvailable
+            {
+                let read = inputStream.read(&buffer, maxLength: 1024)
+                bytes += read
+                data.appendBytes(&buffer, length: read)
+            }
+            
+            if let str = NSString(bytes: data.bytes, length: bytes, encoding: NSUTF8StringEncoding)
             {
                 var split:[String] = Utilities.split(str, separator: "\n")
                 

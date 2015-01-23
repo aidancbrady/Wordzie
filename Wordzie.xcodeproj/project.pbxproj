@@ -156,7 +156,6 @@
 		1137F0751A2EC851009A7BDA /* VocabCrack-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				11AD99AC1A637E7100AF74F1 /* refresh.png */,
 				1124B69D1A4792E5007A7127 /* ResponsiveTextFieldViewController.swift */,
 				11B0C8201A33A41700F0A557 /* Main.storyboard */,
 				11B666E11A326196006A17F3 /* VocabCrack-iOS-Bridging-Header.h */,
@@ -201,6 +200,7 @@
 		1137F0761A2EC851009A7BDA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				11AD99AC1A637E7100AF74F1 /* refresh.png */,
 				11AD99AA1A6353D400AF74F1 /* logo.png */,
 				11AD99A81A6352B800AF74F1 /* help.png */,
 				1110AF3A1A3E226E002088C2 /* check.png */,
@@ -498,11 +498,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "VocabCrack-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Wordzie;
-				PROVISIONING_PROFILE = "8f3b899b-9f37-4550-b8ad-a6217d6ac74f";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "VocabCrack-iOS/VocabCrack-iOS-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -514,12 +516,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "VocabCrack-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = Wordzie;
-				PROVISIONING_PROFILE = "8f3b899b-9f37-4550-b8ad-a6217d6ac74f";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "VocabCrack-iOS/VocabCrack-iOS-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
