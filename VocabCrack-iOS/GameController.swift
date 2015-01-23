@@ -86,7 +86,10 @@ class GameController: UIViewController
             rightLabel.text = "Singleplayer"
         }
         
-        game.activeWords = WordDataHandler.createWordSet()
+        if game.userPoints.count == game.opponentPoints.count
+        {
+            game.activeWords = WordDataHandler.createWordSet()
+        }
     }
     
     func initDefinition(definition:UIButton)
