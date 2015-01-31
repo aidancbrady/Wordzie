@@ -18,6 +18,17 @@ class CreateListController: UITableViewController
     
     var terms:[(String, String)] = [(String, String)]()
     
+    func listEdited()
+    {
+        if terms.count < 10
+        {
+            saveButton.enabled = false
+        }
+        else {
+            saveButton.enabled = true
+        }
+    }
+    
     @IBAction func newTermButton(sender: AnyObject)
     {
         if editingList != nil && terms.count == 0
@@ -133,8 +144,13 @@ class CreateListController: UITableViewController
         
         if editingList != nil
         {
+            navigationItem.title = "Edit List"
+            
             activity.startAnimating()
             WordListHandler.loadListForEdit(editingList!, controller: WeakWrapper(value: self))
+        }
+        else {
+            saveButton.enabled = false
         }
         
         self.navigationController!.setToolbarHidden(false, animated: false)
@@ -177,6 +193,7 @@ class CreateListController: UITableViewController
         {
             terms.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            listEdited()
         }
     }
     

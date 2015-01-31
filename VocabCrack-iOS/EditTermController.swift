@@ -72,6 +72,7 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
                         else {
                             (getParent() as CreateListController).terms.append(newTerm)
                             (getParent() as CreateListController).tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                            (getParent() as CreateListController).listEdited()
                             dismissViewControllerAnimated(true, completion: nil)
                         }
                     }
