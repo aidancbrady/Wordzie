@@ -131,6 +131,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Avatar" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LAb-dA-6vR">
+                                <rect key="frame" x="103" y="327" width="114" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g81-8C-H1k">
+                                <rect key="frame" x="91" y="356" width="138" height="30"/>
+                                <state key="normal" title="Edit at gravatar.com">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onAvatarEdit:" destination="A9e-bS-FdB" eventType="touchUpInside" id="774-GR-oSC"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -142,14 +157,18 @@
                             <constraint firstAttribute="centerX" secondItem="uwE-lc-nHk" secondAttribute="centerX" id="9Mw-Nj-fCg"/>
                             <constraint firstAttribute="centerX" secondItem="2Tz-4M-OPh" secondAttribute="centerX" id="9g0-Rt-8m4"/>
                             <constraint firstAttribute="centerX" secondItem="mNn-Mj-xYq" secondAttribute="centerX" id="Dp3-yE-byS"/>
+                            <constraint firstItem="LAb-dA-6vR" firstAttribute="top" secondItem="2Tz-4M-OPh" secondAttribute="bottom" constant="24" id="GHw-JN-cAA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="chz-1R-E9f" secondAttribute="trailing" constant="48" id="KJO-c0-mpp"/>
                             <constraint firstItem="chz-1R-E9f" firstAttribute="leading" secondItem="DbF-Mv-bBy" secondAttribute="leadingMargin" constant="48" id="P2p-xS-PbV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uwE-lc-nHk" secondAttribute="trailing" constant="48" id="azN-ZP-GRf"/>
+                            <constraint firstAttribute="centerX" secondItem="g81-8C-H1k" secondAttribute="centerX" id="biy-BV-OKm"/>
                             <constraint firstItem="chz-1R-E9f" firstAttribute="top" secondItem="uwE-lc-nHk" secondAttribute="bottom" constant="8" id="g7Q-eD-tc1"/>
                             <constraint firstItem="zYv-lD-PVi" firstAttribute="top" secondItem="413-MA-Gr6" secondAttribute="bottom" constant="66" id="iDj-KY-sbH"/>
                             <constraint firstItem="mNn-Mj-xYq" firstAttribute="top" secondItem="chz-1R-E9f" secondAttribute="bottom" constant="8" id="tdt-s2-CzG"/>
                             <constraint firstAttribute="centerX" secondItem="zYv-lD-PVi" secondAttribute="centerX" id="uSt-JP-7Ca"/>
+                            <constraint firstAttribute="centerX" secondItem="LAb-dA-6vR" secondAttribute="centerX" id="uoP-ie-x8k"/>
                             <constraint firstItem="mNn-Mj-xYq" firstAttribute="leading" secondItem="DbF-Mv-bBy" secondAttribute="leadingMargin" constant="48" id="weQ-1F-0Hn"/>
+                            <constraint firstItem="g81-8C-H1k" firstAttribute="top" secondItem="LAb-dA-6vR" secondAttribute="bottom" constant="8" id="y4i-sn-lN9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Options" id="Sqv-9y-Ve3">
@@ -164,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aYb-B3-2z0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5.333333333333333" y="-717.57333333333338"/>
+            <point key="canvasLocation" x="5" y="-718"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="aix-22-7at">

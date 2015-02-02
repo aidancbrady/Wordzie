@@ -27,6 +27,11 @@ class OptionsController: ResponsiveTextFieldViewController, UITextFieldDelegate
         confirmField.delegate = self
     }
     
+    @IBAction func onAvatarEdit(sender: AnyObject)
+    {
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://en.gravatar.com")!)
+    }
+    
     override func viewWillAppear(animated: Bool)
     {
         super.viewWillAppear(animated)

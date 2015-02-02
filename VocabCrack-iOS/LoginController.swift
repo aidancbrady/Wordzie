@@ -48,11 +48,6 @@ class LoginController: UIViewController, UITextFieldDelegate
         connectingSpinner.startAnimating()
     }
     
-    override func supportedInterfaceOrientations() -> Int
-    {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
-    }
-    
     func dataReceived()
     {
         if Constants.CORE.dataState != nil
