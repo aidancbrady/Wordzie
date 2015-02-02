@@ -38,6 +38,8 @@ class FriendCell: UITableViewCell
                         var path = self.controller!.tableView.indexPathForCell(self)
                         self.controller!.tableView(self.controller!.tableView, commitEditingStyle: .Delete, forRowAtIndexPath: path!)
                         Handlers.friendHandler.updateData(WeakWrapper(value: self.controller! as FriendsController))
+                        (self.controller! as FriendsController).modeButton.selectedSegmentIndex = 0
+                        (self.controller! as FriendsController).tableView.reloadData()
                         return
                     }, cancel: {(action) -> Void in
                         self.setSelected(false, animated: true)
