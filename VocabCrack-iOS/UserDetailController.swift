@@ -46,6 +46,7 @@ class UserDetailController: UIViewController
     {
         super.viewDidLoad()
         
+        Handlers.friendHandler.getInfo(WeakWrapper(value: self), friend:acct!.username)
         setAccountData()
     }
 }

@@ -201,8 +201,9 @@ class FriendHandler
                             let won = array[2].toInt()!
                             let lost = array[3].toInt()!
                             let login = NSString(string: array[4]).longLongValue
-                            
+
                             detail.acct = Account(username: friend, email: array[1], password: "password").setGamesWon(won).setGamesLost(lost).setLastLogin(login)
+                            detail.setAccountData()
                         }
                     }
                 }
