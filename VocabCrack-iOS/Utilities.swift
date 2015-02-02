@@ -301,6 +301,9 @@ class Utilities
                     view.value!.image = image
                     Constants.CORE.avatars[email] = image
                 }
+                else {
+                    Constants.CORE.avatars[email] = view.value!.image!
+                }
             }
             
             Operations.loadingAvatars.removeObject(email)
