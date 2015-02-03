@@ -99,10 +99,8 @@ class GameCell: UITableViewCell
                     if !game!.activeRequested
                     {
                         Utilities.displayYesNo(controller!, title: "Confirm", msg: "Accept request from " + opponent + "?", action: {(action) -> Void in
-                            Handlers.gameHandler.acceptRequest(WeakWrapper(value: self.controller!), friend: opponent)
+                            Handlers.gameHandler.acceptRequest(WeakWrapper(value: self.controller!), friend: opponent, handler: {() in Handlers.gameHandler.updateData(WeakWrapper(value: self.controller!))})
                             var path = self.controller!.tableView.indexPathForCell(self)
-                            self.controller!.tableView(self.controller!.tableView, commitEditingStyle: .Delete, forRowAtIndexPath: path!)
-                            Handlers.gameHandler.updateData(WeakWrapper(value: self.controller!))
                             return
                         }, cancel: {(action) -> Void in
                             self.setSelected(false, animated: true)

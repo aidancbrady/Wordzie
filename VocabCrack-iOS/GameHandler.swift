@@ -118,11 +118,16 @@ class GameHandler
         })
     }
     
-    func acceptRequest(controller:WeakWrapper<GamesController>, friend:String)
+    func acceptRequest(controller:WeakWrapper<GamesController>, friend:String, handler:(() -> Void)?)
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             let str = compileMsg("GAMEREQCONF", Constants.CORE.account.username, friend)
             NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                handler?()
+                return
+            })
         })
     }
     
