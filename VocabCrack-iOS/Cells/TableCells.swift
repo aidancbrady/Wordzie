@@ -8,6 +8,8 @@
 
 import UIKit
 
+var remoteDelete = true
+
 class FriendCell: UITableViewCell
 {
     @IBOutlet weak var userAvatar: UIImageView!
@@ -16,11 +18,6 @@ class FriendCell: UITableViewCell
     
     var controller:UITableViewController?
     var user:Account?
-    
-    override func awakeFromNib()
-    {
-        super.awakeFromNib()
-    }
 
     override func setSelected(selected: Bool, animated: Bool)
     {
@@ -30,16 +27,25 @@ class FriendCell: UITableViewCell
         {
             if controller is FriendsController
             {
-                if (controller! as FriendsController).modeButton.selectedSegmentIndex == 1
+                let friends = controller! as FriendsController
+                
+                if friends.modeButton.selectedSegmentIndex == 1
                 {
                     Utilities.displayYesNo(controller!, title: "Confirm", msg: "Accept request from " + user!.username + "?", action: {(action) -> Void in
-                        Handlers.friendHandler.acceptRequest(WeakWrapper(value: self.controller! as FriendsController), friend: self.user!.username)
+                        Handlers.friendHandler.acceptRequest(WeakWrapper(value: friends), friend: self.user!.username)
                         
                         var path = self.controller!.tableView.indexPathForCell(self)
+                        remoteDelete = false
                         self.controller!.tableView(self.controller!.tableView, commitEditingStyle: .Delete, forRowAtIndexPath: path!)
-                        Handlers.friendHandler.updateData(WeakWrapper(value: self.controller! as FriendsController))
-                        (self.controller! as FriendsController).modeButton.selectedSegmentIndex = 0
-                        (self.controller! as FriendsController).tableView.reloadData()
+                        remoteDelete = true
+                        Handlers.friendHandler.updateData(WeakWrapper(value: friends))
+                        
+                        if friends.requests.count == 0
+                        {
+                            friends.modeButton.selectedSegmentIndex = 0
+                            friends.tableView.reloadData()
+                        }
+                        
                         return
                     }, cancel: {(action) -> Void in
                         self.setSelected(false, animated: true)
@@ -101,6 +107,9 @@ class GameCell: UITableViewCell
                         Utilities.displayYesNo(controller!, title: "Confirm", msg: "Accept request from " + opponent + "?", action: {(action) -> Void in
                             Handlers.gameHandler.acceptRequest(WeakWrapper(value: self.controller!), friend: opponent, handler: {() in Handlers.gameHandler.updateData(WeakWrapper(value: self.controller!))})
                             var path = self.controller!.tableView.indexPathForCell(self)
+                            remoteDelete = false
+                            self.controller!.tableView(self.controller!.tableView, commitEditingStyle: .Delete, forRowAtIndexPath: path!)
+                            remoteDelete = true
                             return
                         }, cancel: {(action) -> Void in
                             self.setSelected(false, animated: true)

@@ -133,12 +133,15 @@ class GamesController: UITableViewController
                 pastGames.removeAtIndex(indexPath.row)
             }
             
-            if type == 1
+            if remoteDelete
             {
-                Handlers.gameHandler.deleteGame(WeakWrapper(value: self), friend: username, type: type, index: indexPath.row)
-            }
-            else {
-                Handlers.gameHandler.deleteGame(WeakWrapper(value: self), friend: username, type: type)
+                if type == 1
+                {
+                    Handlers.gameHandler.deleteGame(WeakWrapper(value: self), friend: username, type: type, index: indexPath.row)
+                }
+                else {
+                    Handlers.gameHandler.deleteGame(WeakWrapper(value: self), friend: username, type: type)
+                }
             }
             
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)

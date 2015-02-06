@@ -148,7 +148,12 @@ class FriendsController: TableDataReceiver
                 }
                 
                 updateModeTitle()
-                Handlers.friendHandler.deleteFriend(username, type: type)
+                
+                if remoteDelete
+                {
+                    Handlers.friendHandler.deleteFriend(username, type: type)
+                }
+                
                 tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
             }
         }

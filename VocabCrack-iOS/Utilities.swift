@@ -289,21 +289,24 @@ class Utilities
         let url:NSURL = Utilities.buildGravatarURL(email, size: 512)
         var request: NSURLRequest = NSURLRequest(URL: url)
         
+        view.value!.image = UIImage(named: "user.png")
+        
         var image:UIImage? = nil
         
         NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
             image = UIImage(data: data)
             
-            if view.value != nil
+            if image != nil
             {
-                if image != nil
+                if view.value != nil
                 {
                     view.value!.image = image
-                    Constants.CORE.avatars[email] = image
                 }
-                else {
-                    Constants.CORE.avatars[email] = view.value!.image!
-                }
+                
+                Constants.CORE.avatars[email] = image
+            }
+            else {
+                Constants.CORE.avatars[email] = UIImage(named: "user.png")
             }
             
             Operations.loadingAvatars.removeObject(email)

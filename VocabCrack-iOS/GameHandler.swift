@@ -53,6 +53,7 @@ class GameHandler
                             for var i = 1; i < array1.count; i+=2
                             {
                                 var g:Game = Game.readRequest(array1[i], splitter: Constants.SPLITTER_2)!
+                                
                                 g.opponentEmail = array1[i+1]
                                 games.append(g)
                             }
