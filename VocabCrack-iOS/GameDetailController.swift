@@ -37,12 +37,17 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         {
             if !game!.userTurn
             {
-                playButton.enabled = false
                 playButton.setTitle("Opponent's Turn", forState: UIControlState.Normal)
+                playButton.enabled = false
+            }
+            else {
+                playButton.setTitle("Play", forState: UIControlState.Normal)
+                playButton.enabled = true
             }
         }
         else {
             playButton.setTitle("New Game", forState: UIControlState.Normal)
+            playButton.enabled = true
         }
     }
     
@@ -96,8 +101,9 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         
         scoreTable.delegate = self
         scoreTable.dataSource = self
-
-        setGameData()
+        
+        playButton.enabled = false
+        playButton.setTitle("Loading...", forState: UIControlState.Normal)
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int
@@ -107,6 +113,11 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
+        if game == nil
+        {
+            return 0
+        }
+        
         return Utilities.max(game!.userPoints.count, num2: game!.opponentPoints.count)
     }
     

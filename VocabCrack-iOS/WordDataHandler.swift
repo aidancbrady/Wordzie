@@ -28,7 +28,10 @@ class WordDataHandler
         
         for str in split
         {
-            Constants.CORE.learnedWords.append(Utilities.trim(str))
+            if !str.isEmpty
+            {
+                Constants.CORE.learnedWords.append(Utilities.trim(str))
+            }
         }
     }
     

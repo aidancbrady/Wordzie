@@ -48,15 +48,7 @@ class RoundOverController: UIViewController
             }
         }
         else {
-            activityIndicator.startAnimating()
-            
-            if game.isRequest
-            {
-                Handlers.gameHandler.newGame(WeakWrapper(value: self))
-            }
-            else {
-                Handlers.gameHandler.compGame(WeakWrapper(value: self))
-            }
+            dismiss()
         }
     }
     
@@ -116,6 +108,22 @@ class RoundOverController: UIViewController
         
         primaryLabel.hidden = false
         secondaryLabel.hidden = false
+        
+        if !singleplayer
+        {
+            returnButton.enabled = false
+            returnButton.setTitle("Uploading...", forState: UIControlState.Normal)
+            
+            activityIndicator.startAnimating()
+            
+            if game.isRequest
+            {
+                Handlers.gameHandler.newGame(WeakWrapper(value: self))
+            }
+            else {
+                Handlers.gameHandler.compGame(WeakWrapper(value: self))
+            }
+        }
     }
     
     override func prefersStatusBarHidden() -> Bool
@@ -168,7 +176,8 @@ class RoundOverController: UIViewController
         
         if success
         {
-            dismiss()
+            returnButton.enabled = true
+            returnButton.setTitle("Return", forState: UIControlState.Normal)
         }
         else {
             Utilities.displayDialog(self, title: "Error", msg: "Couldn't send game data to server.", actions: ActionButton(button: "Try Again", action: {action in

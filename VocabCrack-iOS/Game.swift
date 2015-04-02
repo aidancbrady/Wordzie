@@ -48,6 +48,13 @@ class Game: Equatable
 
     /// Only used client-side
     var opponentEmail:String?
+    
+    //If this game only contains enough data for a game list
+    var isSimple:Bool = false
+    
+    //Values for efficient networking
+    var simpleUserScore:Int = 0
+    var simpleOpponentScore:Int = 0
 
     init(user:String, opponent:String)
     {
@@ -372,6 +379,11 @@ class Game: Equatable
     
     func getUserScore() -> Int
     {
+        if isSimple
+        {
+            return simpleUserScore
+        }
+        
         var won = 0;
         
         for var i = 0; i < userPoints.count; i++
@@ -390,6 +402,11 @@ class Game: Equatable
     
     func getOpponentScore() -> Int
     {
+        if isSimple
+        {
+            return simpleOpponentScore
+        }
+        
         var won = 0;
         
         for var i = 0; i < opponentPoints.count; i++

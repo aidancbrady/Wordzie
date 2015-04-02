@@ -26,7 +26,7 @@ class GameHandler
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             Operations.loadingGames = true
             
-            let str = compileMsg("LGAMES", Constants.CORE.account.username)
+            let str = compileMsg("LGAMES_S", Constants.CORE.account.username)
             let ret = NetHandler.sendData(str, retLines:2)
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -43,18 +43,29 @@ class GameHandler
                         {
                             var games:[Game] = [Game]()
                             
-                            for var i = 1; i < array.count; i+=2
+                            for var i = 1; i < array.count; i++
                             {
-                                var g:Game = Game.readDefault(array[i], splitter: Constants.SPLITTER_2)!
-                                g.opponentEmail = array[i+1]
+                                let gameData:[String] = Utilities.split(array[i], separator: Constants.SPLITTER_2)
+                                var g:Game = Game(user: Constants.CORE.account.username, opponent: gameData[0])
+                                g.isSimple = true
+                                g.userTurn = Utilities.readBool(gameData[1])
+                                g.simpleUserScore = gameData[2].toInt()!
+                                g.simpleOpponentScore = gameData[3].toInt()!
+                                g.opponentEmail = gameData[4]
+                                
                                 games.append(g)
                             }
                                 
-                            for var i = 1; i < array1.count; i+=2
+                            for var i = 1; i < array1.count; i++
                             {
-                                var g:Game = Game.readRequest(array1[i], splitter: Constants.SPLITTER_2)!
+                                let gameData:[String] = Utilities.split(array1[i], separator: Constants.SPLITTER_2)
+                                var opponent = gameData[0]
+                                var userTurn = Utilities.readBool(gameData[1])
+                                var g:Game = userTurn ? Game(user: opponent, opponent: Constants.CORE.account.username, activeRequested: false) : Game(user: Constants.CORE.account.username, opponent: opponent, activeRequested: true)
+                                g.isSimple = true
+                                g.simpleUserScore = gameData[2].toInt()!
+                                g.opponentEmail = gameData[3]
                                 
-                                g.opponentEmail = array1[i+1]
                                 games.append(g)
                             }
                             
@@ -100,9 +111,10 @@ class GameHandler
                             
                             for var i = 1; i < array.count; i+=2
                             {
-                                var g:Game = Game.readDefault(array[i], splitter: Constants.SPLITTER_2)!
-                                g.opponentEmail = array[i+1]
-                                games.append(g)
+                                var g:Game? = Game.readDefault(array[i], splitter: Constants.SPLITTER_2)
+                                
+                                g!.opponentEmail = array[i+1]
+                                games.append(g!)
                             }
                             
                             table.pastGames = games
@@ -139,6 +151,7 @@ class GameHandler
             
             if type == 1
             {
+                str += Constants.SPLITTER_1
                 str += String(index[0])
             }
             
@@ -248,6 +261,36 @@ class GameHandler
                     }
                     else {
                         roundOver.confirmResponse(false)
+                    }
+                }
+            })
+        })
+    }
+    
+    func getInfo(controller:WeakWrapper<GameDetailController>, friend:String)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+            let str = compileMsg("GETGAME", Constants.CORE.account.username, friend)
+            let ret = NetHandler.sendData(str)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if let detail = controller.value
+                {
+                    if let response = ret
+                    {
+                        let array:[String] = Utilities.split(response, separator: Constants.SPLITTER_1)
+                        
+                        if array[0] == "ACCEPT"
+                        {
+                            var game = Game.readDefault(array[1], splitter: Constants.SPLITTER_2)
+                            game!.opponentEmail = array[2]
+                            
+                            if game != nil
+                            {
+                                detail.game = game
+                                detail.setGameData()
+                            }
+                        }
                     }
                 }
             })

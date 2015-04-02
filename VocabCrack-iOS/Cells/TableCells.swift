@@ -122,7 +122,7 @@ class GameCell: UITableViewCell
                 else {
                     let detail:GameDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("GameDetailController") as GameDetailController
                     
-                    detail.game = game
+                    Handlers.gameHandler.getInfo(WeakWrapper(value: detail), friend: opponent)
                     
                     controller!.navigationController!.pushViewController(detail, animated: true)
                 }

@@ -123,6 +123,10 @@ class GameController: UIViewController
         if correct
         {
             amountCorrect++
+            
+            var prev:String = Utilities.split(game.activeWords[wordIndex-1], separator: Constants.LIST_SPLITTER)[0];
+            Constants.CORE.learnedWords.append(prev);
+            WordDataHandler.save();
         }
         
         complete = true
