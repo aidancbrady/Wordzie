@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kGS-ce-2gM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kGS-ce-2gM">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1444,10 +1444,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcn-81-FWG">
-                                <rect key="frame" x="0.0" y="518" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.052676989090000001" green="0.37308633209999997" blue="0.001159298918" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="7hz-CB-jUd"/>
+                                    <constraint firstAttribute="height" constant="50" id="7hz-CB-jUd"/>
                                 </constraints>
                                 <state key="normal" title="Return">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1458,10 +1458,10 @@
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L19-Wo-fYM">
-                                <rect key="frame" x="0.0" y="480" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="468" width="320" height="50"/>
                                 <color key="backgroundColor" red="0.0089120518840000006" green="0.00055432389550000001" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6WC-S8-5kx"/>
+                                    <constraint firstAttribute="height" constant="50" id="6WC-S8-5kx"/>
                                 </constraints>
                                 <state key="normal" title="Continue">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1529,7 +1529,7 @@
                         <constraints>
                             <constraint firstItem="kBe-9k-dLw" firstAttribute="top" secondItem="SBz-ye-8GF" secondAttribute="bottom" constant="20" id="0Vs-wW-DgA"/>
                             <constraint firstAttribute="centerY" secondItem="buf-Re-HtH" secondAttribute="centerY" id="2X9-8M-OFx"/>
-                            <constraint firstItem="7g1-50-TPa" firstAttribute="top" secondItem="gcn-81-FWG" secondAttribute="bottom" constant="20" id="8np-IW-PmM"/>
+                            <constraint firstItem="7g1-50-TPa" firstAttribute="top" secondItem="gcn-81-FWG" secondAttribute="bottom" id="8np-IW-PmM"/>
                             <constraint firstItem="kBe-9k-dLw" firstAttribute="leading" secondItem="JIW-Kl-6rN" secondAttribute="leadingMargin" id="GXE-n0-HIh"/>
                             <constraint firstAttribute="trailingMargin" secondItem="L19-Wo-fYM" secondAttribute="trailing" constant="-16" id="HSF-aN-ijD"/>
                             <constraint firstItem="gcn-81-FWG" firstAttribute="leading" secondItem="JIW-Kl-6rN" secondAttribute="leadingMargin" constant="-16" id="ISR-Qk-UxY"/>
@@ -1542,7 +1542,7 @@
                             <constraint firstItem="L19-Wo-fYM" firstAttribute="leading" secondItem="JIW-Kl-6rN" secondAttribute="leadingMargin" constant="-16" id="rAr-Lh-SEO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="buf-Re-HtH" secondAttribute="trailing" constant="-16" id="tTE-ON-0b6"/>
                             <constraint firstAttribute="centerX" secondItem="buf-Re-HtH" secondAttribute="centerX" id="uFD-vf-dg4"/>
-                            <constraint firstItem="gcn-81-FWG" firstAttribute="top" secondItem="L19-Wo-fYM" secondAttribute="bottom" constant="8" id="vbk-Lv-IOE"/>
+                            <constraint firstItem="gcn-81-FWG" firstAttribute="top" secondItem="L19-Wo-fYM" secondAttribute="bottom" id="vbk-Lv-IOE"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -1758,7 +1758,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvg-nE-MNG">
-                                <rect key="frame" x="0.0" y="530" width="320" height="30"/>
+                                <rect key="frame" x="0.0" y="522" width="320" height="46"/>
                                 <color key="backgroundColor" red="0.25592601300000001" green="0.4076310098" blue="0.29385301470000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Play">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1859,13 +1859,14 @@
                             <constraint firstItem="yHd-9h-V9Y" firstAttribute="top" secondItem="XHT-V9-voH" secondAttribute="bottom" constant="16" id="dnU-gQ-Hth"/>
                             <constraint firstItem="yHd-9h-V9Y" firstAttribute="trailing" secondItem="h0t-CC-Ydk" secondAttribute="trailingMargin" id="gF3-xi-kMu"/>
                             <constraint firstAttribute="centerX" secondItem="mvg-nE-MNG" secondAttribute="centerX" id="gz2-3F-NIv"/>
-                            <constraint firstItem="Vll-od-M2U" firstAttribute="top" secondItem="mvg-nE-MNG" secondAttribute="bottom" constant="8" id="nnz-7q-0AN"/>
+                            <constraint firstItem="Vll-od-M2U" firstAttribute="top" secondItem="mvg-nE-MNG" secondAttribute="bottom" id="nnz-7q-0AN"/>
                             <constraint firstItem="OBZ-fM-qEu" firstAttribute="top" secondItem="TxZ-Md-bhV" secondAttribute="bottom" constant="19" id="q9U-r0-jTA"/>
                             <constraint firstItem="gUL-Pb-ous" firstAttribute="leading" secondItem="h0t-CC-Ydk" secondAttribute="leadingMargin" constant="-16" id="qy5-lO-aue"/>
                             <constraint firstItem="OBZ-fM-qEu" firstAttribute="leading" secondItem="h0t-CC-Ydk" secondAttribute="leadingMargin" id="ssL-lH-S8n"/>
                             <constraint firstAttribute="centerX" secondItem="3Ss-hP-hHV" secondAttribute="centerX" id="tck-7B-fVT"/>
                             <constraint firstItem="OBZ-fM-qEu" firstAttribute="top" secondItem="yHd-9h-V9Y" secondAttribute="bottom" constant="19" id="tzq-dd-DE3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gUL-Pb-ous" secondAttribute="trailing" constant="-16" id="uKr-yN-FtH"/>
+                            <constraint firstItem="mvg-nE-MNG" firstAttribute="top" secondItem="gUL-Pb-ous" secondAttribute="bottom" id="v4D-Km-ZmI"/>
                             <constraint firstItem="gUL-Pb-ous" firstAttribute="top" secondItem="TfJ-2k-z7f" secondAttribute="bottom" constant="8" id="vmG-Dq-5Rm"/>
                         </constraints>
                     </view>
@@ -1995,20 +1996,6 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sC-0Q-0fU">
-                                <rect key="frame" x="0.0" y="518" width="320" height="30"/>
-                                <color key="backgroundColor" red="0.25592601300000001" green="0.4076310098" blue="0.29385301470000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="Vjn-VY-uul"/>
-                                </constraints>
-                                <state key="normal" title="New Game">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="newGame:" destination="ACY-nl-LQb" eventType="touchUpInside" id="quS-JW-jpr"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Login: 45 years ago" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnP-co-Mr8">
                                 <rect key="frame" x="16" y="479" width="288" height="21"/>
                                 <constraints>
@@ -2036,13 +2023,27 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sC-0Q-0fU">
+                                <rect key="frame" x="0.0" y="518" width="320" height="50"/>
+                                <color key="backgroundColor" red="0.25592601300000001" green="0.4076310098" blue="0.29385301470000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Vjn-VY-uul"/>
+                                </constraints>
+                                <state key="normal" title="New Game">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="newGame:" destination="ACY-nl-LQb" eventType="touchUpInside" id="quS-JW-jpr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="nnP-co-Mr8" firstAttribute="trailing" secondItem="zEJ-uJ-P3Z" secondAttribute="trailingMargin" id="8Pp-V9-bLm"/>
                             <constraint firstItem="Aae-kO-q7L" firstAttribute="trailing" secondItem="zEJ-uJ-P3Z" secondAttribute="trailingMargin" id="9mr-Aa-qJF"/>
                             <constraint firstItem="a0p-Pb-35D" firstAttribute="top" secondItem="yao-vi-M1V" secondAttribute="bottom" constant="24" id="AFX-gD-fh4"/>
-                            <constraint firstItem="yMW-u3-TlO" firstAttribute="top" secondItem="9sC-0Q-0fU" secondAttribute="bottom" constant="20" id="BIu-Cv-wFM"/>
+                            <constraint firstItem="yMW-u3-TlO" firstAttribute="top" secondItem="9sC-0Q-0fU" secondAttribute="bottom" id="BIu-Cv-wFM"/>
                             <constraint firstItem="yao-vi-M1V" firstAttribute="leading" secondItem="zEJ-uJ-P3Z" secondAttribute="leadingMargin" id="EUr-FK-FiX"/>
                             <constraint firstAttribute="centerX" secondItem="yao-vi-M1V" secondAttribute="centerX" id="HRI-5J-syw"/>
                             <constraint firstItem="9sC-0Q-0fU" firstAttribute="top" secondItem="nnP-co-Mr8" secondAttribute="bottom" constant="18" id="MGR-kq-kOE"/>
