@@ -81,6 +81,7 @@ class GamesController: UITableViewController
                 }
                 
                 cell.turnLabel.text = "Awaiting approval"
+                cell.scoreLabel.text = "Tied 0-0"
             }
             else {
                 cell.usernameLabel.text = "Game with \(Utilities.getRemoteUser(game))"
