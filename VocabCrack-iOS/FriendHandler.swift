@@ -106,7 +106,7 @@ class FriendHandler
                             
                             if table is FriendsController
                             {
-                                (table as FriendsController).updateModeTitle()
+                                (table as! FriendsController).updateModeTitle()
                             }
                         }
                     }

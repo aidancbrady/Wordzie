@@ -25,10 +25,10 @@ class RoundOverController: UIViewController
     
     @IBAction func continuePressed(sender: AnyObject)
     {
-        let game:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("GameController") as UIViewController
+        let game:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("GameController") as! UIViewController
         
-        (game as GameController).game = self.game
-        (game as GameController).singleplayer = singleplayer
+        (game as! GameController).game = self.game
+        (game as! GameController).singleplayer = singleplayer
         
         navigationController!.pushViewController(game, animated: true)
     }
@@ -133,19 +133,19 @@ class RoundOverController: UIViewController
     
     func dismiss()
     {
-        let superNav = navigationController!.presentingViewController as UINavigationController
+        let superNav = navigationController!.presentingViewController as! UINavigationController
         var newControllers = superNav.viewControllers
         let count = newControllers.count
         
         for var i = count-1; i >= 0; i--
         {
-            let controller = newControllers[i] as UIViewController
+            let controller = newControllers[i] as! UIViewController
             
             if controller is GamesController
             {
                 if game.hasWinner()
                 {
-                    let detail:GameDetailController = storyboard!.instantiateViewControllerWithIdentifier("GameDetailController") as GameDetailController
+                    let detail:GameDetailController = storyboard!.instantiateViewControllerWithIdentifier("GameDetailController") as! GameDetailController
                     detail.game = game
                     
                     newControllers.append(detail)
@@ -155,7 +155,7 @@ class RoundOverController: UIViewController
             }
             else if controller is MenuController
             {
-                let games:GamesController = storyboard!.instantiateViewControllerWithIdentifier("GamesController") as GamesController
+                let games:GamesController = storyboard!.instantiateViewControllerWithIdentifier("GamesController") as! GamesController
                 newControllers.append(games)
                 
                 break

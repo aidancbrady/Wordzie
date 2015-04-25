@@ -196,7 +196,7 @@ class GameHandler
         game.writeWordList(listData)
         
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
-            let str = compileMsg("NEWGAME", Constants.CORE.account.username, game.getRequestReceiver(), String(game.gameType), String(game.userPoints[game.userPoints.count-1]), game.getListName()!, game.getListURL()!, listData)
+            let str = compileMsg("NEWGAME", Constants.CORE.account.username, game.getRequestReceiver(), String(game.gameType), String(game.userPoints[game.userPoints.count-1]), game.getListName()!, game.getListURL()!, listData as String)
             let ret = NetHandler.sendData(str)
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -239,7 +239,7 @@ class GameHandler
             
             if listData != nil
             {
-                str = compileMsg(str, listData!)
+                str = compileMsg(str, listData! as String)
             }
             
             let ret = NetHandler.sendData(str)

@@ -23,7 +23,7 @@ class WordDataHandler
         
         Constants.CORE.learnedWords.removeAll(keepCapacity: false)
         
-        let content:String = NSString(contentsOfFile: CoreFiles.wordFile, encoding: NSUTF8StringEncoding, error: nil)!
+        let content:String = String(contentsOfFile: CoreFiles.wordFile, encoding: NSUTF8StringEncoding, error: nil)!
         let split = content.componentsSeparatedByString(",")
         
         for str in split

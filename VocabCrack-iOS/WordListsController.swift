@@ -43,7 +43,7 @@ class WordListsController: UITableViewController
         
         if path != nil && sender.state == UIGestureRecognizerState.Began
         {
-            let cell = tableView.cellForRowAtIndexPath(path!) as ListCell
+            let cell = tableView.cellForRowAtIndexPath(path!) as! ListCell
             
             if cell.identifierLabel.text != "Default"
             {
@@ -55,8 +55,8 @@ class WordListsController: UITableViewController
                 }
                 else {
                     Utilities.displayAction(self, actions: ActionButton(button: "Edit List", action: {action in
-                        let createList:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as UINavigationController
-                        (createList.viewControllers[0] as CreateListController).editingList = cell.list
+                        let createList:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as! UINavigationController
+                        (createList.viewControllers[0] as! CreateListController).editingList = cell.list
                         
                         self.presentViewController(createList, animated: true, completion: nil)
                         return
@@ -107,7 +107,7 @@ class WordListsController: UITableViewController
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell:ListCell = tableView.dequeueReusableCellWithIdentifier("ListCell", forIndexPath: indexPath) as ListCell
+        let cell:ListCell = tableView.dequeueReusableCellWithIdentifier("ListCell", forIndexPath: indexPath) as! ListCell
         
         let array:[(String, String)] = indexPath.section == 0 ? defaultArray : (indexPath.section == 1 ? serverArray : urlArray)
         

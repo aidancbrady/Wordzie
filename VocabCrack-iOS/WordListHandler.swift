@@ -10,9 +10,9 @@ import UIKit
 
 struct CoreFiles
 {
-    static let dataFile:NSString = WordListHandler.getDocumentsDir().stringByAppendingPathComponent("ListData.txt")
-    static let wordFile:NSString = WordListHandler.getDocumentsDir().stringByAppendingPathComponent("WordData.txt")
-    static let defaultList:NSString = WordListHandler.getDefaultList()
+    static let dataFile:String = WordListHandler.getDocumentsDir().stringByAppendingPathComponent("ListData.txt")
+    static let wordFile:String = WordListHandler.getDocumentsDir().stringByAppendingPathComponent("WordData.txt")
+    static let defaultList:String = WordListHandler.getDefaultList()
 }
 
 class WordListHandler
@@ -40,7 +40,7 @@ class WordListHandler
     {
         println("Loading '" + list.0 + "' word list...")
         
-        loadForeignList(list, {response in
+        loadForeignList(list, handler: {response in
             var returned = false
             
             if let array = response
@@ -93,7 +93,7 @@ class WordListHandler
     {
         if controller != nil && controller! is ListLoader
         {
-            (controller as ListLoader).listLoaded(success)
+            (controller as! ListLoader).listLoaded(success)
         }
     }
     
@@ -101,7 +101,7 @@ class WordListHandler
     {
         println("Loading '" + list.0 + "' word list for editing...")
         
-        loadForeignList(list, {response in
+        loadForeignList(list, handler: {response in
             var terms:[(String, String)] = [(String, String)]()
             var failed = false
             
@@ -166,7 +166,7 @@ class WordListHandler
         
         var array:[String]?
         
-        reader.getHTTP(request, {(response:String?) -> Void in
+        reader.getHTTP(request, action: {(response:String?) -> Void in
             if let str = response
             {
                 array = str.componentsSeparatedByString("\n")
@@ -185,7 +185,7 @@ class WordListHandler
         
         if manager.fileExistsAtPath(CoreFiles.defaultList)
         {
-            let content:String = NSString(contentsOfFile: CoreFiles.defaultList, encoding: NSUTF8StringEncoding, error: nil)!
+            let content:String = String(contentsOfFile: CoreFiles.defaultList, encoding: NSUTF8StringEncoding, error: nil)!
             let split = content.componentsSeparatedByString("\n")
             
             var failed = false
@@ -226,7 +226,7 @@ class WordListHandler
         println("Loading word list data...")
         if manager.fileExistsAtPath(CoreFiles.dataFile)
         {
-            let content:String = NSString(contentsOfFile: CoreFiles.dataFile, encoding: NSUTF8StringEncoding, error: nil)!
+            let content:String = String(contentsOfFile: CoreFiles.dataFile, encoding: NSUTF8StringEncoding, error: nil)!
             let split = content.componentsSeparatedByString("\n")
             
             for str in split
@@ -282,14 +282,14 @@ class WordListHandler
         saveListData()
     }
     
-    class func getDocumentsDir() -> NSString
+    class func getDocumentsDir() -> String
     {
         let paths:NSArray = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
         
-        return paths.objectAtIndex(0) as NSString
+        return paths.objectAtIndex(0) as! String
     }
     
-    class func getDefaultList() -> NSString
+    class func getDefaultList() -> String
     {
         return NSBundle.mainBundle().pathForResource("DefaultList", ofType: "txt")!
     }
@@ -316,12 +316,12 @@ class ListHandler
                         {
                             if newList.isKindOfClass(NewListController)
                             {
-                                let createList:UINavigationController = newList.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as UINavigationController
+                                let createList:UINavigationController = newList.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as! UINavigationController
                                 
                                 newList.presentViewController(createList, animated: true, completion: nil)
                             }
                             else {
-                                self.uploadList(WeakWrapper(value: newList as CreateListController), identifier: identifier!)
+                                self.uploadList(WeakWrapper(value: newList as! CreateListController), identifier: identifier!)
                                 uploaded = true
                             }
                         }
@@ -333,7 +333,7 @@ class ListHandler
                         Utilities.displayAlert(newList, title: "Error", msg: "Unable to connect.", action: nil)
                     }
                     
-                    let activity:UIActivityIndicatorView = newList.isKindOfClass(NewListController) ? (newList as NewListController).activityIndicator : (newList as CreateListController).activity
+                    let activity:UIActivityIndicatorView = newList.isKindOfClass(NewListController) ? (newList as! NewListController).activityIndicator : (newList as! CreateListController).activity
                     
                     if !uploaded && activity.isAnimating()
                     {

@@ -39,7 +39,7 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
         
         if let info = notification.userInfo
         {
-            keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as NSValue).CGRectValue()
+            keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
             
             if activeText != nil
             {
@@ -86,7 +86,7 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
         }
     }
     
-    override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
     {
         if activeText != nil
         {

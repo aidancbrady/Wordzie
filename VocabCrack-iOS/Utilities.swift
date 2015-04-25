@@ -120,7 +120,7 @@ class Utilities
         str.appendString("&size=\(size)")
         str.appendString("&default=404")
         
-        return NSURL(string: str)!
+        return NSURL(string: str as String)!
     }
     
     class func buildMD5(email:String) -> String
@@ -141,7 +141,7 @@ class Utilities
         
         result.destroy()
         
-        return String(format: hash)
+        return String(format: hash as String)
     }
     
     class func trim(s:String) -> String
@@ -325,7 +325,7 @@ class Utilities
                 (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
                 if error == nil
                 {
-                    action(NSString(data: data, encoding:NSUTF8StringEncoding))
+                    action(NSString(data: data, encoding:NSUTF8StringEncoding) as? String)
                 }
                 else {
                     action(nil)
@@ -363,15 +363,9 @@ class Utilities
     {
         let application = UIApplication.sharedApplication()
         
-        if application.respondsToSelector("isRegisteredForRemoteNotifications") // iOS 8
-        {
-            println("Registering for notifications...")
-            application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge, categories: nil))
-            application.registerForRemoteNotifications()
-        }
-        else { // iOS 7 or below
-            application.registerForRemoteNotificationTypes(UIRemoteNotificationType.Badge | UIRemoteNotificationType.Alert | UIRemoteNotificationType.Sound)
-        }
+        println("Registering for notifications...")
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge, categories: nil))
+        application.registerForRemoteNotifications()
     }
     
     class func roundButtons(view:UIView)
@@ -380,7 +374,7 @@ class Utilities
         {
             if subview is UIButton
             {
-                let button = subview as UIButton
+                let button = subview as! UIButton
                 button.layer.cornerRadius = 5
             }
         }

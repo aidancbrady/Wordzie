@@ -57,11 +57,11 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         
         if success
         {
-            let game:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("GameNavigation") as UINavigationController
+            let game:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("GameNavigation") as! UINavigationController
             
-            let controller = game.viewControllers[0] as UIViewController
+            let controller = game.viewControllers[0] as! UIViewController
             
-            (controller as GameController).game = self.game!
+            (controller as! GameController).game = self.game!
             
             self.presentViewController(game, animated: true, completion: nil)
         }
@@ -81,7 +81,7 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             else if game!.hasWinner()
             {
-                let newGame:NewGameController = storyboard?.instantiateViewControllerWithIdentifier("NewGameController") as NewGameController
+                let newGame:NewGameController = storyboard?.instantiateViewControllerWithIdentifier("NewGameController") as! NewGameController
                 
                 newGame.definedUser = Utilities.getRemoteUser(game!)
                 
@@ -123,7 +123,7 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ScoreCell", forIndexPath: indexPath) as ScoreCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ScoreCell", forIndexPath: indexPath) as! ScoreCell
         
         var userStr = indexPath.row <= game!.userPoints.count-1 ? String(game!.userPoints[indexPath.row]) : "N/A"
         var opponentStr = indexPath.row <= game!.opponentPoints.count-1 ? String(game!.opponentPoints[indexPath.row]) : "N/A"

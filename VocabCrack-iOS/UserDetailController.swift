@@ -35,7 +35,7 @@ class UserDetailController: UIViewController
     
     @IBAction func newGame(sender: AnyObject)
     {
-        let controller:NewGameController = storyboard?.instantiateViewControllerWithIdentifier("NewGameController") as NewGameController
+        let controller:NewGameController = storyboard?.instantiateViewControllerWithIdentifier("NewGameController") as! NewGameController
         
         controller.definedUser = acct!.username
         

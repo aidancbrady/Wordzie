@@ -19,7 +19,7 @@ class SimpleFriendsController: TableDataReceiver
     {
         if type == 0
         {
-            friends = obj as [Account]
+            friends = obj as! [Account]
             friends = friends.filter({element in !element.isRequest})
         }
     }
@@ -73,7 +73,7 @@ class SimpleFriendsController: TableDataReceiver
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell:FriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as FriendCell
+        let cell:FriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendCell
         
         var account:Account = friends[indexPath.row]
         

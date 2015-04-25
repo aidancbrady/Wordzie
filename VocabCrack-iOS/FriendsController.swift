@@ -31,11 +31,11 @@ class FriendsController: TableDataReceiver
     {
         if type == 0
         {
-            friends = obj as [Account]
+            friends = obj as! [Account]
         }
         else if type == 1
         {
-            requests = obj as [Account]
+            requests = obj as! [Account]
         }
     }
     
@@ -95,7 +95,7 @@ class FriendsController: TableDataReceiver
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell:FriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as FriendCell
+        let cell:FriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendCell
         
         var account:Account = modeButton.selectedSegmentIndex == 0 ? friends[indexPath.row] : requests[indexPath.row]
         

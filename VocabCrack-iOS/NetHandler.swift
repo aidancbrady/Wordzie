@@ -43,7 +43,7 @@ class NetHandler
         
         if let str = NSString(bytes: data.bytes, length: bytes, encoding: NSUTF8StringEncoding)
         {
-            return str
+            return str as String
         }
         
         return nil
@@ -84,7 +84,7 @@ class NetHandler
             
             if let str = NSString(bytes: data.bytes, length: bytes, encoding: NSUTF8StringEncoding)
             {
-                var split:[String] = Utilities.split(str, separator: "\n")
+                var split:[String] = Utilities.split(str as String, separator: "\n")
                 
                 for s in split
                 {

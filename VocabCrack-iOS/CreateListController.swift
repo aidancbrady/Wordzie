@@ -38,7 +38,7 @@ class CreateListController: UITableViewController
         
         if terms.count < 50
         {
-            let editTerm:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("EditTermNavigation") as UINavigationController
+            let editTerm:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("EditTermNavigation") as! UINavigationController
             
             self.presentViewController(editTerm, animated: true, completion: nil)
         }
@@ -88,7 +88,7 @@ class CreateListController: UITableViewController
                             return
                         })
                     }
-                    else if countElements(str!) > 18
+                    else if count(str!) > 18
                     {
                         Utilities.displayAlert(self, title: "Error", msg: "Too many characters.", action: {action in
                             self.showEntry()
@@ -120,7 +120,7 @@ class CreateListController: UITableViewController
             str.appendString(Constants.SPLITTER_1)
         }
         
-        return str
+        return str as String
     }
 
     @IBAction func cancelButton(sender: AnyObject)
@@ -175,7 +175,7 @@ class CreateListController: UITableViewController
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TermCell", forIndexPath: indexPath) as TermCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("TermCell", forIndexPath: indexPath) as! TermCell
 
         cell.wordLabel.text = terms[indexPath.row].0
 
@@ -203,8 +203,8 @@ class CreateListController: UITableViewController
         {
             if segue.destinationViewController is TermDetailController
             {
-                (segue.destinationViewController as TermDetailController).term = terms[indexPath.row]
-                (segue.destinationViewController as TermDetailController).index = indexPath.row
+                (segue.destinationViewController as! TermDetailController).term = terms[indexPath.row]
+                (segue.destinationViewController as! TermDetailController).index = indexPath.row
             }
         }
     }

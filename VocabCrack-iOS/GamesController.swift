@@ -64,7 +64,7 @@ class GamesController: UITableViewController
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GameCell", forIndexPath: indexPath) as GameCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("GameCell", forIndexPath: indexPath) as! GameCell
         
         var game = modeButton.selectedSegmentIndex == 0 ? activeGames[indexPath.row] : pastGames[indexPath.row]
         

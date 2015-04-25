@@ -223,10 +223,10 @@ class GameController: UIViewController
         {
             finalizeGameData()
             
-            let roundOver:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RoundOverController") as UIViewController
+            let roundOver:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RoundOverController") as! UIViewController
             
-            (roundOver as RoundOverController).game = game
-            (roundOver as RoundOverController).singleplayer = singleplayer
+            (roundOver as! RoundOverController).game = game
+            (roundOver as! RoundOverController).singleplayer = singleplayer
             
             navigationController!.pushViewController(roundOver, animated: true)
         }

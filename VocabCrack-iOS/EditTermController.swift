@@ -20,7 +20,7 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
         let currentText = textView.text as NSString
         let proposedText = currentText.stringByReplacingCharactersInRange(range, withString: text)
         
-        if countElements(proposedText) > 120
+        if count(proposedText) > 120
         {
             return false
         }
@@ -38,7 +38,7 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
         let currentText = textField.text as NSString
         let proposedText = currentText.stringByReplacingCharactersInRange(range, withString: string)
         
-        if countElements(proposedText) > 24
+        if count(proposedText) > 24
         {
             return false
         }
@@ -65,14 +65,14 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
                     {
                         if term != nil
                         {
-                            (getParent() as TermDetailController).term = newTerm
-                            (getParent() as TermDetailController).updateTerm()
+                            (getParent() as! TermDetailController).term = newTerm
+                            (getParent() as! TermDetailController).updateTerm()
                             dismissViewControllerAnimated(true, completion: nil)
                         }
                         else {
-                            (getParent() as CreateListController).terms.append(newTerm)
-                            (getParent() as CreateListController).tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
-                            (getParent() as CreateListController).listEdited()
+                            (getParent() as! CreateListController).terms.append(newTerm)
+                            (getParent() as! CreateListController).tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                            (getParent() as! CreateListController).listEdited()
                             dismissViewControllerAnimated(true, completion: nil)
                         }
                     }
@@ -92,7 +92,7 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
     
     func boundsCheck() -> Bool
     {
-        let list = term != nil ? (getEditParent() as CreateListController) : (getParent() as CreateListController)
+        let list = term != nil ? (getEditParent() as! CreateListController) : (getParent() as! CreateListController)
         
         if term == nil && list.terms.count >= 50
         {
@@ -104,20 +104,20 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
     
     func getParent() -> UIViewController
     {
-        let parentNav = navigationController!.presentingViewController! as UINavigationController
+        let parentNav = navigationController!.presentingViewController! as! UINavigationController
         
-        return parentNav.viewControllers[parentNav.viewControllers.count-1] as UIViewController
+        return parentNav.viewControllers[parentNav.viewControllers.count-1] as! UIViewController
     }
     
     func getEditParent() -> UIViewController
     {
-        let detailController = getParent() as TermDetailController
+        let detailController = getParent() as! TermDetailController
         return detailController.getParent()
     }
     
     func existsCheck(newTerm:(String, String)) -> Bool
     {
-        let list = term != nil ? (getEditParent() as CreateListController) : (getParent() as CreateListController)
+        let list = term != nil ? (getEditParent() as! CreateListController) : (getParent() as! CreateListController)
         
         for pair in list.terms
         {

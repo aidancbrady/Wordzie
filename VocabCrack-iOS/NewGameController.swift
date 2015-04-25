@@ -30,7 +30,7 @@ class NewGameController: UIViewController, ListLoader
         return Int(UIInterfaceOrientationMask.Portrait.rawValue)
     }
     
-    func setDefinedUser(user:String)
+    func setUser(user:String)
     {
         definedUser = user
         changeButton.setTitle("Change", forState: UIControlState.Normal)
@@ -58,12 +58,12 @@ class NewGameController: UIViewController, ListLoader
         
         if success
         {
-            let game:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("GameNavigation") as UINavigationController
+            let game:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("GameNavigation") as! UINavigationController
             
-            let controller = game.viewControllers[0] as UIViewController
+            let controller = game.viewControllers[0] as! UIViewController
             
-            (controller as GameController).game = createGame()
-            (controller as GameController).singleplayer = definedUser == nil
+            (controller as! GameController).game = createGame()
+            (controller as! GameController).singleplayer = definedUser == nil
             
             self.presentViewController(game, animated: true, completion: nil)
         }
@@ -120,7 +120,7 @@ class NewGameController: UIViewController, ListLoader
             })
         }
         else {
-            let friends:SimpleFriendsController = self.storyboard?.instantiateViewControllerWithIdentifier("SimpleFriendsController") as SimpleFriendsController
+            let friends:SimpleFriendsController = self.storyboard?.instantiateViewControllerWithIdentifier("SimpleFriendsController") as! SimpleFriendsController
             
             friends.newController = self
             
@@ -132,7 +132,7 @@ class NewGameController: UIViewController, ListLoader
     {
         if Constants.CORE.listData == nil
         {
-            let friends:WordListsController = self.storyboard?.instantiateViewControllerWithIdentifier("WordListsController") as WordListsController
+            let friends:WordListsController = self.storyboard?.instantiateViewControllerWithIdentifier("WordListsController") as! WordListsController
             
             friends.newController = self
             

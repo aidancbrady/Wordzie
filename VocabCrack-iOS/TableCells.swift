@@ -27,7 +27,7 @@ class FriendCell: UITableViewCell
         {
             if controller is FriendsController
             {
-                let friends = controller! as FriendsController
+                let friends = controller! as! FriendsController
                 
                 if friends.modeButton.selectedSegmentIndex == 1
                 {
@@ -54,7 +54,7 @@ class FriendCell: UITableViewCell
                 else {
                     if !user!.isRequest
                     {
-                        let detail:UserDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("UserDetailController") as UserDetailController
+                        let detail:UserDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("UserDetailController") as! UserDetailController
                         
                         detail.acct = user
                         
@@ -67,8 +67,8 @@ class FriendCell: UITableViewCell
             }
             else if controller is SimpleFriendsController
             {
-                var parent = (controller! as SimpleFriendsController).newController!
-                parent.setDefinedUser(user!.username)
+                var parent = (controller! as! SimpleFriendsController).newController!
+                parent.setUser(user!.username)
                 controller!.navigationController!.popViewControllerAnimated(true)
             }
         }
@@ -120,7 +120,7 @@ class GameCell: UITableViewCell
                     }
                 }
                 else {
-                    let detail:GameDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("GameDetailController") as GameDetailController
+                    let detail:GameDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("GameDetailController") as! GameDetailController
                     
                     Handlers.gameHandler.getInfo(WeakWrapper(value: detail), friend: opponent)
                     
@@ -128,7 +128,7 @@ class GameCell: UITableViewCell
                 }
             }
             else {
-                let detail:GameDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("GameDetailController") as GameDetailController
+                let detail:GameDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("GameDetailController") as! GameDetailController
                 
                 detail.game = game
                 
