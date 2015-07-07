@@ -88,7 +88,7 @@ class CreateListController: UITableViewController
                             return
                         })
                     }
-                    else if count(str!) > 18
+                    else if (str!).characters.count > 18
                     {
                         Utilities.displayAlert(self, title: "Error", msg: "Too many characters.", action: {action in
                             self.showEntry()
@@ -112,7 +112,7 @@ class CreateListController: UITableViewController
     
     func compileList() -> String
     {
-        var str:NSMutableString = NSMutableString()
+        let str:NSMutableString = NSMutableString()
         
         for term in terms
         {
@@ -138,7 +138,7 @@ class CreateListController: UITableViewController
         activity.stopAnimating()
         activity.center = CGPoint(x: 120, y: activity.frame.height/2)
         
-        var barButton:UIBarButtonItem = UIBarButtonItem(customView: activity)
+        let barButton:UIBarButtonItem = UIBarButtonItem(customView: activity)
         toolbarItems!.append(barButton)
         self.setToolbarItems(toolbarItems, animated: false)
         
@@ -199,7 +199,7 @@ class CreateListController: UITableViewController
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        if let indexPath = tableView.indexPathForSelectedRow()
+        if let indexPath = tableView.indexPathForSelectedRow
         {
             if segue.destinationViewController is TermDetailController
             {

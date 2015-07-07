@@ -28,7 +28,7 @@ class NetHandler
         
         var buffer = [UInt8](count:1048576, repeatedValue:0)
         var bytes = inputStream!.read(&buffer, maxLength: 1024)
-        var data = NSMutableData(bytes: &buffer, length: bytes)
+        let data = NSMutableData(bytes: &buffer, length: bytes)
         
         while inputStream!.hasBytesAvailable
         {
@@ -56,8 +56,8 @@ class NetHandler
         
         NSStream.getStreamsToHostWithName(Constants.IP, port: Constants.PORT, inputStream: &input, outputStream: &output)
         
-        var inputStream = input!
-        var outputStream = output!
+        let inputStream = input!
+        let outputStream = output!
         
         var data = [UInt8]((str + "\n").utf8)
         
@@ -73,7 +73,7 @@ class NetHandler
         {
             var buffer = [UInt8](count:1048576, repeatedValue:0)
             var bytes = inputStream.read(&buffer, maxLength: 1024)
-            var data = NSMutableData(bytes: &buffer, length: bytes)
+            let data = NSMutableData(bytes: &buffer, length: bytes)
             
             while inputStream.hasBytesAvailable
             {
@@ -84,7 +84,7 @@ class NetHandler
             
             if let str = NSString(bytes: data.bytes, length: bytes, encoding: NSUTF8StringEncoding)
             {
-                var split:[String] = Utilities.split(str as String, separator: "\n")
+                let split:[String] = Utilities.split(str as String, separator: "\n")
                 
                 for s in split
                 {

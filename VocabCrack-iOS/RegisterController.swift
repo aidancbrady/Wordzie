@@ -34,9 +34,9 @@ class RegisterController: UIViewController, UITextFieldDelegate
         confirmField.delegate = self
     }
     
-    override func supportedInterfaceOrientations() -> Int
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
     {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        return UIInterfaceOrientationMask.Portrait
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
@@ -70,13 +70,13 @@ class RegisterController: UIViewController, UITextFieldDelegate
     
     func onRegister()
     {
-        if !usernameField.text.isEmpty && !emailField.text.isEmpty && !passwordField.text.isEmpty
+        if !usernameField.text!.isEmpty && !emailField.text!.isEmpty && !passwordField.text!.isEmpty
         {
             if passwordField.text == confirmField.text
             {
-                if Utilities.isValidCredential(usernameField.text, emailField.text, passwordField.text)
+                if Utilities.isValidCredential(usernameField.text!, emailField.text!, passwordField.text!)
                 {
-                    doRegister(usernameField.text, email:emailField.text, password:passwordField.text)
+                    doRegister(usernameField.text!, email:emailField.text!, password:passwordField.text!)
                 }
                 else {
                     Utilities.displayAlert(self, title: "Warning", msg: "Invalid characters.", action: nil)
@@ -100,7 +100,7 @@ class RegisterController: UIViewController, UITextFieldDelegate
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             Operations.registering = true
             
-            var (success, response) = Handlers.coreHandler.register(username, email:email, password:password)
+            let (success, response) = Handlers.coreHandler.register(username, email:email, password:password)
             
             dispatch_async(dispatch_get_main_queue(), {
                 Operations.registering = false

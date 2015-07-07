@@ -25,7 +25,7 @@ class RoundOverController: UIViewController
     
     @IBAction func continuePressed(sender: AnyObject)
     {
-        let game:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("GameController") as! UIViewController
+        let game:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("GameController") as UIViewController!
         
         (game as! GameController).game = self.game
         (game as! GameController).singleplayer = singleplayer
@@ -64,7 +64,6 @@ class RoundOverController: UIViewController
         roundLabel.hidden = false
         
         let userIndex = game.userPoints.count
-        let opponentIndex = game.opponentPoints.count
         
         if singleplayer
         {
@@ -139,7 +138,7 @@ class RoundOverController: UIViewController
         
         for var i = count-1; i >= 0; i--
         {
-            let controller = newControllers[i] as! UIViewController
+            let controller = newControllers[i] as UIViewController
             
             if controller is GamesController
             {

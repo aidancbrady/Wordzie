@@ -38,7 +38,7 @@ class WordListHandler
     
     class func loadCustomList(list:(String, String), controller:WeakWrapper<UIViewController>)
     {
-        println("Loading '" + list.0 + "' word list...")
+        print("Loading '" + list.0 + "' word list...")
         
         loadForeignList(list, handler: {response in
             var returned = false
@@ -77,7 +77,7 @@ class WordListHandler
                 returned = true
             }
             else {
-                println("Failed to load '" + list.0 + "' word list.")
+                print("Failed to load '" + list.0 + "' word list.")
             }
             
             if !returned
@@ -99,7 +99,7 @@ class WordListHandler
     
     class func loadListForEdit(list:(String, String), controller:WeakWrapper<CreateListController>)
     {
-        println("Loading '" + list.0 + "' word list for editing...")
+        print("Loading '" + list.0 + "' word list for editing...")
         
         loadForeignList(list, handler: {response in
             var terms:[(String, String)] = [(String, String)]()
@@ -131,7 +131,7 @@ class WordListHandler
                 }
             }
             else {
-                println("Failed to load '" + list.0 + "' word list.")
+                print("Failed to load '" + list.0 + "' word list.")
                 failed = true
             }
             
@@ -181,27 +181,37 @@ class WordListHandler
     {
         let manager:NSFileManager = NSFileManager()
         
-        println("Loading default word list...")
+        print("Loading default word list...")
         
         if manager.fileExistsAtPath(CoreFiles.defaultList)
         {
-            let content:String = String(contentsOfFile: CoreFiles.defaultList, encoding: NSUTF8StringEncoding, error: nil)!
-            let split = content.componentsSeparatedByString("\n")
-            
+            var content:String?
             var failed = false
             
-            for str in split
+            do {
+                try content = String(contentsOfFile: CoreFiles.defaultList, encoding: NSUTF8StringEncoding)
+            } catch {}
+            
+            if content != nil
             {
-                let dataSplit = Utilities.split(str, separator: Constants.LIST_SPLITTER)
+                let split = content!.componentsSeparatedByString("\n")
                 
-                if(dataSplit.count != 2)
+                for str in split
                 {
-                    failed = true
+                    let dataSplit = Utilities.split(str, separator: Constants.LIST_SPLITTER)
                     
-                    break
+                    if(dataSplit.count != 2)
+                    {
+                        failed = true
+                        
+                        break
+                    }
+                    
+                    Constants.CORE.activeList.append(Utilities.trim(str))
                 }
-                
-                Constants.CORE.activeList.append(Utilities.trim(str))
+            }
+            else {
+                failed = true
             }
             
             if !failed && Constants.CORE.activeList.count >= 1
@@ -223,19 +233,27 @@ class WordListHandler
     {
         let manager:NSFileManager = NSFileManager()
         
-        println("Loading word list data...")
+        print("Loading word list data...")
         if manager.fileExistsAtPath(CoreFiles.dataFile)
         {
-            let content:String = String(contentsOfFile: CoreFiles.dataFile, encoding: NSUTF8StringEncoding, error: nil)!
-            let split = content.componentsSeparatedByString("\n")
+            var content:String?
             
-            for str in split
+            do {
+                try content = String(contentsOfFile: CoreFiles.dataFile, encoding: NSUTF8StringEncoding)
+            } catch {}
+            
+            if content != nil
             {
-                let dataSplit = Utilities.split(str, separator: ":")
+                let split = content!.componentsSeparatedByString("\n")
                 
-                if dataSplit.count == 2
+                for str in split
                 {
-                    Constants.CORE.listURLs[dataSplit[0]] = dataSplit[1]
+                    let dataSplit = Utilities.split(str, separator: ":")
+                    
+                    if dataSplit.count == 2
+                    {
+                        Constants.CORE.listURLs[dataSplit[0]] = dataSplit[1]
+                    }
                 }
             }
         }
@@ -245,16 +263,18 @@ class WordListHandler
     {
         let manager:NSFileManager = NSFileManager()
         
-        println("Saving word list data...")
+        print("Saving word list data...")
         
         if manager.fileExistsAtPath(CoreFiles.dataFile)
         {
-            manager.removeItemAtPath(CoreFiles.dataFile, error: nil)
+            do {
+                try manager.removeItemAtPath(CoreFiles.dataFile)
+            } catch {}
         }
         
         manager.createFileAtPath(CoreFiles.dataFile, contents: nil, attributes: nil)
         
-        var str = NSMutableString()
+        let str = NSMutableString()
         
         for entry in Constants.CORE.listURLs
         {
@@ -359,8 +379,7 @@ class ListHandler
                         
                         if array[0] == "ACCEPT"
                         {
-                            let amount = array[1].toInt()!
-                            let url = array[2]
+                            let amount = Int(array[1])
                             
                             Utilities.displayAlert(table, title: "Success", msg: "Successfully created and uploaded word list. You now have \(amount) out of 5 word lists.", action: {action in
                                 table.dismissViewControllerAnimated(true, completion: nil)
@@ -391,7 +410,7 @@ class ListHandler
     {
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             let str = compileMsg("EDITLIST", Constants.CORE.account.username, controller.value!.editingList!.0, controller.value!.compileList())
-            let ret = NetHandler.sendData(str)
+            NetHandler.sendData(str)
             
             dispatch_async(dispatch_get_main_queue(), {
                 if let table = controller.value

@@ -34,7 +34,7 @@ class FriendCell: UITableViewCell
                     Utilities.displayYesNo(controller!, title: "Confirm", msg: "Accept request from " + user!.username + "?", action: {(action) -> Void in
                         Handlers.friendHandler.acceptRequest(WeakWrapper(value: friends), friend: self.user!.username)
                         
-                        var path = self.controller!.tableView.indexPathForCell(self)
+                        let path = self.controller!.tableView.indexPathForCell(self)
                         remoteDelete = false
                         self.controller!.tableView(self.controller!.tableView, commitEditingStyle: .Delete, forRowAtIndexPath: path!)
                         remoteDelete = true
@@ -67,7 +67,7 @@ class FriendCell: UITableViewCell
             }
             else if controller is SimpleFriendsController
             {
-                var parent = (controller! as! SimpleFriendsController).newController!
+                let parent = (controller! as! SimpleFriendsController).newController!
                 parent.setUser(user!.username)
                 controller!.navigationController!.popViewControllerAnimated(true)
             }
@@ -106,7 +106,7 @@ class GameCell: UITableViewCell
                     {
                         Utilities.displayYesNo(controller!, title: "Confirm", msg: "Accept request from " + opponent + "?", action: {(action) -> Void in
                             Handlers.gameHandler.acceptRequest(WeakWrapper(value: self.controller!), friend: opponent, handler: {() in Handlers.gameHandler.updateData(WeakWrapper(value: self.controller!))})
-                            var path = self.controller!.tableView.indexPathForCell(self)
+                            let path = self.controller!.tableView.indexPathForCell(self)
                             remoteDelete = false
                             self.controller!.tableView(self.controller!.tableView, commitEditingStyle: .Delete, forRowAtIndexPath: path!)
                             remoteDelete = true

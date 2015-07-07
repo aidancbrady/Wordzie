@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate, UITextFieldDelegate
+class EditTermController: ResponsiveTextFieldViewController
 {
     @IBOutlet weak var wordField: UITextField!
     @IBOutlet weak var definitionField: UITextView!
@@ -20,7 +20,7 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
         let currentText = textView.text as NSString
         let proposedText = currentText.stringByReplacingCharactersInRange(range, withString: text)
         
-        if count(proposedText) > 120
+        if proposedText.characters.count > 120
         {
             return false
         }
@@ -35,10 +35,10 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
     
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
     {
-        let currentText = textField.text as NSString
+        let currentText = textField.text! as NSString
         let proposedText = currentText.stringByReplacingCharactersInRange(range, withString: string)
         
-        if count(proposedText) > 24
+        if proposedText.characters.count > 24
         {
             return false
         }
@@ -55,9 +55,9 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
     {
         if wordField.hasText() && definitionField.hasText()
         {
-            if Utilities.isValidMsg(wordField.text, definitionField.text)
+            if Utilities.isValidMsg(wordField.text!, definitionField.text!)
             {
-                let newTerm = (Utilities.trim(wordField.text), Utilities.trim(definitionField.text))
+                let newTerm = (Utilities.trim(wordField.text!), Utilities.trim(definitionField.text!))
                 
                 if existsCheck(newTerm)
                 {
@@ -106,7 +106,7 @@ class EditTermController: ResponsiveTextFieldViewController, UITextViewDelegate,
     {
         let parentNav = navigationController!.presentingViewController! as! UINavigationController
         
-        return parentNav.viewControllers[parentNav.viewControllers.count-1] as! UIViewController
+        return parentNav.viewControllers[parentNav.viewControllers.count-1] as UIViewController
     }
     
     func getEditParent() -> UIViewController

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OptionsController: ResponsiveTextFieldViewController, UITextFieldDelegate
+class OptionsController: ResponsiveTextFieldViewController
 {
     @IBOutlet weak var confirmButton: UIButton!
     
@@ -39,9 +39,9 @@ class OptionsController: ResponsiveTextFieldViewController, UITextFieldDelegate
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    override func supportedInterfaceOrientations() -> Int
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
     {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        return UIInterfaceOrientationMask.Portrait
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
@@ -66,7 +66,7 @@ class OptionsController: ResponsiveTextFieldViewController, UITextFieldDelegate
     
     func onPasswordChange()
     {
-        if !oldField.text.isEmpty && !newField.text.isEmpty && !confirmField.text.isEmpty
+        if !oldField.text!.isEmpty && !newField.text!.isEmpty && !confirmField.text!.isEmpty
         {
             if oldField.text == Constants.CORE.account.password
             {
@@ -74,9 +74,9 @@ class OptionsController: ResponsiveTextFieldViewController, UITextFieldDelegate
                 {
                     if newField.text != Constants.CORE.account.password
                     {
-                        if Utilities.isValidCredential(newField.text)
+                        if Utilities.isValidCredential(newField.text!)
                         {
-                            doPasswordChange(newField.text)
+                            doPasswordChange(newField.text!)
                         }
                         else {
                             Utilities.displayAlert(self, title: "Warning", msg: "Invalid characters.", action: nil)
@@ -106,7 +106,7 @@ class OptionsController: ResponsiveTextFieldViewController, UITextFieldDelegate
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             Operations.passwordChanging = true
             
-            var (success, response) = Handlers.coreHandler.changePassword(password)
+            let (success, response) = Handlers.coreHandler.changePassword(password)
             
             dispatch_async(dispatch_get_main_queue(), {
                 Operations.passwordChanging = false
@@ -114,11 +114,11 @@ class OptionsController: ResponsiveTextFieldViewController, UITextFieldDelegate
                 if success
                 {
                     Utilities.displayAlert(self, title: "Success", msg: "Password successfully changed!", action: {(action) -> Void in
-                        println(self.navigationController!.dismissViewControllerAnimated(true, completion: nil))
+                        print(self.navigationController!.dismissViewControllerAnimated(true, completion: nil))
                     })
                 }
                 else {
-                    var alertMsg:String = response != nil ? response! : "Unable to connect."
+                    let alertMsg:String = response != nil ? response! : "Unable to connect."
                     
                     Utilities.displayAlert(self, title: "Couldn't change password", msg: alertMsg, action: nil)
                 }

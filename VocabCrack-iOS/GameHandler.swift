@@ -46,11 +46,11 @@ class GameHandler
                             for var i = 1; i < array.count; i++
                             {
                                 let gameData:[String] = Utilities.split(array[i], separator: Constants.SPLITTER_2)
-                                var g:Game = Game(user: Constants.CORE.account.username, opponent: gameData[0])
+                                let g:Game = Game(user: Constants.CORE.account.username, opponent: gameData[0])
                                 g.isSimple = true
                                 g.userTurn = Utilities.readBool(gameData[1])
-                                g.simpleUserScore = gameData[2].toInt()!
-                                g.simpleOpponentScore = gameData[3].toInt()!
+                                g.simpleUserScore = Int(gameData[2])!
+                                g.simpleOpponentScore = Int(gameData[3])!
                                 g.opponentEmail = gameData[4]
                                 
                                 games.append(g)
@@ -59,11 +59,11 @@ class GameHandler
                             for var i = 1; i < array1.count; i++
                             {
                                 let gameData:[String] = Utilities.split(array1[i], separator: Constants.SPLITTER_2)
-                                var opponent = gameData[0]
-                                var userTurn = Utilities.readBool(gameData[1])
-                                var g:Game = userTurn ? Game(user: opponent, opponent: Constants.CORE.account.username, activeRequested: false) : Game(user: Constants.CORE.account.username, opponent: opponent, activeRequested: true)
+                                let opponent = gameData[0]
+                                let userTurn = Utilities.readBool(gameData[1])
+                                let g:Game = userTurn ? Game(user: opponent, opponent: Constants.CORE.account.username, activeRequested: false) : Game(user: Constants.CORE.account.username, opponent: opponent, activeRequested: true)
                                 g.isSimple = true
-                                g.simpleUserScore = gameData[2].toInt()!
+                                g.simpleUserScore = Int(gameData[2])!
                                 g.opponentEmail = gameData[3]
                                 
                                 games.append(g)
@@ -111,7 +111,7 @@ class GameHandler
                             
                             for var i = 1; i < array.count; i+=2
                             {
-                                var g:Game? = Game.readDefault(array[i], splitter: Constants.SPLITTER_2)
+                                let g:Game? = Game.readDefault(array[i], splitter: Constants.SPLITTER_2)
                                 
                                 g!.opponentEmail = array[i+1]
                                 games.append(g!)
@@ -282,7 +282,7 @@ class GameHandler
                         
                         if array[0] == "ACCEPT"
                         {
-                            var game = Game.readDefault(array[1], splitter: Constants.SPLITTER_2)
+                            let game = Game.readDefault(array[1], splitter: Constants.SPLITTER_2)
                             game!.opponentEmail = array[2]
                             
                             if game != nil

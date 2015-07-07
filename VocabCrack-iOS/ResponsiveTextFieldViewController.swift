@@ -57,17 +57,17 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
     
     func arrangeViewOffsetFromKeyboard()
     {
-        var theApp: UIApplication = UIApplication.sharedApplication()
-        var windowView: UIView? = theApp.delegate!.window!
+        let theApp: UIApplication = UIApplication.sharedApplication()
+        let windowView: UIView? = theApp.delegate!.window!
         
-        var textFieldLowerPoint: CGPoint = CGPointMake(activeText!.frame.origin.x, activeText!.frame.origin.y + activeText!.frame.size.height)
+        let textFieldLowerPoint: CGPoint = CGPointMake(activeText!.frame.origin.x, activeText!.frame.origin.y + activeText!.frame.size.height)
         
-        var convertedTextFieldLowerPoint: CGPoint = view.convertPoint(textFieldLowerPoint, toView: windowView)
+        let convertedTextFieldLowerPoint: CGPoint = view.convertPoint(textFieldLowerPoint, toView: windowView)
         
-        var targetTextFieldLowerPoint: CGPoint = CGPointMake(activeText!.frame.origin.x, keyboardFrame.origin.y - kPreferredTextFieldToKeyboardOffset)
+        let targetTextFieldLowerPoint: CGPoint = CGPointMake(activeText!.frame.origin.x, keyboardFrame.origin.y - kPreferredTextFieldToKeyboardOffset)
         
-        var targetPointOffset: CGFloat = targetTextFieldLowerPoint.y - convertedTextFieldLowerPoint.y
-        var adjustedViewFrameCenter: CGPoint = CGPointMake(view.center.x, view.center.y + targetPointOffset)
+        let targetPointOffset: CGFloat = targetTextFieldLowerPoint.y - convertedTextFieldLowerPoint.y
+        let adjustedViewFrameCenter: CGPoint = CGPointMake(view.center.x, view.center.y + targetPointOffset)
         
         UIView.animateWithDuration(0.2, animations: {
             self.view.center = adjustedViewFrameCenter
@@ -76,7 +76,7 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
     
     func returnViewToInitialFrame()
     {
-        var initialViewRect: CGRect = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)
+        let initialViewRect: CGRect = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)
         
         if !CGRectEqualToRect(initialViewRect, self.view.frame)
         {
@@ -86,7 +86,7 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
         }
     }
     
-    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent)
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
     {
         if activeText != nil
         {

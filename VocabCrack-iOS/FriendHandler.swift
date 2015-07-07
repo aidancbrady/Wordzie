@@ -198,8 +198,8 @@ class FriendHandler
                         
                         if array[0] == "ACCEPT"
                         {
-                            let won = array[2].toInt()!
-                            let lost = array[3].toInt()!
+                            let won = Int(array[2])!
+                            let lost = Int(array[3])!
                             let login = NSString(string: array[4]).longLongValue
 
                             detail.acct = Account(username: friend, email: array[1], password: "password").setGamesWon(won).setGamesLost(lost).setLastLogin(login)

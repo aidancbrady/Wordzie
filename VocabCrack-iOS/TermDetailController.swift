@@ -44,7 +44,7 @@ class TermDetailController: UIViewController
     
     func getParent() -> UIViewController
     {
-        return navigationController!.viewControllers[navigationController!.viewControllers.count-2] as! UIViewController
+        return navigationController!.viewControllers[navigationController!.viewControllers.count-2] as UIViewController
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)

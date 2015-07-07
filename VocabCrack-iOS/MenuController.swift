@@ -26,9 +26,9 @@ class MenuController: UIViewController
         Utilities.roundButtons(menuLayer)
     }
     
-    override func supportedInterfaceOrientations() -> Int
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
     {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        return UIInterfaceOrientationMask.Portrait
     }
     
     override func viewWillAppear(animated: Bool)

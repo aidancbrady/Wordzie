@@ -40,9 +40,9 @@ class GamesController: UITableViewController
         Handlers.gameHandler.updateData(WeakWrapper(value: self))
     }
     
-    override func supportedInterfaceOrientations() -> Int
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
     {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        return UIInterfaceOrientationMask.Portrait
     }
     
     func onRefresh()
@@ -66,7 +66,7 @@ class GamesController: UITableViewController
     {
         let cell = tableView.dequeueReusableCellWithIdentifier("GameCell", forIndexPath: indexPath) as! GameCell
         
-        var game = modeButton.selectedSegmentIndex == 0 ? activeGames[indexPath.row] : pastGames[indexPath.row]
+        let game = modeButton.selectedSegmentIndex == 0 ? activeGames[indexPath.row] : pastGames[indexPath.row]
         
         if modeButton.selectedSegmentIndex == 0
         {

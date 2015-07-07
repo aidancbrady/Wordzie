@@ -13,7 +13,7 @@ class CoreHandler : NSObject, NSStreamDelegate
     func login(username:String, password:String) -> (Bool, String?)
     {
         let str = compileMsg("LOGIN", username, password)
-        var ret = NetHandler.sendData(str)
+        let ret = NetHandler.sendData(str)
         
         if let response = ret
         {
@@ -22,12 +22,12 @@ class CoreHandler : NSObject, NSStreamDelegate
             if array[0] == "ACCEPT"
             {
                 let acct:Account = Account(username:username, email:array[1], password:password)
-                acct.setGamesWon(array[2].toInt()!)
-                acct.setGamesLost(array[3].toInt()!)
+                acct.setGamesWon(Int(array[2])!)
+                acct.setGamesLost(Int(array[3])!)
                 
                 Constants.CORE.account = acct
                 
-                var defaults = NSUserDefaults.standardUserDefaults()
+                let defaults = NSUserDefaults.standardUserDefaults()
                 
                 defaults.setObject(acct.username, forKey: "username")
                 defaults.setObject(acct.email, forKey: "email")
@@ -49,14 +49,14 @@ class CoreHandler : NSObject, NSStreamDelegate
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             let str = compileMsg("PUSHID", Constants.CORE.account.username, deviceID)
             NetHandler.sendData(str)
-            println("Sent device ID to server")
+            print("Sent device ID to server")
         })
     }
     
     func register(username:String, email:String, password:String) -> (Bool, String?)
     {
         let str = compileMsg("REGISTER", username, email, password)
-        var ret = NetHandler.sendData(str)
+        let ret = NetHandler.sendData(str)
         
         if let response = ret
         {
@@ -75,9 +75,9 @@ class CoreHandler : NSObject, NSStreamDelegate
     
     func changePassword(password:String) -> (Bool, String?)
     {
-        var str:String = compileMsg("CHANGEPASS", Constants.CORE.account.username, Constants.CORE.account.password!, password)
+        let str:String = compileMsg("CHANGEPASS", Constants.CORE.account.username, Constants.CORE.account.password!, password)
         
-        var ret = NetHandler.sendData(str)
+        let ret = NetHandler.sendData(str)
         
         if let response = ret
         {

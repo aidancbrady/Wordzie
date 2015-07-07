@@ -25,9 +25,9 @@ class NewGameController: UIViewController, ListLoader
     var definedUser:String?
     var firstDisplay = true
     
-    override func supportedInterfaceOrientations() -> Int
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
     {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        return UIInterfaceOrientationMask.Portrait
     }
     
     func setUser(user:String)
@@ -60,7 +60,7 @@ class NewGameController: UIViewController, ListLoader
         {
             let game:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("GameNavigation") as! UINavigationController
             
-            let controller = game.viewControllers[0] as! UIViewController
+            let controller = game.viewControllers[0] as UIViewController
             
             (controller as! GameController).game = createGame()
             (controller as! GameController).singleplayer = definedUser == nil
@@ -99,7 +99,7 @@ class NewGameController: UIViewController, ListLoader
     
     func createGame() -> Game
     {
-        var game:Game = Game(user: Constants.CORE.account.username, opponent: definedUser != nil ? definedUser! : "Guest", activeRequested: true)
+        let game:Game = Game(user: Constants.CORE.account.username, opponent: definedUser != nil ? definedUser! : "Guest", activeRequested: true)
         game.gameType = typeButton.selectedSegmentIndex
         game.setList(Constants.CORE.listData!.0, listUrl: Constants.CORE.listData!.1)
         

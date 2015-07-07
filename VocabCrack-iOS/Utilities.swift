@@ -116,7 +116,7 @@ class Utilities
     
     class func buildGravatarURL(email:String, size:Int) -> NSURL
     {
-        var str:NSMutableString = NSMutableString(format:"http://gravatar.com/avatar/%@?", buildMD5(email))
+        let str:NSMutableString = NSMutableString(format:"http://gravatar.com/avatar/%@?", buildMD5(email))
         str.appendString("&size=\(size)")
         str.appendString("&default=404")
         
@@ -132,7 +132,7 @@ class Utilities
         
         CC_MD5(str!, strLen, result)
         
-        var hash = NSMutableString()
+        let hash = NSMutableString()
         
         for i in 0..<digestLen
         {
@@ -151,7 +151,7 @@ class Utilities
     
     class func replace(s:String, find:String, replace:String) -> String
     {
-        return s.stringByReplacingOccurrencesOfString(find, withString: replace, options: nil, range: nil)
+        return s.stringByReplacingOccurrencesOfString(find, withString: replace, options: [], range: nil)
     }
     
     /// Trims and splits a String with a specified separator
@@ -177,7 +177,7 @@ class Utilities
     
     class func readRemote(url:NSURL) -> String?
     {
-        let task = NSURLSession.sharedSession().dataTaskWithURL(Constants.DATA_URL);
+        NSURLSession.sharedSession().dataTaskWithURL(Constants.DATA_URL);
         
         return nil
     }
@@ -260,13 +260,13 @@ class Utilities
                 let array:[String] = str.componentsSeparatedByString("\n")
                 
                 Constants.IP = array[0]
-                Constants.PORT = array[1].toInt()!
+                Constants.PORT = Int(array[1])!
             
-                println("Loaded data")
+                print("Loaded data")
                 Constants.CORE.dataState = true
             }
             else {
-                println("Failed to load data")
+                print("Failed to load data")
                 Constants.CORE.dataState = false
             }
             
@@ -287,14 +287,14 @@ class Utilities
         Operations.loadingAvatars.addObject(email)
         
         let url:NSURL = Utilities.buildGravatarURL(email, size: 512)
-        var request: NSURLRequest = NSURLRequest(URL: url)
+        let request: NSURLRequest = NSURLRequest(URL: url)
         
         view.value!.image = UIImage(named: "user.png")
         
         var image:UIImage? = nil
         
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            image = UIImage(data: data)
+        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+            image = UIImage(data: data!)
             
             if image != nil
             {
@@ -317,15 +317,15 @@ class Utilities
     {
         func getHTTP(request: NSMutableURLRequest!, action:(String?) -> Void)
         {
-            var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-            var session = NSURLSession(configuration: configuration, delegate: self, delegateQueue:NSOperationQueue.mainQueue())
+            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+            let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue:NSOperationQueue.mainQueue())
             
-            var task = session.dataTaskWithRequest(request)
+            let task = session.dataTaskWithRequest(request)
             {
-                (data: NSData!, response: NSURLResponse!, error: NSError!) -> Void in
+                (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
                 if error == nil
                 {
-                    action(NSString(data: data, encoding:NSUTF8StringEncoding) as? String)
+                    action(NSString(data: data!, encoding:NSUTF8StringEncoding) as? String)
                 }
                 else {
                     action(nil)
@@ -334,17 +334,17 @@ class Utilities
                 return
             }
             
-            task.resume()
+            task!.resume()
         }
         
-        func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential!) -> Void)
+        func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void)
         {
-            completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, NSURLCredential(forTrust: challenge.protectionSpace.serverTrust))
+            completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!))
         }
         
-        func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest!) -> Void)
+        func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest?) -> Void)
         {
-            var newRequest: NSURLRequest? = request
+            let newRequest: NSURLRequest? = request
             completionHandler(newRequest)
         }
     }
@@ -363,8 +363,8 @@ class Utilities
     {
         let application = UIApplication.sharedApplication()
         
-        println("Registering for notifications...")
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: .Alert | .Badge, categories: nil))
+        print("Registering for notifications...")
+        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil))
         application.registerForRemoteNotifications()
     }
     

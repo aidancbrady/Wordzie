@@ -68,9 +68,9 @@ class WordListsController: UITableViewController
         }
     }
 
-    override func supportedInterfaceOrientations() -> Int
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
     {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        return UIInterfaceOrientationMask.Portrait
     }
     
     override func viewDidAppear(animated: Bool)

@@ -22,9 +22,9 @@ class FriendsController: TableDataReceiver
         tableView.reloadData()
     }
     
-    override func supportedInterfaceOrientations() -> Int
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
     {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        return UIInterfaceOrientationMask.Portrait
     }
     
     override func receiveData(obj: AnyObject, type: Int)
@@ -97,7 +97,7 @@ class FriendsController: TableDataReceiver
     {
         let cell:FriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendCell
         
-        var account:Account = modeButton.selectedSegmentIndex == 0 ? friends[indexPath.row] : requests[indexPath.row]
+        let account:Account = modeButton.selectedSegmentIndex == 0 ? friends[indexPath.row] : requests[indexPath.row]
         
         if modeButton.selectedSegmentIndex == 0
         {

@@ -22,27 +22,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     {
         if let action = userInfo["action"] as? String
         {
-            println("Notification: " + action)
+            print("Notification: " + action)
         }
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData)
     {
-        println("Successfully registered notification service.")
+        print("Successfully registered notification service.")
         
-        var deviceID = deviceToken.description
-            .stringByReplacingOccurrencesOfString("<", withString: "", options: nil, range: nil)
-            .stringByReplacingOccurrencesOfString(">", withString: "", options: nil, range: nil)
-            .stringByReplacingOccurrencesOfString(" ", withString: "", options: nil, range: nil)
+        let deviceID = deviceToken.description
+            .stringByReplacingOccurrencesOfString("<", withString: "", options: [], range: nil)
+            .stringByReplacingOccurrencesOfString(">", withString: "", options: [], range: nil)
+            .stringByReplacingOccurrencesOfString(" ", withString: "", options: [], range: nil)
         
-        println("Sending device ID " + deviceID)
+        print("Sending device ID " + deviceID)
         
         Handlers.coreHandler.sendDeviceID(deviceID)
     }
     
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError)
     {
-        println("Failed to register notification service.")
+        print("Failed to register notification service.")
     }
 
     func applicationWillResignActive(application: UIApplication)

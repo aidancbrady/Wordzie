@@ -24,9 +24,9 @@ class SimpleFriendsController: TableDataReceiver
         }
     }
     
-    override func supportedInterfaceOrientations() -> Int
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
     {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        return UIInterfaceOrientationMask.Portrait
     }
     
     override func endRefresh()
@@ -75,7 +75,7 @@ class SimpleFriendsController: TableDataReceiver
     {
         let cell:FriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendCell
         
-        var account:Account = friends[indexPath.row]
+        let account:Account = friends[indexPath.row]
         
         if account.isRequest
         {

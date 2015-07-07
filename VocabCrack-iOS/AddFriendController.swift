@@ -27,13 +27,13 @@ class AddFriendController: UITableViewController, UISearchBarDelegate
         activity.hidesWhenStopped = true
         activity.stopAnimating()
         
-        var barButton:UIBarButtonItem = UIBarButtonItem(customView: activity)
+        let barButton:UIBarButtonItem = UIBarButtonItem(customView: activity)
         self.navigationItem.rightBarButtonItem = barButton
     }
     
-    override func supportedInterfaceOrientations() -> Int
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
     {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        return UIInterfaceOrientationMask.Portrait
     }
     
     override func viewWillAppear(animated: Bool)
@@ -41,12 +41,12 @@ class AddFriendController: UITableViewController, UISearchBarDelegate
         super.viewWillAppear(animated)
         
         searchBar.text = ""
-        Handlers.friendHandler.updateSearch(WeakWrapper(value: self), query: searchBar.text)
+        Handlers.friendHandler.updateSearch(WeakWrapper(value: self), query: searchBar.text!)
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String)
     {
-        Handlers.friendHandler.updateSearch(WeakWrapper(value: self), query: searchBar.text)
+        Handlers.friendHandler.updateSearch(WeakWrapper(value: self), query: searchBar.text!)
     }
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int

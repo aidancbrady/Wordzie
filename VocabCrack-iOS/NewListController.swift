@@ -30,9 +30,9 @@ class NewListController: UIViewController, UITextFieldDelegate
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    override func supportedInterfaceOrientations() -> Int
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
     {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+        return UIInterfaceOrientationMask.Portrait
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool
@@ -51,20 +51,20 @@ class NewListController: UIViewController, UITextFieldDelegate
     
     func onCreate()
     {
-        if !identifierEntry.text.isEmpty && !urlEntry.text.isEmpty
+        if !identifierEntry.text!.isEmpty && !urlEntry.text!.isEmpty
         {
             if identifierEntry.text == "Default" || urlEntry.text == "DefaultURL"
             {
                 Utilities.displayAlert(self, title: "Error", msg: "Can't redefine default word list.", action: nil)
                 return
             }
-            else if Constants.CORE.listURLs[identifierEntry.text] != nil
+            else if Constants.CORE.listURLs[identifierEntry.text!] != nil
             {
                 Utilities.displayAlert(self, title: "Error", msg: "Word list already exists!", action: nil)
                 return
             }
             
-            WordListHandler.addList(Utilities.trim(identifierEntry.text), url: Utilities.trim(urlEntry.text))
+            WordListHandler.addList(Utilities.trim(identifierEntry.text!), url: Utilities.trim(urlEntry.text!))
             dismissViewControllerAnimated(true, completion: nil)
         }
     }

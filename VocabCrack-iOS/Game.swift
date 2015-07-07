@@ -73,7 +73,7 @@ class Game: Equatable
     
     func getNewRequestPair() -> Game
     {
-        var g:Game = Game(user:user, opponent:opponent, activeRequested:!activeRequested)
+        let g:Game = Game(user:user, opponent:opponent, activeRequested:!activeRequested)
         
         g.gameType = gameType
         g.listName = listName
@@ -87,9 +87,9 @@ class Game: Equatable
     
     func getNewPair() -> Game
     {
-        var g:Game = Game(user:opponent, opponent:user)
+        let g:Game = Game(user:opponent, opponent:user)
         
-        var temp:String = opponent
+        let temp:String = opponent
         g.opponent = user
         g.user = temp
         
@@ -108,7 +108,7 @@ class Game: Equatable
     {
         if(user != userPerspective) //If requesting user equals perspective user
         {
-            var temp:String = opponent
+            let temp:String = opponent
             opponent = user
             user = temp
             
@@ -137,9 +137,9 @@ class Game: Equatable
             return nil
         }
         
-        var g:Game = Game(user:split[0], opponent:split[1])
+        let g:Game = Game(user:split[0], opponent:split[1])
         
-        g.gameType = split[2].toInt()!
+        g.gameType = Int(split[2])!
         g.userTurn = Utilities.readBool(split[3])
         g.listName = split[4]
         g.listURL = split[5]
@@ -161,14 +161,14 @@ class Game: Equatable
             return nil
         }
         
-        var g:Game = Game(user:split[1], opponent:split[2], activeRequested:Utilities.readBool(split[0]))
+        let g:Game = Game(user:split[1], opponent:split[2], activeRequested:Utilities.readBool(split[0]))
         
-        g.gameType = split[3].toInt()!
+        g.gameType = Int(split[3])!
         g.userTurn = Utilities.readBool(split[4])
         g.listName = split[5]
         g.listURL = split[6]
         
-        var index:Int = g.readScoreList(split, start:7, user:true)
+        let index:Int = g.readScoreList(split, start:7, user:true)
         
         g.readWordList(split[index])
         
@@ -236,12 +236,12 @@ class Game: Equatable
     {
         var list:[Int] = [Int]()
         
-        var size:Int = array[start].toInt()!
+        let size:Int = Int(array[start])!
         var maxIndex:Int = size+start
         
         for var i = 0; i < size; i++
         {
-            list.append(array[start+1+i].toInt()!)
+            list.append(Int(array[start+1+i])!)
             maxIndex = start+1+i
         }
         

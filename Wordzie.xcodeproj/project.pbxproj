@@ -36,6 +36,7 @@
 		11509EBB1A37AA88002C403E /* GameDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11509EBA1A37AA88002C403E /* GameDetailController.swift */; };
 		11509EBD1A37AAB3002C403E /* UserDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11509EBC1A37AAB3002C403E /* UserDetailController.swift */; };
 		11509EBF1A38F153002C403E /* NewGameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11509EBE1A38F153002C403E /* NewGameController.swift */; };
+		11839CD11B4C3EB400807C85 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 11839CD01B4C3EB400807C85 /* Default-568h@2x.png */; };
 		1199A5131A390C740053366E /* WordDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199A5121A390C740053366E /* WordDataHandler.swift */; };
 		1199A5151A390C7D0053366E /* WordListHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1199A5141A390C7D0053366E /* WordListHandler.swift */; };
 		11AA7F251A4C747D000C6017 /* RoundOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AA7F241A4C747D000C6017 /* RoundOverController.swift */; };
@@ -95,6 +96,7 @@
 		11509EBA1A37AA88002C403E /* GameDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameDetailController.swift; sourceTree = "<group>"; };
 		11509EBC1A37AAB3002C403E /* UserDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailController.swift; sourceTree = "<group>"; };
 		11509EBE1A38F153002C403E /* NewGameController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewGameController.swift; sourceTree = "<group>"; };
+		11839CD01B4C3EB400807C85 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		1199A5121A390C740053366E /* WordDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordDataHandler.swift; sourceTree = "<group>"; };
 		1199A5141A390C7D0053366E /* WordListHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordListHandler.swift; sourceTree = "<group>"; };
 		11AA7F241A4C747D000C6017 /* RoundOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundOverController.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		1137F06A1A2EC851009A7BDA = {
 			isa = PBXGroup;
 			children = (
+				11839CD01B4C3EB400807C85 /* Default-568h@2x.png */,
 				1137F0751A2EC851009A7BDA /* VocabCrack-iOS */,
 				1137F08D1A2EC851009A7BDA /* VocabCrack-iOSTests */,
 				1137F0741A2EC851009A7BDA /* Products */,
@@ -282,7 +285,8 @@
 		1137F06B1A2EC851009A7BDA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = aidancbrady;
 				TargetAttributes = {
 					1137F0721A2EC851009A7BDA = {
@@ -328,6 +332,7 @@
 				11AD99AD1A637E7100AF74F1 /* refresh.png in Resources */,
 				11AD99AB1A6353D400AF74F1 /* logo.png in Resources */,
 				11B666E71A3275EF006A17F3 /* user.png in Resources */,
+				11839CD11B4C3EB400807C85 /* Default-568h@2x.png in Resources */,
 				11B0C8211A33A41700F0A557 /* Main.storyboard in Resources */,
 				1137F0851A2EC851009A7BDA /* LaunchScreen.xib in Resources */,
 				1110AF3B1A3E226E002088C2 /* check.png in Resources */,
@@ -436,6 +441,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -507,6 +513,7 @@
 				INFOPLIST_FILE = "VocabCrack-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aidancbrady.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Wordzie;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "VocabCrack-iOS/VocabCrack-iOS-Bridging-Header.h";
@@ -526,6 +533,7 @@
 				INFOPLIST_FILE = "VocabCrack-iOS/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aidancbrady.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Wordzie;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "VocabCrack-iOS/VocabCrack-iOS-Bridging-Header.h";
@@ -550,6 +558,7 @@
 				);
 				INFOPLIST_FILE = "VocabCrack-iOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aidancbrady.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = WordzieTests;
 				PROVISIONING_PROFILE = "";
 			};
@@ -567,6 +576,7 @@
 				);
 				INFOPLIST_FILE = "VocabCrack-iOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.aidancbrady.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = WordzieTests;
 				PROVISIONING_PROFILE = "";
 			};

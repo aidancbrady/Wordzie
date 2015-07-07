@@ -83,7 +83,7 @@ class LoginController: UIViewController, UITextFieldDelegate
     
     func getCachedData() -> Bool
     {
-        var defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = NSUserDefaults.standardUserDefaults()
         
         if let user = defaults.objectForKey("username") as? String
         {
@@ -177,16 +177,16 @@ class LoginController: UIViewController, UITextFieldDelegate
     
     func onLogin()
     {
-        if dataCache != nil || (!usernameField.text.isEmpty && !passwordField.text.isEmpty)
+        if dataCache != nil || (!usernameField.text!.isEmpty && !passwordField.text!.isEmpty)
         {
-            if dataCache != nil || Utilities.isValidCredential(usernameField.text, passwordField.text)
+            if dataCache != nil || Utilities.isValidCredential(usernameField.text!, passwordField.text!)
             {
                 if dataCache != nil
                 {
                     doLogin(dataCache!.0, password: dataCache!.2)
                 }
                 else {
-                    doLogin(usernameField.text, password:passwordField.text)
+                    doLogin(usernameField.text!, password:passwordField.text!)
                 }
             }
             else {
@@ -208,7 +208,7 @@ class LoginController: UIViewController, UITextFieldDelegate
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
             Operations.loggingIn = true
             
-            var (success, response) = Handlers.coreHandler.login(username, password:password)
+            let (success, response) = Handlers.coreHandler.login(username, password:password)
             
             dispatch_async(dispatch_get_main_queue(), {
                 Operations.loggingIn = false
@@ -223,7 +223,7 @@ class LoginController: UIViewController, UITextFieldDelegate
                     Utilities.registerNotifications()
                 }
                 else {
-                    var alertMsg:String = response != nil ? response! : "Unable to connect."
+                    let alertMsg:String = response != nil ? response! : "Unable to connect."
                     
                     Utilities.displayAlert(self, title: "Couldn't login", msg: alertMsg, action: nil)
                 }

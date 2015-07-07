@@ -14,7 +14,7 @@ class WordDataHandler
     {
         let manager:NSFileManager = NSFileManager()
         
-        println("Loading word data...");
+        print("Loading word data...");
         
         if !manager.fileExistsAtPath(CoreFiles.wordFile)
         {
@@ -23,7 +23,7 @@ class WordDataHandler
         
         Constants.CORE.learnedWords.removeAll(keepCapacity: false)
         
-        let content:String = String(contentsOfFile: CoreFiles.wordFile, encoding: NSUTF8StringEncoding, error: nil)!
+        let content:String = try! String(contentsOfFile: CoreFiles.wordFile, encoding: NSUTF8StringEncoding)
         let split = content.componentsSeparatedByString(",")
         
         for str in split
@@ -39,16 +39,19 @@ class WordDataHandler
     {
         let manager:NSFileManager = NSFileManager()
         
-        println("Saving word data...");
+        print("Saving word data...");
     
         if manager.fileExistsAtPath(CoreFiles.wordFile)
         {
-            manager.removeItemAtPath(CoreFiles.wordFile, error: nil)
+            do {
+                try manager.removeItemAtPath(CoreFiles.wordFile)
+            } catch _ {
+            }
         }
         
         manager.createFileAtPath(CoreFiles.wordFile, contents: nil, attributes: nil)
         
-        var str = NSMutableString()
+        let str = NSMutableString()
         
         for word in Constants.CORE.learnedWords
         {
@@ -73,8 +76,8 @@ class WordDataHandler
         while list.count < 10
         {
             let word = Constants.CORE.activeList[Int(arc4random_uniform(UInt32(Constants.CORE.activeList.count)))]
-            
-            if(!contains(list, word) && !contains(Constants.CORE.learnedWords, Utilities.split(word, separator: String(Constants.LIST_SPLITTER))[0]))
+
+            if(!list.contains(word) && !Constants.CORE.learnedWords.contains(Utilities.split(word, separator: String(Constants.LIST_SPLITTER))[0]))
             {
                 list.append(word)
             }

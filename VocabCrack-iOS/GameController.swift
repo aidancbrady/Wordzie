@@ -52,7 +52,7 @@ class GameController: UIViewController
         
         initGame()
         
-        var anim:CABasicAnimation = CABasicAnimation(keyPath: "opacity")
+        let anim:CABasicAnimation = CABasicAnimation(keyPath: "opacity")
         anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         anim.fromValue = NSNumber(float: 0.5)
         anim.toValue = NSNumber(float: 1)
@@ -124,7 +124,7 @@ class GameController: UIViewController
         {
             amountCorrect++
             
-            var prev:String = Utilities.split(game.activeWords[wordIndex-1], separator: Constants.LIST_SPLITTER)[0];
+            let prev:String = Utilities.split(game.activeWords[wordIndex-1], separator: Constants.LIST_SPLITTER)[0];
             Constants.CORE.learnedWords.append(prev);
             WordDataHandler.save();
         }
@@ -223,7 +223,7 @@ class GameController: UIViewController
         {
             finalizeGameData()
             
-            let roundOver:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RoundOverController") as! UIViewController
+            let roundOver:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("RoundOverController") as UIViewController!
             
             (roundOver as! RoundOverController).game = game
             (roundOver as! RoundOverController).singleplayer = singleplayer
@@ -264,7 +264,7 @@ class GameController: UIViewController
             
             if timeLeft == 5
             {
-                var anim:CABasicAnimation = CABasicAnimation(keyPath: "opacity")
+                let anim:CABasicAnimation = CABasicAnimation(keyPath: "opacity")
                 anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
                 anim.fromValue = NSNumber(float: 0.5)
                 anim.toValue = NSNumber(float: 1)
