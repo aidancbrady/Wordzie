@@ -216,7 +216,7 @@ class GameController: UIViewController
             
             if !timer.valid
             {
-                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "updateTime", userInfo: nil, repeats: true)
+                timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(GameController.updateTime), userInfo: nil, repeats: true)
             }
         }
         else if wordIndex == 9 && complete //Called after last response view

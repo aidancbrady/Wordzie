@@ -23,7 +23,7 @@ class RegisterController: UIViewController, UITextFieldDelegate
     {
         super.viewDidLoad()
         
-        registerButton.addTarget(self, action: "onRegister", forControlEvents: .TouchUpInside)
+        registerButton.addTarget(self, action: #selector(RegisterController.onRegister), forControlEvents: .TouchUpInside)
         
         registerSpinner.hidden = false
         registerSpinner.hidesWhenStopped = true

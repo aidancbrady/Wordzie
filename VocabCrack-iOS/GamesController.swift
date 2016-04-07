@@ -28,7 +28,7 @@ class GamesController: UITableViewController
         
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        refresher.addTarget(self, action: #selector(GamesController.onRefresh), forControlEvents: UIControlEvents.ValueChanged)
         refreshControl = refresher
     }
     

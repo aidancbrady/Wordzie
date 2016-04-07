@@ -84,7 +84,7 @@ class WordListsController: UITableViewController
         
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: "onRefresh", forControlEvents: UIControlEvents.ValueChanged)
+        refresher.addTarget(self, action: #selector(WordListsController.onRefresh), forControlEvents: UIControlEvents.ValueChanged)
         refreshControl = refresher
         
         compileArray()

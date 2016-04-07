@@ -462,7 +462,7 @@ class ListHandler
                         {
                             var urlArray:[(String, String)] = [(String, String)]()
                             
-                            for var i = 1; i < array.count; i++
+                            for i in 1 ..< array.count
                             {
                                 let split:[String] = Utilities.split(array[i], separator: Constants.SPLITTER_2)
                                 

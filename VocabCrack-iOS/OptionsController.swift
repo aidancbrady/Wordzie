@@ -20,7 +20,7 @@ class OptionsController: ResponsiveTextFieldViewController
     {
         super.viewDidLoad()
         
-        confirmButton.addTarget(self, action: "onPasswordChange", forControlEvents: .TouchUpInside)
+        confirmButton.addTarget(self, action: #selector(OptionsController.onPasswordChange), forControlEvents: .TouchUpInside)
         
         oldField.delegate = self
         newField.delegate = self
