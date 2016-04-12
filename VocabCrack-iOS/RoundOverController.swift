@@ -136,7 +136,7 @@ class RoundOverController: UIViewController
         var newControllers = superNav.viewControllers
         let count = newControllers.count
         
-        for var i = count-1; i >= 0; i--
+        for i in (count-1).stride(through: 0, by: -1)
         {
             let controller = newControllers[i] as UIViewController
             

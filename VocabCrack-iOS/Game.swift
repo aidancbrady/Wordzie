@@ -239,7 +239,7 @@ class Game: Equatable
         let size:Int = Int(array[start])!
         var maxIndex:Int = size+start
         
-        for var i = 0; i < size; i++
+        for i in 0 ..< size
         {
             list.append(Int(array[start+1+i])!)
             maxIndex = start+1+i
@@ -386,13 +386,13 @@ class Game: Equatable
         
         var won = 0;
         
-        for var i = 0; i < userPoints.count; i++
+        for i in 0 ..< userPoints.count
         {
             if i <= opponentPoints.count-1
             {
                 if userPoints[i] >= opponentPoints[i]
                 {
-                    won++;
+                    won += 1
                 }
             }
         }
@@ -409,13 +409,13 @@ class Game: Equatable
         
         var won = 0;
         
-        for var i = 0; i < opponentPoints.count; i++
+        for i in 0 ..< opponentPoints.count
         {
             if i <= userPoints.count-1
             {
                 if opponentPoints[i] >= userPoints[i]
                 {
-                    won++;
+                    won += 1
                 }
             }
         }

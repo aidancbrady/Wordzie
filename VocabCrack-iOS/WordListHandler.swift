@@ -10,8 +10,8 @@ import UIKit
 
 struct CoreFiles
 {
-    static let dataFile:String = WordListHandler.getDocumentsDir().stringByAppendingPathComponent("ListData.txt")
-    static let wordFile:String = WordListHandler.getDocumentsDir().stringByAppendingPathComponent("WordData.txt")
+    static let dataFile:String = (WordListHandler.getDocumentsDir() as NSString).stringByAppendingPathComponent("ListData.txt")
+    static let wordFile:String = (WordListHandler.getDocumentsDir() as NSString).stringByAppendingPathComponent("WordData.txt")
     static let defaultList:String = WordListHandler.getDefaultList()
 }
 
@@ -19,7 +19,7 @@ class WordListHandler
 {
     class func populateDefaults(inout array:[(String, String)])
     {
-        array.append("Default", "DefaultURL")
+        array.append(("Default", "DefaultURL"))
     }
     
     class func loadList(list:(String, String), controller:WeakWrapper<UIViewController>)

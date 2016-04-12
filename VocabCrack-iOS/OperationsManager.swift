@@ -26,10 +26,10 @@ struct Operations
     {
         if activity
         {
-            currentOperations++
+            currentOperations += 1
         }
         else {
-            currentOperations--
+            currentOperations -= 1
         }
         
         UIApplication.sharedApplication().networkActivityIndicatorVisible = currentOperations > 0

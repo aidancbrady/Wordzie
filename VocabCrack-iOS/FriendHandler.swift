@@ -44,13 +44,13 @@ class FriendHandler
                         {
                             var accounts:[Account] = [Account]()
                             
-                            for var i = 1; i < array.count; i++
+                            for i in 1 ..< array.count
                             {
                                 var split:[String] = array[i].componentsSeparatedByString(Constants.SPLITTER_2)
                                 accounts.append(Account(username:split[0], isRequest:false).setEmail(split[1]).setLastLogin(NSString(string: split[2]).longLongValue))
                             }
                             
-                            for var i = 1; i < array1.count; i++
+                            for i in 1 ..< array1.count
                             {
                                 accounts.append(Account(username:array1[i], isRequest:true))
                             }
@@ -95,7 +95,7 @@ class FriendHandler
                         {
                             var accounts:[Account] = [Account]()
                             
-                            for var i = 1; i < array.count; i++
+                            for i in 1 ..< array.count
                             {
                                 var split:[String] = array[i].componentsSeparatedByString(Constants.SPLITTER_2)
                                 accounts.append(Account(username:split[0], isRequest:false).setEmail(split[1]))

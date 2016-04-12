@@ -164,7 +164,7 @@ class Utilities
         
         var split = trim(s).componentsSeparatedByString(separator)
         
-        for var i = 0; i < split.count; i++
+        for i in 0 ..< split.count
         {
             if split[i] == ""
             {
@@ -290,10 +290,9 @@ class Utilities
         let request: NSURLRequest = NSURLRequest(URL: url)
         
         view.value!.image = UIImage(named: "user.png")
-        
         var image:UIImage? = nil
         
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue(), completionHandler: { (response: NSURLResponse?, data: NSData?, error: NSError?) -> Void in
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
             image = UIImage(data: data!)
             
             if image != nil
@@ -311,6 +310,8 @@ class Utilities
             
             Operations.loadingAvatars.removeObject(email)
         })
+        
+        task.resume()
     }
     
     class HTTPReader: NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate
@@ -334,7 +335,7 @@ class Utilities
                 return
             }
             
-            task!.resume()
+            task.resume()
         }
         
         func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void)

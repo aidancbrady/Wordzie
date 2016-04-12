@@ -43,7 +43,7 @@ class GameHandler
                         {
                             var games:[Game] = [Game]()
                             
-                            for var i = 1; i < array.count; i++
+                            for i in 1 ..< array.count
                             {
                                 let gameData:[String] = Utilities.split(array[i], separator: Constants.SPLITTER_2)
                                 let g:Game = Game(user: Constants.CORE.account.username, opponent: gameData[0])
@@ -56,7 +56,7 @@ class GameHandler
                                 games.append(g)
                             }
                                 
-                            for var i = 1; i < array1.count; i++
+                            for i in 1 ..< array1.count
                             {
                                 let gameData:[String] = Utilities.split(array1[i], separator: Constants.SPLITTER_2)
                                 let opponent = gameData[0]
@@ -109,7 +109,7 @@ class GameHandler
                         {
                             var games:[Game] = [Game]()
                             
-                            for var i = 1; i < array.count; i+=2
+                            for i in 1.stride(to: array.count, by: 2)
                             {
                                 let g:Game? = Game.readDefault(array[i], splitter: Constants.SPLITTER_2)
                                 

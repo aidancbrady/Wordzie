@@ -122,7 +122,7 @@ class GameController: UIViewController
         
         if correct
         {
-            amountCorrect++
+            amountCorrect += 1
             
             let prev:String = Utilities.split(game.activeWords[wordIndex-1], separator: Constants.LIST_SPLITTER)[0];
             Constants.CORE.learnedWords.append(prev);
@@ -198,7 +198,7 @@ class GameController: UIViewController
                 fadeIn(nil, views: remainingLabel)
             }
             
-            wordIndex++
+            wordIndex += 1
             complete = false
             
             setTermData()
@@ -239,7 +239,7 @@ class GameController: UIViewController
     
     func updateTime()
     {
-        timeLeft--
+        timeLeft -= 1
         
         if timeLeft == -1
         {
@@ -304,7 +304,7 @@ class GameController: UIViewController
     {
         let transform:CGAffineTransform = CGAffineTransformMake(1, 0, 0, 1, -view.frame.width-view.frame.minX, 0)
         
-        animations++
+        animations += 1
         
         UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             view.transform = transform
@@ -312,7 +312,7 @@ class GameController: UIViewController
             view.hidden = true
             view.transform = CGAffineTransformIdentity
             
-            self.animations--
+            self.animations -= 1
         })
     }
     
@@ -323,12 +323,12 @@ class GameController: UIViewController
         view.frame = CGRectMake(definitionView.frame.width, view.frame.minY, view.frame.width, view.frame.height)
         view.hidden = false
         
-        animations++
+        animations += 1
         
         UIView.transitionWithView(view, duration: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             view.frame = prevRect
         }, completion: {b in
-            self.animations--
+            self.animations -= 1
             return
         })
     }
