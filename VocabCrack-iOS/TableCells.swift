@@ -188,6 +188,7 @@ class ListCell:UITableViewCell
     
     var list:(String, String)?
     var controller:WordListsController?
+    var owned = false
     
     override func setSelected(selected: Bool, animated: Bool)
     {
@@ -197,6 +198,33 @@ class ListCell:UITableViewCell
         {
             controller!.navigationController!.popViewControllerAnimated(true)
             controller!.newController!.setList(list!)
+        }
+    }
+    
+    @IBAction func onLongPress(sender: UILongPressGestureRecognizer)
+    {
+        if sender.state == UIGestureRecognizerState.Began
+        {
+            if controller != nil && identifierLabel.text != "Default"
+            {
+                if !owned
+                {
+                    Utilities.displayAction(self.controller!, actions: ActionButton(button: "Copy URL", action: {action in
+                        UIPasteboard.generalPasteboard().string = self.list!.1
+                    }))
+                }
+                else {
+                    Utilities.displayAction(self.controller!, actions: ActionButton(button: "Edit List", action: {action in
+                        let createList:UINavigationController = self.controller!.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as! UINavigationController
+                        (createList.viewControllers[0] as! CreateListController).editingList = self.list
+                        
+                        self.controller!.presentViewController(createList, animated: true, completion: nil)
+                        return
+                    }), ActionButton(button: "Copy URL", action: {action in
+                        UIPasteboard.generalPasteboard().string = self.list!.1
+                    }))
+                }
+            }
         }
     }
 }

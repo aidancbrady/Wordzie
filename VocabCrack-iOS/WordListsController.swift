@@ -35,38 +35,6 @@ class WordListsController: UITableViewController
         
         Handlers.listHandler.updateLists(WeakWrapper(value: self))
     }
-    
-    @IBAction func onLongPress(sender: UILongPressGestureRecognizer)
-    {
-        let p:CGPoint = sender.locationInView(tableView)
-        let path:NSIndexPath? = tableView!.indexPathForRowAtPoint(p)
-        
-        if path != nil && sender.state == UIGestureRecognizerState.Began
-        {
-            let cell = tableView.cellForRowAtIndexPath(path!) as! ListCell
-            
-            if cell.identifierLabel.text != "Default"
-            {
-                if path!.section != 1
-                {
-                    Utilities.displayAction(self, actions: ActionButton(button: "Copy URL", action: {action in
-                        UIPasteboard.generalPasteboard().string = cell.list!.1
-                    }))
-                }
-                else {
-                    Utilities.displayAction(self, actions: ActionButton(button: "Edit List", action: {action in
-                        let createList:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as! UINavigationController
-                        (createList.viewControllers[0] as! CreateListController).editingList = cell.list
-                        
-                        self.presentViewController(createList, animated: true, completion: nil)
-                        return
-                    }), ActionButton(button: "Copy URL", action: {action in
-                        UIPasteboard.generalPasteboard().string = cell.list!.1
-                    }))
-                }
-            }
-        }
-    }
 
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
     {
@@ -123,7 +91,12 @@ class WordListsController: UITableViewController
         else if indexPath.section == 1
         {
             cell.urlLabel.text = "uploaded"
+            cell.owned = true
         }
+        
+        let recognizer = UILongPressGestureRecognizer()
+        recognizer.addTarget(cell, action: #selector(ListCell.onLongPress))
+        cell.addGestureRecognizer(recognizer)
         
         return cell
     }

@@ -381,7 +381,7 @@ class ListHandler
                         {
                             let amount = Int(array[1])
                             
-                            Utilities.displayAlert(table, title: "Success", msg: "Successfully created and uploaded word list. You now have \(amount) out of 5 word lists.", action: {action in
+                            Utilities.displayAlert(table, title: "Success", msg: "Successfully created and uploaded word list. You now have \(amount!) out of 5 word lists.", action: {action in
                                 table.dismissViewControllerAnimated(true, completion: nil)
                                 table.navigationController!.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
                                 return
