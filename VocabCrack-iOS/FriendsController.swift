@@ -17,17 +17,17 @@ class FriendsController: TableDataReceiver
     
     @IBOutlet weak var modeButton: UISegmentedControl!
     
-    @IBAction func modeChanged(sender: AnyObject)
+    @IBAction func modeChanged(_ sender: AnyObject)
     {
         tableView.reloadData()
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask
     {
-        return UIInterfaceOrientationMask.Portrait
+        return UIInterfaceOrientationMask.portrait
     }
     
-    override func receiveData(obj: AnyObject, type: Int)
+    override func receiveData(_ obj: Any, type: Int)
     {
         if type == 0
         {
@@ -41,7 +41,7 @@ class FriendsController: TableDataReceiver
     
     override func endRefresh()
     {
-        if refresher.refreshing
+        if refresher.isRefreshing
         {
             refresher.endRefreshing()
         }
@@ -53,11 +53,11 @@ class FriendsController: TableDataReceiver
         
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(FriendsController.onRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        refresher.addTarget(self, action: #selector(FriendsController.onRefresh), for: UIControlEvents.valueChanged)
         refreshControl = refresher
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -69,10 +69,10 @@ class FriendsController: TableDataReceiver
     {
         if requests.count > 0
         {
-            modeButton.setTitle("Requests (\(requests.count))", forSegmentAtIndex: 1)
+            modeButton.setTitle("Requests (\(requests.count))", forSegmentAt: 1)
         }
         else {
-            modeButton.setTitle("Requests", forSegmentAtIndex: 1)
+            modeButton.setTitle("Requests", forSegmentAt: 1)
         }
     }
     
@@ -83,21 +83,21 @@ class FriendsController: TableDataReceiver
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return modeButton.selectedSegmentIndex == 0 ? friends.count : requests.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell:FriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendCell
+        let cell:FriendCell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
         
-        let account:Account = modeButton.selectedSegmentIndex == 0 ? friends[indexPath.row] : requests[indexPath.row]
+        let account:Account = modeButton.selectedSegmentIndex == 0 ? friends[(indexPath as NSIndexPath).row] : requests[(indexPath as NSIndexPath).row]
         
         if modeButton.selectedSegmentIndex == 0
         {
@@ -123,28 +123,28 @@ class FriendsController: TableDataReceiver
         return cell
     }
 
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         return true
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if editingStyle == .Delete
+        if editingStyle == .delete
         {
             if !Operations.loadingFriends && !Operations.loadingRequests
             {
                 var type = 0
-                let username = modeButton.selectedSegmentIndex == 0 ? friends[indexPath.row].username : requests[indexPath.row].username
+                let username = modeButton.selectedSegmentIndex == 0 ? friends[(indexPath as NSIndexPath).row].username : requests[(indexPath as NSIndexPath).row].username
                 
                 if modeButton.selectedSegmentIndex == 0
                 {
-                    type = friends[indexPath.row].isRequest ? 2 : 0
-                    friends.removeAtIndex(indexPath.row)
+                    type = friends[(indexPath as NSIndexPath).row].isRequest ? 2 : 0
+                    friends.remove(at: (indexPath as NSIndexPath).row)
                 }
                 else {
                     type = 1
-                    requests.removeAtIndex(indexPath.row)
+                    requests.remove(at: (indexPath as NSIndexPath).row)
                 }
                 
                 updateModeTitle()
@@ -154,7 +154,7 @@ class FriendsController: TableDataReceiver
                     Handlers.friendHandler.deleteFriend(username, type: type)
                 }
                 
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+                tableView.deleteRows(at: [indexPath], with: .fade)
             }
         }
     }

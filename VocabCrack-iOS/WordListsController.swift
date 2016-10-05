@@ -20,28 +20,28 @@ class WordListsController: UITableViewController
     
     func compileArray()
     {
-        defaultArray.removeAll(keepCapacity: false)
+        defaultArray.removeAll(keepingCapacity: false)
         WordListHandler.populateDefaults(&defaultArray)
-        tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+        tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
         
-        urlArray.removeAll(keepCapacity: false)
+        urlArray.removeAll(keepingCapacity: false)
         
         for index in Constants.CORE.listURLs
         {
             urlArray.append(index.0, index.1)
         }
         
-        tableView.reloadSections(NSIndexSet(index: 2), withRowAnimation: .None)
+        tableView.reloadSections(IndexSet(integer: 2), with: .none)
         
         Handlers.listHandler.updateLists(WeakWrapper(value: self))
     }
 
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask
     {
-        return UIInterfaceOrientationMask.Portrait
+        return UIInterfaceOrientationMask.portrait
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         compileArray()
     }
@@ -52,7 +52,7 @@ class WordListsController: UITableViewController
         
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(WordListsController.onRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        refresher.addTarget(self, action: #selector(WordListsController.onRefresh), for: UIControlEvents.valueChanged)
         refreshControl = refresher
         
         compileArray()
@@ -63,32 +63,32 @@ class WordListsController: UITableViewController
         compileArray()
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         return 3
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return section == 0 ? defaultArray.count : (section == 1 ? serverArray.count : urlArray.count)
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell:ListCell = tableView.dequeueReusableCellWithIdentifier("ListCell", forIndexPath: indexPath) as! ListCell
+        let cell:ListCell = tableView.dequeueReusableCell(withIdentifier: "ListCell", for: indexPath) as! ListCell
         
-        let array:[(String, String)] = indexPath.section == 0 ? defaultArray : (indexPath.section == 1 ? serverArray : urlArray)
+        let array:[(String, String)] = (indexPath as NSIndexPath).section == 0 ? defaultArray : ((indexPath as NSIndexPath).section == 1 ? serverArray : urlArray)
         
-        cell.identifierLabel.text = array[indexPath.row].0
-        cell.urlLabel.text = array[indexPath.row].1
+        cell.identifierLabel.text = array[(indexPath as NSIndexPath).row].0
+        cell.urlLabel.text = array[(indexPath as NSIndexPath).row].1
         cell.controller = self
-        cell.list = array[indexPath.row]
+        cell.list = array[(indexPath as NSIndexPath).row]
         
-        if indexPath.section == 0
+        if (indexPath as NSIndexPath).section == 0
         {
             cell.urlLabel.text = "embedded"
         }
-        else if indexPath.section == 1
+        else if (indexPath as NSIndexPath).section == 1
         {
             cell.urlLabel.text = "uploaded"
             cell.owned = true
@@ -101,7 +101,7 @@ class WordListsController: UITableViewController
         return cell
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
         if section == 0 && defaultArray.count > 0
         {
@@ -119,27 +119,27 @@ class WordListsController: UITableViewController
         return nil
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
-        return indexPath.section != 0
+        return (indexPath as NSIndexPath).section != 0
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if editingStyle == .Delete
+        if editingStyle == .delete
         {
-            if indexPath.section == 1
+            if (indexPath as NSIndexPath).section == 1
             {
-                Handlers.listHandler.deleteList(WeakWrapper(value: self), identifier: serverArray[indexPath.row].0)
-                serverArray.removeAtIndex(indexPath.row)
+                Handlers.listHandler.deleteList(WeakWrapper(value: self), identifier: serverArray[(indexPath as NSIndexPath).row].0)
+                serverArray.remove(at: (indexPath as NSIndexPath).row)
             }
-            else if indexPath.section == 2
+            else if (indexPath as NSIndexPath).section == 2
             {
-                WordListHandler.deleteList(urlArray[indexPath.row].0)
-                urlArray.removeAtIndex(indexPath.row)
+                WordListHandler.deleteList(urlArray[(indexPath as NSIndexPath).row].0)
+                urlArray.remove(at: (indexPath as NSIndexPath).row)
             }
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }

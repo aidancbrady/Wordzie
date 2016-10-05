@@ -19,7 +19,7 @@ class FriendCell: UITableViewCell
     var controller:UITableViewController?
     var user:Account?
 
-    override func setSelected(selected: Bool, animated: Bool)
+    override func setSelected(_ selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
         
@@ -34,9 +34,9 @@ class FriendCell: UITableViewCell
                     Utilities.displayYesNo(controller!, title: "Confirm", msg: "Accept request from " + user!.username + "?", action: {(action) -> Void in
                         Handlers.friendHandler.acceptRequest(WeakWrapper(value: friends), friend: self.user!.username)
                         
-                        let path = self.controller!.tableView.indexPathForCell(self)
+                        let path = self.controller!.tableView.indexPath(for: self)
                         remoteDelete = false
-                        self.controller!.tableView(self.controller!.tableView, commitEditingStyle: .Delete, forRowAtIndexPath: path!)
+                        self.controller!.tableView(self.controller!.tableView, commit: .delete, forRowAt: path!)
                         remoteDelete = true
                         Handlers.friendHandler.updateData(WeakWrapper(value: friends))
                         
@@ -54,7 +54,7 @@ class FriendCell: UITableViewCell
                 else {
                     if !user!.isRequest
                     {
-                        let detail:UserDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("UserDetailController") as! UserDetailController
+                        let detail:UserDetailController = controller!.storyboard?.instantiateViewController(withIdentifier: "UserDetailController") as! UserDetailController
                         
                         detail.acct = user
                         
@@ -69,7 +69,7 @@ class FriendCell: UITableViewCell
             {
                 let parent = (controller! as! SimpleFriendsController).newController!
                 parent.setUser(user!.username)
-                controller!.navigationController!.popViewControllerAnimated(true)
+                controller!.navigationController!.popViewController(animated: true)
             }
         }
     }
@@ -90,7 +90,7 @@ class GameCell: UITableViewCell
         super.awakeFromNib()
     }
     
-    override func setSelected(selected: Bool, animated: Bool)
+    override func setSelected(_ selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
         
@@ -106,9 +106,9 @@ class GameCell: UITableViewCell
                     {
                         Utilities.displayYesNo(controller!, title: "Confirm", msg: "Accept request from " + opponent + "?", action: {(action) -> Void in
                             Handlers.gameHandler.acceptRequest(WeakWrapper(value: self.controller!), friend: opponent, handler: {() in Handlers.gameHandler.updateData(WeakWrapper(value: self.controller!))})
-                            let path = self.controller!.tableView.indexPathForCell(self)
+                            let path = self.controller!.tableView.indexPath(for: self)
                             remoteDelete = false
-                            self.controller!.tableView(self.controller!.tableView, commitEditingStyle: .Delete, forRowAtIndexPath: path!)
+                            self.controller!.tableView(self.controller!.tableView, commit: .delete, forRowAt: path!)
                             remoteDelete = true
                             return
                         }, cancel: {(action) -> Void in
@@ -120,7 +120,7 @@ class GameCell: UITableViewCell
                     }
                 }
                 else {
-                    let detail:GameDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("GameDetailController") as! GameDetailController
+                    let detail:GameDetailController = controller!.storyboard?.instantiateViewController(withIdentifier: "GameDetailController") as! GameDetailController
                     
                     Handlers.gameHandler.getInfo(WeakWrapper(value: detail), friend: opponent)
                     
@@ -128,7 +128,7 @@ class GameCell: UITableViewCell
                 }
             }
             else {
-                let detail:GameDetailController = controller!.storyboard?.instantiateViewControllerWithIdentifier("GameDetailController") as! GameDetailController
+                let detail:GameDetailController = controller!.storyboard?.instantiateViewController(withIdentifier: "GameDetailController") as! GameDetailController
                 
                 detail.game = game
                 
@@ -149,7 +149,7 @@ class UserCell:UITableViewCell
         super.awakeFromNib()
     }
     
-    override func setSelected(selected: Bool, animated: Bool)
+    override func setSelected(_ selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
         
@@ -157,7 +157,7 @@ class UserCell:UITableViewCell
         {
             Utilities.displayYesNo(controller!, title: "Confirm", msg: ("Send friend request to " + usernameLabel.text! + "?"), action: {(action) -> Void in
                 Handlers.friendHandler.sendRequest(WeakWrapper(value: self.controller!), friend: self.usernameLabel.text!)
-                self.controller!.navigationController!.popViewControllerAnimated(true)
+                self.controller!.navigationController!.popViewController(animated: true)
             }, cancel: {(action) -> Void in
                 self.setSelected(false, animated: true)
             })
@@ -170,7 +170,7 @@ class ScoreCell:UITableViewCell
     @IBOutlet weak var roundLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     
-    override func setSelected(selected: Bool, animated: Bool)
+    override func setSelected(_ selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
         
@@ -190,38 +190,38 @@ class ListCell:UITableViewCell
     var controller:WordListsController?
     var owned = false
     
-    override func setSelected(selected: Bool, animated: Bool)
+    override func setSelected(_ selected: Bool, animated: Bool)
     {
         super.setSelected(selected, animated: animated)
         
         if controller != nil && selected
         {
-            controller!.navigationController!.popViewControllerAnimated(true)
+            controller!.navigationController!.popViewController(animated: true)
             controller!.newController!.setList(list!)
         }
     }
     
-    @IBAction func onLongPress(sender: UILongPressGestureRecognizer)
+    @IBAction func onLongPress(_ sender: UILongPressGestureRecognizer)
     {
-        if sender.state == UIGestureRecognizerState.Began
+        if sender.state == UIGestureRecognizerState.began
         {
             if controller != nil && identifierLabel.text != "Default"
             {
                 if !owned
                 {
                     Utilities.displayAction(self.controller!, actions: ActionButton(button: "Copy URL", action: {action in
-                        UIPasteboard.generalPasteboard().string = self.list!.1
+                        UIPasteboard.general.string = self.list!.1
                     }))
                 }
                 else {
                     Utilities.displayAction(self.controller!, actions: ActionButton(button: "Edit List", action: {action in
-                        let createList:UINavigationController = self.controller!.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as! UINavigationController
+                        let createList:UINavigationController = self.controller!.storyboard?.instantiateViewController(withIdentifier: "CreateListNavigation") as! UINavigationController
                         (createList.viewControllers[0] as! CreateListController).editingList = self.list
                         
-                        self.controller!.presentViewController(createList, animated: true, completion: nil)
+                        self.controller!.present(createList, animated: true, completion: nil)
                         return
                     }), ActionButton(button: "Copy URL", action: {action in
-                        UIPasteboard.generalPasteboard().string = self.list!.1
+                        UIPasteboard.general.string = self.list!.1
                     }))
                 }
             }

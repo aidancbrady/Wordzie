@@ -23,9 +23,9 @@ class RegisterController: UIViewController, UITextFieldDelegate
     {
         super.viewDidLoad()
         
-        registerButton.addTarget(self, action: #selector(RegisterController.onRegister), forControlEvents: .TouchUpInside)
+        registerButton.addTarget(self, action: #selector(RegisterController.onRegister), for: .touchUpInside)
         
-        registerSpinner.hidden = false
+        registerSpinner.isHidden = false
         registerSpinner.hidesWhenStopped = true
         
         usernameField.delegate = self
@@ -34,12 +34,12 @@ class RegisterController: UIViewController, UITextFieldDelegate
         confirmField.delegate = self
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask
     {
-        return UIInterfaceOrientationMask.Portrait
+        return UIInterfaceOrientationMask.portrait
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         if textField == usernameField
         {
@@ -63,9 +63,9 @@ class RegisterController: UIViewController, UITextFieldDelegate
         return true
     }
     
-    @IBAction func backButton(sender: AnyObject)
+    @IBAction func backButton(_ sender: AnyObject)
     {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     func onRegister()
@@ -88,7 +88,7 @@ class RegisterController: UIViewController, UITextFieldDelegate
         }
     }
     
-    func doRegister(username:String, email:String, password:String)
+    func doRegister(_ username:String, email:String, password:String)
     {
         if Operations.registering
         {
@@ -97,26 +97,26 @@ class RegisterController: UIViewController, UITextFieldDelegate
         
         registerSpinner.startAnimating()
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             Operations.registering = true
             
             let (success, response) = Handlers.coreHandler.register(username, email:email, password:password)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 Operations.registering = false
                 self.registerSpinner.stopAnimating()
                 
                 if success
                 {
                     Utilities.displayAlert(self, title: "Success", msg: "Successfully registered account!", action:{(act) -> Void in
-                        self.dismissViewControllerAnimated(true, completion: nil)
+                        self.dismiss(animated: true, completion: nil)
                     })
                 }
                 else {
                     let alertMsg = response != nil ? response! : "Unable to connect."
                     Utilities.displayAlert(self, title: "Couldn't register", msg: alertMsg, action: nil)
                 }
-            })
-        })
+            }
+        }
     }
 }

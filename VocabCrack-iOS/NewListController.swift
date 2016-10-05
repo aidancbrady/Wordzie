@@ -14,28 +14,28 @@ class NewListController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var urlEntry: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
-    @IBAction func referenceButton(sender: AnyObject)
+    @IBAction func referenceButton(_ sender: AnyObject)
     {
         onCreate()
     }
     
-    @IBAction func createButton(sender: AnyObject)
+    @IBAction func createButton(_ sender: AnyObject)
     {
         activityIndicator.startAnimating()
         Handlers.listHandler.confirmList(WeakWrapper(value: self), identifier: nil)
     }
     
-    @IBAction func cancelButton(sender: AnyObject)
+    @IBAction func cancelButton(_ sender: AnyObject)
     {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask
     {
-        return UIInterfaceOrientationMask.Portrait
+        return UIInterfaceOrientationMask.portrait
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         if textField == identifierEntry
         {
@@ -65,11 +65,11 @@ class NewListController: UIViewController, UITextFieldDelegate
             }
             
             WordListHandler.addList(Utilities.trim(identifierEntry.text!), url: Utilities.trim(urlEntry.text!))
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
         }
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         self.navigationController!.setToolbarHidden(true, animated: false)
     }

@@ -22,8 +22,8 @@ class AddFriendController: UITableViewController, UISearchBarDelegate
         
         searchBar.delegate = self
         
-        activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
-        activity.frame = CGRectMake(0, 0, 20, 20)
+        activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        activity.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         activity.hidesWhenStopped = true
         activity.stopAnimating()
         
@@ -31,12 +31,12 @@ class AddFriendController: UITableViewController, UISearchBarDelegate
         self.navigationItem.rightBarButtonItem = barButton
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask
     {
-        return UIInterfaceOrientationMask.Portrait
+        return UIInterfaceOrientationMask.portrait
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -44,26 +44,26 @@ class AddFriendController: UITableViewController, UISearchBarDelegate
         Handlers.friendHandler.updateSearch(WeakWrapper(value: self), query: searchBar.text!)
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String)
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
     {
         Handlers.friendHandler.updateSearch(WeakWrapper(value: self), query: searchBar.text!)
     }
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return users.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("UserCell", forIndexPath: indexPath) as! UserCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell", for: indexPath) as! UserCell
 
-        cell.usernameLabel.text = users[indexPath.row]
+        cell.usernameLabel.text = users[(indexPath as NSIndexPath).row]
         
         cell.controller = self
 

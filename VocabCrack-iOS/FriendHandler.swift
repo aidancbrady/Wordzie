@@ -11,26 +11,26 @@ import UIKit
 
 class FriendHandler
 {
-    func updateData(controller:WeakWrapper<TableDataReceiver>)
+    func updateData(_ controller:WeakWrapper<TableDataReceiver>)
     {
         updateFriends(controller)
         updateRequests(controller)
     }
     
-    func updateFriends(controller:WeakWrapper<TableDataReceiver>)
+    func updateFriends(_ controller:WeakWrapper<TableDataReceiver>)
     {
         if Operations.loadingGames
         {
             return
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             Operations.loadingGames = true
             
             let str = compileMsg("LFRIENDS", Constants.CORE.account.username)
             let ret = NetHandler.sendData(str, retLines:2)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 Operations.loadingGames = false
                 
                 if let table = controller.value
@@ -46,7 +46,7 @@ class FriendHandler
                             
                             for i in 1 ..< array.count
                             {
-                                var split:[String] = array[i].componentsSeparatedByString(Constants.SPLITTER_2)
+                                var split:[String] = array[i].components(separatedBy: Constants.SPLITTER_2)
                                 accounts.append(Account(username:split[0], isRequest:false).setEmail(split[1]).setLastLogin(NSString(string: split[2]).longLongValue))
                             }
                             
@@ -56,7 +56,7 @@ class FriendHandler
                             }
                             
                             table.receiveData(accounts, type: 0)
-                            table.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                            table.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
                         }
                     }
                     
@@ -65,24 +65,24 @@ class FriendHandler
                         table.endRefresh()
                     }
                 }
-            })
-        })
+            }
+        }
     }
     
-    func updateRequests(controller:WeakWrapper<TableDataReceiver>)
+    func updateRequests(_ controller:WeakWrapper<TableDataReceiver>)
     {
         if Operations.loadingPast
         {
             return
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             Operations.loadingPast = true
             
             let str = compileMsg("LREQUESTS", Constants.CORE.account.username)
             let ret = NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 Operations.loadingPast = false
                 
                 if let table = controller.value
@@ -97,12 +97,12 @@ class FriendHandler
                             
                             for i in 1 ..< array.count
                             {
-                                var split:[String] = array[i].componentsSeparatedByString(Constants.SPLITTER_2)
+                                var split:[String] = array[i].components(separatedBy: Constants.SPLITTER_2)
                                 accounts.append(Account(username:split[0], isRequest:false).setEmail(split[1]))
                             }
                             
                             table.receiveData(accounts, type: 1)
-                            table.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                            table.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
                             
                             if table is FriendsController
                             {
@@ -116,19 +116,19 @@ class FriendHandler
                         table.endRefresh()
                     }
                 }
-            })
-        })
+            }
+        }
     }
     
-    func deleteFriend(friend:String, type:Int)
+    func deleteFriend(_ friend:String, type:Int)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("DELFRIEND", Constants.CORE.account.username, friend, String(type))
             NetHandler.sendData(str)
-        })
+        }
     }
     
-    func updateSearch(controller:WeakWrapper<AddFriendController>, query:String)
+    func updateSearch(_ controller:WeakWrapper<AddFriendController>, query:String)
     {
         if !Utilities.isValidCredential(query)
         {
@@ -137,11 +137,11 @@ class FriendHandler
         
         controller.value!.activity.startAnimating()
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("LUSERS", Constants.CORE.account.username, Utilities.trim(query))
             let ret = NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 if let table = controller.value
                 {
                     table.activity.stopAnimating()
@@ -152,7 +152,7 @@ class FriendHandler
                         
                         if array[0] == "ACCEPT"
                         {
-                            table.users.removeAll(keepCapacity: false)
+                            table.users.removeAll(keepingCapacity: false)
                             
                             if array.count > 1
                             {
@@ -163,33 +163,33 @@ class FriendHandler
                         }
                     }
                 }
-            })
-        })
+            }
+        }
     }
     
-    func sendRequest(controller:WeakWrapper<AddFriendController>, friend:String)
+    func sendRequest(_ controller:WeakWrapper<AddFriendController>, friend:String)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("FRIENDREQ", Constants.CORE.account.username, friend)
             NetHandler.sendData(str)
-        })
+        }
     }
     
-    func acceptRequest(controller:WeakWrapper<FriendsController>, friend:String)
+    func acceptRequest(_ controller:WeakWrapper<FriendsController>, friend:String)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("REQCONF", Constants.CORE.account.username, friend)
             NetHandler.sendData(str)
-        })
+        }
     }
     
-    func getInfo(controller:WeakWrapper<UserDetailController>, friend:String)
+    func getInfo(_ controller:WeakWrapper<UserDetailController>, friend:String)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("GETINFO", Constants.CORE.account.username, friend)
             let ret = NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 if let detail = controller.value
                 {
                     if let response = ret
@@ -207,7 +207,7 @@ class FriendHandler
                         }
                     }
                 }
-            })
-        })
+            }
+        }
     }
 }

@@ -15,7 +15,7 @@ class SimpleFriendsController: TableDataReceiver
     var refresher:UIRefreshControl!
     var newController:NewGameController?
     
-    override func receiveData(obj: AnyObject, type: Int)
+    override func receiveData(_ obj: Any, type: Int)
     {
         if type == 0
         {
@@ -24,14 +24,14 @@ class SimpleFriendsController: TableDataReceiver
         }
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask
     {
-        return UIInterfaceOrientationMask.Portrait
+        return UIInterfaceOrientationMask.portrait
     }
     
     override func endRefresh()
     {
-        if refresher.refreshing
+        if refresher.isRefreshing
         {
             refresher.endRefreshing()
         }
@@ -43,11 +43,11 @@ class SimpleFriendsController: TableDataReceiver
         
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(SimpleFriendsController.onRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        refresher.addTarget(self, action: #selector(SimpleFriendsController.onRefresh), for: UIControlEvents.valueChanged)
         refreshControl = refresher
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -61,21 +61,21 @@ class SimpleFriendsController: TableDataReceiver
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return friends.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell:FriendCell = tableView.dequeueReusableCellWithIdentifier("FriendCell", forIndexPath: indexPath) as! FriendCell
+        let cell:FriendCell = tableView.dequeueReusableCell(withIdentifier: "FriendCell", for: indexPath) as! FriendCell
         
-        let account:Account = friends[indexPath.row]
+        let account:Account = friends[(indexPath as NSIndexPath).row]
         
         if account.isRequest
         {

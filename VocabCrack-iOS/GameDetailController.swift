@@ -37,51 +37,51 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         {
             if !game!.userTurn
             {
-                playButton.setTitle("Opponent's Turn", forState: UIControlState.Normal)
-                playButton.enabled = false
+                playButton.setTitle("Opponent's Turn", for: UIControlState())
+                playButton.isEnabled = false
             }
             else {
-                playButton.setTitle("Play", forState: UIControlState.Normal)
-                playButton.enabled = true
+                playButton.setTitle("Play", for: UIControlState())
+                playButton.isEnabled = true
             }
         }
         else {
-            playButton.setTitle("New Game", forState: UIControlState.Normal)
-            playButton.enabled = true
+            playButton.setTitle("New Game", for: UIControlState())
+            playButton.isEnabled = true
         }
     }
     
-    func listLoaded(success: Bool)
+    func listLoaded(_ success: Bool)
     {
-        playButton.enabled = false
+        playButton.isEnabled = false
         
         if success
         {
-            let game:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("GameNavigation") as! UINavigationController
+            let game:UINavigationController = self.storyboard?.instantiateViewController(withIdentifier: "GameNavigation") as! UINavigationController
             
             let controller = game.viewControllers[0] as UIViewController
             
             (controller as! GameController).game = self.game!
             
-            self.presentViewController(game, animated: true, completion: nil)
+            self.present(game, animated: true, completion: nil)
         }
         else {
             Utilities.displayAlert(self, title: "Error", msg: "Couldn't load word list.", action: nil)
         }
     }
     
-    @IBAction func gameButton(sender: AnyObject)
+    @IBAction func gameButton(_ sender: AnyObject)
     {
         if game != nil
         {
             if !game!.hasWinner() && game!.userTurn
             {
-                playButton.enabled = false
+                playButton.isEnabled = false
                 WordListHandler.loadList(game!.getList(), controller: WeakWrapper(value: self))
             }
             else if game!.hasWinner()
             {
-                let newGame:NewGameController = storyboard?.instantiateViewControllerWithIdentifier("NewGameController") as! NewGameController
+                let newGame:NewGameController = storyboard?.instantiateViewController(withIdentifier: "NewGameController") as! NewGameController
                 
                 newGame.definedUser = Utilities.getRemoteUser(game!)
                 
@@ -90,9 +90,9 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask
     {
-        return UIInterfaceOrientationMask.Portrait
+        return UIInterfaceOrientationMask.portrait
     }
     
     override func viewDidLoad()
@@ -102,16 +102,16 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         scoreTable.delegate = self
         scoreTable.dataSource = self
         
-        playButton.enabled = false
-        playButton.setTitle("Loading...", forState: UIControlState.Normal)
+        playButton.isEnabled = false
+        playButton.setTitle("Loading...", for: UIControlState())
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         if game == nil
         {
@@ -121,14 +121,14 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         return Utilities.max(game!.userPoints.count, num2: game!.opponentPoints.count)
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ScoreCell", forIndexPath: indexPath) as! ScoreCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ScoreCell", for: indexPath) as! ScoreCell
         
-        let userStr = indexPath.row <= game!.userPoints.count-1 ? String(game!.userPoints[indexPath.row]) : "N/A"
-        let opponentStr = indexPath.row <= game!.opponentPoints.count-1 ? String(game!.opponentPoints[indexPath.row]) : "N/A"
+        let userStr = (indexPath as NSIndexPath).row <= game!.userPoints.count-1 ? String(game!.userPoints[(indexPath as NSIndexPath).row]) : "N/A"
+        let opponentStr = (indexPath as NSIndexPath).row <= game!.opponentPoints.count-1 ? String(game!.opponentPoints[(indexPath as NSIndexPath).row]) : "N/A"
         
-        cell.roundLabel.text = "Round \(indexPath.row+1)"
+        cell.roundLabel.text = "Round \((indexPath as NSIndexPath).row+1)"
         cell.scoreLabel.text = userStr + " - " + opponentStr
         
         return cell

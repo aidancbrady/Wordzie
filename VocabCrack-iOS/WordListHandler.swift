@@ -10,22 +10,22 @@ import UIKit
 
 struct CoreFiles
 {
-    static let dataFile:String = (WordListHandler.getDocumentsDir() as NSString).stringByAppendingPathComponent("ListData.txt")
-    static let wordFile:String = (WordListHandler.getDocumentsDir() as NSString).stringByAppendingPathComponent("WordData.txt")
+    static let dataFile:String = (WordListHandler.getDocumentsDir() as NSString).appendingPathComponent("ListData.txt")
+    static let wordFile:String = (WordListHandler.getDocumentsDir() as NSString).appendingPathComponent("WordData.txt")
     static let defaultList:String = WordListHandler.getDefaultList()
 }
 
 class WordListHandler
 {
-    class func populateDefaults(inout array:[(String, String)])
+    class func populateDefaults(_ array:inout [(String, String)])
     {
         array.append(("Default", "DefaultURL"))
     }
     
-    class func loadList(list:(String, String), controller:WeakWrapper<UIViewController>)
+    class func loadList(_ list:(String, String), controller:WeakWrapper<UIViewController>)
     {
         Constants.CORE.listData = nil
-        Constants.CORE.activeList.removeAll(keepCapacity: false)
+        Constants.CORE.activeList.removeAll(keepingCapacity: false)
         
         if list.0 == "Default"
         {
@@ -36,7 +36,7 @@ class WordListHandler
         }
     }
     
-    class func loadCustomList(list:(String, String), controller:WeakWrapper<UIViewController>)
+    class func loadCustomList(_ list:(String, String), controller:WeakWrapper<UIViewController>)
     {
         print("Loading '" + list.0 + "' word list...")
         
@@ -70,7 +70,7 @@ class WordListHandler
                     WordListHandler.listLoaded(controller.value, success: true)
                 }
                 else {
-                    Constants.CORE.activeList.removeAll(keepCapacity: false)
+                    Constants.CORE.activeList.removeAll(keepingCapacity: false)
                     WordListHandler.listLoaded(controller.value, success: false)
                 }
                 
@@ -89,7 +89,7 @@ class WordListHandler
         })
     }
     
-    class func listLoaded(controller: UIViewController?, success:Bool)
+    class func listLoaded(_ controller: UIViewController?, success:Bool)
     {
         if controller != nil && controller! is ListLoader
         {
@@ -97,7 +97,7 @@ class WordListHandler
         }
     }
     
-    class func loadListForEdit(list:(String, String), controller:WeakWrapper<CreateListController>)
+    class func loadListForEdit(_ list:(String, String), controller:WeakWrapper<CreateListController>)
     {
         print("Loading '" + list.0 + "' word list for editing...")
         
@@ -137,9 +137,9 @@ class WordListHandler
             
             if let table = controller.value
             {
-                table.saveButton.enabled = true
+                table.saveButton.isEnabled = true
                 
-                if table.activity.isAnimating()
+                if table.activity.isAnimating
                 {
                     table.activity.stopAnimating()
                 }
@@ -147,29 +147,29 @@ class WordListHandler
                 if failed
                 {
                     Utilities.displayAlert(table, title: "Error", msg: "Couldn't load word list form server.", action: {action in
-                        table.dismissViewControllerAnimated(true, completion: nil)
+                        table.dismiss(animated: true, completion: nil)
                         return
                     })
                 }
                 else {
                     table.terms = terms
-                    table.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                    table.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
                 }
             }
         })
     }
     
-    class func loadForeignList(list:(String, String), handler:([String]?) -> Void)
+    class func loadForeignList(_ list:(String, String), handler:@escaping ([String]?) -> Void)
     {
         let reader:Utilities.HTTPReader = Utilities.HTTPReader()
-        let request:NSMutableURLRequest = NSMutableURLRequest(URL: NSURL(string: list.1)!)
+        let request:URLRequest = URLRequest(url: URL(string: list.1)!)
         
         var array:[String]?
         
         reader.getHTTP(request, action: {(response:String?) -> Void in
             if let str = response
             {
-                array = str.componentsSeparatedByString("\n")
+                array = str.components(separatedBy: "\n")
             }
             
             handler(array)
@@ -177,24 +177,24 @@ class WordListHandler
         })
     }
     
-    class func loadDefaultList(controller:WeakWrapper<UIViewController>)
+    class func loadDefaultList(_ controller:WeakWrapper<UIViewController>)
     {
-        let manager:NSFileManager = NSFileManager()
+        let manager:FileManager = FileManager()
         
         print("Loading default word list...")
         
-        if manager.fileExistsAtPath(CoreFiles.defaultList)
+        if manager.fileExists(atPath: CoreFiles.defaultList)
         {
             var content:String?
             var failed = false
             
             do {
-                try content = String(contentsOfFile: CoreFiles.defaultList, encoding: NSUTF8StringEncoding)
+                try content = String(contentsOfFile: CoreFiles.defaultList, encoding: String.Encoding.utf8)
             } catch {}
             
             if content != nil
             {
-                let split = content!.componentsSeparatedByString("\n")
+                let split = content!.components(separatedBy: "\n")
                 
                 for str in split
                 {
@@ -220,7 +220,7 @@ class WordListHandler
                 WordListHandler.listLoaded(controller.value, success: true)
             }
             else {
-                Constants.CORE.activeList.removeAll(keepCapacity: false)
+                Constants.CORE.activeList.removeAll(keepingCapacity: false)
                 WordListHandler.listLoaded(controller.value, success: false)
             }
         }
@@ -231,20 +231,20 @@ class WordListHandler
     
     class func loadListData()
     {
-        let manager:NSFileManager = NSFileManager()
+        let manager:FileManager = FileManager()
         
         print("Loading word list data...")
-        if manager.fileExistsAtPath(CoreFiles.dataFile)
+        if manager.fileExists(atPath: CoreFiles.dataFile)
         {
             var content:String?
             
             do {
-                try content = String(contentsOfFile: CoreFiles.dataFile, encoding: NSUTF8StringEncoding)
+                try content = String(contentsOfFile: CoreFiles.dataFile, encoding: String.Encoding.utf8)
             } catch {}
             
             if content != nil
             {
-                let split = content!.componentsSeparatedByString("\n")
+                let split = content!.components(separatedBy: "\n")
                 
                 for str in split
                 {
@@ -261,28 +261,28 @@ class WordListHandler
     
     class func saveListData()
     {
-        let manager:NSFileManager = NSFileManager()
+        let manager:FileManager = FileManager()
         
         print("Saving word list data...")
         
-        if manager.fileExistsAtPath(CoreFiles.dataFile)
+        if manager.fileExists(atPath: CoreFiles.dataFile)
         {
             do {
-                try manager.removeItemAtPath(CoreFiles.dataFile)
+                try manager.removeItem(atPath: CoreFiles.dataFile)
             } catch {}
         }
         
-        manager.createFileAtPath(CoreFiles.dataFile, contents: nil, attributes: nil)
+        manager.createFile(atPath: CoreFiles.dataFile, contents: nil, attributes: nil)
         
         let str = NSMutableString()
         
         for entry in Constants.CORE.listURLs
         {
-            str.appendString("\(entry.0):\(entry.1)\n")
+            str.append("\(entry.0):\(entry.1)\n")
         }
         
-        let data = str.dataUsingEncoding(NSUTF8StringEncoding)!
-        data.writeToFile(CoreFiles.dataFile, atomically: true)
+        let data = str.data(using: String.Encoding.utf8.rawValue)!
+        try? data.write(to: URL(fileURLWithPath: CoreFiles.dataFile), options: [.atomic])
     }
     
     class func listNames() -> [String]
@@ -290,40 +290,40 @@ class WordListHandler
         return Array(Constants.CORE.listURLs.keys)
     }
     
-    class func addList(name:String, url:String)
+    class func addList(_ name:String, url:String)
     {
         Constants.CORE.listURLs[name] = url
         saveListData()
     }
     
-    class func deleteList(name:String)
+    class func deleteList(_ name:String)
     {
-        Constants.CORE.listURLs.removeValueForKey(name)
+        Constants.CORE.listURLs.removeValue(forKey: name)
         saveListData()
     }
     
     class func getDocumentsDir() -> String
     {
-        let paths:NSArray = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+        let paths:NSArray = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true) as NSArray
         
-        return paths.objectAtIndex(0) as! String
+        return paths.object(at: 0) as! String
     }
     
     class func getDefaultList() -> String
     {
-        return NSBundle.mainBundle().pathForResource("DefaultList", ofType: "txt")!
+        return Bundle.main.path(forResource: "DefaultList", ofType: "txt")!
     }
 }
 
 class ListHandler
 {
-    func confirmList(controller:WeakWrapper<UIViewController>, identifier:String?)
+    func confirmList(_ controller:WeakWrapper<UIViewController>, identifier:String?)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.main.async {
             let str = identifier != nil ? compileMsg("CONFLIST", Constants.CORE.account.username, identifier!) : compileMsg("CONFLIST", Constants.CORE.account.username, Constants.NULL)
             let ret = NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 if let newList = controller.value
                 {
                     var uploaded:Bool = false
@@ -334,11 +334,11 @@ class ListHandler
                         
                         if array[0] == "ACCEPT"
                         {
-                            if newList.isKindOfClass(NewListController)
+                            if newList.isKind(of: NewListController.self)
                             {
-                                let createList:UINavigationController = newList.storyboard?.instantiateViewControllerWithIdentifier("CreateListNavigation") as! UINavigationController
+                                let createList:UINavigationController = newList.storyboard?.instantiateViewController(withIdentifier: "CreateListNavigation") as! UINavigationController
                                 
-                                newList.presentViewController(createList, animated: true, completion: nil)
+                                newList.present(createList, animated: true, completion: nil)
                             }
                             else {
                                 self.uploadList(WeakWrapper(value: newList as! CreateListController), identifier: identifier!)
@@ -353,24 +353,24 @@ class ListHandler
                         Utilities.displayAlert(newList, title: "Error", msg: "Unable to connect.", action: nil)
                     }
                     
-                    let activity:UIActivityIndicatorView = newList.isKindOfClass(NewListController) ? (newList as! NewListController).activityIndicator : (newList as! CreateListController).activity
+                    let activity:UIActivityIndicatorView = newList.isKind(of: NewListController.self) ? (newList as! NewListController).activityIndicator : (newList as! CreateListController).activity
                     
-                    if !uploaded && activity.isAnimating()
+                    if !uploaded && activity.isAnimating
                     {
                         activity.stopAnimating()
                     }
                 }
-            })
-        })
+            }
+        }
     }
     
-    func uploadList(controller:WeakWrapper<CreateListController>, identifier:String)
+    func uploadList(_ controller:WeakWrapper<CreateListController>, identifier:String)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("UPLOAD", Constants.CORE.account.username, identifier, controller.value!.compileList())
             let ret = NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 if let table = controller.value
                 {
                     if let response = ret
@@ -382,8 +382,8 @@ class ListHandler
                             let amount = Int(array[1])
                             
                             Utilities.displayAlert(table, title: "Success", msg: "Successfully created and uploaded word list. You now have \(amount!) out of 5 word lists.", action: {action in
-                                table.dismissViewControllerAnimated(true, completion: nil)
-                                table.navigationController!.presentingViewController!.dismissViewControllerAnimated(false, completion: nil)
+                                table.dismiss(animated: true, completion: nil)
+                                table.navigationController!.presentingViewController!.dismiss(animated: false, completion: nil)
                                 return
                             })
                         }
@@ -395,61 +395,61 @@ class ListHandler
                         Utilities.displayAlert(table, title: "Error", msg: "Unable to connect.", action: nil)
                     }
                     
-                    table.saveButton.enabled = true
+                    table.saveButton.isEnabled = true
                     
-                    if table.activity.isAnimating()
+                    if table.activity.isAnimating
                     {
                         table.activity.stopAnimating()
                     }
                 }
-            })
-        })
+            }
+        }
     }
     
-    func editList(controller:WeakWrapper<CreateListController>)
+    func editList(_ controller:WeakWrapper<CreateListController>)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("EDITLIST", Constants.CORE.account.username, controller.value!.editingList!.0, controller.value!.compileList())
             NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 if let table = controller.value
                 {
-                    table.dismissViewControllerAnimated(true, completion: nil)
+                    table.dismiss(animated: true, completion: nil)
                     
-                    table.saveButton.enabled = true
+                    table.saveButton.isEnabled = true
                     
-                    if table.activity.isAnimating()
+                    if table.activity.isAnimating
                     {
                         table.activity.stopAnimating()
                     }
                 }
-            })
-        })
+            }
+        }
     }
     
-    func deleteList(controller:WeakWrapper<WordListsController>, identifier:String)
+    func deleteList(_ controller:WeakWrapper<WordListsController>, identifier:String)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("DELLIST", Constants.CORE.account.username, identifier)
             NetHandler.sendData(str)
-        })
+        }
     }
     
-    func updateLists(controller:WeakWrapper<WordListsController>)
+    func updateLists(_ controller:WeakWrapper<WordListsController>)
     {
         if Operations.loadingLists
         {
             return
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             Operations.loadingLists = true
             
             let str = compileMsg("LLISTS", Constants.CORE.account.username)
             let ret = NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 Operations.loadingLists = false
                 
                 if let table = controller.value
@@ -473,21 +473,21 @@ class ListHandler
                             }
                             
                             table.serverArray = urlArray
-                            table.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+                            table.tableView.reloadSections(IndexSet(integer: 1), with: .automatic)
                         }
                     }
                     
-                    if table.refresher.refreshing
+                    if table.refresher.isRefreshing
                     {
                         table.refresher.endRefreshing()
                     }
                 }
-            })
-        })
+            }
+        }
     }
 }
 
 @objc protocol ListLoader : class
 {
-    func listLoaded(success:Bool)
+    func listLoaded(_ success:Bool)
 }

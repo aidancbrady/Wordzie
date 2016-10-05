@@ -42,7 +42,7 @@ class Account
         self.password = password
     }
     
-    func setFriendData(friends:[Account], requests:[Account], requested:[Account]) -> Account
+    func setFriendData(_ friends:[Account], requests:[Account], requested:[Account]) -> Account
     {
         self.friends = friends
         self.requests = requests
@@ -51,42 +51,42 @@ class Account
         return self
     }
     
-    func setUsername(username:String) -> Account
+    func setUsername(_ username:String) -> Account
     {
         self.username = username
         
         return self
     }
     
-    func setEmail(email:String) -> Account
+    func setEmail(_ email:String) -> Account
     {
         self.email = email
         
         return self
     }
     
-    func setPassword(password:String) -> Account
+    func setPassword(_ password:String) -> Account
     {
         self.password = password
         
         return self
     }
     
-    func setGamesWon(gamesWon:Int) -> Account
+    func setGamesWon(_ gamesWon:Int) -> Account
     {
         self.gamesWon = gamesWon
         
         return self
     }
     
-    func setGamesLost(gamesLost:Int) -> Account
+    func setGamesLost(_ gamesLost:Int) -> Account
     {
         self.gamesLost = gamesLost
         
         return self
     }
     
-    func setLastLogin(lastLogin:Int64) -> Account
+    func setLastLogin(_ lastLogin:Int64) -> Account
     {
         self.lastLogin = lastLogin
         

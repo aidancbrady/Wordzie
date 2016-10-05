@@ -22,24 +22,24 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
     {
         super.viewDidLoad()
     
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ResponsiveTextFieldViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ResponsiveTextFieldViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ResponsiveTextFieldViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ResponsiveTextFieldViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    override func viewWillDisappear(animated: Bool)
+    override func viewWillDisappear(_ animated: Bool)
     {
         super.viewWillDisappear(animated)
         
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
-    func keyboardWillShow(notification: NSNotification)
+    func keyboardWillShow(_ notification: Notification)
     {
         keyboardIsShowing = true
         
-        if let info = notification.userInfo
+        if let info = (notification as NSNotification).userInfo
         {
-            keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+            keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
             
             if activeText != nil
             {
@@ -48,7 +48,7 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
         }
     }
     
-    func keyboardWillHide(notification: NSNotification)
+    func keyboardWillHide(_ notification: Notification)
     {
         keyboardIsShowing = false
         
@@ -57,36 +57,36 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
     
     func arrangeViewOffsetFromKeyboard()
     {
-        let theApp: UIApplication = UIApplication.sharedApplication()
+        let theApp: UIApplication = UIApplication.shared
         let windowView: UIView? = theApp.delegate!.window!
         
-        let textFieldLowerPoint: CGPoint = CGPointMake(activeText!.frame.origin.x, activeText!.frame.origin.y + activeText!.frame.size.height)
+        let textFieldLowerPoint: CGPoint = CGPoint(x: activeText!.frame.origin.x, y: activeText!.frame.origin.y + activeText!.frame.size.height)
         
-        let convertedTextFieldLowerPoint: CGPoint = view.convertPoint(textFieldLowerPoint, toView: windowView)
+        let convertedTextFieldLowerPoint: CGPoint = view.convert(textFieldLowerPoint, to: windowView)
         
-        let targetTextFieldLowerPoint: CGPoint = CGPointMake(activeText!.frame.origin.x, keyboardFrame.origin.y - kPreferredTextFieldToKeyboardOffset)
+        let targetTextFieldLowerPoint: CGPoint = CGPoint(x: activeText!.frame.origin.x, y: keyboardFrame.origin.y - kPreferredTextFieldToKeyboardOffset)
         
         let targetPointOffset: CGFloat = targetTextFieldLowerPoint.y - convertedTextFieldLowerPoint.y
-        let adjustedViewFrameCenter: CGPoint = CGPointMake(view.center.x, view.center.y + targetPointOffset)
+        let adjustedViewFrameCenter: CGPoint = CGPoint(x: view.center.x, y: view.center.y + targetPointOffset)
         
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.view.center = adjustedViewFrameCenter
         })
     }
     
     func returnViewToInitialFrame()
     {
-        let initialViewRect: CGRect = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height)
+        let initialViewRect: CGRect = CGRect(x: 0.0, y: 0.0, width: self.view.frame.size.width, height: self.view.frame.size.height)
         
-        if !CGRectEqualToRect(initialViewRect, self.view.frame)
+        if !initialViewRect.equalTo(self.view.frame)
         {
-            UIView.animateWithDuration(0.2, animations: {
+            UIView.animate(withDuration: 0.2, animations: {
                 self.view.frame = initialViewRect
             });
         }
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         if activeText != nil
         {
@@ -95,7 +95,7 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
         }
     }
     
-    func textFieldDidBeginEditing(textField: UITextField)
+    func textFieldDidBeginEditing(_ textField: UITextField)
     {
         activeText = textField
         
@@ -105,13 +105,13 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
         }
     }
     
-    func textFieldDidEndEditing(textField: UITextField)
+    func textFieldDidEndEditing(_ textField: UITextField)
     {
         textField.resignFirstResponder()
         activeText = nil
     }
     
-    func textViewDidBeginEditing(textView: UITextView)
+    func textViewDidBeginEditing(_ textView: UITextView)
     {
         activeText = textView
         
@@ -121,7 +121,7 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
         }
     }
     
-    func textViewDidEndEditing(textView: UITextView)
+    func textViewDidEndEditing(_ textView: UITextView)
     {
         textView.resignFirstResponder()
         activeText = nil

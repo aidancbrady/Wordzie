@@ -104,7 +104,7 @@ class Game: Equatable
         return g
     }
     
-    func convertToActive(userPerspective:String) -> Game
+    func convertToActive(_ userPerspective:String) -> Game
     {
         if(user != userPerspective) //If requesting user equals perspective user
         {
@@ -123,14 +123,14 @@ class Game: Equatable
     
     func convertToPast() -> Game
     {
-        activeWords.removeAll(keepCapacity:false)
+        activeWords.removeAll(keepingCapacity:false)
         
         return self
     }
     
-    class func readDefault(s:String, splitter:String) -> Game?
+    class func readDefault(_ s:String, splitter:String) -> Game?
     {
-        var split:[String] = s.componentsSeparatedByString(splitter)
+        var split:[String] = s.components(separatedBy: splitter)
         
         if(split.count < 4)
         {
@@ -152,9 +152,9 @@ class Game: Equatable
         return g
     }
     
-    class func readRequest(s:String, splitter:String) -> Game?
+    class func readRequest(_ s:String, splitter:String) -> Game?
     {
-        var split:[String] = s.componentsSeparatedByString(splitter)
+        var split:[String] = s.components(separatedBy: splitter)
         
         if(split.count < 4)
         {
@@ -175,64 +175,64 @@ class Game: Equatable
         return g
     }
     
-    func writeDefault(str:NSMutableString, splitter:String)
+    func writeDefault(_ str:NSMutableString, splitter:String)
     {
-        str.appendString(user)
-        str.appendString(splitter)
-        str.appendString(opponent)
-        str.appendString(splitter)
-        str.appendString(String(gameType))
-        str.appendString(splitter)
-        str.appendString(userTurn ? "true" : "false")
-        str.appendString(splitter)
-        str.appendString(listName!)
-        str.appendString(splitter)
-        str.appendString(listURL!)
-        str.appendString(splitter)
+        str.append(user)
+        str.append(splitter)
+        str.append(opponent)
+        str.append(splitter)
+        str.append(String(gameType))
+        str.append(splitter)
+        str.append(userTurn ? "true" : "false")
+        str.append(splitter)
+        str.append(listName!)
+        str.append(splitter)
+        str.append(listURL!)
+        str.append(splitter)
         
         writeScoreList(userPoints, str:NSMutableString(string: str), splitter:splitter)
         writeScoreList(opponentPoints, str:NSMutableString(string: str), splitter:splitter)
         
         writeWordList(str)
-        str.appendString(splitter)
+        str.append(splitter)
     }
     
-    func writeRequest(str:NSMutableString, splitter:String)
+    func writeRequest(_ str:NSMutableString, splitter:String)
     {
-        str.appendString(activeRequested ? "true" : "false")
-        str.appendString(splitter)
-        str.appendString(user)
-        str.appendString(splitter)
-        str.appendString(opponent)
-        str.appendString(splitter)
-        str.appendString(String(gameType))
-        str.appendString(splitter)
-        str.appendString(userTurn ? "true" : "false")
-        str.appendString(splitter)
-        str.appendString(listName!)
-        str.appendString(splitter)
-        str.appendString(listURL!)
-        str.appendString(splitter)
+        str.append(activeRequested ? "true" : "false")
+        str.append(splitter)
+        str.append(user)
+        str.append(splitter)
+        str.append(opponent)
+        str.append(splitter)
+        str.append(String(gameType))
+        str.append(splitter)
+        str.append(userTurn ? "true" : "false")
+        str.append(splitter)
+        str.append(listName!)
+        str.append(splitter)
+        str.append(listURL!)
+        str.append(splitter)
         
         writeScoreList(userPoints, str:NSMutableString(string: str), splitter:splitter)
         
         writeWordList(str)
-        str.appendString(splitter)
+        str.append(splitter)
     }
     
-    func writeScoreList(score:[Int], str:NSMutableString, splitter:String)
+    func writeScoreList(_ score:[Int], str:NSMutableString, splitter:String)
     {
-        str.appendString(String(score.count))
-        str.appendString(splitter)
+        str.append(String(score.count))
+        str.append(splitter)
         
         for i in score
         {
-            str.appendString(String(i))
-            str.appendString(splitter)
+            str.append(String(i))
+            str.append(splitter)
         }
     }
     
-    func readScoreList(array:[String], start:Int, user:Bool) -> Int
+    func readScoreList(_ array:[String], start:Int, user:Bool) -> Int
     {
         var list:[Int] = [Int]()
         
@@ -256,30 +256,30 @@ class Game: Equatable
         return maxIndex+1
     }
     
-    func writeWordList(str:NSMutableString)
+    func writeWordList(_ str:NSMutableString)
     {
         for s in activeWords
         {
-            str.appendString(s)
-            str.appendString("&")
+            str.append(s)
+            str.append("&")
         }
         
         if activeWords.isEmpty
         {
-            str.appendString("null")
+            str.append("null")
         }
     }
     
-    func readWordList(s:String)
+    func readWordList(_ s:String)
     {
-        var split:[String] = s.componentsSeparatedByString("&");
+        var split:[String] = s.components(separatedBy: "&");
         
         if split.count == 1 && split[0] == "null"
         {
             return
         }
         
-        activeWords.removeAll(keepCapacity: false)
+        activeWords.removeAll(keepingCapacity: false)
         
         for word in split
         {
@@ -321,7 +321,7 @@ class Game: Equatable
         return (listName!, listURL!)
     }
     
-    func setList(listName:String, listUrl:String)
+    func setList(_ listName:String, listUrl:String)
     {
         self.listName = listName;
         self.listURL = listUrl
@@ -337,12 +337,12 @@ class Game: Equatable
         return opponent
     }
     
-    func getOtherUser(s:String) -> String
+    func getOtherUser(_ s:String) -> String
     {
         return user == s ? opponent : user
     }
     
-    func setGameType(type:GameType)
+    func setGameType(_ type:GameType)
     {
         gameType = type.getIndex()
     }
@@ -352,17 +352,17 @@ class Game: Equatable
         return GameType.getType(gameType)
     }
     
-    func hasUser(name:String) -> Bool
+    func hasUser(_ name:String) -> Bool
     {
         return user == name || opponent == name
     }
     
-    func getScore(name:String) -> Int
+    func getScore(_ name:String) -> Int
     {
         return user == name ? getUserScore() : getOpponentScore()
     }
     
-    func isWinning(name:String) -> Bool
+    func isWinning(_ name:String) -> Bool
     {
         return user == name ? getUserScore() > getOpponentScore() : getOpponentScore() > getUserScore()
     }
@@ -450,7 +450,7 @@ struct GameType
         return maxGames-1
     }
     
-    static func getType(index:Int) -> GameType
+    static func getType(_ index:Int) -> GameType
     {
         return index == 0 ? SINGLE : (index == 1 ? BEST_OF_3 : BEST_OF_5)
     }

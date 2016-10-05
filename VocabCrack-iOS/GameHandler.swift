@@ -10,26 +10,26 @@ import Foundation
 
 class GameHandler
 {
-    func updateData(controller:WeakWrapper<GamesController>)
+    func updateData(_ controller:WeakWrapper<GamesController>)
     {
         updateGames(controller)
         updatePast(controller)
     }
     
-    func updateGames(controller:WeakWrapper<GamesController>)
+    func updateGames(_ controller:WeakWrapper<GamesController>)
     {
         if Operations.loadingGames
         {
             return
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             Operations.loadingGames = true
             
             let str = compileMsg("LGAMES_S", Constants.CORE.account.username)
             let ret = NetHandler.sendData(str, retLines:2)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 Operations.loadingGames = false
                 
                 if let table = controller.value
@@ -70,33 +70,33 @@ class GameHandler
                             }
                             
                             table.activeGames = games
-                            table.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                            table.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
                         }
                     }
                     
-                    if !Operations.loadingPast && table.refresher.refreshing
+                    if !Operations.loadingPast && table.refresher.isRefreshing
                     {
                         table.refresher.endRefreshing()
                     }
                 }
-            })
-        })
+            }
+        }
     }
     
-    func updatePast(controller:WeakWrapper<GamesController>)
+    func updatePast(_ controller:WeakWrapper<GamesController>)
     {
         if Operations.loadingPast
         {
             return
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             Operations.loadingPast = true
             
             let str = compileMsg("LPAST", Constants.CORE.account.username)
             let ret = NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 Operations.loadingPast = false
                 
                 if let table = controller.value
@@ -109,7 +109,7 @@ class GameHandler
                         {
                             var games:[Game] = [Game]()
                             
-                            for i in 1.stride(to: array.count, by: 2)
+                            for i in stride(from: 1, to: array.count, by: 2)
                             {
                                 let g:Game? = Game.readDefault(array[i], splitter: Constants.SPLITTER_2)
                                 
@@ -118,35 +118,35 @@ class GameHandler
                             }
                             
                             table.pastGames = games
-                            table.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                            table.tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
                         }
                     }
                     
-                    if !Operations.loadingGames && table.refresher.refreshing
+                    if !Operations.loadingGames && table.refresher.isRefreshing
                     {
                         table.refresher.endRefreshing()
                     }
                 }
-            })
-        })
+            }
+        }
     }
     
-    func acceptRequest(controller:WeakWrapper<GamesController>, friend:String, handler:(() -> Void)?)
+    func acceptRequest(_ controller:WeakWrapper<GamesController>, friend:String, handler:(() -> Void)?)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("GAMEREQCONF", Constants.CORE.account.username, friend)
             NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 handler?()
                 return
-            })
-        })
+            }
+        }
     }
     
-    func deleteGame(controller:WeakWrapper<GamesController>, friend:String, type:Int, index:Int...)
+    func deleteGame(_ controller:WeakWrapper<GamesController>, friend:String, type:Int, index:Int...)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             var str = compileMsg("DELGAME", Constants.CORE.account.username, friend, String(type))
             
             if type == 1
@@ -156,16 +156,16 @@ class GameHandler
             }
             
             NetHandler.sendData(str)
-        })
+        }
     }
     
-    func confirmGame(controller:WeakWrapper<NewGameController>, friend:String)
+    func confirmGame(_ controller:WeakWrapper<NewGameController>, friend:String)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("CONFGAME", Constants.CORE.account.username, friend)
             let ret = NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 if let newGame = controller.value
                 {
                     if let response = ret
@@ -184,22 +184,22 @@ class GameHandler
                         newGame.confirmGame(false, response: "Unable to connect.")
                     }
                 }
-            })
-        })
+            }
+        }
     }
     
-    func newGame(controller:WeakWrapper<RoundOverController>)
+    func newGame(_ controller:WeakWrapper<RoundOverController>)
     {
-        let game = controller.value!.game
+        let game = controller.value!.game!
         
         let listData = NSMutableString()
         game.writeWordList(listData)
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("NEWGAME", Constants.CORE.account.username, game.getRequestReceiver(), String(game.gameType), String(game.userPoints[game.userPoints.count-1]), game.getListName()!, game.getListURL()!, listData as String)
             let ret = NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 if let roundOver = controller.value
                 {
                     if let response = ret
@@ -218,13 +218,13 @@ class GameHandler
                         roundOver.confirmResponse(false)
                     }
                 }
-            })
-        })
+            }
+        }
     }
     
-    func compGame(controller:WeakWrapper<RoundOverController>)
+    func compGame(_ controller:WeakWrapper<RoundOverController>)
     {
-        let game = controller.value!.game
+        let game = controller.value!.game!
         
         var listData: NSMutableString?
         
@@ -234,7 +234,7 @@ class GameHandler
             game.writeWordList(listData!)
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             var str = compileMsg("COMPGAME", Constants.CORE.account.username, game.getRequestReceiver(), String(game.userPoints[game.userPoints.count-1]))
             
             if listData != nil
@@ -244,7 +244,7 @@ class GameHandler
             
             let ret = NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 if let roundOver = controller.value
                 {
                     if let response = ret
@@ -263,17 +263,17 @@ class GameHandler
                         roundOver.confirmResponse(false)
                     }
                 }
-            })
-        })
+            }
+        }
     }
     
-    func getInfo(controller:WeakWrapper<GameDetailController>, friend:String)
+    func getInfo(_ controller:WeakWrapper<GameDetailController>, friend:String)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("GETGAME", Constants.CORE.account.username, friend)
             let ret = NetHandler.sendData(str)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 if let detail = controller.value
                 {
                     if let response = ret
@@ -293,7 +293,7 @@ class GameHandler
                         }
                     }
                 }
-            })
-        })
+            }
+        }
     }
 }

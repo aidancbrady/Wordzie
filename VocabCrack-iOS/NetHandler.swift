@@ -9,14 +9,14 @@ import Foundation
 
 class NetHandler
 {
-    class func sendData(str:String) -> String?
+    class func sendData(_ str:String) -> String?
     {
         Operations.setNetworkActivity(true)
         
-        var inputStream:NSInputStream?
-        var outputStream:NSOutputStream?
+        var inputStream:InputStream?
+        var outputStream:OutputStream?
         
-        NSStream.getStreamsToHostWithName(Constants.IP, port: Constants.PORT, inputStream: &inputStream, outputStream: &outputStream)
+        Stream.getStreamsToHost(withName: Constants.IP, port: Constants.PORT, inputStream: &inputStream, outputStream: &outputStream)
         
         var writeData = [UInt8]((str + "\n").utf8)
         
@@ -26,7 +26,7 @@ class NetHandler
         
         inputStream!.open()
         
-        var buffer = [UInt8](count:1048576, repeatedValue:0)
+        var buffer = [UInt8](repeating: 0, count: 1048576)
         var bytes = inputStream!.read(&buffer, maxLength: 1024)
         let data = NSMutableData(bytes: &buffer, length: bytes)
         
@@ -34,14 +34,14 @@ class NetHandler
         {
             let read = inputStream!.read(&buffer, maxLength: 1024)
             bytes += read
-            data.appendBytes(&buffer, length: read)
+            data.append(&buffer, length: read)
         }
         
         inputStream?.close()
         
         Operations.setNetworkActivity(false)
         
-        if let str = NSString(bytes: data.bytes, length: bytes, encoding: NSUTF8StringEncoding)
+        if let str = NSString(bytes: data.bytes, length: bytes, encoding: String.Encoding.utf8.rawValue)
         {
             return str as String
         }
@@ -49,12 +49,12 @@ class NetHandler
         return nil
     }
     
-    class func sendData(str:String, retLines:Int) -> [String]?
+    class func sendData(_ str:String, retLines:Int) -> [String]?
     {
-        var input:NSInputStream?
-        var output:NSOutputStream?
+        var input:InputStream?
+        var output:OutputStream?
         
-        NSStream.getStreamsToHostWithName(Constants.IP, port: Constants.PORT, inputStream: &input, outputStream: &output)
+        Stream.getStreamsToHost(withName: Constants.IP, port: Constants.PORT, inputStream: &input, outputStream: &output)
         
         let inputStream = input!
         let outputStream = output!
@@ -71,7 +71,7 @@ class NetHandler
         
         while ret.count < retLines
         {
-            var buffer = [UInt8](count:1048576, repeatedValue:0)
+            var buffer = [UInt8](repeating: 0, count: 1048576)
             var bytes = inputStream.read(&buffer, maxLength: 1024)
             let data = NSMutableData(bytes: &buffer, length: bytes)
             
@@ -79,10 +79,10 @@ class NetHandler
             {
                 let read = inputStream.read(&buffer, maxLength: 1024)
                 bytes += read
-                data.appendBytes(&buffer, length: read)
+                data.append(&buffer, length: read)
             }
             
-            if let str = NSString(bytes: data.bytes, length: bytes, encoding: NSUTF8StringEncoding)
+            if let str = NSString(bytes: data.bytes, length: bytes, encoding: String.Encoding.utf8.rawValue)
             {
                 let split:[String] = Utilities.split(str as String, separator: "\n")
                 
@@ -104,7 +104,7 @@ class NetHandler
     }
 }
 
-func compileMsg(msg:String...) -> String
+func compileMsg(_ msg:String...) -> String
 {
     var ret = ""
     

@@ -12,19 +12,19 @@ class WordDataHandler
 {
     class func load()
     {
-        let manager:NSFileManager = NSFileManager()
+        let manager:FileManager = FileManager()
         
         print("Loading word data...");
         
-        if !manager.fileExistsAtPath(CoreFiles.wordFile)
+        if !manager.fileExists(atPath: CoreFiles.wordFile)
         {
             return;
         }
         
-        Constants.CORE.learnedWords.removeAll(keepCapacity: false)
+        Constants.CORE.learnedWords.removeAll(keepingCapacity: false)
         
-        let content:String = try! String(contentsOfFile: CoreFiles.wordFile, encoding: NSUTF8StringEncoding)
-        let split = content.componentsSeparatedByString(",")
+        let content:String = try! String(contentsOfFile: CoreFiles.wordFile, encoding: String.Encoding.utf8)
+        let split = content.components(separatedBy: ",")
         
         for str in split
         {
@@ -37,30 +37,30 @@ class WordDataHandler
     
     class func save()
     {
-        let manager:NSFileManager = NSFileManager()
+        let manager:FileManager = FileManager()
         
         print("Saving word data...");
     
-        if manager.fileExistsAtPath(CoreFiles.wordFile)
+        if manager.fileExists(atPath: CoreFiles.wordFile)
         {
             do {
-                try manager.removeItemAtPath(CoreFiles.wordFile)
+                try manager.removeItem(atPath: CoreFiles.wordFile)
             } catch _ {
             }
         }
         
-        manager.createFileAtPath(CoreFiles.wordFile, contents: nil, attributes: nil)
+        manager.createFile(atPath: CoreFiles.wordFile, contents: nil, attributes: nil)
         
         let str = NSMutableString()
         
         for word in Constants.CORE.learnedWords
         {
-            str.appendString(word)
-            str.appendString(",")
+            str.append(word)
+            str.append(",")
         }
         
-        let data = str.dataUsingEncoding(NSUTF8StringEncoding)!
-        data.writeToFile(CoreFiles.wordFile, atomically: true)
+        let data = str.data(using: String.Encoding.utf8.rawValue)!
+        try? data.write(to: URL(fileURLWithPath: CoreFiles.wordFile), options: [.atomic])
     }
     
     class func createWordSet() -> [String]
@@ -69,7 +69,7 @@ class WordDataHandler
         
         if Constants.CORE.activeList.count-Constants.CORE.learnedWords.count < 10
         {
-            Constants.CORE.learnedWords.removeAll(keepCapacity: false)
+            Constants.CORE.learnedWords.removeAll(keepingCapacity: false)
             save()
         }
         

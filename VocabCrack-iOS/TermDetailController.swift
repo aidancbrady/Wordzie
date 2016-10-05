@@ -28,7 +28,7 @@ class TermDetailController: UIViewController
         navigationController!.setToolbarHidden(true, animated: true)
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         navigationController!.setToolbarHidden(true, animated: true)
     }
@@ -39,7 +39,7 @@ class TermDetailController: UIViewController
         definitionLabel.text = term!.1
         
         (getParent() as! CreateListController).terms[index!] = term!
-        (getParent() as! CreateListController).tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+        (getParent() as! CreateListController).tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
     }
     
     func getParent() -> UIViewController
@@ -47,11 +47,11 @@ class TermDetailController: UIViewController
         return navigationController!.viewControllers[navigationController!.viewControllers.count-2] as UIViewController
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
-        if segue.destinationViewController is UINavigationController
+        if segue.destination is UINavigationController
         {
-            let controller: AnyObject = (segue.destinationViewController as! UINavigationController).viewControllers[0]
+            let controller: AnyObject = (segue.destination as! UINavigationController).viewControllers[0]
             (controller as! EditTermController).term = term
         }
     }

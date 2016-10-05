@@ -15,10 +15,10 @@ class EditTermController: ResponsiveTextFieldViewController
     
     var term:(String, String)?
     
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
+    func textView(_ textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool
     {
         let currentText = textView.text as NSString
-        let proposedText = currentText.stringByReplacingCharactersInRange(range, withString: text)
+        let proposedText = currentText.replacingCharacters(in: range, with: text)
         
         if proposedText.characters.count > 120
         {
@@ -33,10 +33,10 @@ class EditTermController: ResponsiveTextFieldViewController
         return true
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
+    func textField(_ textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool
     {
         let currentText = textField.text! as NSString
-        let proposedText = currentText.stringByReplacingCharactersInRange(range, withString: string)
+        let proposedText = currentText.replacingCharacters(in: range, with: string)
         
         if proposedText.characters.count > 24
         {
@@ -46,14 +46,14 @@ class EditTermController: ResponsiveTextFieldViewController
         return true
     }
     
-    @IBAction func cancelButton(sender: AnyObject)
+    @IBAction func cancelButton(_ sender: AnyObject)
     {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func doneButton(sender: AnyObject)
+    @IBAction func doneButton(_ sender: AnyObject)
     {
-        if wordField.hasText() && definitionField.hasText()
+        if wordField.hasText && definitionField.hasText
         {
             if Utilities.isValidMsg(wordField.text!, definitionField.text!)
             {
@@ -67,13 +67,13 @@ class EditTermController: ResponsiveTextFieldViewController
                         {
                             (getParent() as! TermDetailController).term = newTerm
                             (getParent() as! TermDetailController).updateTerm()
-                            dismissViewControllerAnimated(true, completion: nil)
+                            dismiss(animated: true, completion: nil)
                         }
                         else {
                             (getParent() as! CreateListController).terms.append(newTerm)
-                            (getParent() as! CreateListController).tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                            (getParent() as! CreateListController).tableView.reloadSections(IndexSet(integer: 0), with: .automatic)
                             (getParent() as! CreateListController).listEdited()
-                            dismissViewControllerAnimated(true, completion: nil)
+                            dismiss(animated: true, completion: nil)
                         }
                     }
                     else {
@@ -115,7 +115,7 @@ class EditTermController: ResponsiveTextFieldViewController
         return detailController.getParent()
     }
     
-    func existsCheck(newTerm:(String, String)) -> Bool
+    func existsCheck(_ newTerm:(String, String)) -> Bool
     {
         let list = term != nil ? (getEditParent() as! CreateListController) : (getParent() as! CreateListController)
         

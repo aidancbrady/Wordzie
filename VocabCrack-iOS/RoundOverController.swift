@@ -23,9 +23,9 @@ class RoundOverController: UIViewController
     var game:Game!
     var singleplayer = false
     
-    @IBAction func continuePressed(sender: AnyObject)
+    @IBAction func continuePressed(_ sender: AnyObject)
     {
-        let game:UIViewController = self.storyboard?.instantiateViewControllerWithIdentifier("GameController") as UIViewController!
+        let game:UIViewController = self.storyboard?.instantiateViewController(withIdentifier: "GameController") as UIViewController!
         
         (game as! GameController).game = self.game
         (game as! GameController).singleplayer = singleplayer
@@ -33,14 +33,14 @@ class RoundOverController: UIViewController
         navigationController!.pushViewController(game, animated: true)
     }
     
-    @IBAction func returnPressed(sender: AnyObject)
+    @IBAction func returnPressed(_ sender: AnyObject)
     {
         if singleplayer
         {
             if game.userPoints.count < GameType.getType(game.gameType).getWinningScore()
             {
                 Utilities.displayYesNo(self, title: "Confirm", msg: "Are you sure you want to exit this game? Your progress will be lost.", action: {action in
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    self.dismiss(animated: true, completion: nil)
                 }, cancel: nil)
             }
             else {
@@ -60,8 +60,8 @@ class RoundOverController: UIViewController
         
         roundLabel.text = "Round \(game.userPoints.count)"
         
-        returnButton.hidden = false
-        roundLabel.hidden = false
+        returnButton.isHidden = false
+        roundLabel.isHidden = false
         
         let userIndex = game.userPoints.count
         
@@ -69,7 +69,7 @@ class RoundOverController: UIViewController
         {
             if game.userPoints.count < GameType.getType(game.gameType).getWinningScore()
             {
-                continueButton.hidden = false
+                continueButton.isHidden = false
             }
             
             let roundsRemaining = GameType.getType(game.gameType).getWinningScore()-game.userPoints.count
@@ -102,16 +102,16 @@ class RoundOverController: UIViewController
             }
             
             standingsLabel.text = "Standings: \(game.getUserScore())-\(game.getOpponentScore())"
-            standingsLabel.hidden = false
+            standingsLabel.isHidden = false
         }
         
-        primaryLabel.hidden = false
-        secondaryLabel.hidden = false
+        primaryLabel.isHidden = false
+        secondaryLabel.isHidden = false
         
         if !singleplayer
         {
-            returnButton.enabled = false
-            returnButton.setTitle("Uploading...", forState: UIControlState.Normal)
+            returnButton.isEnabled = false
+            returnButton.setTitle("Uploading...", for: UIControlState())
             
             activityIndicator.startAnimating()
             
@@ -125,7 +125,7 @@ class RoundOverController: UIViewController
         }
     }
     
-    override func prefersStatusBarHidden() -> Bool
+    override var prefersStatusBarHidden : Bool
     {
         return true
     }
@@ -136,7 +136,7 @@ class RoundOverController: UIViewController
         var newControllers = superNav.viewControllers
         let count = newControllers.count
         
-        for i in (count-1).stride(through: 0, by: -1)
+        for i in stride(from: (count-1), through: 0, by: -1)
         {
             let controller = newControllers[i] as UIViewController
             
@@ -144,7 +144,7 @@ class RoundOverController: UIViewController
             {
                 if game.hasWinner()
                 {
-                    let detail:GameDetailController = storyboard!.instantiateViewControllerWithIdentifier("GameDetailController") as! GameDetailController
+                    let detail:GameDetailController = storyboard!.instantiateViewController(withIdentifier: "GameDetailController") as! GameDetailController
                     detail.game = game
                     
                     newControllers.append(detail)
@@ -154,29 +154,29 @@ class RoundOverController: UIViewController
             }
             else if controller is MenuController
             {
-                let games:GamesController = storyboard!.instantiateViewControllerWithIdentifier("GamesController") as! GamesController
+                let games:GamesController = storyboard!.instantiateViewController(withIdentifier: "GamesController") as! GamesController
                 newControllers.append(games)
                 
                 break
             }
             else {
-                newControllers.removeAtIndex(i)
+                newControllers.remove(at: i)
             }
         }
         
         superNav.setViewControllers(newControllers, animated: false)
         
-        dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
-    func confirmResponse(success:Bool)
+    func confirmResponse(_ success:Bool)
     {
         activityIndicator.stopAnimating()
         
         if success
         {
-            returnButton.enabled = true
-            returnButton.setTitle("Return", forState: UIControlState.Normal)
+            returnButton.isEnabled = true
+            returnButton.setTitle("Return", for: UIControlState())
         }
         else {
             Utilities.displayDialog(self, title: "Error", msg: "Couldn't send game data to server.", actions: ActionButton(button: "Try Again", action: {action in

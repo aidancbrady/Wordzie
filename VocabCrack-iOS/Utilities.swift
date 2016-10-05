@@ -7,82 +7,83 @@
 //
 
 import UIKit
+import UserNotifications
 
 class Utilities
 {
-    class func displayAlert(controller:UIViewController, title:String, msg:String, action:((UIAlertAction!) -> Void)?)
+    class func displayAlert(_ controller:UIViewController, title:String, msg:String, action:((UIAlertAction?) -> Void)?)
     {
-        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
-        let okAction = UIAlertAction(title: "OK", style: .Default, handler: action)
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: action)
         
         alertController.addAction(okAction)
         
-        controller.presentViewController(alertController, animated: true, completion: nil)
+        controller.present(alertController, animated: true, completion: nil)
     }
     
-    class func displayYesNo(controller:UIViewController, title:String, msg:String, action:((UIAlertAction!) -> Void)?, cancel:((UIAlertAction!) -> Void)?)
+    class func displayYesNo(_ controller:UIViewController, title:String, msg:String, action:((UIAlertAction?) -> Void)?, cancel:((UIAlertAction?) -> Void)?)
     {
-        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
-        let yesAction = UIAlertAction(title: "Yes", style: .Default, handler: action)
-        let noAction = UIAlertAction(title: "No", style: .Cancel, handler: cancel)
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .default, handler: action)
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: cancel)
         
         alertController.addAction(noAction)
         alertController.addAction(yesAction)
         
-        controller.presentViewController(alertController, animated: true, completion: nil)
+        controller.present(alertController, animated: true, completion: nil)
     }
     
-    class func displayAction(controller:UIViewController, actions:ActionButton...)
+    class func displayAction(_ controller:UIViewController, actions:ActionButton...)
     {
-        let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         
         for action in actions
         {
             alertController.addAction(UIAlertAction(title: action.button, style: action.style, handler: action.action))
         }
         
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
-        controller.presentViewController(alertController, animated: true, completion: nil)
+        controller.present(alertController, animated: true, completion: nil)
     }
     
-    class func displayDialog(controller:UIViewController, title:String, msg:String, actions:ActionButton...)
+    class func displayDialog(_ controller:UIViewController, title:String, msg:String, actions:ActionButton...)
     {
-        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
         
         for action in actions
         {
             alertController.addAction(UIAlertAction(title: action.button, style: action.style, handler: action.action))
         }
         
-        controller.presentViewController(alertController, animated: true, completion: nil)
+        controller.present(alertController, animated: true, completion: nil)
     }
     
-    class func displayInput(controller:UIViewController, title:String, msg:String, placeholder:String?, handler:(String? -> Void)?)
+    class func displayInput(_ controller:UIViewController, title:String, msg:String, placeholder:String?, handler:((String?) -> Void)?)
     {
         var textField: UITextField?
         
-        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .Alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "OK", style: .Default, handler: {action in
+        let alertController = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: {action in
             handler?(textField!.text)
             return
         }))
-        alertController.addTextFieldWithConfigurationHandler({(text: UITextField!) in
+        alertController.addTextField(configurationHandler: {(text: UITextField!) in
             text.placeholder = placeholder
             textField = text
         })
         
-        controller.presentViewController(alertController, animated: true, completion: nil)
+        controller.present(alertController, animated: true, completion: nil)
     }
     
-    class func isValidCredential(creds: String...) -> Bool
+    class func isValidCredential(_ creds: String...) -> Bool
     {
         for s in creds
         {
             for c in Constants.BAD_CHARS
             {
-                if s.rangeOfString(c) != nil
+                if s.range(of: c) != nil
                 {
                     return false
                 }
@@ -92,13 +93,13 @@ class Utilities
         return true
     }
     
-    class func isValidMsg(msgs: String...) -> Bool
+    class func isValidMsg(_ msgs: String...) -> Bool
     {
         for s in msgs
         {
             for c in Constants.BANNED_CHARS
             {
-                if s.rangeOfString(c) != nil
+                if s.range(of: c) != nil
                 {
                     return false
                 }
@@ -109,26 +110,26 @@ class Utilities
     }
     
     /// Whether or not the two strings in their lowercase formats equal each other (trimmed)
-    class func trimmedEqual(str1:String, str2:String) -> Bool
+    class func trimmedEqual(_ str1:String, str2:String) -> Bool
     {
-        return Utilities.trim(str1.lowercaseString) == Utilities.trim(str2.lowercaseString)
+        return Utilities.trim(str1.lowercased()) == Utilities.trim(str2.lowercased())
     }
     
-    class func buildGravatarURL(email:String, size:Int) -> NSURL
+    class func buildGravatarURL(_ email:String, size:Int) -> URL
     {
         let str:NSMutableString = NSMutableString(format:"http://gravatar.com/avatar/%@?", buildMD5(email))
-        str.appendString("&size=\(size)")
-        str.appendString("&default=404")
+        str.append("&size=\(size)")
+        str.append("&default=404")
         
-        return NSURL(string: str as String)!
+        return URL(string: str as String)!
     }
     
-    class func buildMD5(email:String) -> String
+    class func buildMD5(_ email:String) -> String
     {
-        let str = email.cStringUsingEncoding(NSUTF8StringEncoding)
-        let strLen = CC_LONG(email.lengthOfBytesUsingEncoding(NSUTF8StringEncoding))
+        let str = email.cString(using: String.Encoding.utf8)
+        let strLen = CC_LONG(email.lengthOfBytes(using: String.Encoding.utf8))
         let digestLen = Int(CC_MD5_DIGEST_LENGTH)
-        let result = UnsafeMutablePointer<CUnsignedChar>.alloc(digestLen)
+        let result = UnsafeMutablePointer<CUnsignedChar>.allocate(capacity: digestLen)
         
         CC_MD5(str!, strLen, result)
         
@@ -139,63 +140,63 @@ class Utilities
             hash.appendFormat("%02x", result[i])
         }
         
-        result.destroy()
+        result.deinitialize()
         
         return String(format: hash as String)
     }
     
-    class func trim(s:String) -> String
+    class func trim(_ s:String) -> String
     {
-        return s.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        return s.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
     
-    class func replace(s:String, find:String, replace:String) -> String
+    class func replace(_ s:String, find:String, replace:String) -> String
     {
-        return s.stringByReplacingOccurrencesOfString(find, withString: replace, options: [], range: nil)
+        return s.replacingOccurrences(of: find, with: replace, options: [], range: nil)
     }
     
     /// Trims and splits a String with a specified separator
-    class func split(s:String, separator:String) -> [String]
+    class func split(_ s:String, separator:String) -> [String]
     {
-        if s.rangeOfString(separator) == nil
+        if s.range(of: separator) == nil
         {
             return [trim(s)]
         }
         
-        var split = trim(s).componentsSeparatedByString(separator)
+        var split = trim(s).components(separatedBy: separator)
         
         for i in 0 ..< split.count
         {
             if split[i] == ""
             {
-                split.removeAtIndex(i)
+                split.remove(at: i)
             }
         }
         
         return split
     }
     
-    class func readRemote(url:NSURL) -> String?
+    class func readRemote(_ url:URL) -> String?
     {
-        NSURLSession.sharedSession().dataTaskWithURL(Constants.DATA_URL);
+        URLSession.shared.dataTask(with: Constants.DATA_URL);
         
         return nil
     }
     
-    class func getRemoteUser(g:Game) -> String
+    class func getRemoteUser(_ g:Game) -> String
     {
         return g.getOtherUser(Constants.CORE.account.username);
     }
     
-    class func readBool(s:String) -> Bool
+    class func readBool(_ s:String) -> Bool
     {
         return s == "true"
     }
     
-    class func interpretLogin(millis:Int64) -> String
+    class func interpretLogin(_ millis:Int64) -> String
     {
-        let date:NSDate = NSDate(timeIntervalSince1970: Double(millis/1000))
-        let current:NSDate = NSDate()
+        let date:Date = Date(timeIntervalSince1970: Double(millis/1000))
+        let current:Date = Date()
         
         let diffMillis: Int64  = Int64((current.timeIntervalSince1970-date.timeIntervalSince1970)*1000)
         let diffSeconds: Int64  = diffMillis/1000
@@ -242,7 +243,7 @@ class Utilities
         }
     }
     
-    class func loadData(controller:LoginController)
+    class func loadData(_ controller:LoginController)
     {
         WordDataHandler.load()
         WordListHandler.loadListData()
@@ -250,14 +251,14 @@ class Utilities
         Constants.CORE.dataState = nil
         
         let reader:HTTPReader = HTTPReader()
-        let request:NSMutableURLRequest = NSMutableURLRequest(URL: Constants.DATA_URL)
+        let request:URLRequest = URLRequest(url: Constants.DATA_URL as URL)
         
         reader.getHTTP(request)
         {
             (response:String?) -> Void in
             if let str = response
             {
-                let array:[String] = str.componentsSeparatedByString("\n")
+                let array:[String] = str.components(separatedBy: "\n")
                 
                 Constants.IP = array[0]
                 Constants.PORT = Int(array[1])!
@@ -276,7 +277,7 @@ class Utilities
         }
     }
     
-    class func loadAvatar(view:WeakWrapper<UIImageView>, email:String)
+    class func loadAvatar(_ view:WeakWrapper<UIImageView>, email:String)
     {
         if Constants.CORE.avatars[email] != nil
         {
@@ -284,15 +285,15 @@ class Utilities
             return
         }
         
-        Operations.loadingAvatars.addObject(email)
+        Operations.loadingAvatars.add(email)
         
-        let url:NSURL = Utilities.buildGravatarURL(email, size: 512)
-        let request: NSURLRequest = NSURLRequest(URL: url)
+        let url:URL = Utilities.buildGravatarURL(email, size: 512)
+        let request: URLRequest = URLRequest(url: url)
         
         view.value!.image = UIImage(named: "user.png")
         var image:UIImage? = nil
         
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: NSError?) -> Void in
             image = UIImage(data: data!)
             
             if image != nil
@@ -308,68 +309,70 @@ class Utilities
                 Constants.CORE.avatars[email] = UIImage(named: "user.png")
             }
             
-            Operations.loadingAvatars.removeObject(email)
-        })
+            Operations.loadingAvatars.remove(email)
+        } as! (Data?, URLResponse?, Error?) -> Void)
         
         task.resume()
     }
     
-    class HTTPReader: NSObject, NSURLSessionDelegate, NSURLSessionTaskDelegate
+    class HTTPReader: NSObject, URLSessionDelegate, URLSessionTaskDelegate
     {
-        func getHTTP(request: NSMutableURLRequest!, action:(String?) -> Void)
+        func getHTTP(_ request: URLRequest!, action:@escaping (String?) -> Void)
         {
-            let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-            let session = NSURLSession(configuration: configuration, delegate: self, delegateQueue:NSOperationQueue.mainQueue())
+            let configuration = URLSessionConfiguration.default
+            let session = Foundation.URLSession(configuration: configuration, delegate: self, delegateQueue:OperationQueue.main)
             
-            let task = session.dataTaskWithRequest(request)
-            {
-                (data: NSData?, response: NSURLResponse?, error: NSError?) -> Void in
+            let task = session.dataTask(with: request, completionHandler: {
+                (data: Data?, response: URLResponse?, error: Error?) -> Void in
                 if error == nil
                 {
-                    action(NSString(data: data!, encoding:NSUTF8StringEncoding) as? String)
+                    action(NSString(data: data!, encoding:String.Encoding.utf8.rawValue) as? String)
                 }
                 else {
                     action(nil)
                 }
                 
                 return
-            }
+            })            
+
             
             task.resume()
         }
         
-        func URLSession(session: NSURLSession, didReceiveChallenge challenge: NSURLAuthenticationChallenge, completionHandler: (NSURLSessionAuthChallengeDisposition, NSURLCredential?) -> Void)
+        func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
         {
-            completionHandler(NSURLSessionAuthChallengeDisposition.UseCredential, NSURLCredential(forTrust: challenge.protectionSpace.serverTrust!))
+            completionHandler(Foundation.URLSession.AuthChallengeDisposition.useCredential, URLCredential(trust: challenge.protectionSpace.serverTrust!))
         }
         
-        func URLSession(session: NSURLSession, task: NSURLSessionTask, willPerformHTTPRedirection response: NSHTTPURLResponse, newRequest request: NSURLRequest, completionHandler: (NSURLRequest?) -> Void)
+        func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void)
         {
-            let newRequest: NSURLRequest? = request
+            let newRequest: URLRequest? = request
             completionHandler(newRequest)
         }
     }
     
-    class func max(num1:Int, num2:Int) -> Int
+    class func max(_ num1:Int, num2:Int) -> Int
     {
         return num1 > num2 ? num1 : num2
     }
     
-    class func min(num1:Int, num2:Int) -> Int
+    class func min(_ num1:Int, num2:Int) -> Int
     {
         return num1 < num2 ? num1 : num2
     }
     
     class func registerNotifications()
     {
-        let application = UIApplication.sharedApplication()
+        let application = UIApplication.shared
         
         print("Registering for notifications...")
-        application.registerUserNotificationSettings(UIUserNotificationSettings(forTypes: [.Alert, .Badge], categories: nil))
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge], completionHandler: { (granted, error) in
+        })
         application.registerForRemoteNotifications()
     }
     
-    class func roundButtons(view:UIView)
+    class func roundButtons(_ view:UIView)
     {
         for subview in view.subviews
         {
@@ -384,7 +387,7 @@ class Utilities
 
 class TableDataReceiver: UITableViewController
 {
-    func receiveData(obj:AnyObject, type:Int) {}
+    func receiveData(_ obj:Any, type:Int) {}
     
     func endRefresh() {}
 }
@@ -392,21 +395,21 @@ class TableDataReceiver: UITableViewController
 struct ActionButton
 {
     var button:String!
-    var action:((UIAlertAction!) -> Void)?
-    var style:UIAlertActionStyle = .Default
+    var action:((UIAlertAction) -> Void)?
+    var style:UIAlertActionStyle = .default
     
     init(button:String)
     {
         self.button = button
     }
     
-    init(button:String, action:((UIAlertAction!) -> Void))
+    init(button:String, action:@escaping ((UIAlertAction!) -> Void))
     {
         self.button = button
         self.action = action
     }
     
-    init(button:String, action:((UIAlertAction!) -> Void), style:UIAlertActionStyle)
+    init(button:String, action:@escaping ((UIAlertAction!) -> Void), style:UIAlertActionStyle)
     {
         self.button = button
         self.action = action

@@ -8,9 +8,9 @@
 
 import Foundation
 
-class CoreHandler : NSObject, NSStreamDelegate
+class CoreHandler : NSObject, StreamDelegate
 {
-    func login(username:String, password:String) -> (Bool, String?)
+    func login(_ username:String, password:String) -> (Bool, String?)
     {
         let str = compileMsg("LOGIN", username, password)
         let ret = NetHandler.sendData(str)
@@ -27,11 +27,11 @@ class CoreHandler : NSObject, NSStreamDelegate
                 
                 Constants.CORE.account = acct
                 
-                let defaults = NSUserDefaults.standardUserDefaults()
+                let defaults = UserDefaults.standard
                 
-                defaults.setObject(acct.username, forKey: "username")
-                defaults.setObject(acct.email, forKey: "email")
-                defaults.setObject(acct.password, forKey: "password")
+                defaults.set(acct.username, forKey: "username")
+                defaults.set(acct.email, forKey: "email")
+                defaults.set(acct.password, forKey: "password")
                 
                 defaults.synchronize()
                 
@@ -44,16 +44,16 @@ class CoreHandler : NSObject, NSStreamDelegate
         return (false, nil)
     }
     
-    func sendDeviceID(deviceID:String)
+    func sendDeviceID(_ deviceID:String)
     {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             let str = compileMsg("PUSHID", Constants.CORE.account.username, deviceID)
             NetHandler.sendData(str)
             print("Sent device ID to server")
-        })
+        }
     }
     
-    func register(username:String, email:String, password:String) -> (Bool, String?)
+    func register(_ username:String, email:String, password:String) -> (Bool, String?)
     {
         let str = compileMsg("REGISTER", username, email, password)
         let ret = NetHandler.sendData(str)
@@ -73,7 +73,7 @@ class CoreHandler : NSObject, NSStreamDelegate
         return (false, nil)
     }
     
-    func changePassword(password:String) -> (Bool, String?)
+    func changePassword(_ password:String) -> (Bool, String?)
     {
         let str:String = compileMsg("CHANGEPASS", Constants.CORE.account.username, Constants.CORE.account.password!, password)
         

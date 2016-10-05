@@ -22,7 +22,7 @@ struct Operations
     
     static var currentOperations = 0
     
-    static func setNetworkActivity(activity:Bool)
+    static func setNetworkActivity(_ activity:Bool)
     {
         if activity
         {
@@ -32,6 +32,6 @@ struct Operations
             currentOperations -= 1
         }
         
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = currentOperations > 0
+        UIApplication.shared.isNetworkActivityIndicatorVisible = currentOperations > 0
     }
 }

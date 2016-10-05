@@ -37,7 +37,7 @@ struct Constants
     static var PORT:Int = 26830
     
     static let VERSION:String = "1.0.0"
-    static let DATA_URL:NSURL = NSURL(string: "https://dl.dropboxusercontent.com/u/90411166/Versions/Wordzie.txt")!
+    static let DATA_URL:URL = URL(string: "https://dl.dropboxusercontent.com/u/90411166/Versions/Wordzie.txt")!
     static let BAD_CHARS:[String] = [SPLITTER_1, SPLITTER_2, "&", " ", "|", LIST_SPLITTER]
     static let BANNED_CHARS:[String] = [SPLITTER_1, SPLITTER_2, "&", "|", LIST_SPLITTER]
     static let CORE:Wordzie = Wordzie()

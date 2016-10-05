@@ -83,13 +83,13 @@ class LoginController: UIViewController, UITextFieldDelegate
     
     func getCachedData() -> Bool
     {
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        if let user = defaults.objectForKey("username") as? String
+        if let user = defaults.object(forKey: "username") as? String
         {
-            if let email = defaults.objectForKey("email") as? String
+            if let email = defaults.object(forKey: "email") as? String
             {
-                if let pass = defaults.objectForKey("password") as? String
+                if let pass = defaults.object(forKey: "password") as? String
                 {
                     dataCache = (user, email, pass)
                     
@@ -101,7 +101,7 @@ class LoginController: UIViewController, UITextFieldDelegate
         return false
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         if textField == usernameField
         {
@@ -117,17 +117,17 @@ class LoginController: UIViewController, UITextFieldDelegate
         return true
     }
 
-    @IBAction func onLogin(sender: AnyObject)
+    @IBAction func onLogin(_ sender: AnyObject)
     {
         onLogin()
     }
     
-    @IBAction func helpButton(sender: AnyObject)
+    @IBAction func helpButton(_ sender: AnyObject)
     {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://aidancbrady.com/wordzie/")!)
+        UIApplication.shared.open(URL(string: "http://aidancbrady.com/wordzie/")!)
     }
     
-    @IBAction func onRetry(sender: AnyObject)
+    @IBAction func onRetry(_ sender: AnyObject)
     {
         hide({self.dataReceived()}, views: retryButton)
         
@@ -137,7 +137,7 @@ class LoginController: UIViewController, UITextFieldDelegate
         Utilities.loadData(self)
     }
     
-    @IBAction func onRefresh(sender: AnyObject)
+    @IBAction func onRefresh(_ sender: AnyObject)
     {
         if !Operations.loggingIn
         {
@@ -160,7 +160,7 @@ class LoginController: UIViewController, UITextFieldDelegate
         }
     }
     
-    @IBAction func onCancel(sender: AnyObject)
+    @IBAction func onCancel(_ sender: AnyObject)
     {
         dataCache = nil
         
@@ -168,11 +168,11 @@ class LoginController: UIViewController, UITextFieldDelegate
         show(nil, views: usernameField, passwordField)
         show(nil, views: registerButton)
         
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
-        defaults.removeObjectForKey("username")
-        defaults.removeObjectForKey("email")
-        defaults.removeObjectForKey("password")
+        defaults.removeObject(forKey: "username")
+        defaults.removeObject(forKey: "email")
+        defaults.removeObject(forKey: "password")
     }
     
     func onLogin()
@@ -195,7 +195,7 @@ class LoginController: UIViewController, UITextFieldDelegate
         }
     }
     
-    func doLogin(username:String, password:String)
+    func doLogin(_ username:String, password:String)
     {
         if Operations.loggingIn
         {
@@ -205,20 +205,20 @@ class LoginController: UIViewController, UITextFieldDelegate
         dataCache = nil
         loginSpinner.startAnimating()
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             Operations.loggingIn = true
             
             let (success, response) = Handlers.coreHandler.login(username, password:password)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 Operations.loggingIn = false
                 self.loginSpinner.stopAnimating()
                 
                 if success
                 {
-                    let menu:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("MenuNavigation") as! UINavigationController
+                    let menu:UINavigationController = self.storyboard?.instantiateViewController(withIdentifier: "MenuNavigation") as! UINavigationController
                     
-                    self.presentViewController(menu, animated: true, completion: nil)
+                    self.present(menu, animated: true, completion: nil)
                     
                     Utilities.registerNotifications()
                 }
@@ -227,13 +227,13 @@ class LoginController: UIViewController, UITextFieldDelegate
                     
                     Utilities.displayAlert(self, title: "Couldn't login", msg: alertMsg, action: nil)
                 }
-            })
-        })
+            }
+        }
     }
     
-    func hide(completion: (() -> Void)?, views: UIView...)
+    func hide(_ completion: (() -> Void)?, views: UIView...)
     {
-        UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+        UIView.transition(with: view, duration: 0.4, options: UIViewAnimationOptions.curveEaseOut, animations: {() in
             for view in views
             {
                 view.alpha = 0
@@ -241,22 +241,22 @@ class LoginController: UIViewController, UITextFieldDelegate
         }, completion: {b in
             for view in views
             {
-                view.hidden = true
+                view.isHidden = true
             }
             
             completion?()
         })
     }
     
-    func show(completion: (() -> Void)?, views: UIView...)
+    func show(_ completion: (() -> Void)?, views: UIView...)
     {
         for view in views
         {
-            view.hidden = false
+            view.isHidden = false
             view.alpha = 0.1
         }
         
-        UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+        UIView.transition(with: view, duration: 0.4, options: UIViewAnimationOptions.curveEaseOut, animations: {() in
             for view in views
             {
                 view.alpha = 1

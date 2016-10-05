@@ -25,25 +25,25 @@ class NewGameController: UIViewController, ListLoader
     var definedUser:String?
     var firstDisplay = true
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask
     {
-        return UIInterfaceOrientationMask.Portrait
+        return UIInterfaceOrientationMask.portrait
     }
     
-    func setUser(user:String)
+    func setUser(_ user:String)
     {
         definedUser = user
-        changeButton.setTitle("Change", forState: UIControlState.Normal)
+        changeButton.setTitle("Change", for: UIControlState())
         playLabel.text = "Playing against " + definedUser! + "..."
-        playButton.enabled = false
+        playButton.isEnabled = false
     }
     
-    func setList(list:(String, String))
+    func setList(_ list:(String, String))
     {
-        listChange.enabled = false
+        listChange.isEnabled = false
         loadingLabel.text = "Loading list..."
         
-        if loadingLabel.hidden
+        if loadingLabel.isHidden
         {
             show(nil, views: loadingLabel)
         }
@@ -52,40 +52,40 @@ class NewGameController: UIViewController, ListLoader
         WordListHandler.loadList(list, controller: WeakWrapper(value: self))
     }
     
-    func confirmGame(success:Bool, response:String?)
+    func confirmGame(_ success:Bool, response:String?)
     {
-        continueButton.enabled = true
+        continueButton.isEnabled = true
         
         if success
         {
-            let game:UINavigationController = self.storyboard?.instantiateViewControllerWithIdentifier("GameNavigation") as! UINavigationController
+            let game:UINavigationController = self.storyboard?.instantiateViewController(withIdentifier: "GameNavigation") as! UINavigationController
             
             let controller = game.viewControllers[0] as UIViewController
             
             (controller as! GameController).game = createGame()
             (controller as! GameController).singleplayer = definedUser == nil
             
-            self.presentViewController(game, animated: true, completion: nil)
+            self.present(game, animated: true, completion: nil)
         }
         else {
             Utilities.displayAlert(self, title: "Error", msg: response!, action: nil)
         }
     }
     
-    func listLoaded(success:Bool)
+    func listLoaded(_ success:Bool)
     {
-        if activityIndicator.isAnimating()
+        if activityIndicator.isAnimating
         {
             activityIndicator.stopAnimating()
-            listChange.enabled = true
+            listChange.isEnabled = true
             
-            if !listLabel.hidden
+            if !listLabel.isHidden
             {
                 if success
                 {
                     loadingLabel.text = "Loaded list! (\(Constants.CORE.activeList.count) terms)"
                     listLabel.text = "Using '\(Constants.CORE.listData!.0)' list..."
-                    listChange.setTitle("Change", forState: UIControlState.Normal)
+                    listChange.setTitle("Change", for: UIControlState())
                     show(nil, views: confirmImage, continueButton)
                 }
                 else {
@@ -106,21 +106,21 @@ class NewGameController: UIViewController, ListLoader
         return game
     }
     
-    @IBAction func changePressed(sender: AnyObject)
+    @IBAction func changePressed(_ sender: AnyObject)
     {
-        if !playButton.enabled
+        if !playButton.isEnabled
         {
-            UIView.transitionWithView(view, duration: 0.2, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
-                self.changeButton.setTitle("Choose", forState: UIControlState.Normal)
+            UIView.transition(with: view, duration: 0.2, options: UIViewAnimationOptions.curveEaseOut, animations: {() in
+                self.changeButton.setTitle("Choose", for: UIControlState())
                 self.playLabel.text = "Choose a way to play..."
-                self.playButton.enabled = true
+                self.playButton.isEnabled = true
                 self.hidePastPlay()
             }, completion: {b in
                 self.definedUser = nil
             })
         }
         else {
-            let friends:SimpleFriendsController = self.storyboard?.instantiateViewControllerWithIdentifier("SimpleFriendsController") as! SimpleFriendsController
+            let friends:SimpleFriendsController = self.storyboard?.instantiateViewController(withIdentifier: "SimpleFriendsController") as! SimpleFriendsController
             
             friends.newController = self
             
@@ -128,11 +128,11 @@ class NewGameController: UIViewController, ListLoader
         }
     }
     
-    @IBAction func listChangePressed(sender: AnyObject)
+    @IBAction func listChangePressed(_ sender: AnyObject)
     {
         if Constants.CORE.listData == nil
         {
-            let friends:WordListsController = self.storyboard?.instantiateViewControllerWithIdentifier("WordListsController") as! WordListsController
+            let friends:WordListsController = self.storyboard?.instantiateViewController(withIdentifier: "WordListsController") as! WordListsController
             
             friends.newController = self
             
@@ -143,27 +143,27 @@ class NewGameController: UIViewController, ListLoader
         }
     }
     
-    @IBAction func typePressed(sender: AnyObject)
+    @IBAction func typePressed(_ sender: AnyObject)
     {
         if definedUser != nil
         {
             playLabel.text = "Playing against " + definedUser! + "..."
-            playButton.enabled = false
+            playButton.isEnabled = false
             playButton.selectedSegmentIndex = 1
-            changeButton.setTitle("Change", forState: UIControlState.Normal)
+            changeButton.setTitle("Change", for: UIControlState())
         }
         else {
-            changeButton.setTitle("Choose", forState: UIControlState.Normal)
+            changeButton.setTitle("Choose", for: UIControlState())
         }
         
-        if playLabel.hidden
+        if playLabel.isHidden
         {
             show({
                 if self.definedUser != nil
                 {
                     self.show(nil, views: self.changeButton)
                     
-                    if self.listLabel.hidden
+                    if self.listLabel.isHidden
                     {
                         self.show(nil, views: self.listLabel, self.listChange)
                     }
@@ -173,13 +173,13 @@ class NewGameController: UIViewController, ListLoader
     }
     
     
-    @IBAction func playPressed(sender: AnyObject)
+    @IBAction func playPressed(_ sender: AnyObject)
     {
-        changeButton.setTitle("Choose", forState: UIControlState.Normal)
+        changeButton.setTitle("Choose", for: UIControlState())
         
         if (playButton.selectedSegmentIndex == 0)
         {
-            if listLabel.hidden
+            if listLabel.isHidden
             {
                 show(nil, views: listLabel, listChange)
             }
@@ -189,17 +189,17 @@ class NewGameController: UIViewController, ListLoader
             hidePastPlay()
         }
         
-        if self.playButton.selectedSegmentIndex != 1 && !self.changeButton.hidden
+        if self.playButton.selectedSegmentIndex != 1 && !self.changeButton.isHidden
         {
             hide(nil, views: changeButton)
         }
-        else if self.playButton.selectedSegmentIndex == 1 && self.changeButton.hidden
+        else if self.playButton.selectedSegmentIndex == 1 && self.changeButton.isHidden
         {
             show(nil, views: changeButton)
         }
     }
     
-    @IBAction func continuePressed(sender: AnyObject)
+    @IBAction func continuePressed(_ sender: AnyObject)
     {
         if playButton.selectedSegmentIndex == 0
         {
@@ -207,12 +207,12 @@ class NewGameController: UIViewController, ListLoader
         }
         else if playButton.selectedSegmentIndex == 1 && definedUser != nil
         {
-            continueButton.enabled = false
+            continueButton.isEnabled = false
             Handlers.gameHandler.confirmGame(WeakWrapper(value: self), friend: definedUser!)
         }
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         if firstDisplay
         {
@@ -221,9 +221,9 @@ class NewGameController: UIViewController, ListLoader
             firstDisplay = false
         }
         else {
-            if !playButton.hidden && !playButton.enabled
+            if !playButton.isHidden && !playButton.isEnabled
             {
-                if listLabel.hidden
+                if listLabel.isHidden
                 {
                     show(nil, views: listLabel, listChange)
                 }
@@ -241,32 +241,32 @@ class NewGameController: UIViewController, ListLoader
     func hidePastList()
     {
         Constants.CORE.listData = nil
-        Constants.CORE.activeList.removeAll(keepCapacity: false)
+        Constants.CORE.activeList.removeAll(keepingCapacity: false)
         
-        listChange.setTitle("Choose", forState: UIControlState.Normal)
+        listChange.setTitle("Choose", for: UIControlState())
         listLabel.text = ("Choose a word list...")
         
-        if !loadingLabel.hidden
+        if !loadingLabel.isHidden
         {
             hide(nil, views: loadingLabel)
         }
         
-        if activityIndicator.isAnimating()
+        if activityIndicator.isAnimating
         {
             activityIndicator.stopAnimating()
         }
         
-        if !loadingLabel.hidden
+        if !loadingLabel.isHidden
         {
             hide(nil, views: loadingLabel)
         }
         
-        if !confirmImage.hidden
+        if !confirmImage.isHidden
         {
             hide(nil, views: confirmImage)
         }
         
-        if !continueButton.hidden
+        if !continueButton.isHidden
         {
             hide(nil, views: continueButton)
         }
@@ -274,12 +274,12 @@ class NewGameController: UIViewController, ListLoader
     
     func hidePastPlay()
     {
-        if !listLabel.hidden
+        if !listLabel.isHidden
         {
             hide(nil, views: listLabel)
         }
         
-        if !listChange.hidden
+        if !listChange.isHidden
         {
             hide(nil, views: listChange)
         }
@@ -287,9 +287,9 @@ class NewGameController: UIViewController, ListLoader
         hidePastList()
     }
     
-    func hide(completion: (() -> Void)?, views: UIView...)
+    func hide(_ completion: (() -> Void)?, views: UIView...)
     {
-        UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+        UIView.transition(with: view, duration: 0.4, options: UIViewAnimationOptions.curveEaseOut, animations: {() in
             for view in views
             {
                 view.alpha = 0
@@ -297,22 +297,22 @@ class NewGameController: UIViewController, ListLoader
         }, completion: {b in
             for view in views
             {
-                view.hidden = true
+                view.isHidden = true
             }
             
             completion?()
         })
     }
     
-    func show(completion: (() -> Void)?, views: UIView...)
+    func show(_ completion: (() -> Void)?, views: UIView...)
     {
         for view in views
         {
-            view.hidden = false
+            view.isHidden = false
             view.alpha = 0.1
         }
         
-        UIView.transitionWithView(view, duration: 0.4, options: UIViewAnimationOptions.CurveEaseOut, animations: {() in
+        UIView.transition(with: view, duration: 0.4, options: UIViewAnimationOptions.curveEaseOut, animations: {() in
             for view in views
             {
                 view.alpha = 1

@@ -26,26 +26,26 @@ class MenuController: UIViewController
         Utilities.roundButtons(menuLayer)
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask
     {
-        return UIInterfaceOrientationMask.Portrait
+        return UIInterfaceOrientationMask.portrait
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
-    @IBAction func logoutButton(sender: AnyObject)
+    @IBAction func logoutButton(_ sender: AnyObject)
     {
         Constants.CORE.account = Defaults.ACCOUNT
-        navigationController!.dismissViewControllerAnimated(true, completion: nil)
+        navigationController!.dismiss(animated: true, completion: nil)
     }
     
-    @IBAction func helpButton(sender: AnyObject)
+    @IBAction func helpButton(_ sender: AnyObject)
     {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://aidancbrady.com/wordzie/")!)
+        UIApplication.shared.open(URL(string: "http://aidancbrady.com/wordzie/")!)
     }
 }

@@ -17,7 +17,7 @@ class GamesController: UITableViewController
     
     @IBOutlet weak var modeButton: UISegmentedControl!
     
-    @IBAction func modeChanged(sender: AnyObject)
+    @IBAction func modeChanged(_ sender: AnyObject)
     {
         tableView.reloadData()
     }
@@ -28,11 +28,11 @@ class GamesController: UITableViewController
         
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(GamesController.onRefresh), forControlEvents: UIControlEvents.ValueChanged)
+        refresher.addTarget(self, action: #selector(GamesController.onRefresh), for: UIControlEvents.valueChanged)
         refreshControl = refresher
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
@@ -40,9 +40,9 @@ class GamesController: UITableViewController
         Handlers.gameHandler.updateData(WeakWrapper(value: self))
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask
     {
-        return UIInterfaceOrientationMask.Portrait
+        return UIInterfaceOrientationMask.portrait
     }
     
     func onRefresh()
@@ -52,21 +52,21 @@ class GamesController: UITableViewController
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    override func numberOfSections(in tableView: UITableView) -> Int
     {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return modeButton.selectedSegmentIndex == 0 ? activeGames.count : pastGames.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("GameCell", forIndexPath: indexPath) as! GameCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameCell", for: indexPath) as! GameCell
         
-        let game = modeButton.selectedSegmentIndex == 0 ? activeGames[indexPath.row] : pastGames[indexPath.row]
+        let game = modeButton.selectedSegmentIndex == 0 ? activeGames[(indexPath as NSIndexPath).row] : pastGames[(indexPath as NSIndexPath).row]
         
         if modeButton.selectedSegmentIndex == 0
         {
@@ -94,7 +94,7 @@ class GamesController: UITableViewController
             var scoreText = game.isTied() ? "Tied " : (game.getWinning() == game.user ? "Won " : "Lost ")
             scoreText += "\(game.getUserScore()) to \(game.getOpponentScore())"
             cell.scoreLabel.text = scoreText
-            cell.turnLabel.hidden = true
+            cell.turnLabel.isHidden = true
         }
         
         Utilities.loadAvatar(WeakWrapper(value: cell.userAvatar), email: game.opponentEmail!)
@@ -105,47 +105,47 @@ class GamesController: UITableViewController
         return cell
     }
 
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
     {
         return true
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
         if !Operations.loadingGames && !Operations.loadingPast
         {
             var type = 0
-            let username = Utilities.getRemoteUser(modeButton.selectedSegmentIndex == 0 ? activeGames[indexPath.row] : pastGames[indexPath.row])
+            let username = Utilities.getRemoteUser(modeButton.selectedSegmentIndex == 0 ? activeGames[(indexPath as NSIndexPath).row] : pastGames[(indexPath as NSIndexPath).row])
             
             if modeButton.selectedSegmentIndex == 0
             {
-                if activeGames[indexPath.row].isRequest
+                if activeGames[(indexPath as NSIndexPath).row].isRequest
                 {
-                    type = activeGames[indexPath.row].activeRequested ? 2 : 3
+                    type = activeGames[(indexPath as NSIndexPath).row].activeRequested ? 2 : 3
                 }
                 else {
                     type = 0
                 }
                 
-                activeGames.removeAtIndex(indexPath.row)
+                activeGames.remove(at: (indexPath as NSIndexPath).row)
             }
             else {
                 type = 1
-                pastGames.removeAtIndex(indexPath.row)
+                pastGames.remove(at: (indexPath as NSIndexPath).row)
             }
             
             if remoteDelete
             {
                 if type == 1
                 {
-                    Handlers.gameHandler.deleteGame(WeakWrapper(value: self), friend: username, type: type, index: indexPath.row)
+                    Handlers.gameHandler.deleteGame(WeakWrapper(value: self), friend: username, type: type, index: (indexPath as NSIndexPath).row)
                 }
                 else {
                     Handlers.gameHandler.deleteGame(WeakWrapper(value: self), friend: username, type: type)
                 }
             }
             
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
 }

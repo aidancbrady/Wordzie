@@ -20,31 +20,31 @@ class OptionsController: ResponsiveTextFieldViewController
     {
         super.viewDidLoad()
         
-        confirmButton.addTarget(self, action: #selector(OptionsController.onPasswordChange), forControlEvents: .TouchUpInside)
+        confirmButton.addTarget(self, action: #selector(OptionsController.onPasswordChange), for: .touchUpInside)
         
         oldField.delegate = self
         newField.delegate = self
         confirmField.delegate = self
     }
     
-    @IBAction func onAvatarEdit(sender: AnyObject)
+    @IBAction func onAvatarEdit(_ sender: AnyObject)
     {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://en.gravatar.com")!)
+        UIApplication.shared.open(URL(string: "http://en.gravatar.com")!)
     }
     
-    override func viewWillAppear(animated: Bool)
+    override func viewWillAppear(_ animated: Bool)
     {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
-    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask
+    override var supportedInterfaceOrientations : UIInterfaceOrientationMask
     {
-        return UIInterfaceOrientationMask.Portrait
+        return UIInterfaceOrientationMask.portrait
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
         if textField == oldField
         {
@@ -96,25 +96,25 @@ class OptionsController: ResponsiveTextFieldViewController
         }
     }
     
-    func doPasswordChange(password:String)
+    func doPasswordChange(_ password:String)
     {
         if Operations.passwordChanging
         {
             return
         }
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), {
+        DispatchQueue.global(qos: .background).async {
             Operations.passwordChanging = true
             
             let (success, response) = Handlers.coreHandler.changePassword(password)
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async {
                 Operations.passwordChanging = false
                 
                 if success
                 {
                     Utilities.displayAlert(self, title: "Success", msg: "Password successfully changed!", action: {(action) -> Void in
-                        print(self.navigationController!.dismissViewControllerAnimated(true, completion: nil))
+                        print(self.navigationController!.dismiss(animated: true, completion: nil))
                     })
                 }
                 else {
@@ -122,7 +122,7 @@ class OptionsController: ResponsiveTextFieldViewController
                     
                     Utilities.displayAlert(self, title: "Couldn't change password", msg: alertMsg, action: nil)
                 }
-            });
-        });
+            }
+        }
     }
 }
