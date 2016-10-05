@@ -293,7 +293,7 @@ class Utilities
         view.value!.image = UIImage(named: "user.png")
         var image:UIImage? = nil
         
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: NSError?) -> Void in
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             image = UIImage(data: data!)
             
             if image != nil
@@ -310,7 +310,7 @@ class Utilities
             }
             
             Operations.loadingAvatars.remove(email)
-        } as! (Data?, URLResponse?, Error?) -> Void)
+        })
         
         task.resume()
     }
