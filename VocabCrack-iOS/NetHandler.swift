@@ -9,6 +9,7 @@ import Foundation
 
 class NetHandler
 {
+    @discardableResult
     class func sendData(_ str:String) -> String?
     {
         Operations.setNetworkActivity(true)
@@ -49,6 +50,7 @@ class NetHandler
         return nil
     }
     
+    @discardableResult
     class func sendData(_ str:String, retLines:Int) -> [String]?
     {
         var input:InputStream?

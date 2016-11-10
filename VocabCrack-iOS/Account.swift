@@ -51,6 +51,7 @@ class Account
         return self
     }
     
+    @discardableResult
     func setUsername(_ username:String) -> Account
     {
         self.username = username
@@ -58,6 +59,7 @@ class Account
         return self
     }
     
+    @discardableResult
     func setEmail(_ email:String) -> Account
     {
         self.email = email
@@ -65,6 +67,7 @@ class Account
         return self
     }
     
+    @discardableResult
     func setPassword(_ password:String) -> Account
     {
         self.password = password
@@ -72,6 +75,7 @@ class Account
         return self
     }
     
+    @discardableResult
     func setGamesWon(_ gamesWon:Int) -> Account
     {
         self.gamesWon = gamesWon
@@ -79,6 +83,7 @@ class Account
         return self
     }
     
+    @discardableResult
     func setGamesLost(_ gamesLost:Int) -> Account
     {
         self.gamesLost = gamesLost
@@ -86,6 +91,7 @@ class Account
         return self
     }
     
+    @discardableResult
     func setLastLogin(_ lastLogin:Int64) -> Account
     {
         self.lastLogin = lastLogin
