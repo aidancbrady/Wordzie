@@ -30,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     {
         print("Successfully registered notification service.")
         
-        let deviceID = deviceToken.description
+        let deviceID = deviceToken.hexString()
             .replacingOccurrences(of: "<", with: "", options: [], range: nil)
             .replacingOccurrences(of: ">", with: "", options: [], range: nil)
             .replacingOccurrences(of: " ", with: "", options: [], range: nil)
@@ -70,6 +70,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate
     func applicationWillTerminate(_ application: UIApplication)
     {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+}
+
+extension Data
+{
+    func hexString() -> String
+    {
+        return self.reduce("") { string, byte in
+            string + String(format: "%02X", byte)
+        }
     }
 }
 
