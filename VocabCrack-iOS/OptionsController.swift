@@ -64,7 +64,7 @@ class OptionsController: ResponsiveTextFieldViewController
         return true
     }
     
-    func onPasswordChange()
+    @objc func onPasswordChange()
     {
         if !oldField.text!.isEmpty && !newField.text!.isEmpty && !confirmField.text!.isEmpty
         {

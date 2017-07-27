@@ -122,7 +122,7 @@ class WordListHandler
                         continue
                     }
                     
-                    terms.append(split[0], split[1])
+                    terms.append((split[0], split[1]))
                 }
                 
                 if terms.count < 10
@@ -468,7 +468,7 @@ class ListHandler
                                 
                                 if split.count == 2
                                 {
-                                    urlArray.append(split[0], split[1])
+                                    urlArray.append((split[0], split[1]))
                                 }
                             }
                             

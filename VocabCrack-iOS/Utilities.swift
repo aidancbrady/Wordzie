@@ -326,7 +326,7 @@ class Utilities
                 (data: Data?, response: URLResponse?, error: Error?) -> Void in
                 if error == nil
                 {
-                    action(NSString(data: data!, encoding:String.Encoding.utf8.rawValue) as? String)
+                    action(NSString(data: data!, encoding:String.Encoding.utf8.rawValue) as String?)
                 }
                 else {
                     action(nil)

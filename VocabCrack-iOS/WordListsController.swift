@@ -28,7 +28,7 @@ class WordListsController: UITableViewController
         
         for index in Constants.CORE.listURLs
         {
-            urlArray.append(index.0, index.1)
+            urlArray.append((index.0, index.1))
         }
         
         tableView.reloadSections(IndexSet(integer: 2), with: .none)
@@ -58,7 +58,7 @@ class WordListsController: UITableViewController
         compileArray()
     }
     
-    func onRefresh()
+    @objc func onRefresh()
     {
         compileArray()
     }

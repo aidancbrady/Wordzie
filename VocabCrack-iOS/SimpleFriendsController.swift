@@ -54,7 +54,7 @@ class SimpleFriendsController: TableDataReceiver
         Handlers.friendHandler.updateFriends(WeakWrapper(value: self))
     }
     
-    func onRefresh()
+    @objc func onRefresh()
     {
         Handlers.friendHandler.updateFriends(WeakWrapper(value: self))
     }

@@ -68,7 +68,7 @@ class RegisterController: UIViewController, UITextFieldDelegate
         dismiss(animated: true, completion: nil)
     }
     
-    func onRegister()
+    @objc func onRegister()
     {
         if !usernameField.text!.isEmpty && !emailField.text!.isEmpty && !passwordField.text!.isEmpty
         {

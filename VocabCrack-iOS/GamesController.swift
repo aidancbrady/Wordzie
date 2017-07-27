@@ -45,7 +45,7 @@ class GamesController: UITableViewController
         return UIInterfaceOrientationMask.portrait
     }
     
-    func onRefresh()
+    @objc func onRefresh()
     {
         Handlers.gameHandler.updateData(WeakWrapper(value: self))
     }

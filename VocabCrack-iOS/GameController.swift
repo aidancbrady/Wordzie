@@ -123,8 +123,7 @@ class GameController: UIViewController
         if correct
         {
             amountCorrect += 1
-            
-            let prev:String = Utilities.split(game.activeWords[wordIndex-1], separator: Constants.LIST_SPLITTER)[0];
+            let prev:String = Utilities.split(game.activeWords[wordIndex], separator: Constants.LIST_SPLITTER)[0];
             Constants.CORE.learnedWords.append(prev);
             WordDataHandler.save();
         }
@@ -237,7 +236,7 @@ class GameController: UIViewController
         game.userPoints.append(amountCorrect)
     }
     
-    func updateTime()
+    @objc func updateTime()
     {
         timeLeft -= 1
         

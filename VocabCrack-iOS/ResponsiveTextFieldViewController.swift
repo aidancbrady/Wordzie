@@ -33,7 +33,7 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
         NotificationCenter.default.removeObserver(self)
     }
     
-    func keyboardWillShow(_ notification: Notification)
+    @objc func keyboardWillShow(_ notification: Notification)
     {
         keyboardIsShowing = true
         
@@ -48,7 +48,7 @@ class ResponsiveTextFieldViewController : UIViewController, UITextFieldDelegate,
         }
     }
     
-    func keyboardWillHide(_ notification: Notification)
+    @objc func keyboardWillHide(_ notification: Notification)
     {
         keyboardIsShowing = false
         
