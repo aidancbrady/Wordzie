@@ -32,6 +32,8 @@ struct Operations
             currentOperations -= 1
         }
         
-        UIApplication.shared.isNetworkActivityIndicatorVisible = currentOperations > 0
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = currentOperations > 0
+        }
     }
 }

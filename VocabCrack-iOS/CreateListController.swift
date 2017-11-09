@@ -88,7 +88,7 @@ class CreateListController: UITableViewController
                             return
                         })
                     }
-                    else if (str!).characters.count > 18
+                    else if (str!).count > 18
                     {
                         Utilities.displayAlert(self, title: "Error", msg: "Too many characters.", action: {action in
                             self.showEntry()

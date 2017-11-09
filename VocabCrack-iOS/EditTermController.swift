@@ -20,7 +20,7 @@ class EditTermController: ResponsiveTextFieldViewController
         let currentText = textView.text as NSString
         let proposedText = currentText.replacingCharacters(in: range, with: text)
         
-        if proposedText.characters.count > 120
+        if proposedText.count > 120
         {
             return false
         }
@@ -38,7 +38,7 @@ class EditTermController: ResponsiveTextFieldViewController
         let currentText = textField.text! as NSString
         let proposedText = currentText.replacingCharacters(in: range, with: string)
         
-        if proposedText.characters.count > 24
+        if proposedText.count > 24
         {
             return false
         }
