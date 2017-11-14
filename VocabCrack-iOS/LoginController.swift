@@ -141,16 +141,16 @@ class LoginController: UIViewController, UITextFieldDelegate
     {
         if !Operations.loggingIn
         {
-            hide({self.dataReceived()}, views: logo, refresh, help)
+            hide(nil, views: logo, refresh, help)
             
             if dataCache != nil
             {
-                hide({self.dataReceived()}, views: loginLabel, cancelButton, avatarView)
-                hide({self.dataReceived()}, views: loginButton)
+                hide(nil, views: loginLabel, cancelButton, avatarView)
+                hide(nil, views: loginButton)
             }
             else {
-                hide({self.dataReceived()}, views: usernameField, passwordField)
-                hide({self.dataReceived()}, views: loginButton, registerButton)
+                hide(nil, views: usernameField, passwordField)
+                hide(nil, views: loginButton, registerButton)
             }
             
             show(nil, views: connectingLabel)
@@ -177,17 +177,15 @@ class LoginController: UIViewController, UITextFieldDelegate
     
     func onLogin()
     {
-        if dataCache != nil || (!usernameField.text!.isEmpty && !passwordField.text!.isEmpty)
+        if dataCache != nil
         {
-            if dataCache != nil || Utilities.isValidCredential(usernameField.text!, passwordField.text!)
+            doLogin(dataCache!.0, password: dataCache!.2)
+        }
+        else if !usernameField.text!.isEmpty && !passwordField.text!.isEmpty
+        {
+            if Utilities.isValidCredential(usernameField.text!, passwordField.text!)
             {
-                if dataCache != nil
-                {
-                    doLogin(dataCache!.0, password: dataCache!.2)
-                }
-                else {
-                    doLogin(usernameField.text!, password:passwordField.text!)
-                }
+                doLogin(usernameField.text!, password:passwordField.text!)
             }
             else {
                 Utilities.displayAlert(self, title: "Warning", msg: "Invalid characters.", action: nil)
@@ -202,7 +200,6 @@ class LoginController: UIViewController, UITextFieldDelegate
             return
         }
         
-        dataCache = nil
         loginSpinner.startAnimating()
         
         DispatchQueue.global(qos: .background).async {

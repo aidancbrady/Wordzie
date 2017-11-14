@@ -42,6 +42,7 @@ class MenuController: UIViewController
     {
         Constants.CORE.account = Defaults.ACCOUNT
         navigationController!.dismiss(animated: true, completion: nil)
+        (navigationController!.presentingViewController! as! LoginController).onRefresh(self)
     }
     
     @IBAction func helpButton(_ sender: AnyObject)
