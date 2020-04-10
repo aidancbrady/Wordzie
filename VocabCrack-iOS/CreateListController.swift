@@ -132,7 +132,7 @@ class CreateListController: UITableViewController
     {
         super.viewDidLoad()
         
-        activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        activity = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
         activity.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         activity.hidesWhenStopped = true
         activity.stopAnimating()
@@ -187,7 +187,7 @@ class CreateListController: UITableViewController
         return true
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
         if editingStyle == .delete
         {

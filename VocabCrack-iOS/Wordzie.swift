@@ -33,7 +33,7 @@ struct Handlers
 
 struct Constants
 {
-    static var IP:String = "104.236.13.142"
+    static var IP:String = "server.aidancbrady.com"
     static var PORT:Int = 26830
     
     static let VERSION:String = "1.0.0"

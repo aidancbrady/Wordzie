@@ -22,7 +22,7 @@ class AddFriendController: UITableViewController, UISearchBarDelegate
         
         searchBar.delegate = self
         
-        activity = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        activity = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.gray)
         activity.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         activity.hidesWhenStopped = true
         activity.stopAnimating()

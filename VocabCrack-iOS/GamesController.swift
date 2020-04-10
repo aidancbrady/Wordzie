@@ -28,7 +28,7 @@ class GamesController: UITableViewController
         
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(GamesController.onRefresh), for: UIControlEvents.valueChanged)
+        refresher.addTarget(self, action: #selector(GamesController.onRefresh), for: UIControl.Event.valueChanged)
         refreshControl = refresher
     }
     
@@ -110,7 +110,7 @@ class GamesController: UITableViewController
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
         if !Operations.loadingGames && !Operations.loadingPast
         {

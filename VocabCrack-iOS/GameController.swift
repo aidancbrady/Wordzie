@@ -53,12 +53,12 @@ class GameController: UIViewController
         initGame()
         
         let anim:CABasicAnimation = CABasicAnimation(keyPath: "opacity")
-        anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        anim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         anim.fromValue = NSNumber(value: 0.5 as Float)
         anim.toValue = NSNumber(value: 1 as Float)
         anim.autoreverses = true
         anim.duration = 0.5
-        anim.repeatCount = 1e100
+        anim.repeatCount = 1e10
         secondaryLabel.layer.add(anim, forKey: "flash")
         
         primaryLabel.isHidden = false
@@ -95,9 +95,9 @@ class GameController: UIViewController
     func initDefinition(_ definition:UIButton)
     {
         definition.titleLabel!.numberOfLines = 3
-        definition.contentHorizontalAlignment = UIControlContentHorizontalAlignment.left
+        definition.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
         definition.titleLabel!.textAlignment = NSTextAlignment.left
-        definition.contentEdgeInsets = UIEdgeInsetsMake(0, 10, 0, 0);
+        definition.contentEdgeInsets = UIEdgeInsets.init(top: 0, left: 10, bottom: 0, right: 0);
     }
     
     func setTermData()
@@ -107,10 +107,10 @@ class GameController: UIViewController
         
         wordLabel.text = Utilities.split(getCurrentTerm(), separator: Constants.LIST_SPLITTER)[0]
         
-        definition1.setTitle(defs[0], for: UIControlState())
-        definition2.setTitle(defs[1], for: UIControlState())
-        definition3.setTitle(defs[2], for: UIControlState())
-        definition4.setTitle(defs[3], for: UIControlState())
+        definition1.setTitle(defs[0], for: UIControl.State())
+        definition2.setTitle(defs[1], for: UIControl.State())
+        definition3.setTitle(defs[2], for: UIControl.State())
+        definition4.setTitle(defs[3], for: UIControl.State())
     }
     
     func onAnswer(_ correct:Bool)
@@ -222,12 +222,12 @@ class GameController: UIViewController
         {
             finalizeGameData()
             
-            let roundOver:UIViewController = self.storyboard?.instantiateViewController(withIdentifier: "RoundOverController") as UIViewController!
+            let roundOver:UIViewController? = self.storyboard?.instantiateViewController(withIdentifier: "RoundOverController") as UIViewController?
             
             (roundOver as! RoundOverController).game = game
             (roundOver as! RoundOverController).singleplayer = singleplayer
             
-            navigationController!.pushViewController(roundOver, animated: true)
+            navigationController!.pushViewController(roundOver!, animated: true)
         }
     }
     
@@ -264,12 +264,12 @@ class GameController: UIViewController
             if timeLeft == 5
             {
                 let anim:CABasicAnimation = CABasicAnimation(keyPath: "opacity")
-                anim.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+                anim.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
                 anim.fromValue = NSNumber(value: 0.5 as Float)
                 anim.toValue = NSNumber(value: 1 as Float)
                 anim.autoreverses = true
                 anim.duration = 0.5
-                anim.repeatCount = 1e100
+                anim.repeatCount = 1e10
                 timerLabel.layer.add(anim, forKey: "flash")
             }
             else if timeLeft > 5
@@ -305,7 +305,7 @@ class GameController: UIViewController
         
         animations += 1
         
-        UIView.transition(with: view, duration: 0.5, options: UIViewAnimationOptions.curveEaseOut, animations: {
+        UIView.transition(with: view, duration: 0.5, options: UIView.AnimationOptions.curveEaseOut, animations: {
             view.transform = transform
         }, completion: {finished in
             view.isHidden = true
@@ -324,7 +324,7 @@ class GameController: UIViewController
         
         animations += 1
         
-        UIView.transition(with: view, duration: 0.5, options: UIViewAnimationOptions.curveEaseOut, animations: {
+        UIView.transition(with: view, duration: 0.5, options: UIView.AnimationOptions.curveEaseOut, animations: {
             view.frame = prevRect
         }, completion: {b in
             self.animations -= 1
@@ -336,7 +336,7 @@ class GameController: UIViewController
     {
         animations += views.count
         
-        UIView.transition(with: view, duration: 0.5, options: UIViewAnimationOptions.curveEaseOut, animations: {
+        UIView.transition(with: view, duration: 0.5, options: UIView.AnimationOptions.curveEaseOut, animations: {
             for view in views
             {
                 view.alpha = 0
@@ -363,7 +363,7 @@ class GameController: UIViewController
         
         animations += views.count
         
-        UIView.transition(with: view, duration: 0.5, options: UIViewAnimationOptions.curveEaseOut, animations: {
+        UIView.transition(with: view, duration: 0.5, options: UIView.AnimationOptions.curveEaseOut, animations: {
             for view in views
             {
                 view.alpha = 1

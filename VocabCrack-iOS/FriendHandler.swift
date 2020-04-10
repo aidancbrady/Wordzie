@@ -46,7 +46,7 @@ class FriendHandler
                             
                             for i in 1 ..< array.count
                             {
-                                var split:[String] = array[i].components(separatedBy: Constants.SPLITTER_2)
+                                let split:[String] = array[i].components(separatedBy: Constants.SPLITTER_2)
                                 accounts.append(Account(username:split[0], isRequest:false).setEmail(split[1]).setLastLogin(NSString(string: split[2]).longLongValue))
                             }
                             
@@ -97,7 +97,7 @@ class FriendHandler
                             
                             for i in 1 ..< array.count
                             {
-                                var split:[String] = array[i].components(separatedBy: Constants.SPLITTER_2)
+                                let split:[String] = array[i].components(separatedBy: Constants.SPLITTER_2)
                                 accounts.append(Account(username:split[0], isRequest:false).setEmail(split[1]))
                             }
                             

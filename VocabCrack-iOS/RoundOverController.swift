@@ -25,12 +25,12 @@ class RoundOverController: UIViewController
     
     @IBAction func continuePressed(_ sender: AnyObject)
     {
-        let game:UIViewController = self.storyboard?.instantiateViewController(withIdentifier: "GameController") as UIViewController!
+        let game:UIViewController? = (self.storyboard?.instantiateViewController(withIdentifier: "GameController") as UIViewController?)
         
         (game as! GameController).game = self.game
         (game as! GameController).singleplayer = singleplayer
         
-        navigationController!.pushViewController(game, animated: true)
+        navigationController!.pushViewController(game!, animated: true)
     }
     
     @IBAction func returnPressed(_ sender: AnyObject)
@@ -111,7 +111,7 @@ class RoundOverController: UIViewController
         if !singleplayer
         {
             returnButton.isEnabled = false
-            returnButton.setTitle("Uploading...", for: UIControlState())
+            returnButton.setTitle("Uploading...", for: UIControl.State())
             
             activityIndicator.startAnimating()
             
@@ -176,7 +176,7 @@ class RoundOverController: UIViewController
         if success
         {
             returnButton.isEnabled = true
-            returnButton.setTitle("Return", for: UIControlState())
+            returnButton.setTitle("Return", for: UIControl.State())
         }
         else {
             Utilities.displayDialog(self, title: "Error", msg: "Couldn't send game data to server.", actions: ActionButton(button: "Try Again", action: {action in

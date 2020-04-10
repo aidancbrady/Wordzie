@@ -43,7 +43,7 @@ class SimpleFriendsController: TableDataReceiver
         
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(SimpleFriendsController.onRefresh), for: UIControlEvents.valueChanged)
+        refresher.addTarget(self, action: #selector(SimpleFriendsController.onRefresh), for: UIControl.Event.valueChanged)
         refreshControl = refresher
     }
     

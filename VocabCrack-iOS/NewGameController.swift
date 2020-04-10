@@ -33,7 +33,7 @@ class NewGameController: UIViewController, ListLoader
     func setUser(_ user:String)
     {
         definedUser = user
-        changeButton.setTitle("Change", for: UIControlState())
+        changeButton.setTitle("Change", for: UIControl.State())
         playLabel.text = "Playing against " + definedUser! + "..."
         playButton.isEnabled = false
     }
@@ -85,7 +85,7 @@ class NewGameController: UIViewController, ListLoader
                 {
                     loadingLabel.text = "Loaded list! (\(Constants.CORE.activeList.count) terms)"
                     listLabel.text = "Using '\(Constants.CORE.listData!.0)' list..."
-                    listChange.setTitle("Change", for: UIControlState())
+                    listChange.setTitle("Change", for: UIControl.State())
                     show(nil, views: confirmImage, continueButton)
                 }
                 else {
@@ -110,8 +110,8 @@ class NewGameController: UIViewController, ListLoader
     {
         if !playButton.isEnabled
         {
-            UIView.transition(with: view, duration: 0.2, options: UIViewAnimationOptions.curveEaseOut, animations: {() in
-                self.changeButton.setTitle("Choose", for: UIControlState())
+            UIView.transition(with: view, duration: 0.2, options: UIView.AnimationOptions.curveEaseOut, animations: {() in
+                self.changeButton.setTitle("Choose", for: UIControl.State())
                 self.playLabel.text = "Choose a way to play..."
                 self.playButton.isEnabled = true
                 self.hidePastPlay()
@@ -150,10 +150,10 @@ class NewGameController: UIViewController, ListLoader
             playLabel.text = "Playing against " + definedUser! + "..."
             playButton.isEnabled = false
             playButton.selectedSegmentIndex = 1
-            changeButton.setTitle("Change", for: UIControlState())
+            changeButton.setTitle("Change", for: UIControl.State())
         }
         else {
-            changeButton.setTitle("Choose", for: UIControlState())
+            changeButton.setTitle("Choose", for: UIControl.State())
         }
         
         if playLabel.isHidden
@@ -175,7 +175,7 @@ class NewGameController: UIViewController, ListLoader
     
     @IBAction func playPressed(_ sender: AnyObject)
     {
-        changeButton.setTitle("Choose", for: UIControlState())
+        changeButton.setTitle("Choose", for: UIControl.State())
         
         if (playButton.selectedSegmentIndex == 0)
         {
@@ -243,7 +243,7 @@ class NewGameController: UIViewController, ListLoader
         Constants.CORE.listData = nil
         Constants.CORE.activeList.removeAll(keepingCapacity: false)
         
-        listChange.setTitle("Choose", for: UIControlState())
+        listChange.setTitle("Choose", for: UIControl.State())
         listLabel.text = ("Choose a word list...")
         
         if !loadingLabel.isHidden
@@ -289,7 +289,7 @@ class NewGameController: UIViewController, ListLoader
     
     func hide(_ completion: (() -> Void)?, views: UIView...)
     {
-        UIView.transition(with: view, duration: 0.4, options: UIViewAnimationOptions.curveEaseOut, animations: {() in
+        UIView.transition(with: view, duration: 0.4, options: UIView.AnimationOptions.curveEaseOut, animations: {() in
             for view in views
             {
                 view.alpha = 0
@@ -312,7 +312,7 @@ class NewGameController: UIViewController, ListLoader
             view.alpha = 0.1
         }
         
-        UIView.transition(with: view, duration: 0.4, options: UIViewAnimationOptions.curveEaseOut, animations: {() in
+        UIView.transition(with: view, duration: 0.4, options: UIView.AnimationOptions.curveEaseOut, animations: {() in
             for view in views
             {
                 view.alpha = 1

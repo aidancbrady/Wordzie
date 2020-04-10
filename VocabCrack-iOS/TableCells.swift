@@ -203,7 +203,7 @@ class ListCell:UITableViewCell
     
     @IBAction func onLongPress(_ sender: UILongPressGestureRecognizer)
     {
-        if sender.state == UIGestureRecognizerState.began
+        if sender.state == UIGestureRecognizer.State.began
         {
             if controller != nil && identifierLabel.text != "Default"
             {

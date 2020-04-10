@@ -37,16 +37,16 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         {
             if !game!.userTurn
             {
-                playButton.setTitle("Opponent's Turn", for: UIControlState())
+                playButton.setTitle("Opponent's Turn", for: UIControl.State())
                 playButton.isEnabled = false
             }
             else {
-                playButton.setTitle("Play", for: UIControlState())
+                playButton.setTitle("Play", for: UIControl.State())
                 playButton.isEnabled = true
             }
         }
         else {
-            playButton.setTitle("New Game", for: UIControlState())
+            playButton.setTitle("New Game", for: UIControl.State())
             playButton.isEnabled = true
         }
     }
@@ -103,7 +103,7 @@ class GameDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         scoreTable.dataSource = self
         
         playButton.isEnabled = false
-        playButton.setTitle("Loading...", for: UIControlState())
+        playButton.setTitle("Loading...", for: UIControl.State())
     }
     
     func numberOfSections(in tableView: UITableView) -> Int

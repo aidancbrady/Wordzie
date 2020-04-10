@@ -130,7 +130,7 @@ class Game: Equatable
     
     class func readDefault(_ s:String, splitter:String) -> Game?
     {
-        var split:[String] = s.components(separatedBy: splitter)
+        let split:[String] = s.components(separatedBy: splitter)
         
         if(split.count < 4)
         {
@@ -154,7 +154,7 @@ class Game: Equatable
     
     class func readRequest(_ s:String, splitter:String) -> Game?
     {
-        var split:[String] = s.components(separatedBy: splitter)
+        let split:[String] = s.components(separatedBy: splitter)
         
         if(split.count < 4)
         {
@@ -272,7 +272,7 @@ class Game: Equatable
     
     func readWordList(_ s:String)
     {
-        var split:[String] = s.components(separatedBy: "&");
+        let split:[String] = s.components(separatedBy: "&");
         
         if split.count == 1 && split[0] == "null"
         {

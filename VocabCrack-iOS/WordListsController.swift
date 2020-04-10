@@ -52,7 +52,7 @@ class WordListsController: UITableViewController
         
         refresher = UIRefreshControl()
         refresher.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        refresher.addTarget(self, action: #selector(WordListsController.onRefresh), for: UIControlEvents.valueChanged)
+        refresher.addTarget(self, action: #selector(WordListsController.onRefresh), for: UIControl.Event.valueChanged)
         refreshControl = refresher
         
         compileArray()
@@ -124,7 +124,7 @@ class WordListsController: UITableViewController
         return (indexPath as NSIndexPath).section != 0
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath)
     {
         if editingStyle == .delete
         {

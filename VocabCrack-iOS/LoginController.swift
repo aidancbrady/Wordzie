@@ -230,7 +230,7 @@ class LoginController: UIViewController, UITextFieldDelegate
     
     func hide(_ completion: (() -> Void)?, views: UIView...)
     {
-        UIView.transition(with: view, duration: 0.4, options: UIViewAnimationOptions.curveEaseOut, animations: {() in
+        UIView.transition(with: view, duration: 0.4, options: UIView.AnimationOptions.curveEaseOut, animations: {() in
             for view in views
             {
                 view.alpha = 0
@@ -253,7 +253,7 @@ class LoginController: UIViewController, UITextFieldDelegate
             view.alpha = 0.1
         }
         
-        UIView.transition(with: view, duration: 0.4, options: UIViewAnimationOptions.curveEaseOut, animations: {() in
+        UIView.transition(with: view, duration: 0.4, options: UIView.AnimationOptions.curveEaseOut, animations: {() in
             for view in views
             {
                 view.alpha = 1

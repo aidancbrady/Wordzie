@@ -140,7 +140,7 @@ class Utilities
             hash.appendFormat("%02x", result[i])
         }
         
-        result.deinitialize()
+        result.deinitialize(count: digestLen)
         
         return String(format: hash as String)
     }
@@ -396,20 +396,20 @@ struct ActionButton
 {
     var button:String!
     var action:((UIAlertAction) -> Void)?
-    var style:UIAlertActionStyle = .default
+    var style:UIAlertAction.Style = .default
     
     init(button:String)
     {
         self.button = button
     }
     
-    init(button:String, action:@escaping ((UIAlertAction!) -> Void))
+    init(button:String, action:@escaping ((UIAlertAction?) -> Void))
     {
         self.button = button
         self.action = action
     }
     
-    init(button:String, action:@escaping ((UIAlertAction!) -> Void), style:UIAlertActionStyle)
+    init(button:String, action:@escaping ((UIAlertAction?) -> Void), style:UIAlertAction.Style)
     {
         self.button = button
         self.action = action
