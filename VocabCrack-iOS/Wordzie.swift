@@ -8,8 +8,7 @@
 
 import UIKit
 
-class Wordzie
-{
+class Wordzie {
     var account:Account = Defaults.ACCOUNT
     var avatars:[String: UIImage] = [String: UIImage]()
     
@@ -23,21 +22,19 @@ class Wordzie
     var dataState:Bool?
 }
 
-struct Handlers
-{
+struct Handlers {
     static var coreHandler:CoreHandler = CoreHandler()
     static var friendHandler:FriendHandler = FriendHandler()
     static var gameHandler:GameHandler = GameHandler()
     static var listHandler:ListHandler = ListHandler()
 }
 
-struct Constants
-{
-    static var IP:String = "server.aidancbrady.com"
-    static var PORT:Int = 26830
+struct Constants {
+    static var SERVER_ADDRESS:String = "server.aidancbrady.com"
+    static var SERVER_PORT:Int = 26830
     
     static let VERSION:String = "1.0.0"
-    static let DATA_URL:URL = URL(string: "http://aidancbrady.com/data/versions/Wordzie.txt")!
+    static let DATA_URL:URL = URL(string: "http://server.aidancbrady.com/data/Wordzie.txt")!
     static let BAD_CHARS:[String] = [SPLITTER_1, SPLITTER_2, "&", " ", "|", LIST_SPLITTER]
     static let BANNED_CHARS:[String] = [SPLITTER_1, SPLITTER_2, "&", "|", LIST_SPLITTER]
     static let CORE:Wordzie = Wordzie()
@@ -48,8 +45,7 @@ struct Constants
     static let NULL:String = "|NULL|"
 }
 
-struct Defaults
-{
+struct Defaults {
     static var ACCOUNT:Account = Account(username: "Guest", email: "guest@test.com", password: "password")
     static var GAME:Game = Game(user: "Guest1", opponent: "Guest2")
 }

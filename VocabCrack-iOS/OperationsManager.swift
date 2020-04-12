@@ -8,8 +8,7 @@
 
 import UIKit
 
-struct Operations
-{
+struct Operations {
     static var loggingIn = false
     static var registering = false
     static var passwordChanging = false
@@ -22,13 +21,10 @@ struct Operations
     
     static var currentOperations = 0
     
-    static func setNetworkActivity(_ activity:Bool)
-    {
-        if activity
-        {
+    static func setNetworkActivity(_ activity:Bool) {
+        if activity {
             currentOperations += 1
-        }
-        else {
+        } else {
             currentOperations -= 1
         }
         

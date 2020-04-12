@@ -206,39 +206,23 @@ class Utilities
         let diffMonths: Int64 = diffDays/30
         let diffYears: Int64 = diffMonths/12
         
-        if diffSeconds < 60
-        {
+        if diffSeconds < 60 {
             return "seconds ago"
-        }
-        else if diffMinutes == 1
-        {
+        } else if diffMinutes == 1 {
             return "a minute ago"
-        }
-        else if diffMinutes < 60
-        {
+        } else if diffMinutes < 60 {
             return "\(diffMinutes) minutes ago"
-        }
-        else if diffHours == 1
-        {
+        } else if diffHours == 1 {
             return "an hour ago"
-        }
-        else if diffHours < 72
-        {
+        } else if diffHours < 72 {
             return "\(diffHours) hours ago"
-        }
-        else if diffDays < 31
-        {
+        } else if diffDays < 31 {
             return "\(diffDays) days ago"
-        }
-        else if diffMonths < 12
-        {
+        } else if diffMonths < 12 {
             return "\(diffMonths) months ago"
-        }
-        else if diffYears == 1
-        {
+        } else if diffYears == 1 {
             return "a year ago"
-        }
-        else {
+        } else {
             return "\(diffYears) years ago"
         }
     }
@@ -260,8 +244,8 @@ class Utilities
             {
                 let array:[String] = str.components(separatedBy: "\n")
                 
-                Constants.IP = array[0]
-                Constants.PORT = Int(array[1])!
+                Constants.SERVER_ADDRESS = array[0]
+                Constants.SERVER_PORT = Int(array[1])!
             
                 print("Loaded data")
                 Constants.CORE.dataState = true

@@ -8,8 +8,7 @@
 
 import Foundation
 
-class Account
-{
+class Account {
     var username:String
     var email:String?
     var password:String?
@@ -29,73 +28,57 @@ class Account
     var requestGames:[Game] = [Game]()
     var pastGames:[Game] = [Game]()
     
-    init(username:String, isRequest:Bool)
-    {
+    init(username:String, isRequest:Bool) {
         self.username = username
         self.isRequest = isRequest
     }
     
-    init(username:String, email:String, password:String)
-    {
+    init(username:String, email:String, password:String) {
         self.username = username
         self.email = email
         self.password = password
     }
     
-    func setFriendData(_ friends:[Account], requests:[Account], requested:[Account]) -> Account
-    {
+    func setFriendData(_ friends:[Account], requests:[Account], requested:[Account]) -> Account {
         self.friends = friends
         self.requests = requests
         self.requested = requested
-        
         return self
     }
     
     @discardableResult
-    func setUsername(_ username:String) -> Account
-    {
+    func setUsername(_ username:String) -> Account {
         self.username = username
-        
         return self
     }
     
     @discardableResult
-    func setEmail(_ email:String) -> Account
-    {
+    func setEmail(_ email:String) -> Account {
         self.email = email
-        
         return self
     }
     
     @discardableResult
-    func setPassword(_ password:String) -> Account
-    {
+    func setPassword(_ password:String) -> Account {
         self.password = password
-        
         return self
     }
     
     @discardableResult
-    func setGamesWon(_ gamesWon:Int) -> Account
-    {
+    func setGamesWon(_ gamesWon:Int) -> Account {
         self.gamesWon = gamesWon
-        
         return self
     }
     
     @discardableResult
-    func setGamesLost(_ gamesLost:Int) -> Account
-    {
+    func setGamesLost(_ gamesLost:Int) -> Account {
         self.gamesLost = gamesLost
-        
         return self
     }
     
     @discardableResult
-    func setLastLogin(_ lastLogin:Int64) -> Account
-    {
+    func setLastLogin(_ lastLogin:Int64) -> Account {
         self.lastLogin = lastLogin
-        
         return self
     }
 }
